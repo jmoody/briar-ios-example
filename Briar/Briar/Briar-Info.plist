@@ -29,6 +29,8 @@
 	<string>0.0.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.0.2</string>
 	<key>LJSGitShortRevision</key>
 	<string>GIT_SHORT_REVISION</string>
 	<key>LSRequiresIPhoneOS</key>
