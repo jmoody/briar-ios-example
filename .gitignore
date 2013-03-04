@@ -27,6 +27,7 @@ find.xml
 .irb-history
 lesspainful
 lp-upload.sh
+Gemfile.lock
 
 # Xcode 3.*
 *~
