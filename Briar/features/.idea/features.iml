@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="RUBY_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$USER_HOME$/.rvm/gems/ruby-1.9.3-p286@calabash/gems/briar-0.0.2/features" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/support" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="CFPropertyList (v2.2.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="awesome_print (v1.1.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="briar (v0.0.2, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.2.1, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="calabash-cucumber (v0.9.132, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.2.1, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.3.1, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="calabash-cucumber (v0.9.133, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.2.2, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.1, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="geocoder (v1.1.6, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gherkin (v2.11.6, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="httpclient (v2.3.2, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.7.7, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="location-one (v0.0.9, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.6.1, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-http-persistent (v2.8, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v1.5.2, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rack-protection (v1.3.2, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-protection (v1.4.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v10.0.3, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec (v2.13.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-core (v2.13.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
