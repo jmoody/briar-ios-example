@@ -1,8 +1,8 @@
-GEM
-  remote: https://rubygems.org/
+GIT
+  remote: git://github.com/jmoody/briar.git
+  revision: 139aa815b02e3b36f90a2f2a82587309762d6f09
+  branch: master
   specs:
-    CFPropertyList (2.2.0)
-    awesome_print (1.1.0)
     briar (0.0.2)
       CFPropertyList
       builder
@@ -24,6 +24,12 @@ GEM
       slowhandcuke
       syntax
       tilt
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    CFPropertyList (2.2.0)
+    awesome_print (1.1.0)
     builder (3.2.0)
     calabash-cucumber (0.9.133)
       CFPropertyList
@@ -86,7 +92,7 @@ PLATFORMS
 
 DEPENDENCIES
   CFPropertyList
-  briar
+  briar!
   builder
   bundler
   calabash-cucumber (= 0.9.133)

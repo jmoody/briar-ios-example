@@ -25,6 +25,8 @@ find.xml
 
 # calabash
 .irb-history
+lesspainful
+lp-upload.sh
 
 # Xcode 3.*
 *~
