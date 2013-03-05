@@ -1,2 +1,21 @@
 require 'calabash-cucumber/cucumber'
 require 'briar'
+
+World(Briar)
+World(Briar::Core)
+World(Briar::Alerts_and_Sheets)
+World(Briar::Bars)
+World(Briar::Control::Button)
+World(Briar::Control::Segmented_Control)
+World(Briar::Control::Slider)
+World(Briar::Picker::Date)
+World(Briar::Picker_Shared)
+World(Briar::Picker)
+World(Briar::Email)
+World(Briar::ImageView)
+World(Briar::Keyboard)
+World(Briar::Label)
+World(Briar::ScrollView)
+World(Briar::Table)
+World(Briar::TextField)
+World(Briar::TextView)

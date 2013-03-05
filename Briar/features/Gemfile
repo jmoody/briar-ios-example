@@ -22,4 +22,4 @@ gem 'slowhandcuke'
 gem 'tilt'
 gem 'syntax'
 gem 'rspec'
-gem 'briar'
+gem 'briar', "0.0.3"
