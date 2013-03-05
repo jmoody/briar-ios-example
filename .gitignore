@@ -28,6 +28,7 @@ find.xml
 lesspainful
 lp-upload.sh
 Gemfile.lock
+.bundle
 
 # Xcode 3.*
 *~
