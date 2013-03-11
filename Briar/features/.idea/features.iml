@@ -2,7 +2,9 @@
 <module type="RUBY_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/../../../briar">
-      <excludeFolder url="file://$MODULE_DIR$/../../../briar/spec" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../briar/spec" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../briar/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../briar/features/support" />
       <excludeFolder url="file://$MODULE_DIR$/../../../briar/vendor" />
     </content>
     <content url="file://$MODULE_DIR$" />
@@ -10,10 +12,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="CFPropertyList (v2.2.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="awesome_print (v1.1.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="briar (v0.0.4, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="briar (v0.0.5, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="calabash-cucumber (v0.9.133, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.2.2, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="calabash-cucumber (v0.9.134, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.2.3, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.1, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="geocoder (v1.1.6, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gherkin (v2.11.6, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
@@ -28,7 +30,7 @@
     <orderEntry type="library" scope="PROVIDED" name="sinatra (v1.3.5, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="slowhandcuke (v0.0.3, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.17.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="tilt (v1.3.4, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tilt (v1.3.5, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
   </component>
 </module>
 
