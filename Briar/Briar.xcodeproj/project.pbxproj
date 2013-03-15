@@ -67,6 +67,8 @@
 		F568C46B16E3C6F2007797F1 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C46216E3C6F2007797F1 /* Icon@2x.png */; };
 		F568C46C16E3C6F2007797F1 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F568C46316E3C6F2007797F1 /* iTunesArtwork */; };
 		F568C46D16E3C6F2007797F1 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F568C46416E3C6F2007797F1 /* iTunesArtwork@2x */; };
+		F58F093316F29CD6007CFE50 /* BRCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F093216F29CD6007CFE50 /* BRCategories.m */; };
+		F58F093416F29CD6007CFE50 /* BRCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F093216F29CD6007CFE50 /* BRCategories.m */; };
 		aa3541c626e9a05f9ce05e6d /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
 		b8fdd38325a6b1a766af9175 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45F16E3C6F2007797F1 /* Icon-Small.png */; };
 		c3cc1892a54542ba9cde1f42 /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = c6425b650cbbd9f05994720c /* calabash.framework */; };
@@ -121,6 +123,8 @@
 		F568C46216E3C6F2007797F1 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Briar/Icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		F568C46316E3C6F2007797F1 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Briar/iTunesArtwork; sourceTree = SOURCE_ROOT; };
 		F568C46416E3C6F2007797F1 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "Briar/iTunesArtwork@2x"; sourceTree = SOURCE_ROOT; };
+		F58F093116F29CD6007CFE50 /* BRCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRCategories.h; sourceTree = "<group>"; };
+		F58F093216F29CD6007CFE50 /* BRCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRCategories.m; sourceTree = "<group>"; };
 		c6425b650cbbd9f05994720c /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -184,6 +188,8 @@
 		F568C42616E3C256007797F1 /* Briar */ = {
 			isa = PBXGroup;
 			children = (
+				F58F093116F29CD6007CFE50 /* BRCategories.h */,
+				F58F093216F29CD6007CFE50 /* BRCategories.m */,
 				F568C45116E3C69C007797F1 /* artwork */,
 				F568C45A16E3C6A8007797F1 /* XIB */,
 				F568C42F16E3C256007797F1 /* BRAppDelegate.h */,
@@ -428,6 +434,7 @@
 				07719336d66c1ae0e689616e /* BRAppDelegate.m in Sources */,
 				c5aff99349cba5eaeaa6c75b /* BRFirstViewController.m in Sources */,
 				9b2562c4b4493ba8dd11edf7 /* BRSecondViewController.m in Sources */,
+				F58F093416F29CD6007CFE50 /* BRCategories.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +446,7 @@
 				F568C43116E3C256007797F1 /* BRAppDelegate.m in Sources */,
 				F568C43A16E3C256007797F1 /* BRFirstViewController.m in Sources */,
 				F568C44116E3C256007797F1 /* BRSecondViewController.m in Sources */,
+				F58F093316F29CD6007CFE50 /* BRCategories.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

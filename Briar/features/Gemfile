@@ -1,3 +1,4 @@
 source 'https://rubygems.org'
 gem 'calabash-cucumber', '0.9.134'
-gem 'briar', '0.0.5'
+gem 'briar', '0.0.6'
+gem 'lesspainful'

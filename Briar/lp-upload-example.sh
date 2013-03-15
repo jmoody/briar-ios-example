@@ -19,5 +19,6 @@ xcrun -sdk iphoneos PackageApplication -v "${APP}" -o "${IPA}" --sign "${SIGNING
 cp "${IPA}" lesspainful/
 
 cd lesspainful
-ln -s features/Gemfile Gemfile
-lesspainful "${PRODUCT_NAME}.ipa" `cat ~/.lesspainful/briar`
+#cp features/Gemfile ./Gemfile
+ln -s features/Gemfile ./Gemfile
+lesspainful submit "${PRODUCT_NAME}.ipa" `cat ~/.lesspainful/briar`
