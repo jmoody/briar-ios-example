@@ -36,6 +36,10 @@
     <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
     <RunnerSettings RunnerId="RubyRunner" />
     <ConfigurationWrapper RunnerId="RubyRunner" />
-    <method />
+    <method>
+      <option name="RakeTask" enabled="true" TASK_CMD="make briar gem" />
+      <option name="RakeTask" enabled="true" TASK_CMD="bui" />
+      <option name="RakeTask" enabled="true" TASK_CMD="show_simulator" />
+    </method>
   </configuration>
 </component>

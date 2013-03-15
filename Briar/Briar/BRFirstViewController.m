@@ -1,5 +1,7 @@
 #import "BRFirstViewController.h"
 
+
+
 @interface BRFirstViewController ()
 
 @end
@@ -15,18 +17,7 @@
   return self;
 }
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-}
-
-- (void)viewDidUnload {
-  [self setButtonShowSheet:nil];
-  [super viewDidUnload];
-}
+#pragma mark - Actions
 
 - (IBAction)buttonTouchedShowSheet:(id)sender {
   NSString *locTitle = NSLocalizedString(@"sheet!", @"first view: title of action sheet");
@@ -42,6 +33,20 @@
   [lSheet showFromTabBar:self.tabBarController.tabBar];
   self.sheet = lSheet;
 }
+
+- (IBAction)buttonTouchedShowEmail:(id)sender {
+  NSString *locSubject = NSLocalizedString(@"i love this briar pipe!", @"first view:  subject of email");
+  NSString *locBody = NSLocalizedString(@"next to a calabash, it is my favorite", @"first view: body of email");
+  MFMailComposeViewController *mailViewController =
+  [[MFMailComposeViewController alloc] init];
+  mailViewController.mailComposeDelegate = self;
+  [mailViewController setSubject:locSubject];
+  [mailViewController setMessageBody:locBody isHTML:NO];
+  [mailViewController setToRecipients:@[@"example@example.com", @"foo@bar.com"]];
+  mailViewController.view.accessibilityIdentifier = @"compose email";
+  [self presentModalViewController:mailViewController animated:YES];
+}
+
 
 #pragma mark - UIActionSheet Delegate
 
@@ -67,14 +72,36 @@
   self.sheet = nil;
 }
 
+#pragma mark - Mail Compose Delegate
+
+-(void) mailComposeController:(MFMailComposeViewController*) aController
+          didFinishWithResult:(MFMailComposeResult) aResult
+                        error:(NSError *) aError {
+  [self dismissModalViewControllerAnimated:YES];
+}
+
 
 #pragma mark - View Lifecycle
 
+- (void)viewDidLoad {
+  [super viewDidLoad];
+}
+
+- (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidUnload {
+  [self setButtonShowSheet:nil];
+  [self setButtonShowEmail:nil];
+  [super viewDidUnload];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   self.view.accessibilityIdentifier = @"first view";
   self.buttonShowSheet.accessibilityIdentifier = @"show sheet";
+  self.buttonShowEmail.accessibilityIdentifier = @"email";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -88,4 +115,5 @@
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
 }
+
 @end

@@ -69,6 +69,8 @@
 		F568C46D16E3C6F2007797F1 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F568C46416E3C6F2007797F1 /* iTunesArtwork@2x */; };
 		F58F093316F29CD6007CFE50 /* BRCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F093216F29CD6007CFE50 /* BRCategories.m */; };
 		F58F093416F29CD6007CFE50 /* BRCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F093216F29CD6007CFE50 /* BRCategories.m */; };
+		F58F093B16F32FF9007CFE50 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58F093A16F32FF9007CFE50 /* MessageUI.framework */; };
+		F58F093C16F33002007CFE50 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58F093A16F32FF9007CFE50 /* MessageUI.framework */; };
 		aa3541c626e9a05f9ce05e6d /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
 		b8fdd38325a6b1a766af9175 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45F16E3C6F2007797F1 /* Icon-Small.png */; };
 		c3cc1892a54542ba9cde1f42 /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = c6425b650cbbd9f05994720c /* calabash.framework */; };
@@ -125,6 +127,7 @@
 		F568C46416E3C6F2007797F1 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "Briar/iTunesArtwork@2x"; sourceTree = SOURCE_ROOT; };
 		F58F093116F29CD6007CFE50 /* BRCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRCategories.h; sourceTree = "<group>"; };
 		F58F093216F29CD6007CFE50 /* BRCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRCategories.m; sourceTree = "<group>"; };
+		F58F093A16F32FF9007CFE50 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		c6425b650cbbd9f05994720c /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -138,6 +141,7 @@
 				01d93763067c68ff5edfb415 /* Foundation.framework in Frameworks */,
 				532f1a9bf8dd52b64f741fd5 /* CoreGraphics.framework in Frameworks */,
 				5f0fd17902431e7fd52dcdc4 /* CFNetwork.framework in Frameworks */,
+				F58F093C16F33002007CFE50 /* MessageUI.framework in Frameworks */,
 				c3cc1892a54542ba9cde1f42 /* calabash.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F58F093B16F32FF9007CFE50 /* MessageUI.framework in Frameworks */,
 				F568C42116E3C256007797F1 /* UIKit.framework in Frameworks */,
 				F568C42316E3C256007797F1 /* Foundation.framework in Frameworks */,
 				F568C42516E3C256007797F1 /* CoreGraphics.framework in Frameworks */,
@@ -176,6 +181,7 @@
 		F568C41F16E3C256007797F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F58F093A16F32FF9007CFE50 /* MessageUI.framework */,
 				F568C42016E3C256007797F1 /* UIKit.framework */,
 				F568C42216E3C256007797F1 /* Foundation.framework */,
 				F568C42416E3C256007797F1 /* CoreGraphics.framework */,
