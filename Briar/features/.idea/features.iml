@@ -32,7 +32,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v0.9.9, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="run_loop (v0.0.5, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sim_launcher (v0.4.6, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sinatra (v1.3.5, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sinatra (v1.4.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="slowhandcuke (v0.0.3, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.17.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v1.3.5, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
