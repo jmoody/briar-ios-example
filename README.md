@@ -6,6 +6,8 @@ https://github.com/jmoody/briar
 
 briar extends the predefined calabash-cucumber steps.
 
+i will try to keep the version number in sync with the briar gem.
+
 ### motivation
 
 DRY: i have several ios projects that use calabash-cucumber and i
