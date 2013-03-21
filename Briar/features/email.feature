@@ -16,30 +16,4 @@ Feature: email features
 
 
 
-#
-#    When /^I cancel email editing I should see the "([^"]*)" view$/ do |view_id|
-#  should_see_mail_view
-#  wait_for_animation
-#
-#  if gestalt.is_ios6?
-#  puts "WARN: iOS6 detected - navbar cancel button is not visible on iOS 6"
-#  else
-#  touch_navbar_item "Cancel"
-#  wait_for_animation
-#  touch_transition("button marked:'Delete Draft'",
-#  "view marked:'#{view_id}'",
-#  {:timeout=>TOUCH_TRANSITION_TIMEOUT,
-#  :retry_frequency=>TOUCH_TRANSsITION_RETRY_FREQ})
-#  end
-#  end
-
-#
-#    Then /^I touch the "([^"]*)" row and wait to see the email view$/ do |row_id|
-#  should_see_row row_id
-#  touch("tableViewCell marked:'#{row_id}'")
-#  wait_for_animation
-#  should_see_mail_view
-#  end
-
-
 

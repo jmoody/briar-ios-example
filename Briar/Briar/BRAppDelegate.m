@@ -1,6 +1,6 @@
 #import "BRAppDelegate.h"
 #import "BRFirstViewController.h"
-#import "BRSecondViewController.h"
+#import "BRTextRelatedController.h"
 #import "BRCategories.h"
 
 typedef enum : NSUInteger {
@@ -74,7 +74,7 @@ typedef enum : NSUInteger {
   UINavigationController *fnbc = [[UINavigationController alloc]
                                   initWithRootViewController:fvc];
   
-  UIViewController *svc = [[BRSecondViewController alloc]
+  UIViewController *svc = [[BRTextRelatedController alloc]
                                        initWithNibName:@"BRSecondViewController"
                                        bundle:nil];
   UINavigationController *snbc = [[UINavigationController alloc]

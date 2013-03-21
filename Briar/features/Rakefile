@@ -4,8 +4,8 @@ task :show_simulator do
 end
 
 task :bui do
-  sh "bundle update"
-  sh "bundle install"
+  sh 'bundle update'
+  sh 'bundle install'
 end
 
 
