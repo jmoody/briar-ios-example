@@ -5,6 +5,8 @@
 - (void) keyboardWillShow:(NSNotification *) aNotification;
 - (void) keyboardWillHide:(NSNotification *) aNotification;
 
+- (void) buttonTouchedDoneTextEditing:(id) sender;
+
 @end
 
 @implementation BRTextRelatedController
@@ -31,12 +33,12 @@
   [nc addObserver:self
          selector:@selector(keyboardWillShow:)
              name:UIKeyboardWillShowNotification
-           object:self.textField];
+           object:nil];
   
   [nc addObserver:self
          selector:@selector(keyboardWillHide:)
              name:UIKeyboardWillHideNotification
-           object:self.textField];
+           object:nil];
   
   self.textField.accessibilityIdentifier = @"input";
 
@@ -52,15 +54,31 @@
   [super viewDidUnload];
 }
 
+#pragma mark - Animations
+
+- (void) buttonTouchedDoneTextEditing:(id)sender {
+  NSLog(@"done text editing button touched");
+  if ([self.textField isFirstResponder]) { [self.textField resignFirstResponder]; }
+}
 
 #pragma mark - Animations
 
 - (void) keyboardWillShow:(NSNotification *)aNotification {
-  NSLog(@"keyboard will show for %@", aNotification.object);
+  NSLog(@"keyboard will show");
+  
+  NSString *locTitle = NSLocalizedString(@"Done", @"text related:  navbar button title - touching dismisses the keyboard");
+  UIBarButtonItem *done = [[UIBarButtonItem alloc]
+                           initWithTitle:locTitle
+                           style:UIBarButtonItemStyleDone
+                           target:self
+                           action:@selector(buttonTouchedDoneTextEditing:)];
+  done.accessibilityLabel = @"done text editing";
+  [self.navigationItem setRightBarButtonItem:done animated:YES];
 }
 
 - (void) keyboardWillHide:(NSNotification *)aNotification {
-  NSLog(@"keyboard will hide for %@", aNotification.object);
+  NSLog(@"keyboard will hide");
+  [self.navigationItem setRightBarButtonItem:nil animated:YES];
 }
 
 
