@@ -13,11 +13,11 @@ Feature: tabbar features
     Then I should see the tabbar
 
   Scenario: i want to test the briar tab bar item touching
-    When I touch the "Second" tab I should see the "Second View" view
+    When I touch the "Text" tab I should see the "text related" view
     Then I touch the "First" tab
     Then I should see "first view"
 
   Scenario: i want to test the briar tab bar item visibility
     Then I should see tabbar button "First" at index 0
-    Then I should see tabbar button "Second" at index 1
+    Then I should see tabbar button "Text" at index 1
 
