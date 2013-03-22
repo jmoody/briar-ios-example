@@ -23,7 +23,7 @@
 /* Begin PBXBuildFile section */
 		01d93763067c68ff5edfb415 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42216E3C256007797F1 /* Foundation.framework */; };
 		057f6664908d0a0ec2a2034a /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45416E3C69C007797F1 /* second.png */; };
-		07719336d66c1ae0e689616e /* BRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F568C43016E3C256007797F1 /* BRAppDelegate.m */; };
+		07719336d66c1ae0e689616e /* BrAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F568C43016E3C256007797F1 /* BrAppDelegate.m */; };
 		1f98f617997352fa5d3376fb /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F568C42C16E3C256007797F1 /* main.m */; };
 		23b78a523c28d71ae6892ce3 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45C16E3C6F2007797F1 /* Icon-72.png */; };
 		25af5ab6ef29f8d240675046 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42016E3C256007797F1 /* UIKit.framework */; };
@@ -45,7 +45,7 @@
 		F568C42516E3C256007797F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42416E3C256007797F1 /* CoreGraphics.framework */; };
 		F568C42B16E3C256007797F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F568C42916E3C256007797F1 /* InfoPlist.strings */; };
 		F568C42D16E3C256007797F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F568C42C16E3C256007797F1 /* main.m */; };
-		F568C43116E3C256007797F1 /* BRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F568C43016E3C256007797F1 /* BRAppDelegate.m */; };
+		F568C43116E3C256007797F1 /* BrAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F568C43016E3C256007797F1 /* BrAppDelegate.m */; };
 		F568C43316E3C256007797F1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43216E3C256007797F1 /* Default.png */; };
 		F568C43516E3C256007797F1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
 		F568C43716E3C256007797F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43616E3C256007797F1 /* Default-568h@2x.png */; };
@@ -115,8 +115,8 @@
 		F568C42A16E3C256007797F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F568C42C16E3C256007797F1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F568C42E16E3C256007797F1 /* Briar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Briar-Prefix.pch"; sourceTree = "<group>"; };
-		F568C42F16E3C256007797F1 /* BRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRAppDelegate.h; sourceTree = "<group>"; };
-		F568C43016E3C256007797F1 /* BRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRAppDelegate.m; sourceTree = "<group>"; };
+		F568C42F16E3C256007797F1 /* BrAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrAppDelegate.h; sourceTree = "<group>"; };
+		F568C43016E3C256007797F1 /* BrAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrAppDelegate.m; sourceTree = "<group>"; };
 		F568C43216E3C256007797F1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		F568C43416E3C256007797F1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		F568C43616E3C256007797F1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -219,8 +219,8 @@
 		F568C42616E3C256007797F1 /* Briar */ = {
 			isa = PBXGroup;
 			children = (
-				F568C42F16E3C256007797F1 /* BRAppDelegate.h */,
-				F568C43016E3C256007797F1 /* BRAppDelegate.m */,
+				F568C42F16E3C256007797F1 /* BrAppDelegate.h */,
+				F568C43016E3C256007797F1 /* BrAppDelegate.m */,
 				F56BAB7516FCAAF400AB8578 /* BrGlobals.h */,
 				F56BAB7616FCAAF400AB8578 /* BrGlobals.m */,
 				F58F093116F29CD6007CFE50 /* BrCategories.h */,
@@ -495,7 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1f98f617997352fa5d3376fb /* main.m in Sources */,
-				07719336d66c1ae0e689616e /* BRAppDelegate.m in Sources */,
+				07719336d66c1ae0e689616e /* BrAppDelegate.m in Sources */,
 				F58F093416F29CD6007CFE50 /* BrCategories.m in Sources */,
 				F56BAB5D16FCA42900AB8578 /* BrController.m in Sources */,
 				F56BAB6516FCA45F00AB8578 /* BrDatePickerController.m in Sources */,
@@ -511,7 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F568C42D16E3C256007797F1 /* main.m in Sources */,
-				F568C43116E3C256007797F1 /* BRAppDelegate.m in Sources */,
+				F568C43116E3C256007797F1 /* BrAppDelegate.m in Sources */,
 				F58F093316F29CD6007CFE50 /* BrCategories.m in Sources */,
 				F56BAB5C16FCA42900AB8578 /* BrController.m in Sources */,
 				F56BAB6416FCA45F00AB8578 /* BrDatePickerController.m in Sources */,

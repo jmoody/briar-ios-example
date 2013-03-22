@@ -37,7 +37,6 @@
     <RunnerSettings RunnerId="RubyRunner" />
     <ConfigurationWrapper RunnerId="RubyRunner" />
     <method>
-      <option name="RakeTask" enabled="true" TASK_CMD="show_simulator" />
       <option name="RakeTask" enabled="true" TASK_CMD="make briar gem" />
       <option name="RakeTask" enabled="true" TASK_CMD="bui" />
     </method>

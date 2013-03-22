@@ -1,16 +1,14 @@
 #import "BrDatePickerController.h"
+#import "BrCategories.h"
 
 @interface BrDatePickerController ()
 
-- (void) buttonTouchedDoneDatePicking:(id) sender;
+@property (nonatomic, strong) BrDatePickerView *pickerView;
 
+- (void) buttonTouchedDoneDatePicking:(id) sender;
 @end
 
 @implementation BrDatePickerController
-
-- (void) dealloc {
-  
-}
 
 - (id) init {
   self = [super init];
@@ -25,6 +23,10 @@
   [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
   self.view.accessibilityIdentifier = @"date related";
+  
+  self.pickerView = [[BrDatePickerView alloc]
+                     initWithDate:[NSDate date]
+                     delegate:self];
 
 }
 
@@ -43,16 +45,54 @@
 
 - (void) buttonTouchedDoneDatePicking:(id)sender {
   NSLog(@"done date editing button touched");
-  
 }
 
 
 - (IBAction)buttonTouchedShowPicker:(id)sender {
   NSLog(@"show picker button touched");
-  
+  typeof(self) wself = self;
+  [BrDatePickerAnimationHelper
+   animateDatePickerOnWithController:wself
+   animations:^{
+     wself.buttonShowPicker.alpha = 0;
+   } completion:^(BOOL finished) {
+
+   }];
 }
 
 #pragma mark - Animations
+
+
+#pragma mark - RuAddMealPickerView Delegate
+
+- (void) datePickerViewCancelButtonTouched {
+  NSLog(@"cancel date picking button touched");
+  typeof(self) wself = self;
+  [BrDatePickerAnimationHelper
+   animateDatePickerOffWithController:wself
+   before:^{
+
+   } animations:^{
+     wself.buttonShowPicker.alpha = 1;
+   } completion:^(BOOL finished) {
+     
+   }];
+}
+
+- (void) datePickerViewDoneButtonTouchedWithDate:(NSDate *)aDate {
+  NSLog(@"picker view done button touched with date: %@",  [aDate debugDescription]);
+  
+  typeof(self) wself = self;
+  [BrDatePickerAnimationHelper
+   animateDatePickerOffWithController:wself
+   before:^{
+     
+   } animations:^{
+     wself.buttonShowPicker.alpha = 1;
+   } completion:^(BOOL finished) {
+   
+   }];
+}
 
 
 #pragma mark - View Lifecycle
@@ -66,11 +106,11 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
+  [self datePickerViewCancelButtonTouched];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

@@ -1,4 +1,8 @@
 source 'https://rubygems.org'
-gem 'calabash-cucumber', '0.9.135'
-gem 'briar', '0.0.6'
-gem 'lesspainful'
+# for release
+#gem 'briar'
+
+# for local development
+# in conjunction with 'config local.briar /Users/moody/git/briar'
+gem 'briar', :github => 'git@github.com:jmoody/briar.git', :branch => '0.0.6'
+

@@ -32,13 +32,14 @@
   if ([BrGlobals isDeviceIphone5]) {
     pickerY += 568 - 480;
   }
+  
   __weak UIViewController *wCon = aController;
   [UIView animateWithDuration:0.4
                         delay:0.1
                       options:UIViewAnimationOptionCurveEaseIn
                    animations:^{
-                     [pickerView setYWithY:pickerY];
                      aAnimations();
+                     [pickerView setYWithY:pickerY];
                    }
                    completion:^(BOOL completed) {
                      aCompletion(completed);
