@@ -2,14 +2,15 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
-#import "BRDatePickerView.h"
+#import "BrDatePickerView.h"
 #import "BrGlobals.h"
+#import "BRCategories.h"
 
 
-@implementation BRDatePickerAnimationHelper
+@implementation BrDatePickerAnimationHelper
 
 + (void) configureNavbarForDateEditingWithAnimation:(BOOL)animated
-                                         controller:(UIViewController<BRDatePickerViewDelegate> *)aController {
+                                         controller:(UIViewController<BrDatePickerViewDelegate> *)aController {
   [aController.navigationItem setRightBarButtonItem:nil animated:NO];
   UIBarButtonItem *cancel = [[UIBarButtonItem alloc]
                              initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
@@ -21,10 +22,10 @@
 }
 
 
-+ (void) animateDatePickerOnWithController:(UIViewController<BRDatePickerViewDelegate> *) aController
++ (void) animateDatePickerOnWithController:(UIViewController<BrDatePickerViewDelegate> *) aController
                                     animations:(void (^)(void)) aAnimations
                                     completion:(void (^)(BOOL finished)) aCompletion {
-  BRDatePickerView *pickerView = [aController pickerView];
+  BrDatePickerView *pickerView = [aController pickerView];
   [aController.view addSubview:pickerView];
   
   CGFloat pickerY = (aController.hidesBottomBarWhenPushed == YES) ? 50 : 0;
@@ -42,19 +43,19 @@
                    completion:^(BOOL completed) {
                      aCompletion(completed);
                      [wCon.navigationItem setRightBarButtonItem:nil animated:NO];
-                     [BRDatePickerAnimationHelper configureNavbarForDateEditingWithAnimation:YES
+                     [BrDatePickerAnimationHelper configureNavbarForDateEditingWithAnimation:YES
                                                                                       controller:aController];
                    }];
 }
 
 
 
-+ (void) animateDatePickerOffWithController:(UIViewController<BRDatePickerViewDelegate> *) aController
++ (void) animateDatePickerOffWithController:(UIViewController<BrDatePickerViewDelegate> *) aController
                                          before:(void (^)(void)) aBefore
                                      animations:(void (^)(void)) aAnimations
                                      completion:(void (^)(BOOL finished)) aCompletion {
   aBefore();
-  BRDatePickerView *pickerView = [aController pickerView];
+  BrDatePickerView *pickerView = [aController pickerView];
   [UIView animateWithDuration:0.4
                         delay:0.1
                       options:UIViewAnimationOptionCurveEaseIn
@@ -65,7 +66,6 @@
                    completion:^(BOOL completed) {
                      [aController.navigationItem setLeftBarButtonItem:nil animated:YES];
                      [pickerView removeFromSuperview];
-                     pickerView.meal = nil;
                      aCompletion(completed);
                    }];
 }
@@ -80,36 +80,33 @@
 static const CGFloat kLeading = 5;
 
 
-@interface BRDatePickerView ()
+@interface BrDatePickerView ()
 
 @property (nonatomic, copy) NSDate *date;
-@property (nonatomic, weak) id<BRDatePickerViewDelegate> delegate;
+@property (nonatomic, weak) id<BrDatePickerViewDelegate> delegate;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIDatePicker *picker;
 
 
-- (OHAttributedLabel *) makeDateLabel;
+- (UILabel *) makeDateLabel;
 - (UIToolbar *) makeToolbar;
 - (UIDatePicker *) makeDatePicker;
 
 - (NSString *) stringForDate:(NSDate *) aDate;
 - (void) datePickerDateDidChange:(id) sender;
 - (void) buttonTouchedPickerDone:(id) sender;
-- (NSAttributedString *) attributedStringForDateLabelText:(NSString *) aText;
-
 
 - (UIFont *) fontForDateLabel;
 
 @end
 
 
-@implementation BRDatePickerView
+@implementation BrDatePickerView
 
 @synthesize date;
 @synthesize delegate;
 @synthesize label;
 @synthesize picker;
-@synthesize meal;
 
 
 #pragma mark Memory Management
@@ -124,26 +121,15 @@ static const CGFloat kLeading = 5;
   return nil;
 }
 
-
-
 - (id) initWithDate:(NSDate *) aDate
-           delegate:(id<BRDatePickerViewDelegate>) aDelegate {
+           delegate:(id<BrDatePickerViewDelegate>) aDelegate {
   CGRect frame = CGRectMake(0, 0, 320 , 367);
   self = [super initWithFrame:frame];
   if (self) {
-    LjsReasons *reasons = [LjsReasons new];
-    [reasons addReasonWithVarName:@"date" ifNil:aDate];
-    [reasons addReasonWithVarName:@"delegate" ifNil:aDelegate];
-    if ([reasons hasReasons]) {
-      DDLogError([reasons explanation:@"could not create view"
-                          consequence:@"nil"]);
-      return nil;
-    }
     self.date = aDate;
     self.delegate = aDelegate;
-    self.meal = nil;
     
-    self.accessibilityIdentifier = @"meal date picker";
+    self.accessibilityIdentifier = @"wake up picker";
     
     self.label = [self makeDateLabel];
     [self addSubview:self.label];
@@ -159,72 +145,30 @@ static const CGFloat kLeading = 5;
 
 - (NSString *) stringForDate:(NSDate *) aDate {
   NSDateFormatter *df;
-  
-  NSString *dateFmt = [RuGlobals stringForDateFormat];
-  df = [RuGlobals ruDateFormatterWithFormat:dateFmt];
-  NSString *dateStr = [df stringFromDate:aDate];
-  
-  NSString *timeFmt = [RuGlobals stringForTimeFormat];
-  df = [RuGlobals ruDateFormatterWithFormat:timeFmt];
+  NSString *timeFmt = [BrGlobals stringForTimeFormat];
+  df = [BrGlobals ruDateFormatterWithFormat:timeFmt];
   NSString *timeStr = [df stringFromDate:aDate];
-  
-  return [dateStr stringByAppendingFormat:@"\n%@", timeStr];
+  return timeStr;
 }
 
 
 - (UIFont *) fontForDateLabel {
-  return  [RuFonts ruBoldFontWithSize:22];
+  return  [UIFont boldSystemFontOfSize:22];
 }
 
 
-- (NSAttributedString *) attributedStringForDateLabelText:(NSString *) aText {
+
+- (UILabel *) makeDateLabel {
+
   UIFont *font = [self fontForDateLabel];
-  NSMutableAttributedString* attrStr = [NSMutableAttributedString attributedStringWithString:aText];
-  [attrStr setFont:font];
-  [attrStr setTextColor:[RuColors ruGray]];
+  CGRect frame = CGRectMake(20, 44, 280, 24);
   
-  OHParagraphStyle* paragraphStyle = [OHParagraphStyle defaultParagraphStyle];
-  paragraphStyle.textAlignment = kCTCenterTextAlignment;
-  paragraphStyle.lineBreakMode = kCTLineBreakByWordWrapping;
-  paragraphStyle.lineSpacing = kLeading;
-  
-  [attrStr setParagraphStyle:paragraphStyle];
-
-  return attrStr;
-}
-
-- (OHAttributedLabel *) makeDateLabel {
-  NSString *text = [self stringForDate:self.date];
-  CGFloat w = 280;
-  UIFont *font = [self fontForDateLabel];
-  
-  LjsLabelAttributes *attrs = [[LjsLabelAttributes alloc]
-                               initWithString:text
-                               font:font
-                               labelWidth:w];
-
-
-  CGFloat h = attrs.labelHeight + kLeading;
-  CGFloat y = (60/2) - (h/2);
-  CGRect frame = CGRectMake(20, y, w, h);
-  
-
- 
-  OHAttributedLabel *result = [[OHAttributedLabel alloc]
-                              initWithFrame:frame];
-
-  result.font = attrs.font;
-
+  UILabel *result = [[UILabel alloc] initWithFrame:frame];
   result.textAlignment = UITextAlignmentCenter;
-  result.backgroundColor = [RuColors colorForLabelBackground];
-  result.lineBreakMode = UILineBreakModeWordWrap;
-  result.numberOfLines = 2;
-  result.shadowColor = [RuColors colorForGlassButtonShadow];
-  result.shadowOffset = CGSizeMake(0.0, -0.7);
-  result.accessibilityIdentifier = @"meal date";
-  result.centerVertically = YES;
-  result.attributedText = [self attributedStringForDateLabelText:text];
-
+  result.lineBreakMode = UILineBreakModeMiddleTruncation;
+  result.font = font;
+  result.accessibilityIdentifier = @"wake up time";
+  result.text = [self stringForDate:self.date];
   return result;
 }
 
@@ -241,11 +185,9 @@ static const CGFloat kLeading = 5;
                             target:self action:@selector(buttonTouchedPickerDone:)];
   
   right.accessibilityLabel = NSLocalizedString(@"done picking date",
-                                               @"meal: ACCESSIBILITY button on toolbar/navbar - touching ends date picking and saves any changes");
-  right.tintColor = [RuColors colorForNavbarSaveDoneButtonTint];
-  bar.items = [NSArray arrayWithObjects:left,right, nil];
+                                               @"date: ACCESSIBILITY button on toolbar/navbar - touching ends date picking and saves any changes");
   
-  bar.tintColor = [RuColors colorForToolbar];
+  bar.items = [NSArray arrayWithObjects:left,right, nil];
   
   return bar;
 }
@@ -273,15 +215,15 @@ static const CGFloat kLeading = 5;
 #pragma mark Actions 
 
 - (void) datePickerDateDidChange:(id)sender {
-  DDLogDebug(@"date picker did change");
+  NSLog(@"date picker did change");
   NSDate *newDate = self.picker.date;
   NSString *text = [self stringForDate:newDate];
-  self.label.attributedText = [self attributedStringForDateLabelText:text];
+  self.label.text = text;
 }
 
 
 - (void) buttonTouchedPickerDone:(id)sender {
-  DDLogDebug(@"picker done button touched");
+  NSLog(@"picker done button touched");
   [self.delegate datePickerViewDoneButtonTouchedWithDate:self.picker.date];
    
 }

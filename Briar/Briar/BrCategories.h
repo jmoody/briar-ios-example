@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
 
-@interface BRCategories : NSObject
+@interface BrCategories : NSObject
 
 @end
 
-@interface NSArray (BRAdditions)
+@interface NSArray (BrAdditions)
 
 - (NSArray *) mapc:(void (^)(id obj, NSUInteger idx, BOOL *stop)) aBlock;
 
@@ -22,5 +22,17 @@
 - (void) setYWithY:(CGFloat) y;
 - (void) setOriginWithX:(CGFloat) x
                    andY:(CGFloat) y;
+
+@end
+
+@interface NSLocale (BrAdditions)
+
+- (BOOL) localeUses24HourClock;
+ 
+@end
+
+@interface NSCalendar (BrAdditions)
+
++ (NSCalendar *) gregorianCalendarWithMondayAsFirstDayOfWeek;
 
 @end

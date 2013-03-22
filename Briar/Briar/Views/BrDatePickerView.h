@@ -1,27 +1,27 @@
 #import <Foundation/Foundation.h>
 
-@class BRDatePickerView;
+@class BrDatePickerView;
 
-@protocol BRDatePickerViewDelegate <NSObject>
+@protocol BrDatePickerViewDelegate <NSObject>
 
 @required
 - (void) datePickerViewDoneButtonTouchedWithDate:(NSDate *) aDate;
 - (void) datePickerViewCancelButtonTouched;
-- (BRDatePickerView *) pickerView;
+- (BrDatePickerView *) pickerView;
 
 
 @end
 
-@interface BRDatePickerAnimationHelper : NSObject
+@interface BrDatePickerAnimationHelper : NSObject
 
 + (void) configureNavbarForDateEditingWithAnimation:(BOOL)animated
-                                         controller:(UIViewController<BRDatePickerViewDelegate> *) aController;
+                                         controller:(UIViewController<BrDatePickerViewDelegate> *) aController;
 
-+ (void) animateDatePickerOnWithController:(UIViewController<BRDatePickerViewDelegate> *) aController
++ (void) animateDatePickerOnWithController:(UIViewController<BrDatePickerViewDelegate> *) aController
                                 animations:(void (^)(void)) aAnimations
                                 completion:(void (^)(BOOL finished)) aCompletion;
 
-+ (void) animateDatePickerOffWithController:(UIViewController<BRDatePickerViewDelegate> *) aController
++ (void) animateDatePickerOffWithController:(UIViewController<BrDatePickerViewDelegate> *) aController
                                      before:(void (^)(void)) aBefore
                                  animations:(void (^)(void)) aAnimations
                                  completion:(void (^)(BOOL finished)) aCompletion;
@@ -32,13 +32,13 @@
 /**
  Documentation
  */
-@interface BRDatePickerView : UIView 
+@interface BrDatePickerView : UIView
 
 /** @name Properties */
 
 /** @name Initializing Objects */
 - (id) initWithDate:(NSDate *) aDate
-           delegate:(id<BRDatePickerViewDelegate>) aDelegate;
+           delegate:(id<BrDatePickerViewDelegate>) aDelegate;
 
 
 /** @name Handling Notifications, Requests, and Events */

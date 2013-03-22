@@ -30,13 +30,13 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
-#import "BRController.h"
+#import "BrController.h"
 
-@interface BRController ()
+@interface BrController ()
 
 @end
 
-@implementation BRController
+@implementation BrController
 
 
 #pragma mark Memory Management

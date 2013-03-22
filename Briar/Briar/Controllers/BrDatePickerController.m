@@ -1,12 +1,12 @@
-#import "BRDatePickerController.h"
+#import "BrDatePickerController.h"
 
-@interface BRDatePickerController ()
+@interface BrDatePickerController ()
 
 - (void) buttonTouchedDoneDatePicking:(id) sender;
 
 @end
 
-@implementation BRDatePickerController
+@implementation BrDatePickerController
 
 - (void) dealloc {
   

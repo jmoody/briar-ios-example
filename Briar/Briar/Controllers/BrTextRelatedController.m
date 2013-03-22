@@ -1,6 +1,6 @@
-#import "BRTextRelatedController.h"
+#import "BrTextRelatedController.h"
 
-@interface BRTextRelatedController ()
+@interface BrTextRelatedController ()
 
 - (void) keyboardWillShow:(NSNotification *) aNotification;
 - (void) keyboardWillHide:(NSNotification *) aNotification;
@@ -9,7 +9,7 @@
 
 @end
 
-@implementation BRTextRelatedController
+@implementation BrTextRelatedController
 
 
 - (id)init {

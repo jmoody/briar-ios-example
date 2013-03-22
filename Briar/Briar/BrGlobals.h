@@ -42,6 +42,9 @@
 
 /** @name Utility */
 + (BOOL) isDeviceIphone5;
-
++ (NSString *) stringForDateFormat;
++ (NSString *) stringForDateTimeFormat; 
++ (NSString *) stringForTimeFormat;
++ (NSDateFormatter *) ruDateFormatterWithFormat:(NSString *) aString;
 
 @end

@@ -1,12 +1,12 @@
-#import "BRFirstViewController.h"
+#import "BrFirstViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 
-@interface BRFirstViewController ()
+@interface BrFirstViewController ()
 
 @end
 
-@implementation BRFirstViewController
+@implementation BrFirstViewController
 
 - (id)init {
   self = [super init];

@@ -30,13 +30,13 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
-#import "BRCategories.h"
+#import "BrCategories.h"
 
-@interface BRCategories ()
+@interface BrCategories ()
 
 @end
 
-@implementation BRCategories
+@implementation BrCategories
 
 #pragma mark - Memory Management
 - (id) init {
@@ -48,7 +48,7 @@
 
 #pragma mark - NSArray Additions
 
-@implementation NSArray (BRAdditions)
+@implementation NSArray (BrAdditions)
 
 - (NSArray *) mapc:(void (^)(id obj, NSUInteger idx, BOOL *stop)) aBlock  {
   [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -97,6 +97,40 @@
   CGFloat x = self.frame.origin.x;
   [self setOriginWithX:x andY:y];
 }
+
+@end
+
+@implementation NSLocale (BrAdditions)
+
+- (BOOL) localeUses24HourClock {
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  [formatter setLocale:self];
+  [formatter setDateStyle:NSDateFormatterNoStyle];
+  [formatter setTimeStyle:NSDateFormatterShortStyle];
+  NSString *dateString = [formatter stringFromDate:[NSDate date]];
+  NSRange amRange = [dateString rangeOfString:[formatter AMSymbol]];
+  NSRange pmRange = [dateString rangeOfString:[formatter PMSymbol]];
+  BOOL is24Hour = (amRange.location == NSNotFound && pmRange.location == NSNotFound);
+  return is24Hour;
+}
+
+@end
+
+@implementation NSCalendar (BrAdditions)
+
++ (NSCalendar *) gregorianCalendarWithMondayAsFirstDayOfWeek {
+  NSCalendar *calendar;
+  calendar = [[NSCalendar alloc]
+              initWithCalendarIdentifier:NSGregorianCalendar];
+  // iso spec http://en.wikipedia.org/wiki/ISO_week_date#First_week
+  // not respected in iOS 5.0 so we set it here
+  [calendar setMinimumDaysInFirstWeek:4];
+  // monday - days are 1 indexed
+  [calendar setFirstWeekday:2];
+  return calendar;
+}
+
+
 
 @end
 

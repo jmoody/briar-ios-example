@@ -1,6 +1,6 @@
-#import "BRController.h"
+#import "BrController.h"
 
-@interface BRTextRelatedController : BRController
+@interface BrTextRelatedController : BrController
 
 <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *textField;

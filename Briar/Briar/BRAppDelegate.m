@@ -1,8 +1,8 @@
-#import "BRAppDelegate.h"
-#import "BRFirstViewController.h"
-#import "BRTextRelatedController.h"
-#import "BRDatePickerController.h"
-#import "BRCategories.h"
+#import "BrAppDelegate.h"
+#import "BrFirstViewController.h"
+#import "BrTextRelatedController.h"
+#import "BrDatePickerController.h"
+#import "BrCategories.h"
 
 typedef enum : NSUInteger {
   kTabbarIndexFirst = 0,
@@ -10,13 +10,13 @@ typedef enum : NSUInteger {
 } BrTabbarIndex;
 
 
-@interface BRAppDelegate ()
+@interface BrAppDelegate ()
 
 - (NSString *) calabashBackdoor:(NSString *) aIgnorable;
 
 @end
 
-@implementation BRAppDelegate
+@implementation BrAppDelegate
 
 - (NSString *) calabashBackdoor:(NSString *)aIgnorable {
   
@@ -56,7 +56,7 @@ typedef enum : NSUInteger {
     [navcon popToRootViewControllerAnimated:YES];
     
     if (idx == kTabbarIndexFirst) {
-      BRFirstViewController *fvc = (BRFirstViewController *)top;
+      BrFirstViewController *fvc = (BrFirstViewController *)top;
       if (fvc.sheet.visible == YES) { [fvc actionSheetCancel:fvc.sheet]; }      
     } else if (idx == kTabbarIndexSecond) {
       
@@ -89,15 +89,15 @@ typedef enum : NSUInteger {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
   
-  UIViewController *fvc = [BRFirstViewController new];
+  UIViewController *fvc = [BrFirstViewController new];
   UINavigationController *fnbc = [[UINavigationController alloc]
                                   initWithRootViewController:fvc];
   
-  UIViewController *svc = [BRTextRelatedController new];
+  UIViewController *svc = [BrTextRelatedController new];
   UINavigationController *snbc = [[UINavigationController alloc]
                                   initWithRootViewController:svc];
 
-  UIViewController *dvc = [BRDatePickerController new];
+  UIViewController *dvc = [BrDatePickerController new];
   UINavigationController *ndvc = [[UINavigationController alloc]
                                   initWithRootViewController:dvc];
   

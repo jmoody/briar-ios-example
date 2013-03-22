@@ -1,7 +1,7 @@
 #import <MessageUI/MessageUI.h>
-#import "BRController.h"
+#import "BrController.h"
 
-@interface BRFirstViewController : BRController
+@interface BrFirstViewController : BrController
 <UIActionSheetDelegate,
 MFMailComposeViewControllerDelegate>
 

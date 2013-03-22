@@ -1,6 +1,6 @@
-#import "BRController.h"
+#import "BrController.h"
 
-@interface BRDatePickerController : BRController
+@interface BrDatePickerController : BrController
 
 @property (weak, nonatomic) IBOutlet UIButton *buttonShowPicker;
 - (IBAction)buttonTouchedShowPicker:(id)sender;
