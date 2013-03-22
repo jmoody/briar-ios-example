@@ -26,77 +26,20 @@
 // OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 // IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#if ! __has_feature(objc_arc)
-#warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
-#endif
 
-#import "BRCategories.h"
+#import <Foundation/Foundation.h>
 
-@interface BRCategories ()
+/**
+ Documentation
+ */
+@interface BRController : UIViewController 
 
-@end
+/** @name Properties */
 
-@implementation BRCategories
+/** @name Initializing Objects */
 
-#pragma mark - Memory Management
-- (id) init {
-  [self doesNotRecognizeSelector:_cmd];
-  return self;
-}
+/** @name Handling Notifications, Requests, and Events */
+
+/** @name Utility */
 
 @end
-
-#pragma mark - NSArray Additions
-
-@implementation NSArray (BRAdditions)
-
-- (NSArray *) mapc:(void (^)(id obj, NSUInteger idx, BOOL *stop)) aBlock  {
-  [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    aBlock(obj, idx, stop);
-  }];
-  return self;
-}
-
-
-@end
-
-@implementation UIView (BrAdditions)
-
-- (void) setHeightWithHeight:(CGFloat) h {
-  CGFloat w = self.frame.size.width;
-  [self setSizeWithWidth:w andHeight:h];
-}
-
-- (void) setWidthWithWidth:(CGFloat) w {
-  CGFloat h = self.frame.size.height;
-  [self setSizeWithWidth:w andHeight:h];
-}
-
-- (void) setSizeWithWidth:(CGFloat) w
-                andHeight:(CGFloat) h {
-  CGRect frame = self.frame;
-  self.frame = CGRectMake(frame.origin.x,
-                          frame.origin.y,
-                          w, h);
-}
-
-- (void) setOriginWithX:(CGFloat) x
-                   andY:(CGFloat) y {
-  CGRect frame = self.frame;
-  self.frame = CGRectMake(x, y,
-                          frame.size.width,
-                          frame.size.height);
-}
-
-- (void) setXWithX:(CGFloat) x {
-  CGFloat y = self.frame.origin.y;
-  [self setOriginWithX:x andY:y];
-}
-
-- (void) setYWithY:(CGFloat) y {
-  CGFloat x = self.frame.origin.x;
-  [self setOriginWithX:x andY:y];
-}
-
-@end
-

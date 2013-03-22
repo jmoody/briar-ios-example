@@ -40,7 +40,6 @@
 		6af7a5746f23a1f736912e8f /* BRFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F568C44616E3C256007797F1 /* BRFirstViewController.xib */; };
 		8dbbc1ca2f714136ebe79a4c /* BRTextRelatedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F568C44916E3C256007797F1 /* BRTextRelatedController.xib */; };
 		8e2359e8cb78e16bc7c93e82 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C46016E3C6F2007797F1 /* Icon-Small@2x.png */; };
-		9b2562c4b4493ba8dd11edf7 /* BRTextRelatedController.m in Sources */ = {isa = PBXBuildFile; fileRef = F568C44016E3C256007797F1 /* BRTextRelatedController.m */; };
 		F568C42116E3C256007797F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42016E3C256007797F1 /* UIKit.framework */; };
 		F568C42316E3C256007797F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42216E3C256007797F1 /* Foundation.framework */; };
 		F568C42516E3C256007797F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42416E3C256007797F1 /* CoreGraphics.framework */; };
@@ -50,8 +49,6 @@
 		F568C43316E3C256007797F1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43216E3C256007797F1 /* Default.png */; };
 		F568C43516E3C256007797F1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
 		F568C43716E3C256007797F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43616E3C256007797F1 /* Default-568h@2x.png */; };
-		F568C43A16E3C256007797F1 /* BRFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F568C43916E3C256007797F1 /* BRFirstViewController.m */; };
-		F568C44116E3C256007797F1 /* BRTextRelatedController.m in Sources */ = {isa = PBXBuildFile; fileRef = F568C44016E3C256007797F1 /* BRTextRelatedController.m */; };
 		F568C44816E3C256007797F1 /* BRFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F568C44616E3C256007797F1 /* BRFirstViewController.xib */; };
 		F568C44B16E3C256007797F1 /* BRTextRelatedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F568C44916E3C256007797F1 /* BRTextRelatedController.xib */; };
 		F568C45616E3C69C007797F1 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45216E3C69C007797F1 /* first.png */; };
@@ -67,6 +64,24 @@
 		F568C46B16E3C6F2007797F1 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C46216E3C6F2007797F1 /* Icon@2x.png */; };
 		F568C46C16E3C6F2007797F1 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F568C46316E3C6F2007797F1 /* iTunesArtwork */; };
 		F568C46D16E3C6F2007797F1 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F568C46416E3C6F2007797F1 /* iTunesArtwork@2x */; };
+		F56BAB4F16FCA1B400AB8578 /* BRDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56BAB4D16FCA1B400AB8578 /* BRDatePickerController.xib */; };
+		F56BAB5016FCA1B400AB8578 /* BRDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56BAB4D16FCA1B400AB8578 /* BRDatePickerController.xib */; };
+		F56BAB5C16FCA42900AB8578 /* BRController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB5B16FCA42900AB8578 /* BRController.m */; };
+		F56BAB5D16FCA42900AB8578 /* BRController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB5B16FCA42900AB8578 /* BRController.m */; };
+		F56BAB6416FCA45F00AB8578 /* BRDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB5F16FCA45F00AB8578 /* BRDatePickerController.m */; };
+		F56BAB6516FCA45F00AB8578 /* BRDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB5F16FCA45F00AB8578 /* BRDatePickerController.m */; };
+		F56BAB6616FCA45F00AB8578 /* BRFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB6116FCA45F00AB8578 /* BRFirstViewController.m */; };
+		F56BAB6716FCA45F00AB8578 /* BRFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB6116FCA45F00AB8578 /* BRFirstViewController.m */; };
+		F56BAB6816FCA45F00AB8578 /* BRTextRelatedController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB6316FCA45F00AB8578 /* BRTextRelatedController.m */; };
+		F56BAB6916FCA45F00AB8578 /* BRTextRelatedController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB6316FCA45F00AB8578 /* BRTextRelatedController.m */; };
+		F56BAB6C16FCA5C500AB8578 /* 11-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = F56BAB6A16FCA5C500AB8578 /* 11-clock.png */; };
+		F56BAB6D16FCA5C500AB8578 /* 11-clock.png in Resources */ = {isa = PBXBuildFile; fileRef = F56BAB6A16FCA5C500AB8578 /* 11-clock.png */; };
+		F56BAB6E16FCA5C500AB8578 /* 11-clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F56BAB6B16FCA5C500AB8578 /* 11-clock@2x.png */; };
+		F56BAB6F16FCA5C500AB8578 /* 11-clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F56BAB6B16FCA5C500AB8578 /* 11-clock@2x.png */; };
+		F56BAB7316FCA9DF00AB8578 /* BRDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB7216FCA9DF00AB8578 /* BRDatePickerView.m */; };
+		F56BAB7416FCA9DF00AB8578 /* BRDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB7216FCA9DF00AB8578 /* BRDatePickerView.m */; };
+		F56BAB7716FCAAF400AB8578 /* BrGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB7616FCAAF400AB8578 /* BrGlobals.m */; };
+		F56BAB7816FCAAF400AB8578 /* BrGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB7616FCAAF400AB8578 /* BrGlobals.m */; };
 		F58F093316F29CD6007CFE50 /* BRCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F093216F29CD6007CFE50 /* BRCategories.m */; };
 		F58F093416F29CD6007CFE50 /* BRCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F093216F29CD6007CFE50 /* BRCategories.m */; };
 		F58F093B16F32FF9007CFE50 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58F093A16F32FF9007CFE50 /* MessageUI.framework */; };
@@ -74,7 +89,6 @@
 		aa3541c626e9a05f9ce05e6d /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
 		b8fdd38325a6b1a766af9175 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45F16E3C6F2007797F1 /* Icon-Small.png */; };
 		c3cc1892a54542ba9cde1f42 /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = c6425b650cbbd9f05994720c /* calabash.framework */; };
-		c5aff99349cba5eaeaa6c75b /* BRFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F568C43916E3C256007797F1 /* BRFirstViewController.m */; };
 		d256dff5b9aeb3324a8009c9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43216E3C256007797F1 /* Default.png */; };
 		d4844386f5190d7484340315 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45216E3C69C007797F1 /* first.png */; };
 		e20f57209fc5a8a2af660f73 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45316E3C69C007797F1 /* first@2x.png */; };
@@ -106,10 +120,6 @@
 		F568C43216E3C256007797F1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		F568C43416E3C256007797F1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		F568C43616E3C256007797F1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
-		F568C43816E3C256007797F1 /* BRFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRFirstViewController.h; sourceTree = "<group>"; };
-		F568C43916E3C256007797F1 /* BRFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRFirstViewController.m; sourceTree = "<group>"; };
-		F568C43F16E3C256007797F1 /* BRTextRelatedController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BRTextRelatedController.h; sourceTree = "<group>"; };
-		F568C44016E3C256007797F1 /* BRTextRelatedController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BRTextRelatedController.m; sourceTree = "<group>"; };
 		F568C44716E3C256007797F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BRFirstViewController.xib; sourceTree = "<group>"; };
 		F568C44A16E3C256007797F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BRTextRelatedController.xib; sourceTree = "<group>"; };
 		F568C45216E3C69C007797F1 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
@@ -125,6 +135,21 @@
 		F568C46216E3C6F2007797F1 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Briar/Icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		F568C46316E3C6F2007797F1 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Briar/iTunesArtwork; sourceTree = SOURCE_ROOT; };
 		F568C46416E3C6F2007797F1 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "Briar/iTunesArtwork@2x"; sourceTree = SOURCE_ROOT; };
+		F56BAB4E16FCA1B400AB8578 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BRDatePickerController.xib; sourceTree = "<group>"; };
+		F56BAB5A16FCA42900AB8578 /* BRController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRController.h; sourceTree = "<group>"; };
+		F56BAB5B16FCA42900AB8578 /* BRController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRController.m; sourceTree = "<group>"; };
+		F56BAB5E16FCA45F00AB8578 /* BRDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRDatePickerController.h; sourceTree = "<group>"; };
+		F56BAB5F16FCA45F00AB8578 /* BRDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRDatePickerController.m; sourceTree = "<group>"; };
+		F56BAB6016FCA45F00AB8578 /* BRFirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRFirstViewController.h; sourceTree = "<group>"; };
+		F56BAB6116FCA45F00AB8578 /* BRFirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRFirstViewController.m; sourceTree = "<group>"; };
+		F56BAB6216FCA45F00AB8578 /* BRTextRelatedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTextRelatedController.h; sourceTree = "<group>"; };
+		F56BAB6316FCA45F00AB8578 /* BRTextRelatedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRTextRelatedController.m; sourceTree = "<group>"; };
+		F56BAB6A16FCA5C500AB8578 /* 11-clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-clock.png"; sourceTree = "<group>"; };
+		F56BAB6B16FCA5C500AB8578 /* 11-clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "11-clock@2x.png"; sourceTree = "<group>"; };
+		F56BAB7116FCA9DF00AB8578 /* BRDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRDatePickerView.h; sourceTree = "<group>"; };
+		F56BAB7216FCA9DF00AB8578 /* BRDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRDatePickerView.m; sourceTree = "<group>"; };
+		F56BAB7516FCAAF400AB8578 /* BrGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrGlobals.h; sourceTree = "<group>"; };
+		F56BAB7616FCAAF400AB8578 /* BrGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrGlobals.m; sourceTree = "<group>"; };
 		F58F093116F29CD6007CFE50 /* BRCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRCategories.h; sourceTree = "<group>"; };
 		F58F093216F29CD6007CFE50 /* BRCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRCategories.m; sourceTree = "<group>"; };
 		F58F093A16F32FF9007CFE50 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -194,16 +219,16 @@
 		F568C42616E3C256007797F1 /* Briar */ = {
 			isa = PBXGroup;
 			children = (
-				F58F093116F29CD6007CFE50 /* BRCategories.h */,
-				F58F093216F29CD6007CFE50 /* BRCategories.m */,
-				F568C45116E3C69C007797F1 /* artwork */,
-				F568C45A16E3C6A8007797F1 /* XIB */,
 				F568C42F16E3C256007797F1 /* BRAppDelegate.h */,
 				F568C43016E3C256007797F1 /* BRAppDelegate.m */,
-				F568C43816E3C256007797F1 /* BRFirstViewController.h */,
-				F568C43916E3C256007797F1 /* BRFirstViewController.m */,
-				F568C43F16E3C256007797F1 /* BRTextRelatedController.h */,
-				F568C44016E3C256007797F1 /* BRTextRelatedController.m */,
+				F56BAB7516FCAAF400AB8578 /* BrGlobals.h */,
+				F56BAB7616FCAAF400AB8578 /* BrGlobals.m */,
+				F58F093116F29CD6007CFE50 /* BRCategories.h */,
+				F58F093216F29CD6007CFE50 /* BRCategories.m */,
+				F56BAB7016FCA9DF00AB8578 /* Views */,
+				F56BAB5916FCA42900AB8578 /* Controllers */,
+				F568C45A16E3C6A8007797F1 /* XIB */,
+				F568C45116E3C69C007797F1 /* artwork */,
 				F568C42716E3C256007797F1 /* Supporting Files */,
 			);
 			path = Briar;
@@ -224,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				F568C45B16E3C6C7007797F1 /* required-artwork */,
+				F56BAB6A16FCA5C500AB8578 /* 11-clock.png */,
+				F56BAB6B16FCA5C500AB8578 /* 11-clock@2x.png */,
 				F568C45216E3C69C007797F1 /* first.png */,
 				F568C45316E3C69C007797F1 /* first@2x.png */,
 				F568C45416E3C69C007797F1 /* second.png */,
@@ -235,6 +262,7 @@
 		F568C45A16E3C6A8007797F1 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				F56BAB4D16FCA1B400AB8578 /* BRDatePickerController.xib */,
 				F568C44616E3C256007797F1 /* BRFirstViewController.xib */,
 				F568C44916E3C256007797F1 /* BRTextRelatedController.xib */,
 			);
@@ -258,6 +286,30 @@
 				F568C43616E3C256007797F1 /* Default-568h@2x.png */,
 			);
 			name = "required-artwork";
+			sourceTree = "<group>";
+		};
+		F56BAB5916FCA42900AB8578 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F56BAB5E16FCA45F00AB8578 /* BRDatePickerController.h */,
+				F56BAB5F16FCA45F00AB8578 /* BRDatePickerController.m */,
+				F56BAB6016FCA45F00AB8578 /* BRFirstViewController.h */,
+				F56BAB6116FCA45F00AB8578 /* BRFirstViewController.m */,
+				F56BAB6216FCA45F00AB8578 /* BRTextRelatedController.h */,
+				F56BAB6316FCA45F00AB8578 /* BRTextRelatedController.m */,
+				F56BAB5A16FCA42900AB8578 /* BRController.h */,
+				F56BAB5B16FCA42900AB8578 /* BRController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F56BAB7016FCA9DF00AB8578 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F56BAB7116FCA9DF00AB8578 /* BRDatePickerView.h */,
+				F56BAB7216FCA9DF00AB8578 /* BRDatePickerView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,6 +406,9 @@
 				F568C46B16E3C6F2007797F1 /* Icon@2x.png in Resources */,
 				F568C46C16E3C6F2007797F1 /* iTunesArtwork in Resources */,
 				F568C46D16E3C6F2007797F1 /* iTunesArtwork@2x in Resources */,
+				F56BAB4F16FCA1B400AB8578 /* BRDatePickerController.xib in Resources */,
+				F56BAB6C16FCA5C500AB8578 /* 11-clock.png in Resources */,
+				F56BAB6E16FCA5C500AB8578 /* 11-clock@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +435,9 @@
 				605bd3871f647141ad259754 /* Icon@2x.png in Resources */,
 				553e655fbe2433cbff10ac67 /* iTunesArtwork in Resources */,
 				33d4d298137d5d41d434537a /* iTunesArtwork@2x in Resources */,
+				F56BAB5016FCA1B400AB8578 /* BRDatePickerController.xib in Resources */,
+				F56BAB6D16FCA5C500AB8578 /* 11-clock.png in Resources */,
+				F56BAB6F16FCA5C500AB8578 /* 11-clock@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,9 +496,13 @@
 			files = (
 				1f98f617997352fa5d3376fb /* main.m in Sources */,
 				07719336d66c1ae0e689616e /* BRAppDelegate.m in Sources */,
-				c5aff99349cba5eaeaa6c75b /* BRFirstViewController.m in Sources */,
-				9b2562c4b4493ba8dd11edf7 /* BRTextRelatedController.m in Sources */,
 				F58F093416F29CD6007CFE50 /* BRCategories.m in Sources */,
+				F56BAB5D16FCA42900AB8578 /* BRController.m in Sources */,
+				F56BAB6516FCA45F00AB8578 /* BRDatePickerController.m in Sources */,
+				F56BAB6716FCA45F00AB8578 /* BRFirstViewController.m in Sources */,
+				F56BAB6916FCA45F00AB8578 /* BRTextRelatedController.m in Sources */,
+				F56BAB7416FCA9DF00AB8578 /* BRDatePickerView.m in Sources */,
+				F56BAB7816FCAAF400AB8578 /* BrGlobals.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,9 +512,13 @@
 			files = (
 				F568C42D16E3C256007797F1 /* main.m in Sources */,
 				F568C43116E3C256007797F1 /* BRAppDelegate.m in Sources */,
-				F568C43A16E3C256007797F1 /* BRFirstViewController.m in Sources */,
-				F568C44116E3C256007797F1 /* BRTextRelatedController.m in Sources */,
 				F58F093316F29CD6007CFE50 /* BRCategories.m in Sources */,
+				F56BAB5C16FCA42900AB8578 /* BRController.m in Sources */,
+				F56BAB6416FCA45F00AB8578 /* BRDatePickerController.m in Sources */,
+				F56BAB6616FCA45F00AB8578 /* BRFirstViewController.m in Sources */,
+				F56BAB6816FCA45F00AB8578 /* BRTextRelatedController.m in Sources */,
+				F56BAB7316FCA9DF00AB8578 /* BRDatePickerView.m in Sources */,
+				F56BAB7716FCAAF400AB8578 /* BrGlobals.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +555,14 @@
 				F568C44A16E3C256007797F1 /* en */,
 			);
 			name = BRTextRelatedController.xib;
+			sourceTree = "<group>";
+		};
+		F56BAB4D16FCA1B400AB8578 /* BRDatePickerController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F56BAB4E16FCA1B400AB8578 /* en */,
+			);
+			name = BRDatePickerController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

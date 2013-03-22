@@ -1,6 +1,7 @@
 #import "BRAppDelegate.h"
 #import "BRFirstViewController.h"
 #import "BRTextRelatedController.h"
+#import "BRDatePickerController.h"
 #import "BRCategories.h"
 
 typedef enum : NSUInteger {
@@ -18,6 +19,26 @@ typedef enum : NSUInteger {
 @implementation BRAppDelegate
 
 - (NSString *) calabashBackdoor:(NSString *)aIgnorable {
+  
+  // dismiss any alerts or sheets
+  [[UIApplication sharedApplication].windows mapc:^(UIWindow *window, NSUInteger idx0, BOOL *stop0) {
+    [[window subviews] mapc:^(UIView *view, NSUInteger idx1, BOOL *stop1) {
+      if ([view respondsToSelector:@selector(dismissWithClickedButtonIndex:animated:)]) {
+        if ([view respondsToSelector:@selector(dismissWithClickedButtonIndex:animated:)]) {
+          id dismissible = (id) view;
+          [dismissible dismissWithClickedButtonIndex:1 animated:YES];
+        }
+      }
+      NSArray *subs = [view subviews];
+      [subs mapc:^(UIView *sv, NSUInteger idx2, BOOL *stop2) {
+        if ([sv respondsToSelector:@selector(dismissWithClickedButtonIndex:animated:)]) {
+          id dismissible = (id) sv;
+          [dismissible dismissWithClickedButtonIndex:1 animated:YES];
+        }
+      }];
+    }];
+  }];
+
   
   [[self.tabBarController viewControllers] mapc:^(UINavigationController *navcon,
                                                   NSUInteger idx, BOOL *stop) {
@@ -68,20 +89,23 @@ typedef enum : NSUInteger {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
   
-  UIViewController *fvc = [[BRFirstViewController alloc]
-                                       initWithNibName:@"BRFirstViewController"
-                                       bundle:nil];
+  UIViewController *fvc = [BRFirstViewController new];
   UINavigationController *fnbc = [[UINavigationController alloc]
                                   initWithRootViewController:fvc];
   
-  UIViewController *svc = [[BRTextRelatedController alloc]
-                                       initWithNibName:@"BRSecondViewController"
-                                       bundle:nil];
+  UIViewController *svc = [BRTextRelatedController new];
   UINavigationController *snbc = [[UINavigationController alloc]
                                   initWithRootViewController:svc];
+
+  UIViewController *dvc = [BRDatePickerController new];
+  UINavigationController *ndvc = [[UINavigationController alloc]
+                                  initWithRootViewController:dvc];
+  
+  
+  
   
   self.tabBarController = [[UITabBarController alloc] init];
-  self.tabBarController.viewControllers = @[fnbc, snbc];
+  self.tabBarController.viewControllers = @[fnbc, snbc, ndvc];
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
   return YES;

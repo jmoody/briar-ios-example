@@ -30,73 +30,36 @@
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
 #endif
 
-#import "BRCategories.h"
+#import "BRController.h"
 
-@interface BRCategories ()
+@interface BRController ()
 
 @end
 
-@implementation BRCategories
+@implementation BRController
 
-#pragma mark - Memory Management
-- (id) init {
+
+#pragma mark Memory Management
+
+- (void) dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+// disable this annoying initWithNibName
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   [self doesNotRecognizeSelector:_cmd];
+  return nil;
+}
+
+
+- (id) init {
+  NSString *nibName = [NSString stringWithFormat:@"%@", [self class]];
+  self = [super initWithNibName:nibName bundle:nil];
+  if (self) {
+  
+  }
   return self;
 }
 
 @end
-
-#pragma mark - NSArray Additions
-
-@implementation NSArray (BRAdditions)
-
-- (NSArray *) mapc:(void (^)(id obj, NSUInteger idx, BOOL *stop)) aBlock  {
-  [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    aBlock(obj, idx, stop);
-  }];
-  return self;
-}
-
-
-@end
-
-@implementation UIView (BrAdditions)
-
-- (void) setHeightWithHeight:(CGFloat) h {
-  CGFloat w = self.frame.size.width;
-  [self setSizeWithWidth:w andHeight:h];
-}
-
-- (void) setWidthWithWidth:(CGFloat) w {
-  CGFloat h = self.frame.size.height;
-  [self setSizeWithWidth:w andHeight:h];
-}
-
-- (void) setSizeWithWidth:(CGFloat) w
-                andHeight:(CGFloat) h {
-  CGRect frame = self.frame;
-  self.frame = CGRectMake(frame.origin.x,
-                          frame.origin.y,
-                          w, h);
-}
-
-- (void) setOriginWithX:(CGFloat) x
-                   andY:(CGFloat) y {
-  CGRect frame = self.frame;
-  self.frame = CGRectMake(x, y,
-                          frame.size.width,
-                          frame.size.height);
-}
-
-- (void) setXWithX:(CGFloat) x {
-  CGFloat y = self.frame.origin.y;
-  [self setOriginWithX:x andY:y];
-}
-
-- (void) setYWithY:(CGFloat) y {
-  CGFloat x = self.frame.origin.x;
-  [self setOriginWithX:x andY:y];
-}
-
-@end
-

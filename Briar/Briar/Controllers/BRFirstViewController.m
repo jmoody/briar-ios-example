@@ -1,5 +1,5 @@
 #import "BRFirstViewController.h"
-
+#import <MessageUI/MFMailComposeViewController.h>
 
 
 @interface BRFirstViewController ()
@@ -8,8 +8,8 @@
 
 @implementation BRFirstViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init {
+  self = [super init];
   if (self) {
     self.title = NSLocalizedString(@"First", @"first view: title");
     self.tabBarItem.image = [UIImage imageNamed:@"first"];

@@ -11,12 +11,9 @@
 
 @implementation BRTextRelatedController
 
-- (void) dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init {
+  self = [super init];
   if (self) {
     self.title = NSLocalizedString(@"Text", @"text controller:  appears as title of the text related controller and as a tab bar item");
     self.tabBarItem.image = [UIImage imageNamed:@"second"];
