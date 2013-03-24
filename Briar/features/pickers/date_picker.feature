@@ -17,7 +17,7 @@ Feature: briar date picker steps
     Then I change the time on the picker to "1:35"
     Then I change the time on the picker to "6:45 PM"
     Then I change the time on the picker to "6:45 AM"
-    
+
     Then I change the time on the picker to 20 minutes from now
     Then I change the time on the picker to 13 minutes before now
 
