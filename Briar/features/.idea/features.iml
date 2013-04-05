@@ -12,7 +12,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="CFPropertyList (v2.2.0, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="awesome_print (v1.1.0, rbenv: 1.9.3-p392) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="briar (v0.0.6, /Users/moody/git/briar) [path][gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.0, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.3.4, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="calabash-cucumber (v0.9.140, rbenv: 1.9.3-p392) [gem]" level="application" />
