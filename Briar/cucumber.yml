@@ -1,3 +1,4 @@
 default: NO_LAUNCH=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun.txt
-wip: NO_LAUNCH=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun.txt --tags @wip:3 --wip --require features
+launch: OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun.txt
+wip: NO_LAUNCH=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun.txt --tags @wip:3 --wip
 
