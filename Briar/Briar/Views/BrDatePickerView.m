@@ -203,7 +203,9 @@ static const CGFloat kLeading = 5;
   NSCalendar *calendar = [NSCalendar gregorianCalendarWithMondayAsFirstDayOfWeek];
 
   datePicker.calendar = calendar;
-  datePicker.maximumDate = [NSDate date];
+  datePicker.maximumDate = nil;
+  datePicker.minimumDate = nil;
+  
   datePicker.datePickerMode =  UIDatePickerModeTime;
   datePicker.minuteInterval = 1;
   datePicker.accessibilityIdentifier = @"date picker";

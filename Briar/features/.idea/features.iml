@@ -10,27 +10,37 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="CFPropertyList (v2.2.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="awesome_print (v1.1.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.3.4, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="calabash-cucumber (v0.9.136, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.2.3, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.1, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="geocoder (v1.1.6, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="gherkin (v2.11.6, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="httpclient (v2.3.2, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="json (v1.7.7, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="location-one (v0.0.9, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.7.2, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rack (v1.5.2, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rack-protection (v1.5.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="run_loop (v0.0.5, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sim_launcher (v0.4.6, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sinatra (v1.4.2, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="slowhandcuke (v0.0.3, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="thor (v0.17.0, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="tilt (v1.3.6, RVM: ruby-1.9.3-p286 [calabash]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="CFPropertyList (v2.2.0, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="awesome_print (v1.1.0, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="briar (v0.0.6, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.0, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.3.4, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="calabash-cucumber (v0.9.140, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.2.3, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.2, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="geocoder (v1.1.6, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="gherkin (v2.11.6, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="httpclient (v2.3.2, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="json (v1.7.7, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="lesspainful (v0.10.5, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="location-one (v0.0.9, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mime-types (v1.22, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.7.2, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack (v1.5.2, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-protection (v1.5.0, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v10.0.3, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rest-client (v1.6.7, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec (v2.13.0, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v2.13.1, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v2.13.0, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v2.13.0, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubyzip (v0.9.9, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="run_loop (v0.0.5, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sim_launcher (v0.4.6, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sinatra (v1.4.2, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="slowhandcuke (v0.0.3, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="thor (v0.17.0, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tilt (v1.3.6, rbenv: 1.9.3-p392) [gem]" level="application" />
   </component>
 </module>
 

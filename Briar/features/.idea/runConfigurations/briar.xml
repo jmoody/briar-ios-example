@@ -8,8 +8,6 @@
     <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
     <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
     <envs>
-      <env name="NO_LAUNCH" value="1" />
-      <env name="OS" value="ios5" />
       <env name="ANSICON" value="" />
     </envs>
     <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
@@ -37,8 +35,7 @@
     <RunnerSettings RunnerId="RubyRunner" />
     <ConfigurationWrapper RunnerId="RubyRunner" />
     <method>
-      <option name="RakeTask" enabled="true" TASK_CMD="make briar gem" />
-      <option name="RakeTask" enabled="true" TASK_CMD="bui" />
+      <option name="RakeTask" enabled="false" TASK_CMD="show_simulator" />
     </method>
   </configuration>
 </component>

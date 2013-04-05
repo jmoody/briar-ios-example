@@ -29,6 +29,7 @@ lesspainful
 lp-upload.sh
 Gemfile.lock
 .bundle
+rerun.txt
 
 # Xcode 3.*
 *~
