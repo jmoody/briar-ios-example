@@ -19,7 +19,9 @@ xcrun -sdk iphoneos PackageApplication -v "${APP}" -o "${IPA}" --sign "${SIGNING
 cp "${IPA}" lesspainful/
 
 cd lesspainful
-mv features/Gemfile ./Gemfile
+echo "source 'https://rubygems.org'" > Gemfile
+echo "gem 'briar', '0.0.6'" >> Gemfile
 rm features/Rakefile
+rm features/Gemfile
 rm features/Gemfile.lock
 lesspainful submit "${PRODUCT_NAME}.ipa" `cat ~/.lesspainful/briar`
