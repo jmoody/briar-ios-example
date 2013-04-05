@@ -37,8 +37,6 @@
 		553e655fbe2433cbff10ac67 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F568C46316E3C6F2007797F1 /* iTunesArtwork */; };
 		5f0fd17902431e7fd52dcdc4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */; };
 		605bd3871f647141ad259754 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C46216E3C6F2007797F1 /* Icon@2x.png */; };
-		6af7a5746f23a1f736912e8f /* BrFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F568C44616E3C256007797F1 /* BrFirstViewController.xib */; };
-		8dbbc1ca2f714136ebe79a4c /* BrTextRelatedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F568C44916E3C256007797F1 /* BrTextRelatedController.xib */; };
 		8e2359e8cb78e16bc7c93e82 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C46016E3C6F2007797F1 /* Icon-Small@2x.png */; };
 		F568C42116E3C256007797F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42016E3C256007797F1 /* UIKit.framework */; };
 		F568C42316E3C256007797F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42216E3C256007797F1 /* Foundation.framework */; };
@@ -49,8 +47,6 @@
 		F568C43316E3C256007797F1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43216E3C256007797F1 /* Default.png */; };
 		F568C43516E3C256007797F1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
 		F568C43716E3C256007797F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43616E3C256007797F1 /* Default-568h@2x.png */; };
-		F568C44816E3C256007797F1 /* BrFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F568C44616E3C256007797F1 /* BrFirstViewController.xib */; };
-		F568C44B16E3C256007797F1 /* BrTextRelatedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F568C44916E3C256007797F1 /* BrTextRelatedController.xib */; };
 		F568C45616E3C69C007797F1 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45216E3C69C007797F1 /* first.png */; };
 		F568C45716E3C69C007797F1 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45316E3C69C007797F1 /* first@2x.png */; };
 		F568C45816E3C69C007797F1 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45416E3C69C007797F1 /* second.png */; };
@@ -64,8 +60,6 @@
 		F568C46B16E3C6F2007797F1 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C46216E3C6F2007797F1 /* Icon@2x.png */; };
 		F568C46C16E3C6F2007797F1 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F568C46316E3C6F2007797F1 /* iTunesArtwork */; };
 		F568C46D16E3C6F2007797F1 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F568C46416E3C6F2007797F1 /* iTunesArtwork@2x */; };
-		F56BAB4F16FCA1B400AB8578 /* BrDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56BAB4D16FCA1B400AB8578 /* BrDatePickerController.xib */; };
-		F56BAB5016FCA1B400AB8578 /* BrDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F56BAB4D16FCA1B400AB8578 /* BrDatePickerController.xib */; };
 		F56BAB5C16FCA42900AB8578 /* BrController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB5B16FCA42900AB8578 /* BrController.m */; };
 		F56BAB5D16FCA42900AB8578 /* BrController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB5B16FCA42900AB8578 /* BrController.m */; };
 		F56BAB6416FCA45F00AB8578 /* BrDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F56BAB5F16FCA45F00AB8578 /* BrDatePickerController.m */; };
@@ -120,8 +114,6 @@
 		F568C43216E3C256007797F1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		F568C43416E3C256007797F1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		F568C43616E3C256007797F1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
-		F568C44716E3C256007797F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BRFirstViewController.xib; sourceTree = "<group>"; };
-		F568C44A16E3C256007797F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BRTextRelatedController.xib; sourceTree = "<group>"; };
 		F568C45216E3C69C007797F1 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		F568C45316E3C69C007797F1 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
 		F568C45416E3C69C007797F1 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
@@ -135,7 +127,6 @@
 		F568C46216E3C6F2007797F1 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Briar/Icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		F568C46316E3C6F2007797F1 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Briar/iTunesArtwork; sourceTree = SOURCE_ROOT; };
 		F568C46416E3C6F2007797F1 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "iTunesArtwork@2x"; path = "Briar/iTunesArtwork@2x"; sourceTree = SOURCE_ROOT; };
-		F56BAB4E16FCA1B400AB8578 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BRDatePickerController.xib; sourceTree = "<group>"; };
 		F56BAB5A16FCA42900AB8578 /* BrController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrController.h; sourceTree = "<group>"; };
 		F56BAB5B16FCA42900AB8578 /* BrController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrController.m; sourceTree = "<group>"; };
 		F56BAB5E16FCA45F00AB8578 /* BrDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrDatePickerController.h; sourceTree = "<group>"; };
@@ -262,9 +253,6 @@
 		F568C45A16E3C6A8007797F1 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				F56BAB4D16FCA1B400AB8578 /* BrDatePickerController.xib */,
-				F568C44616E3C256007797F1 /* BrFirstViewController.xib */,
-				F568C44916E3C256007797F1 /* BrTextRelatedController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -391,8 +379,6 @@
 				F568C43316E3C256007797F1 /* Default.png in Resources */,
 				F568C43516E3C256007797F1 /* Default@2x.png in Resources */,
 				F568C43716E3C256007797F1 /* Default-568h@2x.png in Resources */,
-				F568C44816E3C256007797F1 /* BrFirstViewController.xib in Resources */,
-				F568C44B16E3C256007797F1 /* BrTextRelatedController.xib in Resources */,
 				F568C45616E3C69C007797F1 /* first.png in Resources */,
 				F568C45716E3C69C007797F1 /* first@2x.png in Resources */,
 				F568C45816E3C69C007797F1 /* second.png in Resources */,
@@ -406,7 +392,6 @@
 				F568C46B16E3C6F2007797F1 /* Icon@2x.png in Resources */,
 				F568C46C16E3C6F2007797F1 /* iTunesArtwork in Resources */,
 				F568C46D16E3C6F2007797F1 /* iTunesArtwork@2x in Resources */,
-				F56BAB4F16FCA1B400AB8578 /* BrDatePickerController.xib in Resources */,
 				F56BAB6C16FCA5C500AB8578 /* 11-clock.png in Resources */,
 				F56BAB6E16FCA5C500AB8578 /* 11-clock@2x.png in Resources */,
 			);
@@ -420,8 +405,6 @@
 				d256dff5b9aeb3324a8009c9 /* Default.png in Resources */,
 				aa3541c626e9a05f9ce05e6d /* Default@2x.png in Resources */,
 				30ee42a2bc135b006f397b71 /* Default-568h@2x.png in Resources */,
-				6af7a5746f23a1f736912e8f /* BrFirstViewController.xib in Resources */,
-				8dbbc1ca2f714136ebe79a4c /* BrTextRelatedController.xib in Resources */,
 				d4844386f5190d7484340315 /* first.png in Resources */,
 				e20f57209fc5a8a2af660f73 /* first@2x.png in Resources */,
 				057f6664908d0a0ec2a2034a /* second.png in Resources */,
@@ -435,7 +418,6 @@
 				605bd3871f647141ad259754 /* Icon@2x.png in Resources */,
 				553e655fbe2433cbff10ac67 /* iTunesArtwork in Resources */,
 				33d4d298137d5d41d434537a /* iTunesArtwork@2x in Resources */,
-				F56BAB5016FCA1B400AB8578 /* BrDatePickerController.xib in Resources */,
 				F56BAB6D16FCA5C500AB8578 /* 11-clock.png in Resources */,
 				F56BAB6F16FCA5C500AB8578 /* 11-clock@2x.png in Resources */,
 			);
@@ -539,30 +521,6 @@
 				F568C42A16E3C256007797F1 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		F568C44616E3C256007797F1 /* BrFirstViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F568C44716E3C256007797F1 /* en */,
-			);
-			name = BrFirstViewController.xib;
-			sourceTree = "<group>";
-		};
-		F568C44916E3C256007797F1 /* BrTextRelatedController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F568C44A16E3C256007797F1 /* en */,
-			);
-			name = BrTextRelatedController.xib;
-			sourceTree = "<group>";
-		};
-		F56BAB4D16FCA1B400AB8578 /* BrDatePickerController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F56BAB4E16FCA1B400AB8578 /* en */,
-			);
-			name = BrDatePickerController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

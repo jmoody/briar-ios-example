@@ -50,13 +50,14 @@
 
 - (IBAction)buttonTouchedShowPicker:(id)sender {
   NSLog(@"show picker button touched");
+  self.buttonShowPicker.hidden = YES;
   typeof(self) wself = self;
   [BrDatePickerAnimationHelper
    animateDatePickerOnWithController:wself
    animations:^{
-     wself.buttonShowPicker.alpha = 0;
-   } completion:^(BOOL finished) {
 
+   } completion:^(BOOL finished) {
+     wself.buttonShowPicker.alpha = 0;
    }];
 }
 
@@ -71,8 +72,9 @@
   [BrDatePickerAnimationHelper
    animateDatePickerOffWithController:wself
    before:^{
-
+     wself.buttonShowPicker.hidden = NO;
    } animations:^{
+     
      wself.buttonShowPicker.alpha = 1;
    } completion:^(BOOL finished) {
      
@@ -86,7 +88,7 @@
   [BrDatePickerAnimationHelper
    animateDatePickerOffWithController:wself
    before:^{
-     
+     wself.buttonShowPicker.hidden = NO;
    } animations:^{
      wself.buttonShowPicker.alpha = 1;
    } completion:^(BOOL finished) {
