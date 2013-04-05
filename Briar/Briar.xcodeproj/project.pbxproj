@@ -80,6 +80,12 @@
 		F58F093416F29CD6007CFE50 /* BrCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F093216F29CD6007CFE50 /* BrCategories.m */; };
 		F58F093B16F32FF9007CFE50 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58F093A16F32FF9007CFE50 /* MessageUI.framework */; };
 		F58F093C16F33002007CFE50 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58F093A16F32FF9007CFE50 /* MessageUI.framework */; };
+		F5A9CFB3170EEFC900265826 /* BrDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFAD170EEFC900265826 /* BrDatePickerController.xib */; };
+		F5A9CFB4170EEFC900265826 /* BrDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFAD170EEFC900265826 /* BrDatePickerController.xib */; };
+		F5A9CFB5170EEFC900265826 /* BrFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFAF170EEFC900265826 /* BrFirstViewController.xib */; };
+		F5A9CFB6170EEFC900265826 /* BrFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFAF170EEFC900265826 /* BrFirstViewController.xib */; };
+		F5A9CFB7170EEFC900265826 /* BrTextRelatedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFB1170EEFC900265826 /* BrTextRelatedController.xib */; };
+		F5A9CFB8170EEFC900265826 /* BrTextRelatedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFB1170EEFC900265826 /* BrTextRelatedController.xib */; };
 		aa3541c626e9a05f9ce05e6d /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
 		b8fdd38325a6b1a766af9175 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45F16E3C6F2007797F1 /* Icon-Small.png */; };
 		c3cc1892a54542ba9cde1f42 /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = c6425b650cbbd9f05994720c /* calabash.framework */; };
@@ -144,6 +150,9 @@
 		F58F093116F29CD6007CFE50 /* BrCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrCategories.h; sourceTree = "<group>"; };
 		F58F093216F29CD6007CFE50 /* BrCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrCategories.m; sourceTree = "<group>"; };
 		F58F093A16F32FF9007CFE50 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		F5A9CFAE170EEFC900265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrDatePickerController.xib; sourceTree = "<group>"; };
+		F5A9CFB0170EEFC900265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrFirstViewController.xib; sourceTree = "<group>"; };
+		F5A9CFB2170EEFC900265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrTextRelatedController.xib; sourceTree = "<group>"; };
 		c6425b650cbbd9f05994720c /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -253,6 +262,9 @@
 		F568C45A16E3C6A8007797F1 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				F5A9CFAD170EEFC900265826 /* BrDatePickerController.xib */,
+				F5A9CFAF170EEFC900265826 /* BrFirstViewController.xib */,
+				F5A9CFB1170EEFC900265826 /* BrTextRelatedController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -394,6 +406,9 @@
 				F568C46D16E3C6F2007797F1 /* iTunesArtwork@2x in Resources */,
 				F56BAB6C16FCA5C500AB8578 /* 11-clock.png in Resources */,
 				F56BAB6E16FCA5C500AB8578 /* 11-clock@2x.png in Resources */,
+				F5A9CFB3170EEFC900265826 /* BrDatePickerController.xib in Resources */,
+				F5A9CFB5170EEFC900265826 /* BrFirstViewController.xib in Resources */,
+				F5A9CFB7170EEFC900265826 /* BrTextRelatedController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +435,9 @@
 				33d4d298137d5d41d434537a /* iTunesArtwork@2x in Resources */,
 				F56BAB6D16FCA5C500AB8578 /* 11-clock.png in Resources */,
 				F56BAB6F16FCA5C500AB8578 /* 11-clock@2x.png in Resources */,
+				F5A9CFB4170EEFC900265826 /* BrDatePickerController.xib in Resources */,
+				F5A9CFB6170EEFC900265826 /* BrFirstViewController.xib in Resources */,
+				F5A9CFB8170EEFC900265826 /* BrTextRelatedController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +539,30 @@
 				F568C42A16E3C256007797F1 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F5A9CFAD170EEFC900265826 /* BrDatePickerController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5A9CFAE170EEFC900265826 /* en */,
+			);
+			name = BrDatePickerController.xib;
+			sourceTree = "<group>";
+		};
+		F5A9CFAF170EEFC900265826 /* BrFirstViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5A9CFB0170EEFC900265826 /* en */,
+			);
+			name = BrFirstViewController.xib;
+			sourceTree = "<group>";
+		};
+		F5A9CFB1170EEFC900265826 /* BrTextRelatedController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5A9CFB2170EEFC900265826 /* en */,
+			);
+			name = BrTextRelatedController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
