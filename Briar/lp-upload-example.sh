@@ -20,7 +20,7 @@ cp "${IPA}" lesspainful/
 
 cd lesspainful
 echo "source 'https://rubygems.org'" > Gemfile
-echo "gem 'briar', '0.0.7'" >> Gemfile
+echo "gem 'briar', '0.0.6'" >> Gemfile
 rm features/Rakefile
 rm features/Gemfile
 rm features/Gemfile.lock
