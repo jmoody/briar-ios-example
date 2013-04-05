@@ -86,6 +86,14 @@
 		F5A9CFB6170EEFC900265826 /* BrFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFAF170EEFC900265826 /* BrFirstViewController.xib */; };
 		F5A9CFB7170EEFC900265826 /* BrTextRelatedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFB1170EEFC900265826 /* BrTextRelatedController.xib */; };
 		F5A9CFB8170EEFC900265826 /* BrTextRelatedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFB1170EEFC900265826 /* BrTextRelatedController.xib */; };
+		F5A9CFBB170F0AB200265826 /* BrTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A9CFBA170F0AB200265826 /* BrTableController.m */; };
+		F5A9CFBC170F0AB200265826 /* BrTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A9CFBA170F0AB200265826 /* BrTableController.m */; };
+		F5A9CFBF170F11BB00265826 /* BrTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFBD170F11BB00265826 /* BrTableController.xib */; };
+		F5A9CFC0170F11BB00265826 /* BrTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFBD170F11BB00265826 /* BrTableController.xib */; };
+		F5A9CFC3170F12CF00265826 /* 259-list.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFC1170F12CF00265826 /* 259-list.png */; };
+		F5A9CFC4170F12CF00265826 /* 259-list.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFC1170F12CF00265826 /* 259-list.png */; };
+		F5A9CFC5170F12CF00265826 /* 259-list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFC2170F12CF00265826 /* 259-list@2x.png */; };
+		F5A9CFC6170F12CF00265826 /* 259-list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFC2170F12CF00265826 /* 259-list@2x.png */; };
 		aa3541c626e9a05f9ce05e6d /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
 		b8fdd38325a6b1a766af9175 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45F16E3C6F2007797F1 /* Icon-Small.png */; };
 		c3cc1892a54542ba9cde1f42 /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = c6425b650cbbd9f05994720c /* calabash.framework */; };
@@ -153,6 +161,11 @@
 		F5A9CFAE170EEFC900265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrDatePickerController.xib; sourceTree = "<group>"; };
 		F5A9CFB0170EEFC900265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrFirstViewController.xib; sourceTree = "<group>"; };
 		F5A9CFB2170EEFC900265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrTextRelatedController.xib; sourceTree = "<group>"; };
+		F5A9CFB9170F0AB200265826 /* BrTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrTableController.h; sourceTree = "<group>"; };
+		F5A9CFBA170F0AB200265826 /* BrTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrTableController.m; sourceTree = "<group>"; };
+		F5A9CFBE170F11BB00265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrTableController.xib; sourceTree = "<group>"; };
+		F5A9CFC1170F12CF00265826 /* 259-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "259-list.png"; sourceTree = "<group>"; };
+		F5A9CFC2170F12CF00265826 /* 259-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "259-list@2x.png"; sourceTree = "<group>"; };
 		c6425b650cbbd9f05994720c /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -248,6 +261,8 @@
 		F568C45116E3C69C007797F1 /* artwork */ = {
 			isa = PBXGroup;
 			children = (
+				F5A9CFC1170F12CF00265826 /* 259-list.png */,
+				F5A9CFC2170F12CF00265826 /* 259-list@2x.png */,
 				F568C45B16E3C6C7007797F1 /* required-artwork */,
 				F56BAB6A16FCA5C500AB8578 /* 11-clock.png */,
 				F56BAB6B16FCA5C500AB8578 /* 11-clock@2x.png */,
@@ -265,6 +280,7 @@
 				F5A9CFAD170EEFC900265826 /* BrDatePickerController.xib */,
 				F5A9CFAF170EEFC900265826 /* BrFirstViewController.xib */,
 				F5A9CFB1170EEFC900265826 /* BrTextRelatedController.xib */,
+				F5A9CFBD170F11BB00265826 /* BrTableController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -299,6 +315,8 @@
 				F56BAB6116FCA45F00AB8578 /* BrFirstViewController.m */,
 				F56BAB6216FCA45F00AB8578 /* BrTextRelatedController.h */,
 				F56BAB6316FCA45F00AB8578 /* BrTextRelatedController.m */,
+				F5A9CFB9170F0AB200265826 /* BrTableController.h */,
+				F5A9CFBA170F0AB200265826 /* BrTableController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -409,6 +427,9 @@
 				F5A9CFB3170EEFC900265826 /* BrDatePickerController.xib in Resources */,
 				F5A9CFB5170EEFC900265826 /* BrFirstViewController.xib in Resources */,
 				F5A9CFB7170EEFC900265826 /* BrTextRelatedController.xib in Resources */,
+				F5A9CFBF170F11BB00265826 /* BrTableController.xib in Resources */,
+				F5A9CFC3170F12CF00265826 /* 259-list.png in Resources */,
+				F5A9CFC5170F12CF00265826 /* 259-list@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +459,9 @@
 				F5A9CFB4170EEFC900265826 /* BrDatePickerController.xib in Resources */,
 				F5A9CFB6170EEFC900265826 /* BrFirstViewController.xib in Resources */,
 				F5A9CFB8170EEFC900265826 /* BrTextRelatedController.xib in Resources */,
+				F5A9CFC0170F11BB00265826 /* BrTableController.xib in Resources */,
+				F5A9CFC4170F12CF00265826 /* 259-list.png in Resources */,
+				F5A9CFC6170F12CF00265826 /* 259-list@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +527,7 @@
 				F56BAB6916FCA45F00AB8578 /* BrTextRelatedController.m in Sources */,
 				F56BAB7416FCA9DF00AB8578 /* BrDatePickerView.m in Sources */,
 				F56BAB7816FCAAF400AB8578 /* BrGlobals.m in Sources */,
+				F5A9CFBC170F0AB200265826 /* BrTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +544,7 @@
 				F56BAB6816FCA45F00AB8578 /* BrTextRelatedController.m in Sources */,
 				F56BAB7316FCA9DF00AB8578 /* BrDatePickerView.m in Sources */,
 				F56BAB7716FCAAF400AB8578 /* BrGlobals.m in Sources */,
+				F5A9CFBB170F0AB200265826 /* BrTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +589,14 @@
 				F5A9CFB2170EEFC900265826 /* en */,
 			);
 			name = BrTextRelatedController.xib;
+			sourceTree = "<group>";
+		};
+		F5A9CFBD170F11BB00265826 /* BrTableController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5A9CFBE170F11BB00265826 /* en */,
+			);
+			name = BrTableController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

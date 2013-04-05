@@ -1,3 +1,4 @@
+@issue_116
 Feature: to test my pull request
 
   Background: get us to the text related views so we can test the test the new feature
@@ -10,7 +11,7 @@ Feature: to test my pull request
   #   sleep(STEP_PAUSE)
   # end
   #
-  @wip
+  @failing
   Scenario: i should be able to touch the text field by mark or placeholder
     # look by placeholder
     Then I touch the "placeholder!" text field

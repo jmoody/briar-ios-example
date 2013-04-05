@@ -1,8 +1,10 @@
 
 #noinspection RubyUnusedLocalVariable
 Before do |scenario|
-  backdoor('calabashBackdoor:', 'ignorable')
-  step_pause
+  if ENV['NO_LAUNCH']
+    backdoor('calabashBackdoor:', 'ignorable')
+    wait_for_animation
+  end
 end
 
 #noinspection RubyUnusedLocalVariable

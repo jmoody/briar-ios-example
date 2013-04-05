@@ -24,4 +24,5 @@ echo "gem 'briar', '0.0.6'" >> Gemfile
 rm features/Rakefile
 rm features/Gemfile
 rm features/Gemfile.lock
+
 lesspainful submit "${PRODUCT_NAME}.ipa" `cat ~/.lesspainful/briar`

@@ -3,6 +3,7 @@
 #import "BrTextRelatedController.h"
 #import "BrDatePickerController.h"
 #import "BrCategories.h"
+#import "BrTableController.h"
 
 @interface UIDatePicker (CALABASH_ADDITIONS)
 - (NSString *) hasCalabashAdditions:(NSString *) aSuccessIndicator;
@@ -127,16 +128,20 @@ typedef enum : NSUInteger {
   UIViewController *svc = [BrTextRelatedController new];
   UINavigationController *snbc = [[UINavigationController alloc]
                                   initWithRootViewController:svc];
+  
 
   UIViewController *dvc = [BrDatePickerController new];
   UINavigationController *ndvc = [[UINavigationController alloc]
                                   initWithRootViewController:dvc];
   
-  
+  UIViewController *tvc = [BrTableController new];
+  UINavigationController *ntvc = [[UINavigationController alloc]
+                                  initWithRootViewController:tvc];
+
   
   
   self.tabBarController = [[UITabBarController alloc] init];
-  self.tabBarController.viewControllers = @[fnbc, snbc, ndvc];
+  self.tabBarController.viewControllers = @[fnbc, snbc, ndvc, ntvc];
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
   return YES;
