@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 # for local development
 # config local.briar /path/to/briar
-gem 'briar', '0.0.6'
+gem 'briar', '0.0.6', :path => '/Users/moody/git/briar'
 
 

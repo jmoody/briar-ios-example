@@ -99,7 +99,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  self.view.accessibilityIdentifier = @"first view";
+  self.view.accessibilityIdentifier = @"first";
   self.buttonShowSheet.accessibilityIdentifier = @"show sheet";
   self.buttonShowEmail.accessibilityIdentifier = @"email";
 }

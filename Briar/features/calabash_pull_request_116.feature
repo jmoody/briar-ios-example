@@ -10,6 +10,7 @@ Feature: to test my pull request
   #   sleep(STEP_PAUSE)
   # end
   #
+  @wip
   Scenario: i should be able to touch the text field by mark or placeholder
     # look by placeholder
     Then I touch the "placeholder!" text field
