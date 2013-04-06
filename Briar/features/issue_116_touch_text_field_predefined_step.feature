@@ -1,5 +1,6 @@
 @issue_116
-Feature: to test my pull request
+Feature: issue 116 - should be able to touch text field by mark or placeholder
+  https://github.com/calabash/calabash-ios/pull/116
 
   Background: get us to the text related views so we can test the test the new feature
     When I touch the "Text" tab I should see the "text related" view

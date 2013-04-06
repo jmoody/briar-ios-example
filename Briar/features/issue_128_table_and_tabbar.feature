@@ -1,5 +1,5 @@
 @issue_128
-Feature: issue 128
+Feature: issue 128 - should be able to touch rows that are partially hidden by tab bar
   touching a table row that is partially hidden by the tab bar touches the tab bar instead
 
   https://github.com/calabash/calabash-ios/issues/128
