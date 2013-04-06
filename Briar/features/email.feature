@@ -12,7 +12,7 @@ Feature: email features
     Then I should see email view with recipients "example@example.com"
     Then I should see email view with recipients "example@example.com, foo@bar.com"
     Then I should see email view with recipients "example@example.com,foo@bar.com"
-    When I cancel email editing I should see the "first view" view
+    When I cancel email editing I should see the "first" view
 
 
 
