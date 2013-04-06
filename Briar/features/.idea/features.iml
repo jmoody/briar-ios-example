@@ -18,7 +18,7 @@
     <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.2.3, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.2, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="geocoder (v1.1.6, rbenv: 1.9.3-p392) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="gherkin (v2.11.6, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="gherkin (v2.11.7, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="httpclient (v2.3.2, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.7.7, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="lesspainful (v0.10.5, rbenv: 1.9.3-p392) [gem]" level="application" />
@@ -38,6 +38,7 @@
     <orderEntry type="library" scope="PROVIDED" name="sim_launcher (v0.4.6, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sinatra (v1.4.2, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="slowhandcuke (v0.0.3, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="syntax (v1.0.0, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.17.0, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v1.3.6, rbenv: 1.9.3-p392) [gem]" level="application" />
   </component>
