@@ -5,11 +5,7 @@ Feature: briar keyboard features
     When I touch the "Text" tab I should see the "text related" view
 
   Scenario: i want to be able to touch the delete key
-    # unexpected
-    # Then /^I (?:press|touch) the "([^\"]*)" (?:input|text) field$/ do |name|
-    #   touch("textField placeholder:'#{name}'")
-    #   sleep(STEP_PAUSE)
-    # end
+    # unexpected - issue 116
     # Then I touch the "input" text field
     Then I touch "input"
     Then I should see a "done text editing" button in the navbar

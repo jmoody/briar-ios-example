@@ -44,9 +44,19 @@
   [mailViewController setMessageBody:locBody isHTML:NO];
   [mailViewController setToRecipients:@[@"example@example.com", @"foo@bar.com"]];
   mailViewController.view.accessibilityIdentifier = @"compose email";
-  [self presentModalViewController:mailViewController animated:YES];
+
+  // lesspainful devices will not have email accounts configured so we get
+  // an alert instead...
+  if (mailViewController != nil) {
+    [self presentModalViewController:mailViewController animated:YES];
+  } else {
+    NSLog(@"no email accounts configured?");
+  }
 }
 
+- (IBAction)buttonTouchedShowModal:(id)sender {
+  
+}
 
 #pragma mark - UIActionSheet Delegate
 
@@ -94,6 +104,7 @@
 - (void)viewDidUnload {
   [self setButtonShowSheet:nil];
   [self setButtonShowEmail:nil];
+  [self setButtonShowModal:nil];
   [super viewDidUnload];
 }
 
@@ -115,5 +126,6 @@
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
 }
+
 
 @end

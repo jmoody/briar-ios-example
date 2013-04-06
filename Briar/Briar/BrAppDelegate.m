@@ -41,14 +41,19 @@ typedef enum : NSUInteger {
 
 @interface BrAppDelegate ()
 
-- (NSString *) calabashBackdoor:(NSString *) aIgnorable;
+- (NSString *) calabash_backdoor_reset_app:(NSString *) aIgnorable;
+- (NSString *) calabash_backdoor_configured_for_mail:(NSString *) aIgnoreable;
 
 @end
 
 @implementation BrAppDelegate
 
+- (NSString *) calabash_backdoor_configured_for_mail:(NSString *) aIgnoreable {
+  return [MFMailComposeViewController canSendMail] ? @"YES" : @"NO";
+}
 
-- (NSString *) calabashBackdoor:(NSString *)aIgnorable {
+
+- (NSString *) calabash_backdoor_reset_app:(NSString *)aIgnorable {
   
   // dismiss any alerts or sheets
   [[UIApplication sharedApplication].windows mapc:^(UIWindow *window, NSUInteger idx0, BOOL *stop0) {

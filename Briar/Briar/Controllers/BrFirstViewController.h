@@ -13,4 +13,7 @@ MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *buttonShowEmail;
 - (IBAction)buttonTouchedShowEmail:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *buttonShowModal;
+- (IBAction)buttonTouchedShowModal:(id)sender;
+
 @end
