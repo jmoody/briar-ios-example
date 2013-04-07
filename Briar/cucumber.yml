@@ -1,4 +1,5 @@
 default: EMBED=1 NO_LAUNCH=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun.txt
+rerun: EMBED=1 NO_LAUNCH=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' @rerun.txt
 launch: EMBED=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun.txt
 wip: EMBED=1 NO_LAUNCH=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun.txt --tags @wip:3 --wip
 pluto: EMBED=1 NO_LAUNCH=1 DEVICE=ipad OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun-pluto.txt

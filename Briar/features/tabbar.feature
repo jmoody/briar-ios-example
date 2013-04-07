@@ -10,5 +10,7 @@ Feature: tabbar features
     Then I should see "First, Text, Date, Tables" tabs
     When I touch the "Text" tab I should see the "text related" view
     When I touch the "First" tab I should see the "first" view
+    # todo add a view to the briar-ios-example that hides the tab bar
+    When we are testing on the simulator or a device configured to send emails
     Then I touch the "email" button and wait for the "compose email" view
     Then I should not see the tab bar
