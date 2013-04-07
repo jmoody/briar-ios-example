@@ -7,3 +7,4 @@ Then /^I should see the text related views after touching the Text tab$/ do
   should_see_view_after_animation 'text related'
   should_not_see_view_after_animation 'first view'
 end
+

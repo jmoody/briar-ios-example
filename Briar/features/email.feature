@@ -1,9 +1,9 @@
 @email
-@wip
 Feature: email features
   in order to test the briar email steps i want an email view
 
   Background:  get the first view in a shape to test email view
+    When we are testing on the simulator or a device configured to send emails
     Then I touch the "email" button and wait for the "compose email" view
 
   Scenario: i should be able to identify an email view

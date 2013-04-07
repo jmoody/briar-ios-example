@@ -9,6 +9,8 @@ Then /^I ask the application if the device is configured to send email$/ do
 end
 
 Then /^I ask the application if the device is configured scan for lifeforms$/ do
+  # pending: https://github.com/calabash/calabash-ios-server/pull/16
+  # otherwise this will crash the app
   # this is not a recognized selector
   scanning_lifeforms_sel = 'scan_for_lifeforms:'
   # expected to fail
