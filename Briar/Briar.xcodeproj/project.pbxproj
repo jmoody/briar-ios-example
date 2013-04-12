@@ -38,6 +38,10 @@
 		5f0fd17902431e7fd52dcdc4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */; };
 		605bd3871f647141ad259754 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C46216E3C6F2007797F1 /* Icon@2x.png */; };
 		8e2359e8cb78e16bc7c93e82 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C46016E3C6F2007797F1 /* Icon-Small@2x.png */; };
+		F51F12BE171884ED00809626 /* blueprint-background-320x480.png in Resources */ = {isa = PBXBuildFile; fileRef = F51F12BC171884ED00809626 /* blueprint-background-320x480.png */; };
+		F51F12BF171884ED00809626 /* blueprint-background-320x480.png in Resources */ = {isa = PBXBuildFile; fileRef = F51F12BC171884ED00809626 /* blueprint-background-320x480.png */; };
+		F51F12C0171884ED00809626 /* blueprint-background-320x480@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F51F12BD171884ED00809626 /* blueprint-background-320x480@2x.png */; };
+		F51F12C1171884ED00809626 /* blueprint-background-320x480@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F51F12BD171884ED00809626 /* blueprint-background-320x480@2x.png */; };
 		F568C42116E3C256007797F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42016E3C256007797F1 /* UIKit.framework */; };
 		F568C42316E3C256007797F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42216E3C256007797F1 /* Foundation.framework */; };
 		F568C42516E3C256007797F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42416E3C256007797F1 /* CoreGraphics.framework */; };
@@ -114,6 +118,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F51F12BC171884ED00809626 /* blueprint-background-320x480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueprint-background-320x480.png"; sourceTree = "<group>"; };
+		F51F12BD171884ED00809626 /* blueprint-background-320x480@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueprint-background-320x480@2x.png"; sourceTree = "<group>"; };
 		F548D2BA16E3E1F3003D2CD0 /* Briar-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Briar-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F568C41D16E3C256007797F1 /* Briar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Briar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F568C42016E3C256007797F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -198,6 +204,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F51F12BB171884ED00809626 /* backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				F51F12BC171884ED00809626 /* blueprint-background-320x480.png */,
+				F51F12BD171884ED00809626 /* blueprint-background-320x480@2x.png */,
+			);
+			path = backgrounds;
+			sourceTree = "<group>";
+		};
 		F568C41416E3C256007797F1 = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +276,7 @@
 		F568C45116E3C69C007797F1 /* artwork */ = {
 			isa = PBXGroup;
 			children = (
+				F51F12BB171884ED00809626 /* backgrounds */,
 				F5A9CFC1170F12CF00265826 /* 259-list.png */,
 				F5A9CFC2170F12CF00265826 /* 259-list@2x.png */,
 				F568C45B16E3C6C7007797F1 /* required-artwork */,
@@ -430,6 +446,8 @@
 				F5A9CFBF170F11BB00265826 /* BrTableController.xib in Resources */,
 				F5A9CFC3170F12CF00265826 /* 259-list.png in Resources */,
 				F5A9CFC5170F12CF00265826 /* 259-list@2x.png in Resources */,
+				F51F12BE171884ED00809626 /* blueprint-background-320x480.png in Resources */,
+				F51F12C0171884ED00809626 /* blueprint-background-320x480@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +480,8 @@
 				F5A9CFC0170F11BB00265826 /* BrTableController.xib in Resources */,
 				F5A9CFC4170F12CF00265826 /* 259-list.png in Resources */,
 				F5A9CFC6170F12CF00265826 /* 259-list@2x.png in Resources */,
+				F51F12BF171884ED00809626 /* blueprint-background-320x480.png in Resources */,
+				F51F12C1171884ED00809626 /* blueprint-background-320x480@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

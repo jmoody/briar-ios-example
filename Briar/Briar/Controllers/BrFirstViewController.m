@@ -113,6 +113,7 @@
   self.view.accessibilityIdentifier = @"first";
   self.buttonShowSheet.accessibilityIdentifier = @"show sheet";
   self.buttonShowEmail.accessibilityIdentifier = @"email";
+  self.buttonShowModal.accessibilityIdentifier = @"show modal";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
