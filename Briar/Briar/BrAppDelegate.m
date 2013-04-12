@@ -5,6 +5,12 @@
 #import "BrCategories.h"
 #import "BrTableController.h"
 
+typedef enum : NSUInteger {
+  kTagSecurityVeil = 3030
+} view_tags;
+
+
+
 @interface UIDatePicker (CALABASH_ADDITIONS)
 - (NSString *) hasCalabashAdditions:(NSString *) aSuccessIndicator;
 - (BOOL) setDateWithString:(NSString *)aString
@@ -41,8 +47,12 @@ typedef enum : NSUInteger {
 
 @interface BrAppDelegate ()
 
+// calabash backdoor
 - (NSString *) calabash_backdoor_reset_app:(NSString *) aIgnorable;
 - (NSString *) calabash_backdoor_configured_for_mail:(NSString *) aIgnoreable;
+- (NSString *) calabash_backdoor_add_security_veil_to_main_window:(NSString *) aIgnorable;
+
+- (void) handleTouchOnSecurityVeil:(UITapGestureRecognizer *) aRecognizer;
 
 @end
 
@@ -52,6 +62,43 @@ typedef enum : NSUInteger {
   return [MFMailComposeViewController canSendMail] ? @"YES" : @"NO";
 }
 
+// implementation
+- (NSString *) calabash_backdoor_add_security_veil_to_main_window:(NSString *) aIgnorable {
+  if ([self.window viewWithTag:kTagSecurityVeil] != nil) {
+    NSString *msg = @"ERROR: security veil already in place - something is amiss - will not add another";
+    NSLog(msg);
+    return msg;
+  }
+  
+  CGRect frame = self.window.frame;
+  UIView *veil = [[UIView alloc] initWithFrame:frame];
+  [veil setYWithY:frame.size.height * -1.0];
+  veil.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"blueprint-background-320x480"]];
+  veil.tag = kTagSecurityVeil;
+  veil.accessibilityIdentifier = @"security veil";
+  UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc]
+                                 initWithTarget:self
+                                 action:@selector(handleTouchOnSecurityVeil:)];
+  tgr.numberOfTapsRequired = 1;
+  tgr.numberOfTouchesRequired = 1;
+  veil.userInteractionEnabled = YES;
+  [veil addGestureRecognizer:tgr];
+
+
+  [self.window addSubview:veil];
+  
+  
+  
+  [UIView animateWithDuration:0.4
+                        delay:0.0
+                      options:UIViewAnimationOptionCurveLinear
+                   animations:^{
+                     [veil setYWithY:0];
+                   } completion:^(BOOL finished) {
+                     // nada
+                   }];
+  return @"YES";
+}
 
 - (NSString *) calabash_backdoor_reset_app:(NSString *)aIgnorable {
   
@@ -74,7 +121,11 @@ typedef enum : NSUInteger {
     }];
   }];
 
+  // dismiss the security veil if it exists
+  UIView *veil = [self.window viewWithTag:kTagSecurityVeil];
+  if (veil != nil) { [veil removeFromSuperview]; }
   
+
   [[self.tabBarController viewControllers] mapc:^(UINavigationController *navcon,
                                                   NSUInteger idx, BOOL *stop) {
     
@@ -120,6 +171,16 @@ typedef enum : NSUInteger {
   
   [self.tabBarController setSelectedIndex:kTabbarIndexFirst];
   return @"YES";
+}
+
+#pragma mark - Handle Events and Touches
+
+- (void) handleTouchOnSecurityVeil:(UITapGestureRecognizer *) aRecognizer {
+  UIGestureRecognizerState state = [aRecognizer state];
+  if (UIGestureRecognizerStateEnded == state) {
+    UIView *view = [self.window viewWithTag:kTagSecurityVeil];
+    if (view != nil) { [view removeFromSuperview]; }
+  }
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
