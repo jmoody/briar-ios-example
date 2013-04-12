@@ -1,8 +1,34 @@
-default: EMBED=1 NO_LAUNCH=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun.txt
-rerun: EMBED=1 NO_LAUNCH=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' @rerun.txt
-launch: EMBED=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun.txt
-wip: EMBED=1 NO_LAUNCH=1 OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun.txt --tags @wip:3 --wip
-pluto: EMBED=1 NO_LAUNCH=1 DEVICE=ipad OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun-pluto.txt
-neptune: EMBED=1 NO_LAUNCH=1 DEVICE=iphone OS=ios5 SCREENSHOT_PATH=./cucumber-screenshots/ -f 'Slowhandcuke::Formatter' -f rerun -o rerun-neptune.txt
+<%
+date = Time.now.strftime('%Y-%m-%d-%H%M-%S')
+default_report = "./reports/calabash-#{date}.html"
+pluto_ip = IO.read("#{ENV['HOME']}/.lesspainful/devices/pluto")
+pluto_report = "./reports/pluto/pluto-#{date}.html"
+neptune_ip = IO.read("#{ENV['HOME']}/.lesspainful/devices/neptune")
+neptune_report = "./reports/neptune/neptune-#{date}.html"
+%>
 
 
+common: SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' OS=ios5 --tags ~@issues
+rerun_out: -f rerun -o ./rerun/rerun.txt
+pluto_rr: -f rerun -o ./rerun/pluto/rerun.txt
+neptune_rr: -f rerun -o ./rerun/neptune/rerun.txt
+pluto_html:   -f html -o <%= pluto_report %>
+neptune_html: -f html -o <%= neptune_report %>  
+html_report:  -f html -o <%= default_report %>
+no_launch: EMBED=1 NO_LAUNCH=1 --tags ~@launch
+ipad: DEVICE=ipad -p common -p no_launch --tags ~@launch
+iphone: DEVICE=iphone -p common -p no_launch --tags ~@launch
+
+
+
+default: -p common -p rerun_out -p html_report -p no_launch 
+launch:  -p common -p rerun_out -p html_report
+
+pluto:   -p pluto_rr   -p ipad   -p pluto_html   DEVICE_ENDPOINT=<%= pluto_ip %>
+neptune: -p neptune_rr -p iphone -p neptune_html DEVICE_ENDPOINT=<%= neptune_ip %>
+
+# not really working in Ruby Mine
+wip:     -p common -p rerun_out -p html_report -p no_launch --tags @wip:3 --wip
+
+# not yet - does not work in Ruby Mine
+# rerun:   -p common -p no_launch @rerun.txt

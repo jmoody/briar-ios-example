@@ -1,4 +1,3 @@
-@issue_116
 Feature: issue 116 - should be able to touch text field by mark or placeholder
   https://github.com/calabash/calabash-ios/pull/116
 
@@ -12,7 +11,8 @@ Feature: issue 116 - should be able to touch text field by mark or placeholder
   #   sleep(STEP_PAUSE)
   # end
   #
-  @failing
+  @issue_116
+  @issues
   Scenario: i should be able to touch the text field by mark or placeholder
     # look by placeholder
     Then I touch the "placeholder!" text field

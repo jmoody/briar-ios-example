@@ -1,6 +1,9 @@
 # turds
 (.*/)?\#[^/]*\#$
 
+*.orig
+*.bak
+
 __MACOSX
 
 scratch
@@ -8,9 +11,6 @@ private
 SlenderBackup*
 
 Backup*
-
-calabash-report*
-screenshot_*.png
 *.ipa
 
 #versioning
@@ -23,28 +23,23 @@ InfoPlist.h
 workspace.xml
 find.xml
 
-# calabash
+# calabash/cucumber
 .irb-history
+.bundle
+vendor
+Gemfile.lock
+*.gem
+rerun*.txt
+calabash*.html
+pluto*.html
+neptune*.html
+screenshot_*.png
+
+# tmp genstrings
+genstrings
+
 lesspainful
 lp-upload.sh
-Gemfile.lock
-.bundle
-rerun.txt
-rerun-*.txt
-
-# Xcode 3.*
-*~
-build
-*.mode* 
-*.perspective* 
-*~.nib 
-*.dsidx 
-*.skidx
-*.iws
-*.log
-*.pbxuser
-*.swp
-*.mode1v3
 
 # Xcode 4
 *.xcodeproj/*.mode*
@@ -56,17 +51,6 @@ build
 ## Build products
 build/*
 */build/*
-*.o
-*.pyc
-*.so 
-
-## Other versioning systems
-.svn
-.hg
-CVS
-
-## Generated files
-VersionX-revision.h
 
 ## Automated backup nonsense
 *.swp
@@ -74,44 +58,3 @@ VersionX-revision.h
 *~.nib
 *(Autosaved).rtfd/
 *.xcuserdatad
-
-# Ignore Visual Studio files
-*.obj
-*.exe
-*.pdb
-*.user
-*.aps
-*.vspscc
-*_i.c
-*_p.c
-*.ncb
-*.suo
-*.sln
-*.tlb
-*.tlh
-*.bak
-*.cache
-*.ilk
-*.log
-*.lib
-*.sbr
-*.scc
-[Bb]in
-[Dd]ebug*/
-obj/
-[Rr]elease*/
-_ReSharper*/
-[Tt]est[Rr]esult*
-[Bb]uild[Ll]og.*
-*.[Pp]ublish.xml
-*.vcproj
-
-# unknown origin
-*.db
-*.xls
-*.lnk
-
-# Lisp
-*.dx64fsl
-*.fasl
-
