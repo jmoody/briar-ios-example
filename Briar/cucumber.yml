@@ -24,6 +24,8 @@ iphone: DEVICE=iphone -p common -p no_launch --tags ~@launch
 default: -p common -p rerun_out -p html_report -p no_launch 
 launch:  -p common -p rerun_out -p html_report
 
+issues: -p no_launch -p rerun_out -p html_report SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' OS=ios5 --tags @issues
+
 pluto:   -p pluto_rr   -p ipad   -p pluto_html   DEVICE_ENDPOINT=<%= pluto_ip %>
 neptune: -p neptune_rr -p iphone -p neptune_html DEVICE_ENDPOINT=<%= neptune_ip %>
 

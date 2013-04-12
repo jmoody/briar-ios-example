@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/../../../briar">
       <sourceFolder url="file://$MODULE_DIR$/../../../briar/spec" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../briar" />
       <excludeFolder url="file://$MODULE_DIR$/../../../briar/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/../../../briar/features/support" />
       <excludeFolder url="file://$MODULE_DIR$/../../../briar/vendor" />
@@ -12,6 +13,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="CFPropertyList (v2.2.0, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="awesome_print (v1.1.0, rbenv: 1.9.3-p392) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="briar (v0.0.7, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.0, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.3.4, rbenv: 1.9.3-p392) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="calabash-cucumber (v0.9.141, rbenv: 1.9.3-p392) [gem]" level="application" />
