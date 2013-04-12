@@ -2,7 +2,7 @@
 @issue_131
 Feature:  subviews of the main window should mask the views on the topmost controller
   https://github.com/calabash/calabash-ios/issues/131
-  
+
   Background:  a subview on the main window that hides the topmost controller completely
     When I add a security veil to the main window
 
