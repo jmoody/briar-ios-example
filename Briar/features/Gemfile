@@ -1,3 +1,4 @@
 source 'https://rubygems.org'
 #gem 'briar', '0.0.7'
+# bundle config local.GEM_NAME /path/to/local/git/repository
 gem 'briar', :github => 'jmoody/briar', :branch => '0.0.8'

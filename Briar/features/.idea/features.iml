@@ -3,9 +3,9 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/../../../briar">
       <sourceFolder url="file://$MODULE_DIR$/../../../briar/spec" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../briar" />
       <excludeFolder url="file://$MODULE_DIR$/../../../briar/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/../../../briar/features/support" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../briar/pkg" />
       <excludeFolder url="file://$MODULE_DIR$/../../../briar/vendor" />
     </content>
     <content url="file://$MODULE_DIR$" />
