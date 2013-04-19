@@ -25,4 +25,4 @@ rm features/Rakefile
 rm features/Gemfile
 rm features/Gemfile.lock
 
-lesspainful submit "${PRODUCT_NAME}.ipa" `cat ~/.lesspainful/briar`
+lesspainful submit "${PRODUCT_NAME}.ipa" [`cat ~/.lesspainful/briar`
