@@ -12,8 +12,8 @@ Feature: issue 128 - should be able to touch rows that are partially hidden by t
   Scenario: if the last visible row of a table is partially hidden by the tab bar i should be able to touch the row and not the tab bar
 
   # expected
-    When I touch the "b" row I should see the "b alert"
-    Then I dismiss the letter alert
+   When I touch the "b" row I should see the "b alert"
+   Then I dismiss the letter alert
 
   # found
   #  demonstrates the problem tab bar problem

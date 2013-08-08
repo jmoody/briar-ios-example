@@ -8,6 +8,7 @@ When(/^I add a security veil to the main window$/) do
 end
 
 Then(/^I dismiss the security veil$/) do
+  step_pause
   touch_and_wait_to_disappear 'security veil'
 end
 

@@ -6,7 +6,7 @@
 #import "BrTableController.h"
 
 typedef enum : NSUInteger {
-  kTagSecurityVeil = 3030
+  kTagSecurityVeil = NSNotFound
 } view_tags;
 
 

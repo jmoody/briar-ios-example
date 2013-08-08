@@ -12,6 +12,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy) NSArray *titles;
 - (NSString *) titleForRowWithPath:(NSIndexPath *) aPath;
+- (UILabel *) labelForRowAtIndexPath:(NSIndexPath *) aPath;
+- (UITableView *) table;
 
 @end
 
@@ -31,6 +33,30 @@ typedef enum : NSUInteger {
   [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
   self.view.accessibilityIdentifier = @"tables";
+  
+  UITableView *table = (UITableView *)[self.view viewWithTag:kTagTable];
+  CGFloat height = [BrGlobals isDeviceIphone5] ? 367 + 88 : 367;
+  
+  CGRect rect = CGRectMake(0, 0, 320, height);
+  
+  UITableViewStyle style = UITableViewStylePlain;
+  table  = [[UITableView alloc] initWithFrame:rect
+                                        style:style];
+  table.bounds = rect;
+  table.backgroundColor = [UIColor whiteColor];
+  [table setAutoresizesSubviews:YES];
+  [table setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+  table.delegate = self;
+  table.dataSource = self;
+  table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+  
+  table.accessibilityIdentifier = @"alphabet";
+  table.tag = kTagTable;
+  [self.view addSubview:table];
+}
+
+- (UITableView *) table {
+  return (UITableView *)[self.view viewWithTag:kTagTable];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,6 +78,25 @@ typedef enum : NSUInteger {
   return [NSString stringWithFormat:fmtStr, [self.titles objectAtIndex:aPath.row]];
 }
 
+- (UILabel *) labelForRowAtIndexPath:(NSIndexPath *) aPath {
+  NSString *title = [self titleForRowWithPath:aPath];
+  
+  UIFont *font = [UIFont systemFontOfSize:18];
+  CGFloat w = 300;
+  CGSize labelSize = [title sizeWithFont:font
+                       constrainedToSize:CGSizeMake(w, CGFLOAT_MAX)
+                           lineBreakMode:UILineBreakModeWordWrap];
+  CGFloat cellH = [self tableView:nil heightForRowAtIndexPath:aPath];
+  CGFloat h = labelSize.height;
+  CGFloat y = (cellH/2) - (h/2);
+  CGRect frame = CGRectMake(10, y, w, h);
+  UILabel *label = [[UILabel alloc] initWithFrame:frame];
+  label.text = title;
+  label.tag = kTagTableRowTitle;
+  label.accessibilityIdentifier = @"title";
+  return label;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger) tableView:(UITableView *) aTableView numberOfRowsInSection:(NSInteger) aSection {
@@ -67,19 +112,21 @@ typedef enum : NSUInteger {
   static NSString *identifier = @"row id";
   UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:identifier];
 
-  
-
   if (cell == nil) {
-    
+    NSLog(@"did not reuse");
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                   reuseIdentifier:identifier];
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    UIView *cv = cell.contentView;
+    [cv addSubview:[self labelForRowAtIndexPath:aIndexPath]];
+    cell.accessibilityIdentifier = [self.titles objectAtIndex:aIndexPath.row];
+    return cell;
   }
 
-  cell.textLabel.tag = kTagTableRowTitle;
-  cell.textLabel.text = [self titleForRowWithPath:aIndexPath];
-  cell.textLabel.accessibilityIdentifier = @"title";
+  NSLog(@"did reuse");
+  UIView *cv = cell.contentView;
+  UILabel *label = (UILabel *)[cv viewWithTag:kTagTableRowTitle];
+  label.text = [self titleForRowWithPath:aIndexPath];
   cell.accessibilityIdentifier = [self.titles objectAtIndex:aIndexPath.row];
 
   return cell;
@@ -158,32 +205,10 @@ typedef enum : NSUInteger {
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
-  UITableView *table = (UITableView *)[self.view viewWithTag:kTagTable];
-  if (table == nil) {
-    CGFloat height = [BrGlobals isDeviceIphone5] ? 367 + 88 : 367;
-    
-    CGRect rect = CGRectMake(0, 0, 320, height);
-    
-    UITableViewStyle style = UITableViewStylePlain;
-    table  = [[UITableView alloc] initWithFrame:rect
-                                          style:style];
-    table.bounds = rect;
-    table.backgroundColor = [UIColor whiteColor];
-    [table setAutoresizesSubviews:YES];
-    [table setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-    table.delegate = self;
-    table.dataSource = self;
-    table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
-    table.accessibilityIdentifier = @"alphabet";
-    table.tag = kTagTable;
-    [self.view addSubview:table];
-  } else {
-    [table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-                 atScrollPosition:UITableViewScrollPositionTop
-                         animated:NO];
-  }
-  
+  [[self table] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                      atScrollPosition:UITableViewScrollPositionTop
+                              animated:NO];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -24,6 +24,7 @@ def embed(x,y=nil,z=nil)
    puts "Screenshot at #{x}"
 end
 
+
 #### begin briar ####
 
 require 'briar'
