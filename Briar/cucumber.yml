@@ -8,7 +8,7 @@ neptune_report = "./reports/neptune/neptune-#{date}.html"
 %>
 
 
-common: SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' OS=ios5 --tags ~@issues
+common: SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' OS=ios7 --tags ~@issues
 rerun_out: -f rerun -o ./rerun/rerun.txt
 pluto_rr: -f rerun -o ./rerun/pluto/rerun.txt
 neptune_rr: -f rerun -o ./rerun/neptune/rerun.txt

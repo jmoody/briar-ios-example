@@ -85,7 +85,7 @@ typedef enum : NSUInteger {
   CGFloat w = 300;
   CGSize labelSize = [title sizeWithFont:font
                        constrainedToSize:CGSizeMake(w, CGFLOAT_MAX)
-                           lineBreakMode:UILineBreakModeWordWrap];
+                           lineBreakMode:NSLineBreakByWordWrapping];
   CGFloat cellH = [self tableView:nil heightForRowAtIndexPath:aPath];
   CGFloat h = labelSize.height;
   CGFloat y = (cellH/2) - (h/2);
