@@ -172,6 +172,7 @@
 		F5A9CFBE170F11BB00265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrTableController.xib; sourceTree = "<group>"; };
 		F5A9CFC1170F12CF00265826 /* 259-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "259-list.png"; sourceTree = "<group>"; };
 		F5A9CFC2170F12CF00265826 /* 259-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "259-list@2x.png"; sourceTree = "<group>"; };
+		F5D6CA9117BB8D7A0084A5B2 /* cucumber.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = cucumber.yml; sourceTree = "<group>"; };
 		c6425b650cbbd9f05994720c /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -216,6 +217,7 @@
 		F568C41416E3C256007797F1 = {
 			isa = PBXGroup;
 			children = (
+				F5D6CA9117BB8D7A0084A5B2 /* cucumber.yml */,
 				F568C42616E3C256007797F1 /* Briar */,
 				F568C41F16E3C256007797F1 /* Frameworks */,
 				F568C41E16E3C256007797F1 /* Products */,

@@ -23,6 +23,7 @@ require 'calabash-cucumber/launcher'
 # or set the environment variable APP_BUNDLE_PATH
 
 
+#noinspection RubyUnusedLocalVariable
 Before do |scenario|
   @calabash_launcher = Calabash::Cucumber::Launcher.new
   unless @calabash_launcher.calabash_no_launch?
@@ -42,9 +43,9 @@ Before do |scenario|
                            :retry_frequency => 0.4,
                            :timeout_message => msg})
   sleep(0.4)
-
 end
 
+#noinspection RubyUnusedLocalVariable
 After do |scenario|
   unless @calabash_launcher.calabash_no_stop?
     calabash_exit

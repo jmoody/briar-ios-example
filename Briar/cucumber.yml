@@ -19,10 +19,11 @@ no_launch: EMBED=1 NO_LAUNCH=1 --tags ~@launch
 ipad: DEVICE=ipad -p common -p no_launch --tags ~@launch
 iphone: DEVICE=iphone -p common -p no_launch --tags ~@launch
 
+# UIAutomation through Instruments
+uai_simulator: DEVICE_TARGET=simulator
 
-
-default: -p common -p rerun_out -p html_report -p no_launch 
-launch:  -p common -p rerun_out -p html_report
+default: -p common -p rerun_out -p html_report -p no_launch -p uai_simulator
+launch:  -p common -p rerun_out -p html_report -p uai
 
 issues: -p no_launch -p rerun_out -p html_report SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' OS=ios5 --tags @issues
 

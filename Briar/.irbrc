@@ -35,10 +35,14 @@ include Briar::Control::Button
 include Briar::Control::Segmented_Control
 include Briar::Control::Slider
 include Briar::Picker
-include Briar::Picker::Date
 include Briar::Picker_Shared
+include Briar::Picker::DateCore
+include Briar::Picker::DateManipulation
+include Briar::Picker::DateSteps
 include Briar::Core
 include Briar::Table
+include Briar::ImageView
+
 
 @ai=:accessibilityIdentifier
 @al=:accessibilityLabel
