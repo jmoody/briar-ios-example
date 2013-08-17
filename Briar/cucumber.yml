@@ -8,7 +8,10 @@ neptune_report = "./reports/neptune/neptune-#{date}.html"
 %>
 
 
-common: SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' OS=ios7 --tags ~@issues
+common: SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' --tags ~@issues
+os5: OS=ios5
+os6: OS=ios6
+os7: OS=ios7
 rerun_out: -f rerun -o ./rerun/rerun.txt
 pluto_rr: -f rerun -o ./rerun/pluto/rerun.txt
 neptune_rr: -f rerun -o ./rerun/neptune/rerun.txt
@@ -22,7 +25,7 @@ iphone: DEVICE=iphone -p common -p no_launch --tags ~@launch
 # UIAutomation through Instruments
 uai_simulator: DEVICE_TARGET=simulator
 
-default: -p common -p rerun_out -p html_report -p no_launch -p uai_simulator
+default: -p common -p rerun_out -p html_report -p no_launch -p uai_simulator -p os7
 launch:  -p common -p rerun_out -p html_report -p uai
 
 issues: -p no_launch -p rerun_out -p html_report SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' OS=ios5 --tags @issues

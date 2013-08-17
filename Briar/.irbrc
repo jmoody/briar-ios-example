@@ -46,16 +46,25 @@ include Briar::ImageView
 
 @ai=:accessibilityIdentifier
 @al=:accessibilityLabel
-def access_ids
+
+def ids
   query("view", @ai).compact.sort.each {|x| puts "* #{x}" }
 end
 
-def access_labels
+def labels
   query("view", @al).compact.sort.each {|x| puts "* #{x}" }
 end
 
-def navbar_button_labels
+def nbl
     query("navigationButton", :accessibilityLabel)
 end
 
-puts "loaded local .irbrc"
+
+puts "loaded #{Dir.pwd}/.irbrc"
+puts "DEVICE_ENDPOINT => '#{ENV['DEVICE_ENDPOINT']}'"
+puts "  DEVICE_TARGET => '#{ENV['DEVICE_TARGET']}'"
+puts "         DEVICE => '#{ENV['DEVICE']}'"
+puts "      BUNDLE_ID => '#{ENV['BUNDLE_ID']}'"
+puts "   PLAYBACK_DIR => '#{ENV['PLAYBACK_DIR']}'"
+puts "             OS => '#{ENV['OS']}'"
+
