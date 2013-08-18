@@ -34,7 +34,7 @@ iphone: DEVICE=iphone -p common -p no_launch --tags ~@launch
 # UIAutomation through Instruments
 uai_simulator: DEVICE_TARGET=simulator
 
-default: -p common -p rerun_out -p html_report -p no_launch -p uai_simulator -p os7
+default: -p common -p rerun_out -p html_report -p no_launch -p uai_simulator -p os6
 launch:  -p common -p rerun_out -p html_report -p uai
 
 issues: -p no_launch -p rerun_out -p html_report SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' OS=ios5 --tags @issues
