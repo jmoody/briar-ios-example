@@ -1,10 +1,19 @@
 <%
 date = Time.now.strftime('%Y-%m-%d-%H%M-%S')
 default_report = "./reports/calabash-#{date}.html"
-pluto_ip = IO.read("#{ENV['HOME']}/.lesspainful/devices/pluto")
+
+lesspainful_dir = "#{ENV['HOME']}/.lesspainful"
+
+pluto_dir = "#{lesspainful_dir}/devices/pluto"
+pluto_ip = IO.read("#{pluto_dir}/ip") if File.exists?("#{pluto_dir}/ip")
+pluto_udid = IO.read("#{pluto_dir}/udid") if File.exists?("#{pluto_dir}/udid")
 pluto_report = "./reports/pluto/pluto-#{date}.html"
-neptune_ip = IO.read("#{ENV['HOME']}/.lesspainful/devices/neptune")
+
+neptune_dir = "#{lesspainful_dir}/devices/neptune"
+neptune_ip = IO.read("#{neptune_dir}/ip") if File.exists?("#{neptune_dir}/ip")
+neptune_udid = IO.read("#{neptune_dir}/udid") if File.exists?("#{neptune_dir}/udid")
 neptune_report = "./reports/neptune/neptune-#{date}.html"
+
 %>
 
 

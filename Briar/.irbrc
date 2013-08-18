@@ -44,6 +44,8 @@ else
   include Briar::Core
   include Briar::Table
   include Briar::ImageView
+  include Briar::TextField
+  include Briar::TextView
 end
 
 @ai=:accessibilityIdentifier

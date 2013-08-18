@@ -57,9 +57,56 @@
   NSString *nibName = [NSString stringWithFormat:@"%@", [self class]];
   self = [super initWithNibName:nibName bundle:nil];
   if (self) {
-  
+    self.navbarTitle = nil;
   }
   return self;
+}
+
+- (void) didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
+  NSLog(@"did receive memory warning");
+}
+
+- (void) configureAccessibility {
+  self.view.accessibilityIdentifier = @"FIXME";
+}
+
+#pragma mark - View Layout
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  UINavigationBar *navbar = self.navigationController.navigationBar;
+  navbar.translucent = YES;
+}
+
+- (void) viewWillLayoutSubviews {
+  [super viewWillLayoutSubviews];
+}
+
+- (void) viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+}
+
+#pragma mark - View Lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  NSString *nbt = self.navbarTitle;
+  if (nbt != nil && [nbt length] != 0) {
+    self.navigationItem.title = self.navbarTitle;
+  }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
 }
 
 @end

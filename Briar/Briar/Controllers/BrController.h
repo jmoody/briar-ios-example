@@ -5,7 +5,9 @@
  */
 @interface BrController : UIViewController 
 
-/** @name Properties */
+// distinct from the self.title for times when you want a navbar title that is
+// different from the tab bar title
+@property (nonatomic, copy) NSString *navbarTitle;
 
 /** @name Initializing Objects */
 

@@ -17,6 +17,7 @@
   if (self) {
     self.title = NSLocalizedString(@"Text", @"text controller:  appears as title of the text related controller and as a tab bar item");
     self.tabBarItem.image = [UIImage imageNamed:@"second"];
+    self.navbarTitle = @"Text Related";
   }
   return self;
 }
@@ -37,7 +38,9 @@
              name:UIKeyboardWillHideNotification
            object:nil];
   
-  self.textField.accessibilityIdentifier = @"input";
+  self.textField.accessibilityIdentifier = @"top tf";
+  self.secondTextField.accessibilityIdentifier = @"bottom tf";
+  self.textView.accessibilityIdentifier = @"tv input";
 
 }
 
@@ -114,5 +117,37 @@
   return YES;
 }
 
+#pragma mark - View Layout
+
+- (void) viewWillLayoutSubviews {
+  [super viewWillLayoutSubviews];
+}
+
+
+- (void) viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+}
+
+#pragma mark - View Lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [@[self.textField, self.secondTextField] enumerateObjectsUsingBlock:^(UITextField *tf, NSUInteger idx, BOOL *stop) {
+    if ([tf isFirstResponder]) { [tf resignFirstResponder]; }
+    tf.text = nil;
+  }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+}
 
 @end
