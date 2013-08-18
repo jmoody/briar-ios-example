@@ -27,22 +27,24 @@ end
 
 #### begin briar ####
 
-require 'briar'
-
-include Briar::Bars
-include Briar::Alerts_and_Sheets
-include Briar::Control::Button
-include Briar::Control::Segmented_Control
-include Briar::Control::Slider
-include Briar::Picker
-include Briar::Picker_Shared
-include Briar::Picker::DateCore
-include Briar::Picker::DateManipulation
-include Briar::Picker::DateSteps
-include Briar::Core
-include Briar::Table
-include Briar::ImageView
-
+if IO.popen("rbenv version").readlines.first.split(/-/).first.eql?('1.8.7')
+  puts "briar not available for '1.8.7'"
+else
+  require 'briar'
+  include Briar::Bars
+  include Briar::Alerts_and_Sheets
+  include Briar::Control::Button
+  include Briar::Control::Segmented_Control
+  include Briar::Control::Slider
+  include Briar::Picker
+  include Briar::Picker_Shared
+  include Briar::Picker::DateCore
+  include Briar::Picker::DateManipulation
+  include Briar::Picker::DateSteps
+  include Briar::Core
+  include Briar::Table
+  include Briar::ImageView
+end
 
 @ai=:accessibilityIdentifier
 @al=:accessibilityLabel

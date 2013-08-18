@@ -7,7 +7,7 @@ if [ ! -z $1 ]; then
 fi
 
 DEVICE=$TMP_DEVICE \
-PLAYBACK_DIR=./features/playback \
+CALABASH_FULL_CONSOLE_OUTPUT=1 \
 DEVICE_TARGET=simulator \
-OS=ios5 \
+OS=ios6 \
 IRBRC=.irbrc irb
