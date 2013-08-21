@@ -33,10 +33,9 @@ Before do |scenario|
 
   backdoor('calabash_backdoor_reset_app:', 'ignorable')
   req_elms = ['tabBar',
-              "button marked:'email'",
               "navigationItemView marked:'First'",
-              "button marked:'show modal'",
-              "button marked:'show sheet'"]
+              "button marked:'show modal'"]
+
   msg = 'timed out waiting for backdoor reset'
   wait_for_elements_exist(req_elms,
                           {:timeout => 4.0,
@@ -48,6 +47,13 @@ end
 #noinspection RubyUnusedLocalVariable
 After do |scenario|
   unless @calabash_launcher.calabash_no_stop?
+    # trying to suppress the spam that instruments/killall spews
+    # tried:
+    #   system("killall -9 instruments >/dev/null 2>&1")
+    # this is not working
+    #noinspection RubyUnusedLocalVariable
+    ignore_instruments_spam = %x(killall -9 instruments >/dev/null 2>&1)
+
     calabash_exit
     if @calabash_launcher.active?
       @calabash_launcher.stop

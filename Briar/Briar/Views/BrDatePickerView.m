@@ -26,9 +26,12 @@
                                     animations:(void (^)(void)) aAnimations
                                     completion:(void (^)(BOOL finished)) aCompletion {
   BrDatePickerView *pickerView = [aController pickerView];
+  pickerView.alpha = 0.0;
   [aController.view addSubview:pickerView];
+  [pickerView setYWithY:[BrGlobals isDeviceIphone5] ? 568 : 480];
+  pickerView.alpha = 1.0;
   
-  CGFloat pickerY = (aController.hidesBottomBarWhenPushed == YES) ? 50 : 0;
+  CGFloat pickerY = (aController.hidesBottomBarWhenPushed == YES) ? 94 : 44;
   if ([BrGlobals isDeviceIphone5]) {
     pickerY += 568 - 480;
   }
@@ -56,12 +59,14 @@
                                      animations:(void (^)(void)) aAnimations
                                      completion:(void (^)(BOOL finished)) aCompletion {
   aBefore();
+  
+  CGFloat targetY = [BrGlobals isDeviceIphone5] ? 568 : 480;
   BrDatePickerView *pickerView = [aController pickerView];
   [UIView animateWithDuration:0.4
                         delay:0.1
                       options:UIViewAnimationOptionCurveEaseIn
                    animations:^{
-                     [pickerView setYWithY:480];
+                     [pickerView setYWithY:targetY];
                      aAnimations();
                    }
                    completion:^(BOOL completed) {
@@ -147,7 +152,7 @@ static const CGFloat kLeading = 5;
 - (NSString *) stringForDate:(NSDate *) aDate {
   NSDateFormatter *df;
   NSString *timeFmt = [BrGlobals stringForTimeFormat];
-  df = [BrGlobals ruDateFormatterWithFormat:timeFmt];
+  df = [BrGlobals dateFormatterWithFormat:timeFmt];
   NSString *timeStr = [df stringFromDate:aDate];
   return timeStr;
 }

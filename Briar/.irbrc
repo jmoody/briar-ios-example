@@ -65,10 +65,11 @@ end
 
 
 puts "loaded #{Dir.pwd}/.irbrc"
-puts "DEVICE_ENDPOINT => '#{ENV['DEVICE_ENDPOINT']}'"
-puts "  DEVICE_TARGET => '#{ENV['DEVICE_TARGET']}'"
-puts "         DEVICE => '#{ENV['DEVICE']}'"
-puts "      BUNDLE_ID => '#{ENV['BUNDLE_ID']}'"
-puts "   PLAYBACK_DIR => '#{ENV['PLAYBACK_DIR']}'"
-puts "             OS => '#{ENV['OS']}'"
+puts "RESET_BETWEEN_SCENARIOS => '#{ENV['RESET_BETWEEN_SCENARIOS']}'"
+puts "        DEVICE_ENDPOINT => '#{ENV['DEVICE_ENDPOINT']}'"
+puts "          DEVICE_TARGET => '#{ENV['DEVICE_TARGET']}'"
+puts "                 DEVICE => '#{ENV['DEVICE']}'"
+puts "              BUNDLE_ID => '#{ENV['BUNDLE_ID']}'"
+puts "           PLAYBACK_DIR => '#{ENV['PLAYBACK_DIR']}'"
+puts "                     OS => '#{ENV['OS']}'"
 

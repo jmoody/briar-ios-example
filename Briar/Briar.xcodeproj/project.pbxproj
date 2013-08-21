@@ -84,6 +84,10 @@
 		F58F093416F29CD6007CFE50 /* BrCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F093216F29CD6007CFE50 /* BrCategories.m */; };
 		F58F093B16F32FF9007CFE50 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58F093A16F32FF9007CFE50 /* MessageUI.framework */; };
 		F58F093C16F33002007CFE50 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58F093A16F32FF9007CFE50 /* MessageUI.framework */; };
+		F591380817C3D2CE007B2BE4 /* BrNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F591380717C3D2CE007B2BE4 /* BrNavigationController.m */; };
+		F591380917C3D2CE007B2BE4 /* BrNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F591380717C3D2CE007B2BE4 /* BrNavigationController.m */; };
+		F591380C17C3D3AB007B2BE4 /* BrTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F591380B17C3D3AB007B2BE4 /* BrTabBarController.m */; };
+		F591380D17C3D3AB007B2BE4 /* BrTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F591380B17C3D3AB007B2BE4 /* BrTabBarController.m */; };
 		F5A9CFB3170EEFC900265826 /* BrDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFAD170EEFC900265826 /* BrDatePickerController.xib */; };
 		F5A9CFB4170EEFC900265826 /* BrDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFAD170EEFC900265826 /* BrDatePickerController.xib */; };
 		F5A9CFB5170EEFC900265826 /* BrFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFAF170EEFC900265826 /* BrFirstViewController.xib */; };
@@ -164,6 +168,10 @@
 		F58F093116F29CD6007CFE50 /* BrCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrCategories.h; sourceTree = "<group>"; };
 		F58F093216F29CD6007CFE50 /* BrCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrCategories.m; sourceTree = "<group>"; };
 		F58F093A16F32FF9007CFE50 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		F591380617C3D2CE007B2BE4 /* BrNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrNavigationController.h; sourceTree = "<group>"; };
+		F591380717C3D2CE007B2BE4 /* BrNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrNavigationController.m; sourceTree = "<group>"; };
+		F591380A17C3D3AB007B2BE4 /* BrTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrTabBarController.h; sourceTree = "<group>"; };
+		F591380B17C3D3AB007B2BE4 /* BrTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrTabBarController.m; sourceTree = "<group>"; };
 		F5A9CFAE170EEFC900265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrDatePickerController.xib; sourceTree = "<group>"; };
 		F5A9CFB0170EEFC900265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrFirstViewController.xib; sourceTree = "<group>"; };
 		F5A9CFB2170EEFC900265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrTextRelatedController.xib; sourceTree = "<group>"; };
@@ -325,6 +333,10 @@
 		F56BAB5916FCA42900AB8578 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F591380A17C3D3AB007B2BE4 /* BrTabBarController.h */,
+				F591380B17C3D3AB007B2BE4 /* BrTabBarController.m */,
+				F591380617C3D2CE007B2BE4 /* BrNavigationController.h */,
+				F591380717C3D2CE007B2BE4 /* BrNavigationController.m */,
 				F56BAB5A16FCA42900AB8578 /* BrController.h */,
 				F56BAB5B16FCA42900AB8578 /* BrController.m */,
 				F56BAB5E16FCA45F00AB8578 /* BrDatePickerController.h */,
@@ -550,6 +562,8 @@
 				F56BAB7416FCA9DF00AB8578 /* BrDatePickerView.m in Sources */,
 				F56BAB7816FCAAF400AB8578 /* BrGlobals.m in Sources */,
 				F5A9CFBC170F0AB200265826 /* BrTableController.m in Sources */,
+				F591380917C3D2CE007B2BE4 /* BrNavigationController.m in Sources */,
+				F591380D17C3D3AB007B2BE4 /* BrTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +581,8 @@
 				F56BAB7316FCA9DF00AB8578 /* BrDatePickerView.m in Sources */,
 				F56BAB7716FCAAF400AB8578 /* BrGlobals.m in Sources */,
 				F5A9CFBB170F0AB200265826 /* BrTableController.m in Sources */,
+				F591380817C3D2CE007B2BE4 /* BrNavigationController.m in Sources */,
+				F591380C17C3D3AB007B2BE4 /* BrTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

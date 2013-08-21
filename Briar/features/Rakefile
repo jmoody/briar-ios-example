@@ -3,9 +3,8 @@ task :show_simulator do
   sh "/usr/bin/osascript -e 'tell application \"RubyMine\" to activate'"
 end
 
-task :bui do
-  sh 'bundle update'
-  sh 'bundle install'
+task :kill_instruments do
+  system('killall -9 instruments')
 end
 
 

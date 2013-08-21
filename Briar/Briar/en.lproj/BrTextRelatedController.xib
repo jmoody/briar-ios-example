@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
 		<string key="IBDocument.SystemVersion">12E55</string>
-		<string key="IBDocument.InterfaceBuilderVersion">4488.2</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">3715.3</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -41,7 +41,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 64}, {280, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="333278913"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -68,8 +67,8 @@
 							<int key="type">1</int>
 							<double key="pointSize">14</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="827545964">
-							<string key="NSName">HelveticaNeue</string>
+						<object class="NSFont" key="IBUIFont" id="60924484">
+							<string key="NSName">Helvetica</string>
 							<double key="NSSize">14</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -77,9 +76,8 @@
 					<object class="IBUITextField" id="333278913">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 101}, {280, 30}}</string>
+						<string key="NSFrame">{{20, 104}, {280, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="67544275"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -100,14 +98,13 @@
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="636322853"/>
-						<reference key="IBUIFont" ref="827545964"/>
+						<reference key="IBUIFont" ref="60924484"/>
 					</object>
 					<object class="IBUITextView" id="67544275">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, 139}, {240, 36}}</string>
+						<string key="NSFrame">{{40, 140}, {240, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1052593444"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -123,14 +120,13 @@
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="636322853"/>
-						<reference key="IBUIFont" ref="827545964"/>
+						<reference key="IBUIFont" ref="60924484"/>
 					</object>
 					<object class="IBUITextView" id="1052593444">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{40, 183}, {240, 32}}</string>
+						<string key="NSFrame">{{40, 178}, {240, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -146,12 +142,11 @@
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="636322853"/>
-						<reference key="IBUIFont" ref="827545964"/>
+						<reference key="IBUIFont" ref="60924484"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 411}}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="710205788"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -173,7 +168,7 @@
 						</array>
 					</object>
 					<string key="IBUITargetRuntime">IBCocoaTouchFramework</string>
-					<string key="IBUIDisplayName">Retina 3.5-inch Full Screen</string>
+					<string key="IBUIDisplayName">Retina 3.5 Full Screen</string>
 					<int key="IBUIType">0</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -192,27 +187,35 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">textField</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="710205788"/>
-					</object>
-					<string key="id">19</string>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">textView</string>
+						<string key="label">textViewTop</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="67544275"/>
 					</object>
-					<string key="id">HSz-my-hQV</string>
+					<string key="id">1HP-6Q-a7v</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">secondTextField</string>
+						<string key="label">textViewBottom</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1052593444"/>
+					</object>
+					<string key="id">Wxc-lr-Q9v</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">textFieldTop</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="710205788"/>
+					</object>
+					<string key="id">qqR-eL-qbP</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">textFieldBottom</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="333278913"/>
 					</object>
-					<string key="id">YaB-3r-6bx</string>
+					<string key="id">i3j-fI-cGy</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -302,7 +305,6 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<bool key="IBDocument.previouslyAttemptedUpgradeToXcode5">YES</bool>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
 			<real value="1280" key="NS.object.0"/>
@@ -313,6 +315,6 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">3715.3</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

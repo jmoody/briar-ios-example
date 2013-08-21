@@ -45,6 +45,6 @@
 + (NSString *) stringForDateFormat;
 + (NSString *) stringForDateTimeFormat; 
 + (NSString *) stringForTimeFormat;
-+ (NSDateFormatter *) ruDateFormatterWithFormat:(NSString *) aString;
++ (NSDateFormatter *) dateFormatterWithFormat:(NSString *) aString;
 
 @end

@@ -17,7 +17,8 @@ neptune_report = "./reports/neptune/neptune-#{date}.html"
 %>
 
 
-common: SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' --tags ~@issues
+
+common: BUNDLE_ID=com.littlejoysoftware.Briar-cal SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' --tags ~@issues
 os5: OS=ios5
 os6: OS=ios6
 os7: OS=ios7
@@ -27,20 +28,25 @@ neptune_rr: -f rerun -o ./rerun/neptune/rerun.txt
 pluto_html:   -f html -o <%= pluto_report %>
 neptune_html: -f html -o <%= neptune_report %>  
 html_report:  -f html -o <%= default_report %>
-no_launch: EMBED=1 NO_LAUNCH=1 --tags ~@launch
-ipad: DEVICE=ipad -p common -p no_launch --tags ~@launch
-iphone: DEVICE=iphone -p common -p no_launch --tags ~@launch
+no_launch: NO_LAUNCH=1 --tags ~@launch
+do_launch: NO_LAUNCH=0 --tags ~@no_launch
+no_reset_btw: RESET_BETWEEN_SCENARIOS=0
+reset_btw: RESET_BETWEEN_SCENARIOS=1
+full_output: CALABASH_FULL_CONSOLE_OUTPUT=1
+
+ipad: DEVICE=ipad -p common
+iphone: DEVICE=iphone -p common
 
 # UIAutomation through Instruments
 uai_simulator: DEVICE_TARGET=simulator
 
-default: -p common -p rerun_out -p html_report -p no_launch -p uai_simulator -p os6
-launch:  -p common -p rerun_out -p html_report -p uai
+default: -p common -p rerun_out -p html_report -p no_launch -p uai_simulator -p os6 -p reset_btw -p full_output
+launch:  -p common -p rerun_out -p html_report -p do_launch -p uai_simulator -p os6 -p reset_btw -p full_output
 
 issues: -p no_launch -p rerun_out -p html_report SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' OS=ios5 --tags @issues
 
-pluto:   -p pluto_rr   -p ipad   -p pluto_html   DEVICE_ENDPOINT=<%= pluto_ip %>
-neptune: -p neptune_rr -p iphone -p neptune_html DEVICE_ENDPOINT=<%= neptune_ip %>
+pluto:   DEVICE_ENDPOINT=<%= pluto_ip %>   -p pluto_rr   -p ipad   -p pluto_html   -p os5 -p no_launch
+neptune: DEVICE_TARGET=<%= neptune_udid %> DEVICE_ENDPOINT=<%= neptune_ip %> -p neptune_rr -p iphone -p neptune_html -p os6
 
 # not really working in Ruby Mine
 wip:     -p common -p rerun_out -p html_report -p no_launch --tags @wip:3 --wip

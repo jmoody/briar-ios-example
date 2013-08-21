@@ -4,6 +4,9 @@
 #import "BrDatePickerController.h"
 #import "BrCategories.h"
 #import "BrTableController.h"
+#import "BrNavigationController.h"
+#import "BrGlobals.h"
+
 
 typedef enum : NSUInteger {
   kTagSecurityVeil = NSNotFound
@@ -188,26 +191,27 @@ typedef enum : NSUInteger {
 
   
   UIViewController *fvc = [BrFirstViewController new];
-  UINavigationController *fnbc = [[UINavigationController alloc]
+  BrNavigationController *fnbc = [[BrNavigationController alloc]
                                   initWithRootViewController:fvc];
   
   UIViewController *svc = [BrTextRelatedController new];
-  UINavigationController *snbc = [[UINavigationController alloc]
+  BrNavigationController *snbc = [[BrNavigationController alloc]
                                   initWithRootViewController:svc];
   
 
   UIViewController *dvc = [BrDatePickerController new];
-  UINavigationController *ndvc = [[UINavigationController alloc]
+  BrNavigationController *ndvc = [[BrNavigationController alloc]
                                   initWithRootViewController:dvc];
   
   UIViewController *tvc = [BrTableController new];
-  UINavigationController *ntvc = [[UINavigationController alloc]
+  BrNavigationController *ntvc = [[BrNavigationController alloc]
                                   initWithRootViewController:tvc];
 
   
   
-  self.tabBarController = [[UITabBarController alloc] init];
+  self.tabBarController = [[BrTabBarController alloc] init];
   self.tabBarController.viewControllers = @[fnbc, snbc, ndvc, ntvc];
+  self.tabBarController.delegate = self;
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
   return YES;
@@ -246,12 +250,13 @@ typedef enum : NSUInteger {
   // appropriate. See also applicationDidEnterBackground:.
 }
 
-/*
+
 // Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
+- (void) tabBarController:(UITabBarController *) aTabBarController didSelectViewController:(UIViewController *) aViewController {
+  BrNavigationController *navcon = (BrNavigationController *) aViewController;
+  [navcon updateViewRotation];
 }
-*/
+
 
 /*
 // Optional UITabBarControllerDelegate method.
