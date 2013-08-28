@@ -51,7 +51,7 @@ static NSString *const k_12H_date_format = @"EEE MMM d";
   return [locale localeUses24HourClock] ? k_24H_time_format : k_12H_time_format;
 }
 
-+ (NSDateFormatter *) ruDateFormatterWithFormat:(NSString *) aString {
++ (NSDateFormatter *) dateFormatterWithFormat:(NSString *) aString {
   NSDateFormatter *formatter = [NSDateFormatter new];
   [formatter setDateFormat:aString];
   formatter.locale = [NSLocale autoupdatingCurrentLocale];

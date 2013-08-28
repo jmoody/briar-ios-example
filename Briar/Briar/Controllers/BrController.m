@@ -31,13 +31,17 @@
 #endif
 
 #import "BrController.h"
+#import "BrGlobals.h"
 
 @interface BrController ()
+
+
 
 @end
 
 @implementation BrController
 
+@synthesize frames = _frames;
 
 #pragma mark Memory Management
 
@@ -57,9 +61,115 @@
   NSString *nibName = [NSString stringWithFormat:@"%@", [self class]];
   self = [super initWithNibName:nibName bundle:nil];
   if (self) {
-  
+    self.navbarTitle = nil;     
   }
   return self;
+}
+
+- (void) didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
+  NSLog(@"did receive memory warning");
+}
+
+- (void) configureAccessibility {
+  self.view.accessibilityIdentifier = @"FIXME";
+}
+
+
+#pragma mark Orientation
+
+
+- (NSString *) stringForOrientation:(UIInterfaceOrientation) aOrientation {
+  switch (aOrientation) {
+    case UIInterfaceOrientationPortrait: { return @"portrait"; }
+    case UIInterfaceOrientationLandscapeLeft: { return @"right"; }
+    case UIInterfaceOrientationLandscapeRight: { return @"left"; }
+    case UIInterfaceOrientationPortraitUpsideDown: { return @"up-side down"; }
+  }
+}
+
+- (NSArray *) viewsToRotate {
+  return @[];
+}
+
+- (void) layoutSubviewsForCurrentOrientation:(NSArray *) aViews {
+  UIInterfaceOrientation o = self.interfaceOrientation;
+  for (UIView *view in aViews) {
+    CGRect frame = [self frameForView:view orientation:o];
+    view.frame = frame;
+  }
+}
+
+- (CGRect) frameForView:(UIView *) aView
+            orientation:(UIInterfaceOrientation) aOrientation {
+  // nop subclasses should implement
+  return aView.frame;
+}
+
+
+- (NSMutableDictionary *) frames {
+  if (_frames != nil) { return _frames; }
+  _frames = [[NSMutableDictionary alloc] initWithCapacity:8];
+  return _frames;
+}
+
+
+#pragma mark - iOS 5 Rotations
+
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  // Return YES for supported orientations
+  return YES;
+}
+
+#pragma mark - iOS 6 Rotations
+
+- (NSUInteger) supportedInterfaceOrientations {
+  return UIInterfaceOrientationMaskAll;
+}
+
+- (BOOL) shouldAutorotate {
+  // from the docs - this is the default
+  return YES;
+}
+
+
+#pragma mark - View Layout
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  UINavigationBar *navbar = self.navigationController.navigationBar;
+  navbar.translucent = YES;
+}
+
+- (void) viewWillLayoutSubviews {
+  [super viewWillLayoutSubviews];
+}
+
+- (void) viewDidLayoutSubviews {
+  [super viewDidLayoutSubviews];
+}
+
+#pragma mark - View Lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  NSString *nbt = self.navbarTitle;
+  if (nbt != nil && [nbt length] != 0) {
+    self.navigationItem.title = self.navbarTitle;
+  }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
 }
 
 @end

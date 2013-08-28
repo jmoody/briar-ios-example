@@ -23,6 +23,6 @@ Feature: issue 116 - should be able to touch text field by mark or placeholder
 
     # look by mark
     # expected to fail until the proposed fix is installed
-    Then I touch the "input" text field
+    Then I touch the "top tf" text field
     Then I should see the keyboard
     Then I am done text editing

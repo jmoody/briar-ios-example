@@ -24,33 +24,52 @@ def embed(x,y=nil,z=nil)
    puts "Screenshot at #{x}"
 end
 
+
 #### begin briar ####
 
-require 'briar'
-
-include Briar::Bars
-include Briar::Alerts_and_Sheets
-include Briar::Control::Button
-include Briar::Control::Segmented_Control
-include Briar::Control::Slider
-include Briar::Picker
-include Briar::Picker::Date
-include Briar::Picker_Shared
-include Briar::Core
-include Briar::Table
+if IO.popen("rbenv version").readlines.first.split(/-/).first.eql?('1.8.7')
+  puts "briar not available for '1.8.7'"
+else
+  require 'briar'
+  include Briar::Bars
+  include Briar::Alerts_and_Sheets
+  include Briar::Control::Button
+  include Briar::Control::Segmented_Control
+  include Briar::Control::Slider
+  include Briar::Picker
+  include Briar::Picker_Shared
+  include Briar::Picker::DateCore
+  include Briar::Picker::DateManipulation
+  include Briar::Picker::DateSteps
+  include Briar::Core
+  include Briar::Table
+  include Briar::ImageView
+  include Briar::TextField
+  include Briar::TextView
+end
 
 @ai=:accessibilityIdentifier
 @al=:accessibilityLabel
-def access_ids
+
+def ids
   query("view", @ai).compact.sort.each {|x| puts "* #{x}" }
 end
 
-def access_labels
+def labels
   query("view", @al).compact.sort.each {|x| puts "* #{x}" }
 end
 
-def navbar_button_labels
+def nbl
     query("navigationButton", :accessibilityLabel)
 end
 
-puts "loaded local .irbrc"
+
+puts "loaded #{Dir.pwd}/.irbrc"
+puts "RESET_BETWEEN_SCENARIOS => '#{ENV['RESET_BETWEEN_SCENARIOS']}'"
+puts "        DEVICE_ENDPOINT => '#{ENV['DEVICE_ENDPOINT']}'"
+puts "          DEVICE_TARGET => '#{ENV['DEVICE_TARGET']}'"
+puts "                 DEVICE => '#{ENV['DEVICE']}'"
+puts "              BUNDLE_ID => '#{ENV['BUNDLE_ID']}'"
+puts "           PLAYBACK_DIR => '#{ENV['PLAYBACK_DIR']}'"
+puts "                     OS => '#{ENV['OS']}'"
+
