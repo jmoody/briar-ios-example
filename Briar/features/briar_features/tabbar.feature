@@ -13,4 +13,5 @@ Feature: tabbar features
     # todo add a view to the briar-ios-example that hides the tab bar
     When we are testing on the simulator or a device configured to send emails
     Then I touch the "email" button and wait for the "compose email" view
-    Then I should not see the tab bar
+    Then I should not see the tab bar if I am on the iphone or if ipad is orientated left or right
+

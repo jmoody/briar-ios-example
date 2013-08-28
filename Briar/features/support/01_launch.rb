@@ -47,13 +47,8 @@ end
 #noinspection RubyUnusedLocalVariable
 After do |scenario|
   unless @calabash_launcher.calabash_no_stop?
-    # trying to suppress the spam that instruments/killall spews
-    # tried:
-    #   system("killall -9 instruments >/dev/null 2>&1")
-    # this is not working
-    #noinspection RubyUnusedLocalVariable
-    ignore_instruments_spam = %x(killall -9 instruments >/dev/null 2>&1)
-
+    system('killall -9 instruments >/dev/null 2>&1')
+    #system('killall -9 installd')
     calabash_exit
     if @calabash_launcher.active?
       @calabash_launcher.stop

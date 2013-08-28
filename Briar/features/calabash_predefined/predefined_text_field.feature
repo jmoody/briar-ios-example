@@ -30,10 +30,16 @@ Feature: testing the text field set_text, clear_text, and predefined steps
     Then I should see "top tf" text field with text ""
 
     # predefined
-    Then I use the native keyboard to enter "n8tive 0-||=| board" into the "top tf" text field
-    Then I should see "top tf" text field with text "n8tive 0-||=| board"
+#    Then I use the native keyboard to enter "n8tive 0-||=| board" into the "top tf" text field
+#    Then I should see "top tf" text field with text "n8tive 0-||=| board"
+#    Then I clear input field number 1
+#    Then I should see "top tf" text field with text ""
+
+    Then I use the native keyboard to enter "n8t1ve k3y b0ard" into the "top tf" text field
+    Then I should see "top tf" text field with text "n8t1ve k3y b0ard"
     Then I clear input field number 1
     Then I should see "top tf" text field with text ""
+
 
     Then I enter "put me in bottom text field" into text field number 2
     Then I should see "bottom tf" text field with text "put me in bottom text field"

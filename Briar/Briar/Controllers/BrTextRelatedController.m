@@ -175,8 +175,13 @@ static NSString *const kIdBottomTv = @"bottom tv";
   return YES;
 }
 
-#pragma mark - Orientation
 
+
+#pragma mark - Orientation iOS 5
+
+
+#pragma mark - Orientation iOS 6
+  
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) aFromInterfaceOrientation {
   
 }

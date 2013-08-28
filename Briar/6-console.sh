@@ -24,4 +24,5 @@ CALABASH_FULL_CONSOLE_OUTPUT=1 \
 RESET_BETWEEN_SCENARIOS=1 \
 DEVICE_TARGET=simulator \
 OS=ios6 \
-IRBRC=.irbrc irb
+IRBRC=.irbrc \
+bundle exec irb

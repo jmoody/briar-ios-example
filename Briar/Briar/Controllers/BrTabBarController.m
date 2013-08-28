@@ -10,13 +10,13 @@
 
 @implementation BrTabBarController
 
-#pragma mark - iOS 6
+#pragma mark - iOS 5
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) aInterfaceOrientation {
-  return YES;
+  return [[self selectedViewController] shouldAutorotateToInterfaceOrientation:aInterfaceOrientation];
 }
 
-#pragma mark - iOS 7
+#pragma mark - iOS 6
 
 
 - (NSUInteger) supportedInterfaceOrientations {

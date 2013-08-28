@@ -15,54 +15,88 @@ Feature: testing rotation
 
   ###########
   # launching in the sim with instruments causes the device to rotate back to
-  # portrait for iphone
-  @iphone_only
+  # portrait for iphone but not the ipad
+
   @launch
+  @iphone_only
   Scenario: 1 of 2 testing orientation with back-to-back launches
     When I rotate the device left, I should see the status bar and device have the same orientation
 
-  @iphone_only
   @launch
+  @iphone_only
   Scenario: 2 of 2 testing orientation with back-to-back launches
     Then the device orientation should be "unknown" on the simulator and "down" on device
     And the status bar orientation should be "down"
+
+
+  @launch
+  @ipad_only
+  Scenario: 1 of 2 testing orientation with back-to-back launches
+    When I rotate the device left, I should see the status bar and device have the same orientation
+
+  # flickers on ipad devices when device is in landscape mode
+  @flickering
+  @launch
+  @ipad_only
+  Scenario: 2 of 2 testing orientation with back-to-back launches
+    Then the device orientation should be "unknown" on the simulator and "down" on device
+    And the status bar orientation should be "right"
   ###########
+
+
 
   ###########
   # launch the app manually
   # put the device into any rotation
   # run tests
-  @iphone_only
   @no_launch
   Scenario: 1 of 2 testing orientation with NO_LAUNCH=1 back-to-back launches
     When I rotate the device right, I should see the status bar and device have the same orientation
 
-  @iphone_only
   @no_launch
   Scenario: 2 of 2 testing orientation with NO_LAUNCH=1 back-to-back launches
     Then the orientation of the status bar and device should be same
   ###########
 
+  @iphone_only
   @launch
   Scenario: launch - 1 of 2 test rotation to any direction
     Then I rotate the device 4 times in a random direction
     Then the orientation of the status bar and device should be same
 
+  @iphone_only
   @launch
   Scenario: launch - 2 of 2 test rotation to any direction
     Then the device orientation should be "unknown" on the simulator and "down" on device
     And the status bar orientation should be "down"
 
+  ############
+  # cannot test on ipad because restarting sim does _not_ reset orientation
+#
+#  @ipad_only
+#  @launch
+#  Scenario: launch - 1 of 2 test rotation to any direction
+#    Then I rotate the device 4 times in a random direction
+#    Then the orientation of the status bar and device should be same
+#
+#
+#  @ipad_only
+#  @launch
+#  Scenario: launch - 2 of 2 test rotation to any direction
+#    Then the device orientation should be "unknown" on the simulator and "down" on device
+#    And the status bar orientation should be "down"
+#  #####
+
+  @no_launch
   Scenario: no launch - 1 of 1 test rotation to any direction
     Then I rotate the device 4 times in a random direction
     Then the orientation of the status bar and device should be same
 
-  @launch
-  Scenario: launch - we should be able rotate the device to any orientation
-    Then I rotate the device so the home button is on the right
+  @ipad_only
+  @wip
+  Scenario: should be able to rotate to the home position
+    Then I rotate the device 4 times in a random direction
+    Then I rotate the device so the home button is on the bottom
     Then the orientation of the status bar and device should be same
 
-  Scenario: no launch - we should be able rotate the device to any orientation
-    Then I rotate the device so the home button is on the right
-    Then the orientation of the status bar and device should be same
 

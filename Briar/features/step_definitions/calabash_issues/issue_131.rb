@@ -5,6 +5,8 @@ When(/^I add a security veil to the main window$/) do
   end
   veil = 'security veil'
   wait_for_view veil
+  # ipad requires a longer wait
+  4.times { step_pause }
 end
 
 Then(/^I dismiss the security veil$/) do
@@ -37,9 +39,15 @@ end
 Then(/^I should not be able to see the elements on the topmost view$/) do
   views = ['show modal', 'email', 'show sheet', 'first']
   timeout = 2.0
-  msg = "waited for '#{timeout}' seconds for '#{views}' to disappear but some of them are still visible"
-  wait_for_elements_do_not_exist(views, {:timeout => timeout,
-                                         :retry_frequency => 0.2,
-                                         :post_timeout => 0.1,
-                                         :timeout_message => msg})
+  should_not_see_view 'show modal'
+  should_not_see_view 'email'
+  should_not_see_view 'show sheet'
+  should_not_see_view 'first'
+
+  # not working
+  #msg = "waited for '#{timeout}' seconds for '#{views}' to disappear but some of them are still visible"
+  #wait_for_elements_do_not_exist(views, {:timeout => timeout,
+  #                                       :retry_frequency => 0.2,
+  #                                       :post_timeout => 0.1,
+  #                                       :timeout_message => msg})
 end

@@ -2,7 +2,7 @@
 @issue_156
 Feature: swipes should work in all orientations
 
-  Background: get me to the text related view
+  Background: i should see the text related view
     When I touch the Text tab, I should see the Text related part of the app
 
   Scenario Outline: swipes should work in any orientation

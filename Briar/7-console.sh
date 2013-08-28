@@ -21,4 +21,7 @@ DEVICE=$TMP_DEVICE \
 CALABASH_FULL_CONSOLE_OUTPUT=1 \
 DEVICE_TARGET=simulator \
 OS=ios7 \
-IRBRC=.irbrc irb
+IRBRC=.irbrc \
+bundle exec irb
+
+

@@ -150,7 +150,12 @@ static NSString *const kIdButtonShowPicker = @"show picker";
 
 #pragma mark - Orientation
 
+#pragma mark - iOS 5 Rotations
 
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) aInterfaceOrientation {
+  return aInterfaceOrientation == UIInterfaceOrientationPortrait ||
+  aInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown;
+}
 
 #pragma mark - iOS 6 Rotations
 
