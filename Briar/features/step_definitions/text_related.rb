@@ -4,6 +4,7 @@ module Briar
       tf = "#{field} tf"
       should_see_text_field tf
       swipe(dir, {:query => "textField marked:'#{tf}'"})
+      2.times { step_pause }
       tf
     end
   end
@@ -18,5 +19,6 @@ end
 Then(/^I should see the (top|bottom) text field has "([^"]*)"$/) do |field, text|
   tf = "#{field} tf"
   should_see_text_field_with_text tf, text
+  2.times { step_pause }
 end
 

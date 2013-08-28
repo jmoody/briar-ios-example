@@ -1,6 +1,8 @@
 #!/bin/sh
 
-./install_calabash_gem.sh
+briar install-calabash-gem
+briar gem
+rbenv rehash
 
 # send a killall to instruments
 # tried all manner of output redirects like:

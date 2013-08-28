@@ -18,7 +18,7 @@ neptune_report = "./reports/neptune/neptune-#{date}.html"
 
 
 
-common: BUNDLE_ID=com.littlejoysoftware.Briar-cal SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' --tags ~@issues
+common: BUNDLE_ID=com.littlejoysoftware.Briar-cal SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter'
 os5: OS=ios5
 os6: OS=ios6
 os7: OS=ios7
@@ -34,19 +34,21 @@ no_reset_btw: RESET_BETWEEN_SCENARIOS=0
 reset_btw: RESET_BETWEEN_SCENARIOS=1
 full_output: CALABASH_FULL_CONSOLE_OUTPUT=1
 
-ipad: DEVICE=ipad -p common
-iphone: DEVICE=iphone -p common
+ipad_device:   DEVICE=ipad   -p common   --tags ~@iphone_only
+iphone_device: DEVICE=iphone -p common   --tags ~@ipad_only
 
 # UIAutomation through Instruments
-uai_simulator: DEVICE_TARGET=simulator
+uai_sim: DEVICE_TARGET=simulator
 
-default: -p common -p rerun_out -p html_report -p no_launch -p uai_simulator -p os6 -p reset_btw -p full_output
-launch:  -p common -p rerun_out -p html_report -p do_launch -p uai_simulator -p os6 -p reset_btw -p full_output
+default: -p common -p rerun_out -p html_report -p no_launch -p uai_sim -p os6 -p no_reset_btw -p full_output
+launch:  -p common -p rerun_out -p html_report -p do_launch -p uai_sim -p os6 -p reset_btw -p full_output
 
-issues: -p no_launch -p rerun_out -p html_report SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter' OS=ios5 --tags @issues
+ipad:        -p ipad_device -p rerun_out -p html_report -p no_launch -p uai_sim -p os6 -p no_reset_btw -p full_output
+ipad_launch: -p ipad_device -p rerun_out -p html_report -p do_launch -p uai_sim -p os6 -p reset_btw -p full_output
 
-pluto:   DEVICE_ENDPOINT=<%= pluto_ip %>   -p pluto_rr   -p ipad   -p pluto_html   -p os5 -p no_launch
-neptune: DEVICE_TARGET=<%= neptune_udid %> DEVICE_ENDPOINT=<%= neptune_ip %> -p neptune_rr -p iphone -p neptune_html -p os6
+
+pluto:   DEVICE_TARGET=<%= pluto_udid %> DEVICE_ENDPOINT=<%= pluto_ip %>     -p pluto_rr   -p ipad_device    -p pluto_html   -p os5
+neptune: DEVICE_TARGET=<%= neptune_udid %> DEVICE_ENDPOINT=<%= neptune_ip %> -p neptune_rr -p iphone_device  -p neptune_html -p os6 -p do_launch
 
 # not really working in Ruby Mine
 wip:     -p common -p rerun_out -p html_report -p no_launch --tags @wip:3 --wip

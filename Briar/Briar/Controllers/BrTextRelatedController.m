@@ -1,4 +1,5 @@
 #import "BrTextRelatedController.h"
+#import "BrGlobals.h"
 
 static NSString *const kIdTopTf = @"top tf";
 static NSString *const kIdBottomTf = @"bottom tf";
@@ -216,13 +217,16 @@ static NSString *const kIdBottomTv = @"bottom tv";
     UIInterfaceOrientation t = UIInterfaceOrientationPortraitUpsideDown;
     UIInterfaceOrientation b = UIInterfaceOrientationPortrait;
     UIInterfaceOrientation o = aOrientation;
-    if ([kIdTopTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20, 44, 210, 30); }
-    if ([kIdBottomTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20, 88, 210, 30); }
+    CGFloat ipadYAdj = br_is_ipad() ? 20 : 0;
+    
+    
+    if ([kIdTopTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20, 44 + ipadYAdj, 210, 30); }
+    if ([kIdBottomTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20, 88 + ipadYAdj , 210, 30); }
     if ([kIdTopTf isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 64, 280, 30); }
     if ([kIdBottomTf isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 104, 280, 30); }
 
-    if ([kIdTopTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 44, 210, 30); }
-    if ([kIdBottomTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 88, 210, 30); }
+    if ([kIdTopTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 44 + ipadYAdj, 210, 30); }
+    if ([kIdBottomTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 88 + ipadYAdj, 210, 30); }
     if ([kIdTopTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 140, 280, 30); }
     if ([kIdBottomTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 176, 280, 30); }
     [_frames setObject:NSStringFromCGRect(frame) forKey:key];

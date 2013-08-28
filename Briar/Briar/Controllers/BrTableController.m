@@ -2,6 +2,8 @@
 #import "BrCategories.h"
 #import "BrGlobals.h"
 
+
+
 typedef enum : NSUInteger {
   kTagTableRowTitle = 3030,
   kTagTable
@@ -14,6 +16,7 @@ typedef enum : NSUInteger {
 - (NSString *) titleForRowWithPath:(NSIndexPath *) aPath;
 - (UILabel *) labelForRowAtIndexPath:(NSIndexPath *) aPath;
 - (UITableView *) table;
+
 
 @end
 

@@ -15,11 +15,13 @@ Feature: testing rotation
 
   ###########
   # launching in the sim with instruments causes the device to rotate back to
-  # portrait
+  # portrait for iphone
+  @iphone_only
   @launch
   Scenario: 1 of 2 testing orientation with back-to-back launches
     When I rotate the device left, I should see the status bar and device have the same orientation
 
+  @iphone_only
   @launch
   Scenario: 2 of 2 testing orientation with back-to-back launches
     Then the device orientation should be "unknown" on the simulator and "down" on device
@@ -30,10 +32,12 @@ Feature: testing rotation
   # launch the app manually
   # put the device into any rotation
   # run tests
+  @iphone_only
   @no_launch
   Scenario: 1 of 2 testing orientation with NO_LAUNCH=1 back-to-back launches
     When I rotate the device right, I should see the status bar and device have the same orientation
 
+  @iphone_only
   @no_launch
   Scenario: 2 of 2 testing orientation with NO_LAUNCH=1 back-to-back launches
     Then the orientation of the status bar and device should be same

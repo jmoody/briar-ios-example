@@ -29,6 +29,16 @@
 
 #import <Foundation/Foundation.h>
 
+NS_INLINE BOOL br_is_ipad() {
+  static BOOL shared = NO;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    shared = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
+  });
+  return shared;
+}
+
+
 /**
  Documentation
  */

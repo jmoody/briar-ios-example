@@ -6,7 +6,7 @@ Feature: testing what happens when a view controller does not support an orienta
     Given that I am looking at the Date tab
     Given the device is in the portrait orientation
 
-  @wip
+  @iphone_only
   Scenario: i should not be able to rotate the date view to landscape
     # predefined step - calls Calabash rotate
     Then I rotate device left
