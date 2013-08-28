@@ -28,6 +28,7 @@ OS="ios5" \
 DEVICE_TARGET=${UDID} \
 BUNDLE_ID="com.littlejoysoftware.Briar-cal" \
 DEVICE_ENDPOINT=${IP} \
-IRBRC=".irbrc" irb
+IRBRC=.irbrc \
+bundle exec irb
 
 
