@@ -1,7 +1,7 @@
 @issue_189
 Feature:  swiping left and right on ipad
 
-  Background: get me to the text related view and orient me down
+  Background: get me to the text related view
     When I touch the Text tab, I should see the Text related part of the app
 
   # flickering when launched with instruments on ipad simulator 5 + 6
