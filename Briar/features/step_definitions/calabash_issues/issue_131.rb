@@ -39,15 +39,11 @@ end
 Then(/^I should not be able to see the elements on the topmost view$/) do
   views = ['show modal', 'email', 'show sheet', 'first']
   timeout = 2.0
-  should_not_see_view 'show modal'
-  should_not_see_view 'email'
-  should_not_see_view 'show sheet'
-  should_not_see_view 'first'
 
-  # not working
-  #msg = "waited for '#{timeout}' seconds for '#{views}' to disappear but some of them are still visible"
-  #wait_for_elements_do_not_exist(views, {:timeout => timeout,
-  #                                       :retry_frequency => 0.2,
-  #                                       :post_timeout => 0.1,
-  #                                       :timeout_message => msg})
+  elements = views.map { |view_id| "view marked:'#{view_id}'"}
+  msg = "waited for '#{timeout}' seconds for '#{views}' to disappear but some of them are still visible"
+  wait_for_elements_do_not_exist(elements, {:timeout => timeout,
+                                         :retry_frequency => 0.2,
+                                         :post_timeout => 0.1,
+                                         :timeout_message => msg})
 end
