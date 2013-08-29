@@ -2,7 +2,7 @@ module Briar
   module Text_Related
     def swipe_on_text_field(dir, field)
       tf = "#{field} tf"
-      should_see_text_field tf
+      wait_for_view tf, 2
       swipe(dir, {:query => "textField marked:'#{tf}'"})
       2.times { step_pause }
       tf
