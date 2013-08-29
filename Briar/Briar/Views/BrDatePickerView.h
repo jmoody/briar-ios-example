@@ -38,7 +38,8 @@
 
 /** @name Initializing Objects */
 - (id) initWithDate:(NSDate *) aDate
-           delegate:(id<BrDatePickerViewDelegate>) aDelegate;
+           delegate:(id<BrDatePickerViewDelegate>) aDelegate
+               mode:(UIDatePickerMode) aDatePickerMode;
 
 
 /** @name Handling Notifications, Requests, and Events */

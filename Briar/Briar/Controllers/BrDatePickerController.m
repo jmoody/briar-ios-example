@@ -1,7 +1,14 @@
 #import "BrDatePickerController.h"
 #import "BrCategories.h"
 
-static NSString *const kIdButtonShowPicker = @"show picker";
+
+typedef enum : NSInteger {
+  kTagPickerView = 3030,
+  kTagButtonTime,
+  kTagButtonDate,
+  kTagButtonDateAndTime
+} view_tags;
+
 
 
 @interface BrDatePickerController ()
@@ -9,6 +16,10 @@ static NSString *const kIdButtonShowPicker = @"show picker";
 @property (nonatomic, strong) BrDatePickerView *pickerView;
 
 - (void) buttonTouchedDoneDatePicking:(id) sender;
+- (void) setButtonsHidden:(BOOL) aHidden;
+- (UIDatePickerMode) modeForButton:(UIButton *) aButton;
+- (void) buttonTouched:(UIButton *) aButton;
+- (BrDatePickerView *) pickerViewForMode:(UIDatePickerMode) aMode;
 
 @end
 
@@ -26,11 +37,21 @@ static NSString *const kIdButtonShowPicker = @"show picker";
   return self;
 }
 
+- (void) configureAccessibility {
+  [super configureAccessibility];
+  self.view.accessibilityIdentifier = @"date related";
+  self.buttonTime.accessibilityIdentifier = @"show time picker";
+  self.buttonTime.tag = kTagButtonTime;
+  self.buttonDate.accessibilityIdentifier = @"show date picker";
+  self.buttonDate.tag = kTagButtonDate;
+  self.buttonDateAndTime.accessibilityIdentifier = @"show date and time picker";
+  self.buttonDateAndTime.tag = kTagButtonDateAndTime;
+}
+
+
 - (void)viewDidLoad {
   [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-  self.view.accessibilityIdentifier = @"date related";
-  
+  [self configureAccessibility];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,19 +60,22 @@ static NSString *const kIdButtonShowPicker = @"show picker";
 }
 
 - (void)viewDidUnload {
-  [self setButtonShowPicker:nil];
+  [self setButtonTime:nil];
+  [self setButtonDateAndTime:nil];
+  [self setButtonDate:nil];
   [super viewDidUnload];
 }
 
 - (BrDatePickerView *) pickerView {
-  if (_pickerView != nil) { return _pickerView; }
-  _pickerView = [[BrDatePickerView alloc]
-                 initWithDate:[NSDate date]
-                 delegate:self];
-  
   return _pickerView;
 }
 
+- (BrDatePickerView *) pickerViewForMode:(UIDatePickerMode) aMode {
+  return [[BrDatePickerView alloc]
+                 initWithDate:[NSDate date]
+                 delegate:self
+                 mode:aMode];
+}
 
 #pragma mark - Actions
 
@@ -60,21 +84,53 @@ static NSString *const kIdButtonShowPicker = @"show picker";
 }
 
 
-- (IBAction)buttonTouchedShowPicker:(id)sender {
-  NSLog(@"show picker button touched");
+- (void) setButtonsHidden:(BOOL) aHidden {
+  [@[self.buttonTime, self.buttonDate, self.buttonDateAndTime] mapc:^(UIButton *button,
+                                                                      NSUInteger idx,
+                                                                      BOOL *stop) {
+    button.hidden = aHidden;
+  }];
+
+}
+
+- (UIDatePickerMode) modeForButton:(UIButton *) aButton {
+  if (self.buttonTime == aButton) { return UIDatePickerModeTime; }
+  if (self.buttonDate == aButton) { return UIDatePickerModeDate; }
+  if (self.buttonDateAndTime == aButton) { return UIDatePickerModeDateAndTime; }
+  return NSNotFound;
+}
+
+- (void) buttonTouched:(UIButton *) aButton {
+  UIDatePickerMode mode = [self modeForButton:aButton];
+  _pickerView = [self pickerViewForMode:mode];
   
-  self.buttonShowPicker.hidden = YES;
+  [self setButtonsHidden:YES];
+  
   typeof(self) wself = self;
   [BrDatePickerAnimationHelper
    animateDatePickerOnWithController:wself
    animations:^{
      
    } completion:^(BOOL finished) {
-     wself.buttonShowPicker.alpha = 0;
+    
    }];
 }
 
-#pragma mark - Animations
+- (IBAction)buttonTouchedTime:(id)sender {
+  NSLog(@"show picker button touched");
+  [self buttonTouched:sender];
+}
+
+- (IBAction)buttonTouchedDateAndTime:(id)sender {
+  NSLog(@"show picker button touched");
+  [self buttonTouched:sender];
+}
+
+- (IBAction)buttonTouchedDate:(id)sender {
+  NSLog(@"show picker button touched");
+  [self buttonTouched:sender];
+}
+
 
 
 #pragma mark - RuAddMealPickerView Delegate
@@ -85,12 +141,11 @@ static NSString *const kIdButtonShowPicker = @"show picker";
   [BrDatePickerAnimationHelper
    animateDatePickerOffWithController:wself
    before:^{
-     wself.buttonShowPicker.hidden = NO;
+     
    } animations:^{
      
-     wself.buttonShowPicker.alpha = 1;
    } completion:^(BOOL finished) {
-     
+     [wself setButtonsHidden:NO];
    }];
 }
 
@@ -101,11 +156,11 @@ static NSString *const kIdButtonShowPicker = @"show picker";
   [BrDatePickerAnimationHelper
    animateDatePickerOffWithController:wself
    before:^{
-     wself.buttonShowPicker.hidden = NO;
+
    } animations:^{
-     wself.buttonShowPicker.alpha = 1;
+
    } completion:^(BOOL finished) {
-     
+     [wself setButtonsHidden:NO];
    }];
 }
 
@@ -123,8 +178,8 @@ static NSString *const kIdButtonShowPicker = @"show picker";
 
 - (CGRect) frameForView:(UIView *) aView
             orientation:(UIInterfaceOrientation) aOrientation {
-  NSString *aid = aView.accessibilityIdentifier;
-  NSString *key = [NSString stringWithFormat:@"%@ - %d", aid, aOrientation];
+  NSInteger tag = aView.tag;
+  NSString *key = [NSString stringWithFormat:@"%d - %d", tag, aOrientation];
   NSString *str = [self.frames objectForKey:key];
   CGRect frame = CGRectZero;
   if (str != nil) {
@@ -135,17 +190,26 @@ static NSString *const kIdButtonShowPicker = @"show picker";
     UIInterfaceOrientation t = UIInterfaceOrientationPortraitUpsideDown;
     UIInterfaceOrientation b = UIInterfaceOrientationPortrait;
     UIInterfaceOrientation o = aOrientation;
-    if ([kIdButtonShowPicker isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(185, 40, 111, 44); }
-    if ([kIdButtonShowPicker isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(105, 56, 111, 44); }
+    if (tag == kTagButtonTime && (l == o || r == o)) { frame = CGRectMake(20, 44, 55, 44); }
+    if (tag == kTagButtonTime && (t == o || b == o)) { frame = CGRectMake(20, 50, 55, 44); }
+
+    if (tag == kTagButtonDateAndTime && (l == o || r == o)) { frame = CGRectMake(189, 44, 103, 44); }
+    if (tag == kTagButtonDateAndTime && (t == o || b == o)) { frame = CGRectMake(109, 50, 103, 44); }
+    
+    if (tag == kTagButtonDate && (l == o || r == o)) { frame = CGRectMake(403, 44, 55, 44); }
+    if (tag == kTagButtonDate && (t == o || b == o)) { frame = CGRectMake(245, 50, 55, 44); }
+
     [_frames setObject:NSStringFromCGRect(frame) forKey:key];
   }
   return frame;
 }
 
 - (NSArray *) viewsToRotate {
-  if (self.buttonShowPicker == nil) { return @[]; }
-  
-  return @[self.buttonShowPicker];
+  NSMutableArray *array = [NSMutableArray arrayWithCapacity:3];
+  if (self.buttonTime != nil) { [array addObject:self.buttonTime]; }
+  if (self.buttonDate != nil) { [array addObject:self.buttonDate]; }
+  if (self.buttonDateAndTime != nil) { [array addObject:self.buttonDateAndTime]; }
+  return array;
 }
 
 #pragma mark - Orientation
@@ -164,17 +228,14 @@ static NSString *const kIdButtonShowPicker = @"show picker";
 }
 
 - (BOOL) shouldAutorotate {
-  // from the docs - this is the default
   return YES;
 }
 
 
 #pragma mark - View Lifecycle
 
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  self.buttonShowPicker.accessibilityIdentifier = kIdButtonShowPicker;
   [self layoutSubviewsForCurrentOrientation:[self viewsToRotate]];
 }
 
@@ -189,5 +250,7 @@ static NSString *const kIdButtonShowPicker = @"show picker";
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
-} 
+}
+
+
 @end

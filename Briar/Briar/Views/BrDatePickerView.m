@@ -6,6 +6,8 @@
 #import "BrGlobals.h"
 #import "BRCategories.h"
 
+#pragma mark - Animations
+
 
 @implementation BrDatePickerAnimationHelper
 
@@ -76,44 +78,40 @@
                    }];
 }
 
-
-
 @end
 
+#pragma mark - Date Picker View
 
-
-// space between the lines is called the leading
-static const CGFloat kLeading = 5;
-
+typedef enum : NSInteger {
+  kTagLabel = 3030,
+  kTagToolbar,
+  kTagPicker
+} view_tags;
 
 @interface BrDatePickerView ()
 
 @property (nonatomic, copy) NSDate *date;
 @property (nonatomic, weak) id<BrDatePickerViewDelegate> delegate;
-@property (nonatomic, strong) UILabel *label;
-@property (nonatomic, strong) UIDatePicker *picker;
+@property (nonatomic, strong, readonly) UILabel *label;
+@property (nonatomic, strong, readonly) UIDatePicker *picker;
+@property (nonatomic, assign) UIDatePickerMode pickerMode;
+@property (nonatomic, strong, readonly) UIToolbar *toolbar;
 
-
-- (UILabel *) makeDateLabel;
-- (UIToolbar *) makeToolbar;
-- (UIDatePicker *) makeDatePicker;
-
-- (NSString *) stringForDate:(NSDate *) aDate;
 - (void) datePickerDateDidChange:(id) sender;
 - (void) buttonTouchedPickerDone:(id) sender;
 
-- (UIFont *) fontForDateLabel;
+
+- (NSString *) accessibilityIdentifierForMode:(UIDatePickerMode) aMode;
+- (NSString *) stringForDate:(NSDate *)aDate withMode:(UIDatePickerMode) aMode;
+- (NSString *) accessibilityIdentifierForPickerWithMode:(UIDatePickerMode) aMode;
 
 @end
 
-
 @implementation BrDatePickerView
 
-@synthesize date;
-@synthesize delegate;
-@synthesize label;
-@synthesize picker;
-
+@synthesize label = _label;
+@synthesize picker = _picker;
+@synthesize toolbar = _toolbar;
 
 #pragma mark Memory Management
 
@@ -128,57 +126,56 @@ static const CGFloat kLeading = 5;
 }
 
 - (id) initWithDate:(NSDate *) aDate
-           delegate:(id<BrDatePickerViewDelegate>) aDelegate {
+           delegate:(id<BrDatePickerViewDelegate>) aDelegate
+               mode:(UIDatePickerMode) aDatePickerMode {
   CGRect frame = CGRectMake(0, 0, 320 , 367);
   self = [super initWithFrame:frame];
   if (self) {
     self.date = aDate;
     self.delegate = aDelegate;
+    self.pickerMode = aDatePickerMode;
     
-    self.accessibilityIdentifier = @"wake up picker";
-    
-    self.label = [self makeDateLabel];
-    [self addSubview:self.label];
-    
-    UIToolbar *bar = [self makeToolbar];
-    [self addSubview:bar];
-    
-    self.picker = [self makeDatePicker];
-    [self addSubview:self.picker];
+    self.accessibilityIdentifier = [self accessibilityIdentifierForMode:aDatePickerMode];
   }
   return self;
 }
 
-- (NSString *) stringForDate:(NSDate *) aDate {
-  NSDateFormatter *df;
-  NSString *timeFmt = [BrGlobals stringForTimeFormat];
-  df = [BrGlobals dateFormatterWithFormat:timeFmt];
-  NSString *timeStr = [df stringFromDate:aDate];
-  return timeStr;
-}
-
-
-- (UIFont *) fontForDateLabel {
-  return  [UIFont boldSystemFontOfSize:22];
-}
-
-
-
-- (UILabel *) makeDateLabel {
-
-  UIFont *font = [self fontForDateLabel];
-  CGRect frame = CGRectMake(20, 44, 280, 24);
+- (void) layoutSubviews {
+  [super layoutSubviews];
   
+  if ([self viewWithTag:kTagLabel] == nil) {
+    [self addSubview:[self label]];
+  }
+  
+  if ([self viewWithTag:kTagPicker] == nil) {
+    [self addSubview:[self picker]];
+  }
+  
+  if ([self viewWithTag:kTagToolbar] == nil) {
+    [self addSubview:[self toolbar]];
+  }
+}
+
+
+#pragma mark - Views
+
+
+- (UILabel *) label {
+  if (_label != nil) { return _label; }
+  CGRect frame = CGRectMake(20, 44, 280, 24);
   UILabel *result = [[UILabel alloc] initWithFrame:frame];
   result.textAlignment = UITextAlignmentCenter;
   result.lineBreakMode = UILineBreakModeMiddleTruncation;
-  result.font = font;
-  result.accessibilityIdentifier = @"wake up time";
-  result.text = [self stringForDate:self.date];
+  result.font = [UIFont boldSystemFontOfSize:18];
+  result.text = [self stringForDate:self.date withMode:self.pickerMode];
+  result.accessibilityIdentifier = @"time";
+  result.tag = kTagLabel;
+  _label = result;
   return result;
 }
 
-- (UIToolbar *) makeToolbar {
+- (UIToolbar *) toolbar {
+  if (_toolbar != nil) { return _toolbar; }
   CGFloat y = 107;
   CGRect frame = CGRectMake(0, y, 320, 44);
   UIToolbar *bar = [[UIToolbar alloc] initWithFrame:frame];
@@ -194,29 +191,33 @@ static const CGFloat kLeading = 5;
                                                @"date: ACCESSIBILITY button on toolbar/navbar - touching ends date picking and saves any changes");
   
   bar.items = [NSArray arrayWithObjects:left,right, nil];
-  
+  bar.tag = kTagToolbar;
+  _toolbar = bar;
   return bar;
 }
 
-- (UIDatePicker *) makeDatePicker {
+
+- (UIDatePicker *) picker {
+  if (_picker != nil) { return _picker; }
+  
   CGFloat y = 151;
   CGRect frame = CGRectMake(0, y, 320, 216);
   UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:frame];
   datePicker.date = [self.date copy];
-  //NSLocale *locale = [NSLocale autoupdatingCurrentLocale];
-  //calendar.locale = locale;
   NSCalendar *calendar = [NSCalendar gregorianCalendarWithMondayAsFirstDayOfWeek];
 
   datePicker.calendar = calendar;
   datePicker.maximumDate = nil;
   datePicker.minimumDate = nil;
   
-  datePicker.datePickerMode =  UIDatePickerModeTime;
+  UIDatePickerMode mode = self.pickerMode;
+  datePicker.datePickerMode =  mode;
   datePicker.minuteInterval = 1;
-  datePicker.accessibilityIdentifier = @"date picker";
+  datePicker.accessibilityIdentifier = [self accessibilityIdentifierForPickerWithMode:mode];
   [datePicker addTarget:self action:@selector(datePickerDateDidChange:) 
        forControlEvents:UIControlEventValueChanged];
-  
+  datePicker.tag = kTagPicker;
+  _picker = datePicker;
   return datePicker;
 }
 
@@ -225,7 +226,7 @@ static const CGFloat kLeading = 5;
 - (void) datePickerDateDidChange:(id)sender {
   NSLog(@"date picker did change");
   NSDate *newDate = self.picker.date;
-  NSString *text = [self stringForDate:newDate];
+  NSString *text = [self stringForDate:newDate withMode:self.pickerMode];
   self.label.text = text;
 }
 
@@ -234,6 +235,40 @@ static const CGFloat kLeading = 5;
   NSLog(@"picker done button touched");
   [self.delegate datePickerViewDoneButtonTouchedWithDate:self.picker.date];
    
+}
+
+- (NSString *) accessibilityIdentifierForMode:(UIDatePickerMode) aMode {
+  switch (aMode) {
+    case UIDatePickerModeCountDownTimer: return @"count down picker";
+    case UIDatePickerModeDate: return @"date picker";
+    case UIDatePickerModeDateAndTime: return @"date and time picker";
+    case UIDatePickerModeTime: return @"time picker";
+  }
+}
+
+- (NSString *) stringForDate:(NSDate *)aDate withMode:(UIDatePickerMode) aMode {
+
+  NSString *fmt = nil;
+  switch (aMode) {
+    case UIDatePickerModeCountDownTimer: { fmt = @"unknown"; break; }
+    case UIDatePickerModeDate: { fmt = [BrGlobals stringForDateFormat];  break;}
+    case UIDatePickerModeDateAndTime: { fmt = [BrGlobals stringForDateTimeFormat]; break;}
+    case UIDatePickerModeTime: { fmt = [BrGlobals stringForTimeFormat]; break; }
+  }
+
+  NSDateFormatter *df = [BrGlobals dateFormatterWithFormat:fmt];
+  NSString *str = [df stringFromDate:aDate];
+  NSLog(@"str = '%@'", str);
+  return str;
+}
+
+- (NSString *) accessibilityIdentifierForPickerWithMode:(UIDatePickerMode) aMode {
+  switch (aMode) {
+    case UIDatePickerModeCountDownTimer: return @"count down";
+    case UIDatePickerModeDate: return @"date";
+    case UIDatePickerModeDateAndTime: return @"date and time";
+    case UIDatePickerModeTime: return @"time";
+  }
 }
 
 

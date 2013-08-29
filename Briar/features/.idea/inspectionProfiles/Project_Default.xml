@@ -3,5 +3,8 @@
     <option name="myName" value="Project Default" />
     <option name="myLocal" value="false" />
     <inspection_tool class="EqualityComparisonWithCoercionJS" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="RubyResolve" enabled="true" level="UNRESOLVED" enabled_by_default="true">
+      <option name="warnImplicitResults" value="false" />
+    </inspection_tool>
   </profile>
 </component>
