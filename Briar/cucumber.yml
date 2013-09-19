@@ -1,59 +1,75 @@
 <%
+
 date = Time.now.strftime('%Y-%m-%d-%H%M-%S')
 default_report = "./reports/calabash-#{date}.html"
 
-lesspainful_dir = "#{ENV['HOME']}/.lesspainful"
+lesspainful_dir = "#{ENV['HOME']}/.xamarin"
 
 pluto_dir = "#{lesspainful_dir}/devices/pluto"
 pluto_ip = IO.read("#{pluto_dir}/ip") if File.exists?("#{pluto_dir}/ip")
 pluto_udid = IO.read("#{pluto_dir}/udid") if File.exists?("#{pluto_dir}/udid")
-pluto_report = "./reports/pluto/pluto-#{date}.html"
+pluto_report = "./reports/pluto/#{date}-pluto.html"
+pluto_ss_path = "#{Dir.pwd}/reports/neptune/screenshots/"
 
 neptune_dir = "#{lesspainful_dir}/devices/neptune"
 neptune_ip = IO.read("#{neptune_dir}/ip") if File.exists?("#{neptune_dir}/ip")
 neptune_udid = IO.read("#{neptune_dir}/udid") if File.exists?("#{neptune_dir}/udid")
-neptune_report = "./reports/neptune/neptune-#{date}.html"
+neptune_report = "./reports/neptune/#{date}-neptune.html"
+neptune_ss_path = "#{Dir.pwd}/reports/neptune/screenshots/"
+
+ss_path = "#{Dir.pwd}/screenshots/"
+
+`mkdir ./screenshots` unless File.exists?("./screenshots")
+`mkdir ./reports` unless File.exists?("./reports")
+
+`mkdir ./reports/pluto` unless File.exists?("./reports/pluto")
+
+`mkdir ./reports/neptune` unless File.exists?("./reports/neptune")
+`mkdir ./reports/neptune/screenshots` unless File.exists?("./reports/neptune/screenshots")
 
 %>
 
-
-
-common: BUNDLE_ID=com.littlejoysoftware.Briar-cal SCREENSHOT_PATH=./screenshots/ -f 'Slowhandcuke::Formatter'
-os5: OS=ios5
-os6: OS=ios6
-os7: OS=ios7
-rerun_out: -f rerun -o ./rerun/rerun.txt
-pluto_rr: -f rerun -o ./rerun/pluto/rerun.txt
-neptune_rr: -f rerun -o ./rerun/neptune/rerun.txt
-pluto_html:   -f html -o <%= pluto_report %>
-neptune_html: -f html -o <%= neptune_report %>  
-html_report:  -f html -o <%= default_report %>
-no_launch: NO_LAUNCH=1 --tags ~@launch
-do_launch: NO_LAUNCH=0 --tags ~@no_launch
-no_reset_btw: RESET_BETWEEN_SCENARIOS=0
-reset_btw: RESET_BETWEEN_SCENARIOS=1
 full_output: CALABASH_FULL_CONSOLE_OUTPUT=1
+common: -f 'Slowhandcuke::Formatter' --tags ~@issues -p full_output
 
-ipad_device:   DEVICE=ipad   -p common   --tags ~@iphone_only
-iphone_device: DEVICE=iphone -p common   --tags ~@ipad_only
+ss_path: SCREENSHOT_PATH=<%= ss_path %>
 
-# UIAutomation through Instruments
-uai_sim: DEVICE_TARGET=simulator
+rerun_out:    -f rerun -o ./rerun/rerun.txt
+pluto_rr:     -f rerun -o ./rerun/pluto/rerun.txt
+neptune_rr:   -f rerun -o ./rerun/neptune/rerun.txt
 
-default: -p common -p rerun_out -p html_report -p no_launch -p uai_sim -p os6 -p no_reset_btw -p full_output
-launch:  -p common -p rerun_out -p html_report -p do_launch -p uai_sim -p os6 -p reset_btw -p full_output
+pluto_html:   -f html -o <%= pluto_report %>
+neptune_html: -f html -o <%= neptune_report %>
+html_report:  -f html -o <%= default_report %>
 
-ipad:        -p ipad_device -p rerun_out -p html_report -p no_launch -p uai_sim -p os6 -p no_reset_btw -p full_output
-ipad_launch: -p ipad_device -p rerun_out -p html_report -p do_launch -p uai_sim -p os6 -p no_reset_btw -p full_output
+pluto_html:   -f html -o <%= pluto_report %>
+neptune_html: -f html -o <%= neptune_report %>
+html_report:  -f html -o <%= default_report %>
 
+pluto_ss:   SCREENSHOT_PATH=<%= pluto_ss_path %>
+neptune_ss: SCREENSHOT_PATH=<%= neptune_ss_path %>
 
-pluto:   DEVICE_TARGET=<%= pluto_udid %>   DEVICE_ENDPOINT=<%= pluto_ip %>   -p pluto_rr   -p ipad_device    -p pluto_html   -p os5 -p no_launch
-pluto_launch:   DEVICE_TARGET=<%= pluto_udid %>   DEVICE_ENDPOINT=<%= pluto_ip %>   -p pluto_rr   -p ipad_device    -p pluto_html   -p os5 -p do_launch
-neptune: DEVICE_TARGET=<%= neptune_udid %> DEVICE_ENDPOINT=<%= neptune_ip %> -p neptune_rr -p iphone_device  -p neptune_html -p os6 -p no_launch
-neptune_launch: DEVICE_TARGET=<%= neptune_udid %> DEVICE_ENDPOINT=<%= neptune_ip %> -p neptune_rr -p iphone_device  -p neptune_html -p os6 -p do_launch
+no_launch:    NO_LAUNCH=1 --tags ~@launch
+do_launch:    NO_LAUNCH=0 --tags ~@no_launch
+no_reset_btw: RESET_BETWEEN_SCENARIOS=0
+reset_btw:    RESET_BETWEEN_SCENARIOS=1
 
-# not really working in Ruby Mine
-wip:     -p common -p rerun_out -p html_report -p no_launch --tags @wip:3 --wip
+ipad:   DEVICE=ipad   -p common -p no_reset_btw
+iphone: DEVICE=iphone -p common -p no_reset_btw
 
-# not yet - does not work in Ruby Mine
-# rerun:   -p common -p no_launch @rerun.txt
+uai: DEVICE_TARGET=simulator
+
+default: -p common -p ss_path -p rerun_out -p html_report -p no_launch -p uai -p no_reset_btw
+launch:  -p common -p ss_path -p rerun_out -p html_report -p do_launch -p uai -p no_reset_btw
+
+# required only for devices
+bundle_id:    BUNDLE_ID=com.littlejoysoftware.Briar-cal
+
+device_common:  -p bundle_id
+pluto_common:   DEVICE_ENDPOINT=<%= pluto_ip %>   DEVICE_ENDPOINT=<%= pluto_ip %> -p device_common -p pluto_rr   -p ipad   -p pluto_html     -p pluto_ss
+pluto:         -p pluto_common -p no_launch
+pluto_launch:  -p pluto_common -p do_launch
+
+neptune_common: DEVICE_TARGET=<%= neptune_udid %> DEVICE_ENDPOINT=<%= neptune_ip %> -p device_common -p neptune_rr -p iphone -p neptune_html -p neptune_ss
+neptune:        -p neptune_common -p no_launch
+neptune_launch: -p neptune_common -p do_launch
