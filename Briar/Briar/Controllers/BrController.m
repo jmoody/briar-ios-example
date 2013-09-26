@@ -35,8 +35,6 @@
 
 @interface BrController ()
 
-
-
 @end
 
 @implementation BrController
@@ -61,7 +59,16 @@
   NSString *nibName = [NSString stringWithFormat:@"%@", [self class]];
   self = [super initWithNibName:nibName bundle:nil];
   if (self) {
-    self.navbarTitle = nil;     
+    self.navbarTitle = nil;
+    self.wantsFullScreenLayout = YES;
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+    SEL selector = @selector(setAutomaticallyAdjustsScrollViewInsets:);
+    if ([self respondsToSelector:selector]) {
+      [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    }
+#endif
+
   }
   return self;
 }
@@ -74,6 +81,7 @@
 - (void) configureAccessibility {
   self.view.accessibilityIdentifier = @"FIXME";
 }
+
 
 
 #pragma mark Orientation
@@ -136,10 +144,22 @@
 
 #pragma mark - View Layout
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+- (UIStatusBarStyle) preferredStatusBarStyle {
+  return UIStatusBarStyleLightContent;
+}
+#endif
+
+
 - (void)viewDidLoad {
   [super viewDidLoad];
-  UINavigationBar *navbar = self.navigationController.navigationBar;
-  navbar.translucent = YES;
+  
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+  SEL selector = @selector(setNeedsStatusBarAppearanceUpdate);
+  if ([self respondsToSelector:selector]) {
+    [self setNeedsStatusBarAppearanceUpdate];
+  }
+#endif
 }
 
 - (void) viewWillLayoutSubviews {
@@ -158,6 +178,10 @@
   if (nbt != nil && [nbt length] != 0) {
     self.navigationItem.title = self.navbarTitle;
   }
+  UINavigationBar *navbar = self.navigationController.navigationBar;
+  navbar.translucent = YES;
+  navbar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {

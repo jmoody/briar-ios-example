@@ -225,15 +225,15 @@ static NSString *const kIdBottomTv = @"bottom tv";
     CGFloat ipadYAdj = br_is_ipad() ? 20 : 0;
     
     
-    if ([kIdTopTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20, 44 + ipadYAdj, 210, 30); }
-    if ([kIdBottomTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20, 88 + ipadYAdj , 210, 30); }
-    if ([kIdTopTf isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 64, 280, 30); }
-    if ([kIdBottomTf isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 104, 280, 30); }
+    if ([kIdTopTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20, 64 + ipadYAdj, 210, 30); }
+    if ([kIdBottomTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20, 108 + ipadYAdj , 210, 30); }
+    if ([kIdTopTf isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 84, 280, 30); }
+    if ([kIdBottomTf isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 124, 280, 30); }
 
-    if ([kIdTopTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 44 + ipadYAdj, 210, 30); }
-    if ([kIdBottomTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 88 + ipadYAdj, 210, 30); }
-    if ([kIdTopTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 140, 280, 30); }
-    if ([kIdBottomTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 176, 280, 30); }
+    if ([kIdTopTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 64 + ipadYAdj, 210, 30); }
+    if ([kIdBottomTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 108 + ipadYAdj, 210, 30); }
+    if ([kIdTopTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 160, 280, 30); }
+    if ([kIdBottomTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 196, 280, 30); }
     [_frames setObject:NSStringFromCGRect(frame) forKey:key];
   }
   return frame;
@@ -261,7 +261,10 @@ static NSString *const kIdBottomTv = @"bottom tv";
 
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
-  [@[self.textFieldTop, self.textFieldBottom] enumerateObjectsUsingBlock:^(UITextField *tf, NSUInteger idx, BOOL *stop) {
+  [@[self.textFieldTop,
+     self.textFieldBottom,
+     self.textViewTop,
+     self.textViewBottom] enumerateObjectsUsingBlock:^(UITextField *tf, NSUInteger idx, BOOL *stop) {
     if ([tf isFirstResponder]) { [tf resignFirstResponder]; }
     tf.text = nil;
   }];

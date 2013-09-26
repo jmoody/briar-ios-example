@@ -190,14 +190,14 @@ typedef enum : NSInteger {
     UIInterfaceOrientation t = UIInterfaceOrientationPortraitUpsideDown;
     UIInterfaceOrientation b = UIInterfaceOrientationPortrait;
     UIInterfaceOrientation o = aOrientation;
-    if (tag == kTagButtonTime && (l == o || r == o)) { frame = CGRectMake(20, 44, 55, 44); }
-    if (tag == kTagButtonTime && (t == o || b == o)) { frame = CGRectMake(20, 50, 55, 44); }
+    if (tag == kTagButtonTime && (l == o || r == o)) { frame = CGRectMake(20, 64, 55, 44); }
+    if (tag == kTagButtonTime && (t == o || b == o)) { frame = CGRectMake(20, 70, 55, 44); }
 
-    if (tag == kTagButtonDateAndTime && (l == o || r == o)) { frame = CGRectMake(189, 44, 103, 44); }
-    if (tag == kTagButtonDateAndTime && (t == o || b == o)) { frame = CGRectMake(109, 50, 103, 44); }
+    if (tag == kTagButtonDateAndTime && (l == o || r == o)) { frame = CGRectMake(189, 64, 103, 44); }
+    if (tag == kTagButtonDateAndTime && (t == o || b == o)) { frame = CGRectMake(109, 70, 103, 44); }
     
-    if (tag == kTagButtonDate && (l == o || r == o)) { frame = CGRectMake(403, 44, 55, 44); }
-    if (tag == kTagButtonDate && (t == o || b == o)) { frame = CGRectMake(245, 50, 55, 44); }
+    if (tag == kTagButtonDate && (l == o || r == o)) { frame = CGRectMake(403, 64, 55, 44); }
+    if (tag == kTagButtonDate && (t == o || b == o)) { frame = CGRectMake(245, 70, 55, 44); }
 
     [_frames setObject:NSStringFromCGRect(frame) forKey:key];
   }

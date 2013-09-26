@@ -30,13 +30,12 @@
   BrDatePickerView *pickerView = [aController pickerView];
   pickerView.alpha = 0.0;
   [aController.view addSubview:pickerView];
-  [pickerView setYWithY:[BrGlobals isDeviceIphone5] ? 568 : 480];
+  [pickerView setYWithY:br_iphone_y_max()];
   pickerView.alpha = 1.0;
   
-  CGFloat pickerY = (aController.hidesBottomBarWhenPushed == YES) ? 94 : 44;
-  if ([BrGlobals isDeviceIphone5]) {
-    pickerY += 568 - 480;
-  }
+  CGFloat pickerY = 64;
+  if (aController.hidesBottomBarWhenPushed == YES) { pickerY += 49; }
+  if (br_is_iphone_5()) { pickerY += 568 - 480; }
   
   __weak UIViewController *wCon = aController;
   [UIView animateWithDuration:0.4
@@ -62,7 +61,7 @@
                                      completion:(void (^)(BOOL finished)) aCompletion {
   aBefore();
   
-  CGFloat targetY = [BrGlobals isDeviceIphone5] ? 568 : 480;
+  CGFloat targetY = br_iphone_y_max();
   BrDatePickerView *pickerView = [aController pickerView];
   [UIView animateWithDuration:0.4
                         delay:0.1

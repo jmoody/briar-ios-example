@@ -1,8 +1,7 @@
 #!/bin/sh
 
-briar install-calabash-gem
-briar gem
-rbenv rehash
+bundle install
+bundle update
 
 # send a killall to instruments
 # tried all manner of output redirects like:
@@ -23,8 +22,8 @@ IP=`cat ~/.lesspainful/devices/pluto/ip`
 UDID=`cat ~/.lesspainful/devices/pluto/udid`
 PLAYBACK_DIR="features/playback" \
 CALABASH_FULL_CONSOLE_OUTPUT="1" \
+DEBUG=1 \
 DEVICE=$TMP_DEVICE \
-OS="ios5" \
 DEVICE_TARGET=${UDID} \
 BUNDLE_ID="com.littlejoysoftware.Briar-cal" \
 DEVICE_ENDPOINT=${IP} \

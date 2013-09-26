@@ -105,24 +105,47 @@ typedef enum : NSUInteger {
 
 - (NSString *) calabash_backdoor_reset_app:(NSString *)aIgnorable {
   
-  // dismiss any alerts or sheets
+  
+  // starting in iOS 7 we started to see crashes when popping views that had
+  // keyboards showing - so we send a resignFirstResponder to the app first
+  // responder (to => nil ==> will be sent to any first responder)
+  [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder)
+                                             to:nil
+                                           from:nil
+                                       forEvent:nil];
+
+  // the meal detail pickers are presented _over_ the tabbar on the key window
+  // so we need to remove them if a scenario ends with the detail picker on the
+  // view
+  // also there are several action sheets that present on the key window that
+  // need to be dismissed
+  // and the keyboards...
   [[UIApplication sharedApplication].windows mapc:^(UIWindow *window, NSUInteger idx0, BOOL *stop0) {
     [[window subviews] mapc:^(UIView *view, NSUInteger idx1, BOOL *stop1) {
+      
       if ([view respondsToSelector:@selector(dismissWithClickedButtonIndex:animated:)]) {
         if ([view respondsToSelector:@selector(dismissWithClickedButtonIndex:animated:)]) {
           id dismissible = (id) view;
-          [dismissible dismissWithClickedButtonIndex:1 animated:YES];
+          /*** BRITTLE: because might not have a cancel button **/
+          NSInteger cancelIdx = [dismissible cancelButtonIndex];
+          [dismissible dismissWithClickedButtonIndex:cancelIdx animated:NO];
         }
       }
+      
       NSArray *subs = [view subviews];
       [subs mapc:^(UIView *sv, NSUInteger idx2, BOOL *stop2) {
         if ([sv respondsToSelector:@selector(dismissWithClickedButtonIndex:animated:)]) {
           id dismissible = (id) sv;
-          [dismissible dismissWithClickedButtonIndex:1 animated:YES];
+          /*** BRITTLE: because might not have a cancel button **/
+          NSInteger cancelIdx = [dismissible cancelButtonIndex];
+          [dismissible dismissWithClickedButtonIndex:cancelIdx animated:NO];
         }
       }];
     }];
   }];
+
+  
+  
 
   // dismiss the security veil if it exists
   UIView *veil = [self.window viewWithTag:kTagSecurityVeil];
@@ -145,8 +168,7 @@ typedef enum : NSUInteger {
     [navcon popToRootViewControllerAnimated:YES];
     
     if (idx == kTabbarIndexFirst) {
-      BrFirstViewController *fvc = (BrFirstViewController *)top;
-      if (fvc.sheet.visible == YES) { [fvc actionSheetCancel:fvc.sheet]; }      
+
     } else if (idx == kTabbarIndexText) {
       
     } else if (idx == kTabbarIndexDate) {
@@ -157,20 +179,6 @@ typedef enum : NSUInteger {
   }];
   
 
-  // also there are several action sheets that present on the key window that
-  // need to be dismissed and the keyboards...
-  [[[[UIApplication sharedApplication] keyWindow] subviews] mapc:^(UIView *view,
-                                                                   NSUInteger outerIdx,
-                                                                   BOOL *outerStop) {
-    
-    NSArray *subs = [view subviews];
-    [subs mapc:^(UIView *sv, NSUInteger innerIdx, BOOL *innerStop) {
-      if ([sv isKindOfClass:[UIActionSheet class]]) {
-        UIActionSheet *as = (UIActionSheet *)sv;
-        [as dismissWithClickedButtonIndex:1 animated:YES];
-      }
-    }];
-  }];
   
   [self.tabBarController setSelectedIndex:kTabbarIndexFirst];
   return @"YES";
@@ -208,10 +216,11 @@ typedef enum : NSUInteger {
                                   initWithRootViewController:tvc];
 
   
-  
   self.tabBarController = [[BrTabBarController alloc] init];
   self.tabBarController.viewControllers = @[fnbc, snbc, ndvc, ntvc];
   self.tabBarController.delegate = self;
+  
+  
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
   return YES;

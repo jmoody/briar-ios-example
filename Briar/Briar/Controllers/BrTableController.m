@@ -12,15 +12,19 @@ typedef enum : NSUInteger {
 
 @interface BrTableController ()
 
+
+@property (nonatomic, strong, readonly) UITableView *tableView;
+
 @property (nonatomic, copy) NSArray *titles;
 - (NSString *) titleForRowWithPath:(NSIndexPath *) aPath;
 - (UILabel *) labelForRowAtIndexPath:(NSIndexPath *) aPath;
-- (UITableView *) table;
 
 
 @end
 
 @implementation BrTableController
+
+@synthesize tableView = _tableView;
 
 - (id) init {
   self = [super init];
@@ -37,30 +41,8 @@ typedef enum : NSUInteger {
 	// Do any additional setup after loading the view, typically from a nib.
   self.view.accessibilityIdentifier = @"tables";
   
-  UITableView *table = (UITableView *)[self.view viewWithTag:kTagTable];
-  CGFloat height = [BrGlobals isDeviceIphone5] ? 367 + 88 : 367;
-  
-  CGRect rect = CGRectMake(0, 0, 320, height);
-  
-  UITableViewStyle style = UITableViewStylePlain;
-  table  = [[UITableView alloc] initWithFrame:rect
-                                        style:style];
-  table.bounds = rect;
-  table.backgroundColor = [UIColor whiteColor];
-  [table setAutoresizesSubviews:YES];
-  [table setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-  table.delegate = self;
-  table.dataSource = self;
-  table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-  
-  table.accessibilityIdentifier = @"alphabet";
-  table.tag = kTagTable;
-  [self.view addSubview:table];
 }
 
-- (UITableView *) table {
-  return (UITableView *)[self.view viewWithTag:kTagTable];
-}
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
@@ -147,7 +129,7 @@ typedef enum : NSUInteger {
    https://groups.google.com/d/msg/calabash-ios/L6OmNnbhPW0/0fzLX-DJl-UJ
    
    **************************/
-  return [BrGlobals isDeviceIphone5] ? 47 : 43;
+  return br_is_iphone_5() ? 47 : 43;
 }
 
 
@@ -210,9 +192,55 @@ typedef enum : NSUInteger {
 }
 
 
-#pragma mark - Actions
-
 #pragma mark - Animations
+
+#pragma mark - View Layout
+
+- (UITableView *) tableView {
+  if (_tableView != nil) { return _tableView; }
+  
+
+  CGFloat height = br_iphone_y_max() - 49;
+
+  // tabbar is not yet translucent
+  // if (br_is_not_iOS_7()) { height -= 49; }
+  CGRect rect = CGRectMake(0, 0, 320, height);
+  UITableViewStyle style = UITableViewStylePlain;
+  UITableView *table  = [[UITableView alloc] initWithFrame:rect
+                                                     style:style];
+  table.bounds = rect;
+  table.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+  table.backgroundColor = [UIColor whiteColor];
+  [table setAutoresizesSubviews:YES];
+  [table setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+  table.delegate = self;
+  table.dataSource = self;
+  table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+  
+  table.tableFooterView = [UIView new];
+  table.sectionFooterHeight = 0.0;
+
+  table.accessibilityIdentifier = @"alphabet";
+  table.tag = kTagTable;
+  _tableView = table;
+  return table;
+}
+
+- (void) viewWillLayoutSubviews {
+  NSLog(@"will layout subviews");
+}
+
+- (void) viewDidLayoutSubviews {
+  NSLog(@"did layout subviews");
+  
+  UIView *view = self.view;
+  
+  if ([view viewWithTag:kTagTable] == nil) {
+    UITableView *table = [self tableView];
+    [view addSubview:table];
+  }
+}
+
 
 #pragma mark - View Lifecycle
 
@@ -223,7 +251,8 @@ typedef enum : NSUInteger {
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
-  [[self table] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+  
+  [[self tableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
                       atScrollPosition:UITableViewScrollPositionTop
                               animated:NO];
 

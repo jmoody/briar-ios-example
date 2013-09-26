@@ -5,6 +5,15 @@
 #import "BrGlobals.h"
 #import "BrCategories.h"
 
+
+NSString *const k_br_ios_700 = @"7.0";
+NSString *const k_br_ios_600 = @"6.0";
+CGFloat const k_br_iphone_5_height = 568;
+CGFloat const k_br_iphone_height = 480;
+CGFloat const k_br_iphone_5_additonal_points = k_br_iphone_5_height - k_br_iphone_height;
+
+
+
 static NSString *const k_24H_time_format = @"H:mm";
 static NSString *const k_12H_time_format = @"h:mm a";
 static NSString *const k_24H_date_format = @"EEE d MMM";
@@ -21,11 +30,6 @@ static NSString *const k_12H_date_format = @"EEE MMM d";
 - (id) init {
   [self doesNotRecognizeSelector:_cmd];
   return nil;
-}
-
-+ (BOOL) isDeviceIphone5 {
-  CGRect screenBounds = [[UIScreen mainScreen] bounds];
-  return (screenBounds.size.height == 568);
 }
 
 + (NSString *) stringForDateFormat {

@@ -1,12 +1,30 @@
 #import "BrFirstViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
+#import "BrGlobals.h"
 
+typedef enum : NSInteger {
+  kTagAlert = 1010,
+  kTagSheet = 2020
+} view_tags;
+
+
+
+static NSString *const kAIButtonShowSheet = @"show sheet";
+static NSString *const kAIButtonShowEmail = @"email";
+static NSString *const kAIButtonShowAlert = @"show modal";
+static NSString *const kAILabelTitle = @"title";
 
 @interface BrFirstViewController ()
+<UIActionSheetDelegate,
+MFMailComposeViewControllerDelegate,
+UIAlertViewDelegate>
+
 
 @end
 
 @implementation BrFirstViewController
+
+@synthesize frames = _frames;
 
 - (id)init {
   self = [super init];
@@ -30,8 +48,10 @@
                           destructiveButtonTitle:locDelete
                           otherButtonTitles:nil];
   lSheet.accessibilityIdentifier = @"sheet";
+  lSheet.accessibilityLabel = @"Schot";
+  lSheet.tag = kTagSheet;
   [lSheet showFromTabBar:self.tabBarController.tabBar];
-  self.sheet = lSheet;
+  
 }
 
 - (IBAction)buttonTouchedShowEmail:(id)sender {
@@ -54,9 +74,54 @@
   }
 }
 
-- (IBAction)buttonTouchedShowModal:(id)sender {
+- (IBAction)buttonTouchedShowAlert:(id)sender {
+  NSString *lat = NSLocalizedString(@"Briar Alert!", @"first view: title of alert");
+  NSString *lam = NSLocalizedString(@"We are out pipe cleaners.", @"first view: message of alert");
+  NSString *lok = NSLocalizedString(@"OK", @"first view: title of OK button on alert");
+  NSString *lcancel = NSLocalizedString(@"Cancel", @"first view: title of cancel button on alert");
+  
+  UIAlertView *alert = [[UIAlertView alloc]
+                        initWithTitle:lat
+                        message:lam
+                        delegate:self
+                        cancelButtonTitle:lcancel
+                        otherButtonTitles:lok, nil];
+  alert.tag = kTagAlert;
+  alert.accessibilityIdentifier = @"alert";
+  alert.accessibilityLabel = @"Alarmruf";
+  [alert show];
+}
+
+#pragma mark - UIAlertView Delegate
+
+- (void) alertView:(UIAlertView *) aAlertView clickedButtonAtIndex:(NSInteger) aIndex {
   
 }
+
+//- (BOOL) alertViewShouldEnableFirstOtherButton:(UIAlertView *) aAlertView {
+//  return YES;
+//}
+
+- (void) willPresentAlertView:(UIAlertView *) aAlertView {
+  //DDLogDebug(@"will present alert view: %@", aAlertView);
+}
+
+- (void) didPresentAlertView:(UIAlertView *) alertView {
+  //DDLogDebug(@"did present alert view %@", alertView);
+}
+
+- (void) alertView:(UIAlertView *) aAlertView willDismissWithButtonIndex:(NSInteger) aIndex {
+  //DDLogDebug(@"will dismiss with button index: %d", aIndex);
+}
+
+- (void) alertView:(UIAlertView *) aAlertView didDismissWithButtonIndex:(NSInteger) aIndex {
+  //DDLogDebug(@"did dismiss with button index: %d", aIndex);
+}
+
+- (void) alertViewCancel:(UIAlertView *) aAlertView {
+  //DDLogDebug(@"alert view cancel: %@", aAlertView);
+}
+
 
 #pragma mark - UIActionSheet Delegate
 
@@ -79,7 +144,7 @@
 }
 
 - (void) actionSheetCancel:(UIActionSheet *) aActionSheet {
-  self.sheet = nil;
+  
 }
 
 #pragma mark - Mail Compose Delegate
@@ -93,61 +158,84 @@
 #pragma mark - Rotation
 
 
-
-/*
- Subclasses may override this method to perform additional actions immediately
- prior to the rotation. For example, you might use this method to disable view
- interactions, stop media playback, or temporarily turn off expensive drawing or
- live updates. You might also use it to swap the current view for one that
- reflects the new interface orientation. When this method is called, the
- interfaceOrientation property still contains the view’s original orientation.
- 
- This method is called regardless of whether your code performs one-step or
- two-step rotations.
- */
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation) aToInterfaceOrientation duration:(NSTimeInterval) aDuration {
-  NSLog(@"will rotate to '%@'", [self stringForOrientation:aToInterfaceOrientation]);
+- (NSArray *) viewsToRotate {
+  NSMutableArray *array = [NSMutableArray array];
+  
+  UILabel *tl = self.labelTitle;
+  if (tl != nil) { [array addObject:tl]; }
+  
+  UIButton *bse = self.buttonShowEmail;
+  if (bse != nil) { [array addObject:bse]; }
+  
+  UIButton *bss = self.buttonShowSheet;
+  if (bss != nil) { [array addObject:bss]; }
+  
+  UIButton *bsm = self.buttonShowAlert;
+  if (bsm != nil) { [array addObject:bsm]; }
+  
+  return [NSArray arrayWithArray:array];
 }
 
+- (CGRect) frameForView:(UIView *) aView
+            orientation:(UIInterfaceOrientation) aOrientation {
 
-/*
- This method is called from within the animation block used to rotate the view. 
- You can override this method and use it to configure additional animations that
- should occur during the view rotation. For example, you could use it to adjust 
- the zoom level of your content, change the scroller position, or modify other 
- animatable properties of your view.
- 
- Note: The animations used to slide the header and footer views in and out of 
- position are performed in separate animation blocks.
- 
- By the time this method is called, the interfaceOrientation property is already
- set to the new orientation, and the bounds of the view have been changed. Thus,
- you can perform any additional layout required by your views in this method.
+  NSString *aid = aView.accessibilityIdentifier;
+  NSString *key = [NSString stringWithFormat:@"%@ - %d", aid, aOrientation];
+  NSString *str = [self.frames objectForKey:key];
+  CGRect frame = CGRectZero;
+  if (str != nil) {
+    frame = CGRectFromString(str);
+  } else {
+    UIInterfaceOrientation l = UIInterfaceOrientationLandscapeLeft;
+    UIInterfaceOrientation r = UIInterfaceOrientationLandscapeRight;
+    UIInterfaceOrientation t = UIInterfaceOrientationPortraitUpsideDown;
+    UIInterfaceOrientation b = UIInterfaceOrientationPortrait;
+    UIInterfaceOrientation o = aOrientation;
+    CGFloat ipadYAdj = br_is_ipad() ? 20 : 0;
+    CGFloat iphone5_X_adj = br_is_iphone_5() ? 44 : 0;
+    
 
-*/
-- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation) aInterfaceOrientation
-                                          duration:(NSTimeInterval) aDuration {
-  NSLog(@"will animate rotation to '%@'", [self stringForOrientation:aInterfaceOrientation]);
+    if ([kAILabelTitle isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20 + iphone5_X_adj, 64 + ipadYAdj, 440, 44); }
+    if ([kAILabelTitle isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 80 + iphone5_X_adj, 280, 44); }
+    
+    if ([kAIButtonShowAlert isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20 + iphone5_X_adj, 128 + ipadYAdj, 124, 44); }
+    if ([kAIButtonShowAlert isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 188 + iphone5_X_adj, 280, 44); }
+    
+    if ([kAIButtonShowEmail isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(178 + iphone5_X_adj, 128 + ipadYAdj , 124, 44); }
+    if ([kAIButtonShowEmail isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 240 + iphone5_X_adj, 280, 44); }
+
+    if ([kAIButtonShowSheet isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(334 + iphone5_X_adj, 128 + ipadYAdj , 124, 44); }
+    if ([kAIButtonShowSheet isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 288 + iphone5_X_adj, 280, 44); }
+
+    
+   
+    [_frames setObject:NSStringFromCGRect(frame) forKey:key];
+  }
+  
+  return frame;
 }
 
-/*
- Subclasses may override this method to perform additional actions immediately 
- after the rotation. For example, you might use this method to reenable view 
- interactions, start media playback again, or turn on expensive drawing or live
- updates. By the time this method is called, the interfaceOrientation property 
- is already set to the new orientation.
- 
- This method is called regardless of whether your code performs one-step or 
- two-step rotations.
- */
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) aFromInterfaceOrientation {
-  NSLog(@"did rotate from interface orientation '%@'", [self stringForOrientation:aFromInterfaceOrientation]);
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval) aDuration {
+  __weak typeof(self) wself = self;
+  [UIView animateWithDuration:aDuration
+                   animations:^{
+                     [wself layoutSubviewsForCurrentOrientation:[wself viewsToRotate]];
+                   }];
 }
+
 
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  self.view.accessibilityIdentifier = @"first";
+  self.labelTitle.accessibilityIdentifier = kAILabelTitle;
+  self.buttonShowEmail.accessibilityIdentifier = kAIButtonShowEmail;
+  self.buttonShowAlert.accessibilityIdentifier = kAIButtonShowAlert;
+  self.buttonShowSheet.accessibilityIdentifier = kAIButtonShowSheet;
+  
+  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -157,16 +245,12 @@
 - (void)viewDidUnload {
   [self setButtonShowSheet:nil];
   [self setButtonShowEmail:nil];
-  [self setButtonShowModal:nil];
+  [self setButtonShowAlert:nil];
   [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  self.view.accessibilityIdentifier = @"first";
-  self.buttonShowSheet.accessibilityIdentifier = @"show sheet";
-  self.buttonShowEmail.accessibilityIdentifier = @"email";
-  self.buttonShowModal.accessibilityIdentifier = @"show modal";
 }
 
 - (void)viewDidAppear:(BOOL)animated {

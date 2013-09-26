@@ -2,10 +2,8 @@
 #import "BrController.h"
 
 @interface BrFirstViewController : BrController
-<UIActionSheetDelegate,
-MFMailComposeViewControllerDelegate>
 
-@property (strong, nonatomic) UIActionSheet *sheet;
+@property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 
 @property (weak, nonatomic) IBOutlet UIButton *buttonShowSheet;
 - (IBAction) buttonTouchedShowSheet:(id)sender;
@@ -13,7 +11,7 @@ MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *buttonShowEmail;
 - (IBAction)buttonTouchedShowEmail:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIButton *buttonShowModal;
-- (IBAction)buttonTouchedShowModal:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *buttonShowAlert;
+- (IBAction)buttonTouchedShowAlert:(id)sender;
 
 @end
