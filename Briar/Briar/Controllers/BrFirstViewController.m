@@ -11,7 +11,7 @@ typedef enum : NSInteger {
 
 static NSString *const kAIButtonShowSheet = @"show sheet";
 static NSString *const kAIButtonShowEmail = @"email";
-static NSString *const kAIButtonShowAlert = @"show modal";
+static NSString *const kAIButtonShowAlert = @"show alert";
 static NSString *const kAILabelTitle = @"title";
 
 @interface BrFirstViewController ()

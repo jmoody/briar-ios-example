@@ -40,7 +40,7 @@ Feature: testing rotation
   @ipad_only
   Scenario: 2 of 2 testing orientation with back-to-back launches
     Then the device orientation should be "unknown" on the simulator and "down" on device
-    And the status bar orientation should be "right"
+    And the status bar orientation should be "down"
   ###########
 
 

@@ -30,7 +30,7 @@ ss_path = "#{Dir.pwd}/screenshots/"
 %>
 
 full_output: CALABASH_FULL_CONSOLE_OUTPUT=1
-common: -f 'Slowhandcuke::Formatter' --tags ~@issues -p full_output
+common: -f 'Slowhandcuke::Formatter' -p full_output
 
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
 
@@ -53,14 +53,19 @@ no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
 no_reset_btw: RESET_BETWEEN_SCENARIOS=0
 reset_btw:    RESET_BETWEEN_SCENARIOS=1
+stop:         NO_STOP=0
+no_stop:      NO_STOP=1
 
-ipad:   DEVICE=ipad   -p common -p no_reset_btw
-iphone: DEVICE=iphone -p common -p no_reset_btw
+sdk5:  SDK_VERSION=5.1
+sdk6:  SDK_VERSION=6.1
+
+ipad:   DEVICE=ipad   -p common --tags ~@iphone --tags ~@iphone_only
+iphone: DEVICE=iphone -p common --tags ~@ipad   --tags ~@ipad_only
 
 uai: DEVICE_TARGET=simulator
 
 default: -p common -p ss_path -p rerun_out -p html_report -p no_launch -p uai -p no_reset_btw
-launch:  -p common -p ss_path -p rerun_out -p html_report -p do_launch -p uai -p no_reset_btw
+launch:  -p common -p ss_path -p rerun_out -p html_report -p do_launch -p uai -p no_reset_btw -p no_stop
 
 # required only for devices
 bundle_id:    BUNDLE_ID=com.littlejoysoftware.Briar-cal

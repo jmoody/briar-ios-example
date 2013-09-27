@@ -9,3 +9,4 @@ Then(/^I should not see the tab bar if I am on the iphone or if ipad is orientat
     should_not_see_tabbar
   end
 end
+

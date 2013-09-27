@@ -6,8 +6,7 @@ Feature: testing what happens when a view controller does not support an orienta
     Given that I am looking at the Date tab
     Given the device is in the portrait orientation
 
-  # briar app is not prohibiting rotation on the date tab for iPad _devices%
-  # so this test will fail
+  # might be flickering on iPad _devices_
   Scenario: i should not be able to rotate the date view to landscape
     # predefined step - calls Calabash rotate
 

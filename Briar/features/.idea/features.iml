@@ -893,6 +893,8 @@
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
       <method />
     </configuration>
     <configuration default="false" name="show_simulator: features" type="RakeRunConfigurationType" factoryName="Rake" temporary="true">
@@ -931,10 +933,8 @@
     <content url="file://$MODULE_DIR$" />
     <content url="file://$MODULE_DIR$/../../../calabash-ios/calabash-cucumber">
       <excludeFolder url="file://$MODULE_DIR$/../../../calabash-ios/calabash-cucumber/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../calabash-ios/calabash-cucumber/bin" />
       <excludeFolder url="file://$MODULE_DIR$/../../../calabash-ios/calabash-cucumber/doc" />
       <excludeFolder url="file://$MODULE_DIR$/../../../calabash-ios/calabash-cucumber/features-skeleton" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../calabash-ios/calabash-cucumber/lib" />
       <excludeFolder url="file://$MODULE_DIR$/../../../calabash-ios/calabash-cucumber/pkg" />
       <excludeFolder url="file://$MODULE_DIR$/../../../calabash-ios/calabash-cucumber/scripts" />
       <excludeFolder url="file://$MODULE_DIR$/../../../calabash-ios/calabash-cucumber/staticlib" />

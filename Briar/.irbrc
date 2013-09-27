@@ -15,11 +15,13 @@ IRB.conf[:SAVE_HISTORY] = 50
 IRB.conf[:HISTORY_FILE] = ".irb-history"
 
 require 'calabash-cucumber/operations'
-require 'calabash-cucumber/launch/simulator_helper'
-#require 'calabash-cucumber/date_picker'
-
-SIM=Calabash::Cucumber::SimulatorHelper
 extend Calabash::Cucumber::Operations
+
+require 'calabash-cucumber/launch/simulator_helper'
+SIM=Calabash::Cucumber::SimulatorHelper
+
+require 'calabash-cucumber/launcher'
+
 
 def embed(x,y=nil,z=nil)
    puts "Screenshot at #{x}"
