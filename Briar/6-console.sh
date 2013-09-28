@@ -14,7 +14,7 @@ bundle update && bundle install
 # killall -9 instruments >/dev/null 2>&1`
 #
 # but instruments continued to spam the shell
-INSTRUMENTS_SPAM=`killall -9 instruments >/dev/null 2>&1`
+#INSTRUMENTS_SPAM=`killall -9 instruments >/dev/null 2>&1`
 
 TMP_DEVICE="iphone"
 

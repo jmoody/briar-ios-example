@@ -10,13 +10,18 @@ When(/^I touch the "([^"]*)" button I should see an (action sheet|alert|email co
   step_pause
 end
 
-Then(/^I dismiss the (sheet|alert|email view) with the cancel button$/) do |what|
-  if what.eql?('sheet')
-    touch_sheet_button 'Cancel', 'sheet'
+Then(/^I dismiss the (action sheet|alert|email compose view) with the cancel button$/) do |what|
+  device = device()
+  if what.eql?('action sheet')
+    if device.ipad?
+      touch_sheet_button 'Delete', 'sheet'
+    else
+      touch_sheet_button 'Cancel', 'sheet'
+    end
     wait_for_view_to_disappear 'sheet'
   elsif what.eql?('alert')
     touch_alert_button 'Cancel'
-  elsif what.eql?('email view')
+  elsif what.eql?('email compose view')
     delete_draft_and_wait_for 'first'
   end
 end

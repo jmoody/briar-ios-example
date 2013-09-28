@@ -10,3 +10,7 @@ Then(/^I should not see the tab bar if I am on the iphone or if ipad is orientat
   end
 end
 
+Then(/^I wait for rotation animation$/) do
+  2.times { step_pause }
+end
+

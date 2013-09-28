@@ -33,8 +33,7 @@ Before do |scenario|
 
   backdoor('calabash_backdoor_reset_app:', 'ignorable')
   req_elms = ['tabBar',
-              "navigationItemView marked:'First'",
-              "button marked:'show modal'"]
+              "navigationItemView marked:'First'"]
 
   msg = 'timed out waiting for backdoor reset'
   wait_for_elements_exist(req_elms,
@@ -47,8 +46,6 @@ end
 #noinspection RubyUnusedLocalVariable
 After do |scenario|
   unless @calabash_launcher.calabash_no_stop?
-    system('killall -9 instruments >/dev/null 2>&1')
-    #system('killall -9 installd')
     calabash_exit
     if @calabash_launcher.active?
       @calabash_launcher.stop

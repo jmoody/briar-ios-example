@@ -6,7 +6,7 @@ Feature:  the first view
 
   Scenario: show sheet button
     When I touch the "show sheet" button I should see an action sheet
-    Then I dismiss the sheet with the cancel button
+    Then I dismiss the action sheet with the cancel button
 
   Scenario: show alert button
     When I touch the "show alert" button I should see an alert
@@ -14,5 +14,5 @@ Feature:  the first view
 
   Scenario: show email compose
     When I touch the "show email" button I should see an email compose view
-    Then I dismiss the email view with the cancel button
+    Then I dismiss the email compose view with the cancel button
 

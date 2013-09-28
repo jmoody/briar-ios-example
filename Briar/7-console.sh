@@ -13,7 +13,7 @@ bundle update && bundle install
 # killall -9 instruments >/dev/null 2>&1`
 #
 # but instruments continued to spam the shell
-INSTRUMENTS_SPAM=`killall -9 instruments >/dev/null 2>&1`
+#INSTRUMENTS_SPAM=`killall -9 instruments >/dev/null 2>&1`
 
 TMP_DEVICE="iphone"
 
@@ -25,6 +25,7 @@ PLAYBACK_DIR="features/playback" \
 DEVICE=$TMP_DEVICE \
 SDK_VERSION=7.0 \
 CALABASH_FULL_CONSOLE_OUTPUT=1 \
+DEBUG=1 \
 RESET_BETWEEN_SCENARIOS=1 \
 DEVICE_TARGET=simulator \
 IRBRC=.irbrc \

@@ -50,6 +50,12 @@ end
 
 Then(/^the device orientation should be "([^"]*)" on the simulator and "([^"]*)" on device$/) do |sim_o, device_o|
   stats = orientation_stats
+
+  actual_device_o = stats[:device]
+  if actual_device_o.eql?('face up') or actual_device_o.eql?('face down')
+    pending "testing against orientation '#{actual_device_o}' is not supported - move your device to an upright position"
+  end
+
   is_sim = device.simulator?
   expect = is_sim ? sim_o : device_o
   platform = is_sim ? 'simulator' : 'device'

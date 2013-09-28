@@ -9,7 +9,7 @@ bundle update
 # killall -9 instruments >/dev/null 2>&1`
 #
 # but instruments continued to spam the shell
-INSTRUMENTS_SPAM=`killall -9 instruments >/dev/null 2>&1`
+#INSTRUMENTS_SPAM=`killall -9 instruments >/dev/null 2>&1`
 
 TMP_DEVICE="ipad"
 
@@ -18,8 +18,8 @@ if [ ! -z $1 ]; then
 fi
 
 
-IP=`cat ~/.lesspainful/devices/pluto/ip`
-UDID=`cat ~/.lesspainful/devices/pluto/udid`
+IP=`cat ~/.xamarin/devices/pluto/ip`
+UDID=`cat ~/.xamarin/devices/pluto/udid`
 PLAYBACK_DIR="features/playback" \
 CALABASH_FULL_CONSOLE_OUTPUT="1" \
 DEBUG=1 \

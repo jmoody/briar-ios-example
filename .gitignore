@@ -30,10 +30,10 @@ vendor
 Gemfile.lock
 *.gem
 rerun*.txt
-calabash*.html
-pluto*.html
-neptune*.html
-screenshot_*.png
+*calabash*.html
+*pluto*.html
+*neptune*.html
+screenshot*.png
 
 
 # Xcode 4
