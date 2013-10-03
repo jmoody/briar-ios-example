@@ -5,6 +5,7 @@ static NSString *const kIdTopTf = @"top tf";
 static NSString *const kIdBottomTf = @"bottom tf";
 static NSString *const kIdTopTv = @"top tv";
 static NSString *const kIdBottomTv = @"bottom tv";
+static NSString *const kIdButton = @"the button";
 
 
 @interface BrTextRelatedController ()
@@ -29,6 +30,7 @@ static NSString *const kIdBottomTv = @"bottom tv";
 @synthesize textFieldBottom = _textFieldBottom;
 @synthesize textViewTop = _textViewTop;
 @synthesize textViewBottom = _textViewBottom;
+@synthesize button = _button;
 
 
 - (id)init {
@@ -74,6 +76,7 @@ static NSString *const kIdBottomTv = @"bottom tv";
   _textViewTop.accessibilityIdentifier = kIdTopTv;
   _textViewBottom.accessibilityIdentifier = kIdBottomTv;
   
+  _button.accessibilityIdentifier = kIdButton;
 }
 
 
@@ -89,11 +92,15 @@ static NSString *const kIdBottomTv = @"bottom tv";
 }
 
 
-#pragma mark - Animations
+#pragma mark - Actions
 
 - (void) buttonTouchedDoneTextEditing:(id)sender {
   NSLog(@"done text editing button touched");
   if ([self.textFieldTop isFirstResponder]) { [self.textFieldTop resignFirstResponder]; }
+}
+
+- (IBAction)buttonTouched:(id)sender {
+  NSLog(@"button touched");
 }
 
 #pragma mark - Animations
@@ -199,8 +206,6 @@ static NSString *const kIdBottomTv = @"bottom tv";
 
 - (void) viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
-  //[[UIApplication sharedApplication] statusBarOrientation];
-  
 }
 
 
@@ -234,6 +239,11 @@ static NSString *const kIdBottomTv = @"bottom tv";
     if ([kIdBottomTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 108 + ipadYAdj, 210, 30); }
     if ([kIdTopTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 160, 280, 30); }
     if ([kIdBottomTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 196, 280, 30); }
+    
+    if ([kIdButton isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(95, 269, 230, 44); }
+    if ([kIdButton isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(330, 158 + ipadYAdj, 230, 44); }
+
+    
     [_frames setObject:NSStringFromCGRect(frame) forKey:key];
   }
   return frame;
@@ -245,6 +255,7 @@ static NSString *const kIdBottomTv = @"bottom tv";
   if (_textFieldBottom != nil) { [array addObject:_textFieldBottom]; }
   if (_textViewTop != nil) { [array addObject:_textViewTop]; }
   if (_textViewBottom != nil) { [array addObject:_textViewBottom]; }
+  if (_button != nil) { [array addObject:_button]; }
   return [NSArray arrayWithArray:array];
 }
 
@@ -273,5 +284,6 @@ static NSString *const kIdBottomTv = @"bottom tv";
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
 }
+
 
 @end

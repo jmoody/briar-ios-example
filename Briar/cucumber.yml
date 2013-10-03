@@ -38,13 +38,9 @@ rerun_out:    -f rerun -o ./rerun/rerun.txt
 pluto_rr:     -f rerun -o ./rerun/pluto/rerun.txt
 neptune_rr:   -f rerun -o ./rerun/neptune/rerun.txt
 
+html_report:  -f html -o <%= default_report %>
 pluto_html:   -f html -o <%= pluto_report %>
 neptune_html: -f html -o <%= neptune_report %>
-html_report:  -f html -o <%= default_report %>
-
-pluto_html:   -f html -o <%= pluto_report %>
-neptune_html: -f html -o <%= neptune_report %>
-html_report:  -f html -o <%= default_report %>
 
 pluto_ss:   SCREENSHOT_PATH=<%= pluto_ss_path %>
 neptune_ss: SCREENSHOT_PATH=<%= neptune_ss_path %>
