@@ -2,12 +2,11 @@ source 'https://rubygems.org'
 
 if `whoami`.strip.eql? 'moody'
 
+  # i use bundle and bundle config to specify local gem locations
   # bundle config local.GEM_NAME /path/to/local/git/repository
-  ### briar ###
-  # gem 'briar', '0.0.9'
+
   gem 'briar', :github => 'jmoody/briar', :branch => '0.0.9'
 
-  ### calabash-cucumber ###
   gem 'calabash-cucumber', :github => 'jmoody/calabash-ios', :branch => '0.9.x'
 
 else

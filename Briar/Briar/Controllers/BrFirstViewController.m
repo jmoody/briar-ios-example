@@ -76,7 +76,7 @@ UIAlertViewDelegate>
 
 - (IBAction)buttonTouchedShowAlert:(id)sender {
   NSString *lat = NSLocalizedString(@"Briar Alert!", @"first view: title of alert");
-  NSString *lam = NSLocalizedString(@"We are out pipe cleaners.", @"first view: message of alert");
+  NSString *lam = NSLocalizedString(@"We are out of pipe cleaners.", @"first view: message of alert");
   NSString *lok = NSLocalizedString(@"OK", @"first view: title of OK button on alert");
   NSString *lcancel = NSLocalizedString(@"Cancel", @"first view: title of cancel button on alert");
   

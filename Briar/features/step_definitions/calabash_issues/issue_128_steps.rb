@@ -16,7 +16,8 @@ When(/^I touch the last row I should see the i or j alert$/) do
   row_id = device.iphone_5? ? 'j' : 'i'
   briar_scroll_to_row row_id
   step_pause
-  touch_row_and_see_alert row_id, "#{row_id} alert"
+  alert_id = device.ios7? ? 'Alphabet Alert' : "#{row_id} alert"
+  touch_row_and_see_alert row_id, alert_id
 end
 
 When(/^I touch the "([^"]*)" row I should see the "([^"]*)"$/) do |row_id, alert_id|
@@ -24,8 +25,7 @@ When(/^I touch the "([^"]*)" row I should see the "([^"]*)"$/) do |row_id, alert
 end
 
 Then(/^I dismiss the letter alert$/) do
-  touch('alertView child button')
-  wait_for_animation
+  touch_alert_button('Cancel')
 end
 
 Then(/^I scroll down until the i row is partially hidden by the nav bar$/) do
@@ -50,5 +50,10 @@ end
 When(/^I touch the first row I should see the i alert$/) do
   row_id = 'i'
   alert_id = 'i alert'
+  touch_row_and_see_alert row_id, alert_id
+end
+
+When(/^I touch the "([^"]*)" row I should the the associated alert$/) do |row_id|
+  alert_id = device.ios7? ? 'Alphabet Alert' : "#{row_id} alert"
   touch_row_and_see_alert row_id, alert_id
 end
