@@ -7,3 +7,7 @@ task :kill_instruments do
   system('killall -9 instruments')
   #system('killall -9 installd')
 end
+
+task :xamarin do
+  system('xamarin-upload-example.sh')
+end

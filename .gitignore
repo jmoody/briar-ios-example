@@ -35,6 +35,10 @@ rerun*.txt
 *neptune*.html
 screenshot*.png
 
+# xamarin build directory
+xamarin
+
+
 
 # Xcode 4
 *.xcodeproj/*.mode*
