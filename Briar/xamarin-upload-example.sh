@@ -26,5 +26,6 @@ echo "gem 'briar'" >> Gemfile
 rm -rf features/Gemfile
 rm -rf features/Gemfile.lock
 rm -rf features/Rakefile
-
+rm -rf features/.bundle
+rm -rf features/.idea
   
