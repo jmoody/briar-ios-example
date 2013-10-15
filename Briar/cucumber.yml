@@ -17,6 +17,13 @@ neptune_udid = IO.read("#{neptune_dir}/udid") if File.exists?("#{neptune_dir}/ud
 neptune_report = "./reports/neptune/#{date}-neptune.html"
 neptune_ss_path = "#{Dir.pwd}/reports/neptune/screenshots/"
 
+venus_dir = "#{lesspainful_dir}/devices/venus"
+venus_ip = IO.read("#{venus_dir}/ip") if File.exists?("#{venus_dir}/ip")
+venus_udid = IO.read("#{venus_dir}/udid") if File.exists?("#{venus_dir}/udid")
+venus_report = "./reports/venus/#{date}-venus.html"
+venus_ss_path = "#{Dir.pwd}/reports/venus/screenshots/"
+
+
 ss_path = "#{Dir.pwd}/screenshots/"
 
 `mkdir ./screenshots` unless File.exists?("./screenshots")
@@ -26,6 +33,19 @@ ss_path = "#{Dir.pwd}/screenshots/"
 
 `mkdir ./reports/neptune` unless File.exists?("./reports/neptune")
 `mkdir ./reports/neptune/screenshots` unless File.exists?("./reports/neptune/screenshots")
+
+`mkdir ./reports/venus` unless File.exists?("./reports/venus")
+`mkdir ./reports/venus/screenshots` unless File.exists?("./reports/venus/screenshots")
+
+`mkdir ./rerun` unless File.exists?("./rerun")
+`mkdir ./rerun/pluto` unless File.exists?("./rerun/pluto")
+`mkdir ./rerun/neptune` unless File.exists?("./rerun/neptune")
+`mkdir ./rerun/venus` unless File.exists?("./rerun/venus")
+
+FileUtils.cp("./rerun/rerun.txt", "./rerun/rerun-#{date}.txt") if File.exists?("./rerun/rerun.txt")
+FileUtils.cp("./rerun/pluto/rerun.txt", "./rerun/pluto/rerun-#{date}.txt") if File.exists?("./rerun/pluto/rerun.txt")
+FileUtils.cp("./rerun/neptune/rerun.txt", "./rerun/neptune/rerun-#{date}.txt") if File.exists?("./rerun/neptune/rerun.txt")
+FileUtils.cp("./rerun/venus/rerun.txt", "./rerun/venus/rerun-#{date}.txt") if File.exists?("./rerun/venus/rerun.txt")
 
 %>
 
@@ -37,13 +57,16 @@ ss_path: SCREENSHOT_PATH=<%= ss_path %>
 rerun_out:    -f rerun -o ./rerun/rerun.txt
 pluto_rr:     -f rerun -o ./rerun/pluto/rerun.txt
 neptune_rr:   -f rerun -o ./rerun/neptune/rerun.txt
+venus_rr:     -f rerun -o ./rerun/venus/rerun.txt
 
 html_report:  -f html -o <%= default_report %>
 pluto_html:   -f html -o <%= pluto_report %>
 neptune_html: -f html -o <%= neptune_report %>
+venus_html:   -f html -o <%= venus_report %>
 
 pluto_ss:   SCREENSHOT_PATH=<%= pluto_ss_path %>
 neptune_ss: SCREENSHOT_PATH=<%= neptune_ss_path %>
+venus_ss:   SCREENSHOT_PATH=<%= venus_ss_path %>
 
 no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
@@ -74,3 +97,6 @@ pluto_launch:   -p pluto_common -p do_launch -p no_stop
 neptune_common: DEVICE_TARGET=<%= neptune_udid %> DEVICE_ENDPOINT=<%= neptune_ip %> -p device_common -p neptune_rr -p iphone -p neptune_html -p neptune_ss
 neptune:        -p neptune_common -p no_launch
 neptune_launch: -p neptune_common -p do_launch -p no_stop
+
+venus_common:   DEVICE_ENDPOINT=<%= venus_ip %>   DEVICE_ENDPOINT=<%= venus_ip %> -p device_common -p venus_rr   -p ipad   -p venus_html     -p venus_ss
+venus:         -p venus_common -p do_launch -p no_stop
