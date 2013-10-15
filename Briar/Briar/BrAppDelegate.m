@@ -5,6 +5,7 @@
 #import "BrCategories.h"
 #import "BrTableController.h"
 #import "BrNavigationController.h"
+#import "BrSliderController.h"
 #import "BrGlobals.h"
 
 
@@ -45,6 +46,8 @@ typedef enum : NSUInteger {
   kTabbarIndexFirst = 0,
   kTabbarIndexText,
   kTabbarIndexDate,
+  kTabbarIndexTable,
+  kTabbarIndexSliders
 } BrTabbarIndex;
 
 
@@ -173,7 +176,9 @@ typedef enum : NSUInteger {
       
     } else if (idx == kTabbarIndexDate) {
       
-    } else {
+    } else if (idx == kTabbarIndexTable){
+      
+    } else if (idx == kTabbarIndexSliders) {
       
     }
   }];
@@ -198,26 +203,29 @@ typedef enum : NSUInteger {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
   
-  UIViewController *fvc = [BrFirstViewController new];
-  BrNavigationController *fnbc = [[BrNavigationController alloc]
-                                  initWithRootViewController:fvc];
+  UIViewController *first_vc = [BrFirstViewController new];
+  BrNavigationController *first_nc = [[BrNavigationController alloc]
+                                  initWithRootViewController:first_vc];
   
-  UIViewController *svc = [BrTextRelatedController new];
-  BrNavigationController *snbc = [[BrNavigationController alloc]
-                                  initWithRootViewController:svc];
+  UIViewController *text_vc = [BrTextRelatedController new];
+  BrNavigationController *text_nc = [[BrNavigationController alloc]
+                                  initWithRootViewController:text_vc];
   
 
-  UIViewController *dvc = [BrDatePickerController new];
-  BrNavigationController *ndvc = [[BrNavigationController alloc]
-                                  initWithRootViewController:dvc];
+  UIViewController *date_vc = [BrDatePickerController new];
+  BrNavigationController *date_nc = [[BrNavigationController alloc]
+                                  initWithRootViewController:date_vc];
   
-  UIViewController *tvc = [BrTableController new];
-  BrNavigationController *ntvc = [[BrNavigationController alloc]
-                                  initWithRootViewController:tvc];
+  UIViewController *table_vc = [BrTableController new];
+  BrNavigationController *table_nc = [[BrNavigationController alloc]
+                                  initWithRootViewController:table_vc];
 
+  UIViewController *slider_vc = [BrSliderController new];
+  BrNavigationController *slider_nc = [[BrNavigationController alloc]
+                                   initWithRootViewController:slider_vc];
   
   self.tabBarController = [[BrTabBarController alloc] init];
-  self.tabBarController.viewControllers = @[fnbc, snbc, ndvc, ntvc];
+  self.tabBarController.viewControllers = @[first_nc, text_nc, date_nc, table_nc, slider_nc];
   self.tabBarController.delegate = self;
   
   

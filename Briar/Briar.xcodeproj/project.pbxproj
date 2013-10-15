@@ -102,6 +102,34 @@
 		F5A9CFC4170F12CF00265826 /* 259-list.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFC1170F12CF00265826 /* 259-list.png */; };
 		F5A9CFC5170F12CF00265826 /* 259-list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFC2170F12CF00265826 /* 259-list@2x.png */; };
 		F5A9CFC6170F12CF00265826 /* 259-list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A9CFC2170F12CF00265826 /* 259-list@2x.png */; };
+		F5ACF379180D4E500062E3D5 /* BrSliderController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ACF378180D4E500062E3D5 /* BrSliderController.m */; };
+		F5ACF37A180D4E500062E3D5 /* BrSliderController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ACF378180D4E500062E3D5 /* BrSliderController.m */; };
+		F5ACF37D180D4F440062E3D5 /* BrSliderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF37B180D4F440062E3D5 /* BrSliderController.xib */; };
+		F5ACF37E180D4F440062E3D5 /* BrSliderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF37B180D4F440062E3D5 /* BrSliderController.xib */; };
+		F5ACF381180D53BC0062E3D5 /* 833-diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF37F180D53BC0062E3D5 /* 833-diamond.png */; };
+		F5ACF382180D53BC0062E3D5 /* 833-diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF37F180D53BC0062E3D5 /* 833-diamond.png */; };
+		F5ACF383180D53BC0062E3D5 /* 833-diamond@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF380180D53BC0062E3D5 /* 833-diamond@2x.png */; };
+		F5ACF384180D53BC0062E3D5 /* 833-diamond@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF380180D53BC0062E3D5 /* 833-diamond@2x.png */; };
+		F5ACF390180D5A8E0062E3D5 /* emoticon-anxious-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF386180D5A8E0062E3D5 /* emoticon-anxious-40x40.png */; };
+		F5ACF391180D5A8E0062E3D5 /* emoticon-anxious-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF386180D5A8E0062E3D5 /* emoticon-anxious-40x40.png */; };
+		F5ACF392180D5A8E0062E3D5 /* emoticon-anxious-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF387180D5A8E0062E3D5 /* emoticon-anxious-40x40@2x.png */; };
+		F5ACF393180D5A8E0062E3D5 /* emoticon-anxious-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF387180D5A8E0062E3D5 /* emoticon-anxious-40x40@2x.png */; };
+		F5ACF394180D5A8E0062E3D5 /* emoticon-bored-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF388180D5A8E0062E3D5 /* emoticon-bored-40x40.png */; };
+		F5ACF395180D5A8E0062E3D5 /* emoticon-bored-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF388180D5A8E0062E3D5 /* emoticon-bored-40x40.png */; };
+		F5ACF396180D5A8E0062E3D5 /* emoticon-bored-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF389180D5A8E0062E3D5 /* emoticon-bored-40x40@2x.png */; };
+		F5ACF397180D5A8E0062E3D5 /* emoticon-bored-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF389180D5A8E0062E3D5 /* emoticon-bored-40x40@2x.png */; };
+		F5ACF398180D5A8E0062E3D5 /* emoticon-calm-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38A180D5A8E0062E3D5 /* emoticon-calm-40x40.png */; };
+		F5ACF399180D5A8E0062E3D5 /* emoticon-calm-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38A180D5A8E0062E3D5 /* emoticon-calm-40x40.png */; };
+		F5ACF39A180D5A8E0062E3D5 /* emoticon-calm-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38B180D5A8E0062E3D5 /* emoticon-calm-40x40@2x.png */; };
+		F5ACF39B180D5A8E0062E3D5 /* emoticon-calm-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38B180D5A8E0062E3D5 /* emoticon-calm-40x40@2x.png */; };
+		F5ACF39C180D5A8E0062E3D5 /* emoticon-happy-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38C180D5A8E0062E3D5 /* emoticon-happy-40x40.png */; };
+		F5ACF39D180D5A8E0062E3D5 /* emoticon-happy-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38C180D5A8E0062E3D5 /* emoticon-happy-40x40.png */; };
+		F5ACF39E180D5A8E0062E3D5 /* emoticon-happy-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38D180D5A8E0062E3D5 /* emoticon-happy-40x40@2x.png */; };
+		F5ACF39F180D5A8E0062E3D5 /* emoticon-happy-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38D180D5A8E0062E3D5 /* emoticon-happy-40x40@2x.png */; };
+		F5ACF3A0180D5A8E0062E3D5 /* emoticon-sad-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38E180D5A8E0062E3D5 /* emoticon-sad-40x40.png */; };
+		F5ACF3A1180D5A8E0062E3D5 /* emoticon-sad-40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38E180D5A8E0062E3D5 /* emoticon-sad-40x40.png */; };
+		F5ACF3A2180D5A8E0062E3D5 /* emoticon-sad-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38F180D5A8E0062E3D5 /* emoticon-sad-40x40@2x.png */; };
+		F5ACF3A3180D5A8E0062E3D5 /* emoticon-sad-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ACF38F180D5A8E0062E3D5 /* emoticon-sad-40x40@2x.png */; };
 		aa3541c626e9a05f9ce05e6d /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
 		b8fdd38325a6b1a766af9175 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45F16E3C6F2007797F1 /* Icon-Small.png */; };
 		c3cc1892a54542ba9cde1f42 /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = c6425b650cbbd9f05994720c /* calabash.framework */; };
@@ -180,6 +208,21 @@
 		F5A9CFBE170F11BB00265826 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrTableController.xib; sourceTree = "<group>"; };
 		F5A9CFC1170F12CF00265826 /* 259-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "259-list.png"; sourceTree = "<group>"; };
 		F5A9CFC2170F12CF00265826 /* 259-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "259-list@2x.png"; sourceTree = "<group>"; };
+		F5ACF377180D4E500062E3D5 /* BrSliderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrSliderController.h; sourceTree = "<group>"; };
+		F5ACF378180D4E500062E3D5 /* BrSliderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrSliderController.m; sourceTree = "<group>"; };
+		F5ACF37C180D4F440062E3D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrSliderController.xib; sourceTree = "<group>"; };
+		F5ACF37F180D53BC0062E3D5 /* 833-diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "833-diamond.png"; sourceTree = "<group>"; };
+		F5ACF380180D53BC0062E3D5 /* 833-diamond@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "833-diamond@2x.png"; sourceTree = "<group>"; };
+		F5ACF386180D5A8E0062E3D5 /* emoticon-anxious-40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoticon-anxious-40x40.png"; sourceTree = "<group>"; };
+		F5ACF387180D5A8E0062E3D5 /* emoticon-anxious-40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoticon-anxious-40x40@2x.png"; sourceTree = "<group>"; };
+		F5ACF388180D5A8E0062E3D5 /* emoticon-bored-40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoticon-bored-40x40.png"; sourceTree = "<group>"; };
+		F5ACF389180D5A8E0062E3D5 /* emoticon-bored-40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoticon-bored-40x40@2x.png"; sourceTree = "<group>"; };
+		F5ACF38A180D5A8E0062E3D5 /* emoticon-calm-40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoticon-calm-40x40.png"; sourceTree = "<group>"; };
+		F5ACF38B180D5A8E0062E3D5 /* emoticon-calm-40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoticon-calm-40x40@2x.png"; sourceTree = "<group>"; };
+		F5ACF38C180D5A8E0062E3D5 /* emoticon-happy-40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoticon-happy-40x40.png"; sourceTree = "<group>"; };
+		F5ACF38D180D5A8E0062E3D5 /* emoticon-happy-40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoticon-happy-40x40@2x.png"; sourceTree = "<group>"; };
+		F5ACF38E180D5A8E0062E3D5 /* emoticon-sad-40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoticon-sad-40x40.png"; sourceTree = "<group>"; };
+		F5ACF38F180D5A8E0062E3D5 /* emoticon-sad-40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emoticon-sad-40x40@2x.png"; sourceTree = "<group>"; };
 		F5D6CA9117BB8D7A0084A5B2 /* cucumber.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = cucumber.yml; sourceTree = "<group>"; };
 		c6425b650cbbd9f05994720c /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -286,6 +329,9 @@
 		F568C45116E3C69C007797F1 /* artwork */ = {
 			isa = PBXGroup;
 			children = (
+				F5ACF385180D5A8E0062E3D5 /* slider */,
+				F5ACF37F180D53BC0062E3D5 /* 833-diamond.png */,
+				F5ACF380180D53BC0062E3D5 /* 833-diamond@2x.png */,
 				F51F12BB171884ED00809626 /* backgrounds */,
 				F5A9CFC1170F12CF00265826 /* 259-list.png */,
 				F5A9CFC2170F12CF00265826 /* 259-list@2x.png */,
@@ -303,6 +349,7 @@
 		F568C45A16E3C6A8007797F1 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				F5ACF37B180D4F440062E3D5 /* BrSliderController.xib */,
 				F5A9CFAD170EEFC900265826 /* BrDatePickerController.xib */,
 				F5A9CFAF170EEFC900265826 /* BrFirstViewController.xib */,
 				F5A9CFB1170EEFC900265826 /* BrTextRelatedController.xib */,
@@ -347,6 +394,8 @@
 				F56BAB6316FCA45F00AB8578 /* BrTextRelatedController.m */,
 				F5A9CFB9170F0AB200265826 /* BrTableController.h */,
 				F5A9CFBA170F0AB200265826 /* BrTableController.m */,
+				F5ACF377180D4E500062E3D5 /* BrSliderController.h */,
+				F5ACF378180D4E500062E3D5 /* BrSliderController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -358,6 +407,23 @@
 				F56BAB7216FCA9DF00AB8578 /* BrDatePickerView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F5ACF385180D5A8E0062E3D5 /* slider */ = {
+			isa = PBXGroup;
+			children = (
+				F5ACF386180D5A8E0062E3D5 /* emoticon-anxious-40x40.png */,
+				F5ACF387180D5A8E0062E3D5 /* emoticon-anxious-40x40@2x.png */,
+				F5ACF388180D5A8E0062E3D5 /* emoticon-bored-40x40.png */,
+				F5ACF389180D5A8E0062E3D5 /* emoticon-bored-40x40@2x.png */,
+				F5ACF38A180D5A8E0062E3D5 /* emoticon-calm-40x40.png */,
+				F5ACF38B180D5A8E0062E3D5 /* emoticon-calm-40x40@2x.png */,
+				F5ACF38C180D5A8E0062E3D5 /* emoticon-happy-40x40.png */,
+				F5ACF38D180D5A8E0062E3D5 /* emoticon-happy-40x40@2x.png */,
+				F5ACF38E180D5A8E0062E3D5 /* emoticon-sad-40x40.png */,
+				F5ACF38F180D5A8E0062E3D5 /* emoticon-sad-40x40@2x.png */,
+			);
+			path = slider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -435,11 +501,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5ACF381180D53BC0062E3D5 /* 833-diamond.png in Resources */,
 				F568C42B16E3C256007797F1 /* InfoPlist.strings in Resources */,
 				F568C43316E3C256007797F1 /* Default.png in Resources */,
 				F568C43516E3C256007797F1 /* Default@2x.png in Resources */,
 				F568C43716E3C256007797F1 /* Default-568h@2x.png in Resources */,
+				F5ACF39C180D5A8E0062E3D5 /* emoticon-happy-40x40.png in Resources */,
 				F568C45616E3C69C007797F1 /* first.png in Resources */,
+				F5ACF3A0180D5A8E0062E3D5 /* emoticon-sad-40x40.png in Resources */,
 				F568C45716E3C69C007797F1 /* first@2x.png in Resources */,
 				F568C45816E3C69C007797F1 /* second.png in Resources */,
 				F568C45916E3C69C007797F1 /* second@2x.png in Resources */,
@@ -447,20 +516,30 @@
 				F568C46616E3C6F2007797F1 /* Icon-72@2x.png in Resources */,
 				F568C46716E3C6F2007797F1 /* Icon-Small-50.png in Resources */,
 				F568C46816E3C6F2007797F1 /* Icon-Small.png in Resources */,
+				F5ACF39E180D5A8E0062E3D5 /* emoticon-happy-40x40@2x.png in Resources */,
 				F568C46916E3C6F2007797F1 /* Icon-Small@2x.png in Resources */,
 				F568C46A16E3C6F2007797F1 /* Icon.png in Resources */,
+				F5ACF394180D5A8E0062E3D5 /* emoticon-bored-40x40.png in Resources */,
+				F5ACF37D180D4F440062E3D5 /* BrSliderController.xib in Resources */,
 				F568C46B16E3C6F2007797F1 /* Icon@2x.png in Resources */,
 				F568C46C16E3C6F2007797F1 /* iTunesArtwork in Resources */,
 				F568C46D16E3C6F2007797F1 /* iTunesArtwork@2x in Resources */,
 				F56BAB6C16FCA5C500AB8578 /* 11-clock.png in Resources */,
+				F5ACF383180D53BC0062E3D5 /* 833-diamond@2x.png in Resources */,
 				F56BAB6E16FCA5C500AB8578 /* 11-clock@2x.png in Resources */,
+				F5ACF398180D5A8E0062E3D5 /* emoticon-calm-40x40.png in Resources */,
 				F5A9CFB3170EEFC900265826 /* BrDatePickerController.xib in Resources */,
 				F5A9CFB5170EEFC900265826 /* BrFirstViewController.xib in Resources */,
 				F5A9CFB7170EEFC900265826 /* BrTextRelatedController.xib in Resources */,
+				F5ACF396180D5A8E0062E3D5 /* emoticon-bored-40x40@2x.png in Resources */,
+				F5ACF392180D5A8E0062E3D5 /* emoticon-anxious-40x40@2x.png in Resources */,
 				F5A9CFBF170F11BB00265826 /* BrTableController.xib in Resources */,
+				F5ACF390180D5A8E0062E3D5 /* emoticon-anxious-40x40.png in Resources */,
 				F5A9CFC3170F12CF00265826 /* 259-list.png in Resources */,
+				F5ACF39A180D5A8E0062E3D5 /* emoticon-calm-40x40@2x.png in Resources */,
 				F5A9CFC5170F12CF00265826 /* 259-list@2x.png in Resources */,
 				F51F12BE171884ED00809626 /* blueprint-background-320x480.png in Resources */,
+				F5ACF3A2180D5A8E0062E3D5 /* emoticon-sad-40x40@2x.png in Resources */,
 				F51F12C0171884ED00809626 /* blueprint-background-320x480@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,11 +548,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5ACF382180D53BC0062E3D5 /* 833-diamond.png in Resources */,
 				ed606ba9927d8c66d53a1e75 /* InfoPlist.strings in Resources */,
 				d256dff5b9aeb3324a8009c9 /* Default.png in Resources */,
 				aa3541c626e9a05f9ce05e6d /* Default@2x.png in Resources */,
 				30ee42a2bc135b006f397b71 /* Default-568h@2x.png in Resources */,
+				F5ACF39D180D5A8E0062E3D5 /* emoticon-happy-40x40.png in Resources */,
 				d4844386f5190d7484340315 /* first.png in Resources */,
+				F5ACF3A1180D5A8E0062E3D5 /* emoticon-sad-40x40.png in Resources */,
 				e20f57209fc5a8a2af660f73 /* first@2x.png in Resources */,
 				057f6664908d0a0ec2a2034a /* second.png in Resources */,
 				3c10e85b30a66b77009a1ccc /* second@2x.png in Resources */,
@@ -481,20 +563,30 @@
 				2fac437ae5a7eef244390b77 /* Icon-72@2x.png in Resources */,
 				3f744665f593b89dc3f47464 /* Icon-Small-50.png in Resources */,
 				b8fdd38325a6b1a766af9175 /* Icon-Small.png in Resources */,
+				F5ACF39F180D5A8E0062E3D5 /* emoticon-happy-40x40@2x.png in Resources */,
 				8e2359e8cb78e16bc7c93e82 /* Icon-Small@2x.png in Resources */,
 				528fac7a775919ed58477c54 /* Icon.png in Resources */,
+				F5ACF395180D5A8E0062E3D5 /* emoticon-bored-40x40.png in Resources */,
+				F5ACF37E180D4F440062E3D5 /* BrSliderController.xib in Resources */,
 				605bd3871f647141ad259754 /* Icon@2x.png in Resources */,
 				553e655fbe2433cbff10ac67 /* iTunesArtwork in Resources */,
 				33d4d298137d5d41d434537a /* iTunesArtwork@2x in Resources */,
 				F56BAB6D16FCA5C500AB8578 /* 11-clock.png in Resources */,
+				F5ACF384180D53BC0062E3D5 /* 833-diamond@2x.png in Resources */,
 				F56BAB6F16FCA5C500AB8578 /* 11-clock@2x.png in Resources */,
+				F5ACF399180D5A8E0062E3D5 /* emoticon-calm-40x40.png in Resources */,
 				F5A9CFB4170EEFC900265826 /* BrDatePickerController.xib in Resources */,
 				F5A9CFB6170EEFC900265826 /* BrFirstViewController.xib in Resources */,
 				F5A9CFB8170EEFC900265826 /* BrTextRelatedController.xib in Resources */,
+				F5ACF397180D5A8E0062E3D5 /* emoticon-bored-40x40@2x.png in Resources */,
+				F5ACF393180D5A8E0062E3D5 /* emoticon-anxious-40x40@2x.png in Resources */,
 				F5A9CFC0170F11BB00265826 /* BrTableController.xib in Resources */,
+				F5ACF391180D5A8E0062E3D5 /* emoticon-anxious-40x40.png in Resources */,
 				F5A9CFC4170F12CF00265826 /* 259-list.png in Resources */,
+				F5ACF39B180D5A8E0062E3D5 /* emoticon-calm-40x40@2x.png in Resources */,
 				F5A9CFC6170F12CF00265826 /* 259-list@2x.png in Resources */,
 				F51F12BF171884ED00809626 /* blueprint-background-320x480.png in Resources */,
+				F5ACF3A3180D5A8E0062E3D5 /* emoticon-sad-40x40@2x.png in Resources */,
 				F51F12C1171884ED00809626 /* blueprint-background-320x480@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1f98f617997352fa5d3376fb /* main.m in Sources */,
+				F5ACF37A180D4E500062E3D5 /* BrSliderController.m in Sources */,
 				07719336d66c1ae0e689616e /* BrAppDelegate.m in Sources */,
 				F58F093416F29CD6007CFE50 /* BrCategories.m in Sources */,
 				F56BAB5D16FCA42900AB8578 /* BrController.m in Sources */,
@@ -572,6 +665,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F568C42D16E3C256007797F1 /* main.m in Sources */,
+				F5ACF379180D4E500062E3D5 /* BrSliderController.m in Sources */,
 				F568C43116E3C256007797F1 /* BrAppDelegate.m in Sources */,
 				F58F093316F29CD6007CFE50 /* BrCategories.m in Sources */,
 				F56BAB5C16FCA42900AB8578 /* BrController.m in Sources */,
@@ -635,6 +729,14 @@
 				F5A9CFBE170F11BB00265826 /* en */,
 			);
 			name = BrTableController.xib;
+			sourceTree = "<group>";
+		};
+		F5ACF37B180D4F440062E3D5 /* BrSliderController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5ACF37C180D4F440062E3D5 /* en */,
+			);
+			name = BrSliderController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

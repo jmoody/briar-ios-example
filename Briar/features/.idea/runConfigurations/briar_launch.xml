@@ -35,9 +35,6 @@
     <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
     <RunnerSettings RunnerId="RubyRunner" />
     <ConfigurationWrapper RunnerId="RubyRunner" />
-    <method>
-      <option name="RakeTask" enabled="true" TASK_CMD="show_simulator" />
-      <option name="RakeTask" enabled="true" TASK_CMD="kill_instruments" />
-    </method>
+    <method />
   </configuration>
 </component>

@@ -36,7 +36,7 @@ static NSString *const kIdButton = @"the button";
 - (id)init {
   self = [super init];
   if (self) {
-    self.title = NSLocalizedString(@"Text", @"text controller:  appears as title of the text related controller and as a tab bar item");
+    self.title = NSLocalizedString(@"Text", @"text controller:  title of text related  tab bar item");
     self.tabBarItem.image = [UIImage imageNamed:@"second"];
     self.navbarTitle = @"Text Related";
   }

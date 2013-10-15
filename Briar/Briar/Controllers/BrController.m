@@ -174,6 +174,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  [self configureAccessibility];
   NSString *nbt = self.navbarTitle;
   if (nbt != nil && [nbt length] != 0) {
     self.navigationItem.title = self.navbarTitle;
