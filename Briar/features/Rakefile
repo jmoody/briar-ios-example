@@ -3,11 +3,6 @@ task :show_simulator do
   sh "/usr/bin/osascript -e 'tell application \"RubyMine\" to activate'"
 end
 
-task :kill_instruments do
-  system('killall -9 instruments')
-  #system('killall -9 installd')
-end
-
 task :xamarin do
   system('xamarin-upload-example.sh')
 end
