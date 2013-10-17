@@ -9,38 +9,23 @@
 #import "BrGlobals.h"
 
 
+@implementation BrWindow
+
+- (void) sendEvent:(UIEvent *)event {
+  if (self.eventHandler != nil) {
+    self.eventHandler(self, event);
+  }
+  [super sendEvent:event];
+}
+
+@end
+
+
+
 typedef enum : NSUInteger {
   kTagSecurityVeil = NSNotFound
 } view_tags;
 
-
-
-@interface UIDatePicker (CALABASH_ADDITIONS)
-- (NSString *) hasCalabashAdditions:(NSString *) aSuccessIndicator;
-- (BOOL) setDateWithString:(NSString *)aString
-                    format:(NSString *) aFormat
-                  animated:(BOOL) aAnimated;
-@end
-
-
-@implementation UIDatePicker (CALABASH_ADDITIONS)
-- (NSString *) hasCalabashAdditions:(NSString *) aSuccessIndicator {
-  return aSuccessIndicator;
-}
-
-- (BOOL) setDateWithString:(NSString *)aString
-                    format:(NSString *) aFormat
-                  animated:(BOOL) aAnimated {
-  NSDateFormatter *df = [[NSDateFormatter alloc] init];
-  [df setDateFormat:aFormat];
-  NSDate *date = [df dateFromString:aString];
-  if (date == nil) return NO;
-  [self setDate:date animated:aAnimated];
-  return YES;
-}
-
-
-@end
 
 typedef enum : NSUInteger {
   kTabbarIndexFirst = 0,
@@ -200,9 +185,23 @@ typedef enum : NSUInteger {
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+  self.window = [[BrWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
+  
+  self.window.eventHandler = ^(UIWindow *aWindow, UIEvent *aEvent) {
+    NSSet *touches = [aEvent touchesForWindow:aWindow];
+    
+    UIScreen *screen = [aWindow screen];
+    CGRect __unused screenBounds = screen.bounds;
+    //NSLog(@"screen bounds: '%@'", NSStringFromCGRect(screenBounds));
+    //NSLog(@"window bounds: '%@'", NSStringFromCGRect(aWindow.bounds));
+    [touches enumerateObjectsUsingBlock:^(UITouch *touch, BOOL *stop) {
+      CGPoint point = [touch locationInView:aWindow];
+      NSLog(@"location of touch in window: %@", NSStringFromCGPoint(point));
+    }];
+  };
+
+
   UIViewController *first_vc = [BrFirstViewController new];
   BrNavigationController *first_nc = [[BrNavigationController alloc]
                                   initWithRootViewController:first_vc];
