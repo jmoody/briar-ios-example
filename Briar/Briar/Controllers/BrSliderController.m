@@ -1,50 +1,25 @@
 #import "BrSliderController.h"
 #import "BrGlobals.h"
-
-typedef enum : short {
-  kSliderEmotion_sad = -2,
-  kSliderEmotion_anxious = -1,
-  kSliderEmotion_bored = 0,
-  kSliderEmotion_calm = 1,
-  kSliderEmotion_happy = 2
-} BrSliderEmotionType;
+#import "BrSliderView.h"
 
 typedef enum : NSInteger {
-  kTagSliderEmotion = 3030,
-  kTagImageViewEmotion,
-  kTagLabelEmotion,
-  kTagLabelEmotionValue,
-  kTagEmotions,
+  kTagEmotions = 3030,
   kTagOffice,
   kTagScience,
   kTagWeather
 } view_tags;
 
-static NSString *const k_ai_slider_emotion = @"emotions";
-static NSString *const k_ai_image_view_emoticon = @"emoticon";
-static NSString *const k_ai_label_emotion = @"emotion description";
-static NSString *const k_ai_label_emotion_val = @"emotion value";
 
 @interface BrSliderController ()
 
-- (BrSliderEmotionType) emotionTypeForFloat:(CGFloat) aValue;
-
-- (NSString *) stringForEmotionType:(BrSliderEmotionType) aEmotionType;
-- (NSString *) stringForEmotionLabelWithType:(BrSliderEmotionType) aEmotionType;
-
-
-- (UIImage *) imageForEmotionType:(BrSliderEmotionType) aEmotionType;
-
-- (void) handleEmotionSliderDidChange:(UISlider *) aSlider;
+@property (nonatomic, strong, readonly) BrSliderView *sliderEmotions;
 
 @end
 
 @implementation BrSliderController
 
 @synthesize frames = _frames;
-@synthesize sliderEmotion = _sliderEmotion;
-@synthesize imageViewEmotion = _imageViewEmotion;
-@synthesize labelEmotion = _labelEmotion;
+@synthesize sliderEmotions = _sliderEmotions;
 
 - (id)init {
   self = [super init];
@@ -56,12 +31,8 @@ static NSString *const k_ai_label_emotion_val = @"emotion value";
   return self;
 }
 
-
-
 - (void)viewDidLoad {
   [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-  self.view.accessibilityIdentifier = @"sliders";
 }
 
 
@@ -74,55 +45,6 @@ static NSString *const k_ai_label_emotion_val = @"emotion value";
   
   [super viewDidUnload];
 }
-
-
-#pragma mark - Actions
-
-- (IBAction) sliderValueDidChange:(UISlider *) aSlider {
-  if (aSlider == _sliderEmotion) {
-    [self handleEmotionSliderDidChange:aSlider];
-  }
-}
-
-- (void) handleEmotionSliderDidChange:(UISlider *) aSlider {
-  CGFloat value =  (CGFloat)aSlider.value;
-  BrSliderEmotionType et = [self emotionTypeForFloat:value];
-  [self labelEmotion].text = [self stringForEmotionLabelWithType:et];
-  [self labelEmotionFloat].text = [NSString stringWithFormat:@"%.2f", value];
-  UIImageView *iv = [self imageViewEmotion];
-  iv.image = [self imageForEmotionType:et];
-  iv.accessibilityLabel = [self stringForEmotionType:et];
-}
-
-- (BrSliderEmotionType) emotionTypeForFloat:(CGFloat) aValue {
-  if (aValue < -1.5) { return kSliderEmotion_sad; }
-  if (aValue >= -1.5 && aValue < -0.5) { return kSliderEmotion_anxious; }
-  if (aValue >= -0.5 && aValue < 0.5) { return kSliderEmotion_bored; }
-  if (aValue >= 0.5 && aValue < 1.5) { return kSliderEmotion_calm; }
-  return kSliderEmotion_happy;
-}
-
-- (NSString *) stringForEmotionType:(BrSliderEmotionType) aEmotionType {
-  switch (aEmotionType) {
-    case kSliderEmotion_sad: { return NSLocalizedString(@"sad", nil); }
-    case kSliderEmotion_anxious: { return NSLocalizedString(@"anxious", nil); }
-    case kSliderEmotion_bored: { return NSLocalizedString(@"bored", nil); }
-    case kSliderEmotion_calm: { return NSLocalizedString(@"calm", nil); }
-    case kSliderEmotion_happy: { return NSLocalizedString(@"happy", nil); }
-  }
-}
-
-- (NSString *) stringForEmotionLabelWithType:(BrSliderEmotionType) aEmotionType {
-  NSString *name = [self stringForEmotionType:aEmotionType];
-  return [name stringByAppendingFormat:@": '%d'",  aEmotionType];
-}
-
-- (UIImage *) imageForEmotionType:(BrSliderEmotionType) aEmotionType {
-  NSString *emotionName = [self stringForEmotionType:aEmotionType];
-  NSString *imageName = [NSString stringWithFormat:@"emoticon-%@-40x40", emotionName];
-  return [UIImage imageNamed:imageName];
-}
-
 
 #pragma mark - Animations
 
@@ -150,6 +72,21 @@ static NSString *const k_ai_label_emotion_val = @"emotion value";
 
 #pragma mark - View Layout
 
+- (BrSliderView *) sliderEmotions {
+  if (_sliderEmotions != nil) { return _sliderEmotions; }
+  CGRect frame = CGRectMake(10, 80, 300, 88);
+  _sliderEmotions = [[BrSliderView alloc]
+                     initWithFrame:frame
+                     type:BrSliderEmotion
+                     tag:kTagEmotions
+                     didChangeBlock:^(UISlider *aSlider, BrSliderViewType aType) {
+                       NSLog(@"emotion slider updated");
+                     }];
+  _sliderEmotions.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.1];
+  return _sliderEmotions;
+}
+
+
 - (void) viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
 }
@@ -157,6 +94,11 @@ static NSString *const k_ai_label_emotion_val = @"emotion value";
 
 - (void) viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
+  
+  UIView *view = self.view;
+  if ([view viewWithTag:kTagEmotions] == nil) {
+    [view addSubview:[self sliderEmotions]];
+  }
 }
 
 - (CGRect) frameForView:(UIView *) aView
@@ -215,11 +157,7 @@ static NSString *const k_ai_label_emotion_val = @"emotion value";
 #pragma mark - Accessibility
 
 - (void) configureAccessibility {
-  _sliderEmotion.accessibilityIdentifier = k_ai_slider_emotion;
-  _imageViewEmotion.accessibilityIdentifier = k_ai_image_view_emoticon;
-  _imageViewEmotion.accessibilityLabel = @"FIXME";
-  _labelEmotion.accessibilityIdentifier = k_ai_label_emotion;
-  _labelEmotionFloat.accessibilityIdentifier = k_ai_label_emotion_val;
+  self.view.accessibilityIdentifier = @"sliders";
 }
 
 #pragma mark - View Lifecycle
@@ -227,9 +165,7 @@ static NSString *const k_ai_label_emotion_val = @"emotion value";
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   //[self layoutSubviewsForCurrentOrientation:[self viewsToRotate]];
-  
-  _sliderEmotion.value = 0.0;
-  [self handleEmotionSliderDidChange:[self sliderEmotion]];
+  self.view.accessibilityIdentifier = @"sliders";
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -15,11 +15,21 @@ end
 World(Briar::Sliders)
 
 When(/^I change the "([^"]*)" slider to ([-+]?[0-9]*\.?[0-9]+), I should see the "([^"]*)" emoticon$/) do |slider_id, value, emoticon_id|
-  wait_for_view(slider_id)
+  _slider_id = "#{slider_id} slider"
+  wait_for_view(_slider_id)
   target_val = value.to_f
-    slider_set_value slider_id, target_val
+    briar_slider_set_value _slider_id, target_val
   2.times { step_pause }
   should_see_image_view emoticon_id
-  should_see_label_with_text 'emotion description', emotion_label_for_value(target_val)
-  should_see_label_with_text 'emotion value', ('%.2f' % target_val)
+  should_see_label_with_text 'title', emotion_label_for_value(target_val)
+  should_see_label_with_text 'value', ('%.2f' % target_val)
+end
+
+Then(/^I should see the emotions slider group at the top of the view$/) do
+  wait_for_view('emotions')
+end
+
+Then(/^I should see the slider table$/) do
+  wait_for_view('sliders table')
+  wait_for_view('a list of sliders')
 end

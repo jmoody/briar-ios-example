@@ -19,6 +19,10 @@ typedef enum : short {
 - (NSString *) accessLabelForImageView:(CGFloat) aValue
                                type:(BrSliderViewType) aType;
 
+- (NSString *) accessLabelForViewWithType:(BrSliderViewType) aType;
+- (NSString *) accessIdForViewWithType:(BrSliderViewType) aType;
+- (NSString *) accessIdForSliderWithType:(BrSliderViewType) aType;
+
 @end
 
 @interface BrSliderDataSource ()
@@ -26,8 +30,7 @@ typedef enum : short {
 - (BrSliderPosition) positionForValue:(CGFloat) aValue;
 - (NSString *) nameForValue:(CGFloat) aValue
                        type:(BrSliderViewType) aType;
-- (NSString *) accessibilityLabelForType:(BrSliderViewType) aType;
-- (NSString *) accessibilityIdentifierForType:(BrSliderViewType) aType;
+
 
 @end
 
@@ -43,24 +46,32 @@ typedef enum : short {
   return kSliderMax;
 }
 
-- (NSString *) accessibilityLabelForType:(BrSliderViewType) aType {
+- (NSString *) accessLabelForViewWithType:(BrSliderViewType) aType {
   switch (aType) {
-    case BrSliderEmoticon: return @"set your emotion";
+    case BrSliderEmotion: return @"set your emotion";
     case BrSliderOffice: return @"office you need";
     case BrSliderScience: return @"equipment that is broken";
     case BrSliderWeather: return @"what is the weather";
   }
 }
 
-- (NSString *) accessibilityIdentifierForType:(BrSliderViewType) aType {
+- (NSString *) accessIdForViewWithType:(BrSliderViewType) aType {
   switch (aType) {
-    case BrSliderEmoticon: return @"emotions";
+    case BrSliderEmotion: return @"emotions";
     case BrSliderOffice: return @"office";
     case BrSliderScience: return @"science";
     case BrSliderWeather: return @"weather";
   }
 }
 
+- (NSString *) accessIdForSliderWithType:(BrSliderViewType) aType {
+  switch (aType) {
+    case BrSliderEmotion: return @"emotion slider";
+    case BrSliderOffice: return @"office slider";
+    case BrSliderScience: return @"science slider";
+    case BrSliderWeather: return @"weather slider";
+  }
+}
 
 - (UIImage *) imageForValue:(CGFloat) aValue
                        type:(BrSliderViewType) aType {
@@ -73,7 +84,7 @@ typedef enum : short {
                        type:(BrSliderViewType) aType {
   BrSliderPosition position = [self positionForValue:aValue];
   switch (aType) {
-    case BrSliderEmoticon: {
+    case BrSliderEmotion: {
        switch (position) {
          case kSliderMin: return @"sad";
          case kSliderNextToMin: return @"anxious";
@@ -191,6 +202,10 @@ static CGFloat const kWidthOfValueLabel = 52;
     _type = aType;
     self.tag = aTag;
     _didChangeBlock = aBlock;
+    
+    BrSliderDataSource *ds = [self dataSource];
+    self.accessibilityIdentifier = [ds accessIdForViewWithType:_type];
+
   }
   return self;
 }
@@ -210,6 +225,15 @@ static CGFloat const kWidthOfValueLabel = 52;
   _slider = [[UISlider alloc] initWithFrame:frame];
   _slider.tag = kTagSlider;
   _slider.value = 0.0;
+  _slider.minimumValue = -2.5;
+  _slider.maximumValue = 2.0;
+  
+  BrSliderDataSource *ds = [self dataSource];
+  _slider.accessibilityIdentifier = [ds accessIdForSliderWithType:_type];
+  
+  [_slider addTarget:self
+              action:@selector(sliderValueDidChange:)
+    forControlEvents:UIControlEventValueChanged];
   return _slider;
 }
 
@@ -240,7 +264,7 @@ static CGFloat const kWidthOfValueLabel = 52;
   
   CGFloat x = CGRectGetMaxX(ivF) + kLeftRightMargin;
   CGFloat h = 21;
-  CGFloat y = CGRectGetMidX(ivF) + (h/2);
+  CGFloat y = CGRectGetMinY(ivF) + (CGRectGetHeight(ivF)/2 - (h/2));
   CGFloat w = CGRectGetWidth(selfF) - x - kLeftRightMargin - kWidthOfValueLabel;
   CGRect frame = CGRectMake(x, y, w, h);
   _labelTitle = [[UILabel alloc] initWithFrame:frame];
@@ -274,6 +298,7 @@ static CGFloat const kWidthOfValueLabel = 52;
 }
 
 - (void) layoutSubviews {
+  [super layoutSubviews];
   
   if ([self viewWithTag:kTagSlider] == nil) {
     [self addSubview:[self slider]];
@@ -295,14 +320,23 @@ static CGFloat const kWidthOfValueLabel = 52;
 #pragma mark - Public
 
 - (void) setSliderValue:(CGFloat) aValue animated:(BOOL) aAnimate {
-  [[self slider] setValue:aValue animated:aAnimate];
+  UISlider *slider = [self slider];
+  [slider setValue:aValue animated:aAnimate];
+  [self sliderValueDidChange:slider];
 }
 
 
 #pragma mark - Actions
 
 - (void) sliderValueDidChange:(UISlider *) aSlider {
-  
+  CGFloat value = [aSlider value];
+  BrSliderDataSource *ds = [self dataSource];
+  UIImageView *iv = [self imageView];
+  [iv setImage:[ds imageForValue:value type:_type]];
+  iv.accessibilityLabel = [ds accessLabelForImageView:value
+                                                 type:_type];
+  [[self labelTitle] setText:[ds titleForValue:value type:_type]];
+  [[self labelValue] setText:[NSString stringWithFormat:@"%.2f", value]];
   BrSliderDidChangeBlock block = [self didChangeBlock];
   if (block != nil) { block(aSlider, _type); }
 }
