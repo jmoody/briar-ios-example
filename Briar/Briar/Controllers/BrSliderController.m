@@ -10,10 +10,14 @@ typedef enum : short {
 } BrSliderEmotionType;
 
 typedef enum : NSInteger {
-  kTagSliderEmotion = 0,
+  kTagSliderEmotion = 3030,
   kTagImageViewEmotion,
   kTagLabelEmotion,
-  kTagLabelEmotionValue
+  kTagLabelEmotionValue,
+  kTagEmotions,
+  kTagOffice,
+  kTagScience,
+  kTagWeather
 } view_tags;
 
 static NSString *const k_ai_slider_emotion = @"emotions";
