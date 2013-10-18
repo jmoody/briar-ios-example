@@ -33,6 +33,9 @@ rerun*.txt
 *calabash*.html
 *pluto*.html
 *neptune*.html
+*venus*.html
+*earp*.html
+
 screenshot*.png
 
 # xamarin build directory

@@ -23,6 +23,11 @@ venus_udid = IO.read("#{venus_dir}/udid") if File.exists?("#{venus_dir}/udid")
 venus_report = "./reports/venus/#{date}-venus.html"
 venus_ss_path = "#{Dir.pwd}/reports/venus/screenshots/"
 
+earp_dir = "#{lesspainful_dir}/devices/earp"
+earp_ip = IO.read("#{earp_dir}/ip") if File.exists?("#{earp_dir}/ip")
+earp_udid = IO.read("#{earp_dir}/udid") if File.exists?("#{earp_dir}/udid")
+earp_report = "./reports/earp/#{date}-earp.html"
+earp_ss_path = "#{Dir.pwd}/reports/earp/screenshots/"
 
 ss_path = "#{Dir.pwd}/screenshots/"
 
@@ -30,6 +35,7 @@ ss_path = "#{Dir.pwd}/screenshots/"
 `mkdir ./reports` unless File.exists?("./reports")
 
 `mkdir ./reports/pluto` unless File.exists?("./reports/pluto")
+`mkdir ./reports/pluto/screenshots` unless File.exists?("./reports/pluto/screenshots")
 
 `mkdir ./reports/neptune` unless File.exists?("./reports/neptune")
 `mkdir ./reports/neptune/screenshots` unless File.exists?("./reports/neptune/screenshots")
@@ -37,15 +43,20 @@ ss_path = "#{Dir.pwd}/screenshots/"
 `mkdir ./reports/venus` unless File.exists?("./reports/venus")
 `mkdir ./reports/venus/screenshots` unless File.exists?("./reports/venus/screenshots")
 
+`mkdir ./reports/earp` unless File.exists?("./reports/earp")
+`mkdir ./reports/earp/screenshots` unless File.exists?("./reports/earp/screenshots")
+
 `mkdir ./rerun` unless File.exists?("./rerun")
 `mkdir ./rerun/pluto` unless File.exists?("./rerun/pluto")
 `mkdir ./rerun/neptune` unless File.exists?("./rerun/neptune")
 `mkdir ./rerun/venus` unless File.exists?("./rerun/venus")
+`mkdir ./rerun/earp` unless File.exists?("./rerun/earp")
 
 FileUtils.cp("./rerun/rerun.txt", "./rerun/rerun-#{date}.txt") if File.exists?("./rerun/rerun.txt")
 FileUtils.cp("./rerun/pluto/rerun.txt", "./rerun/pluto/rerun-#{date}.txt") if File.exists?("./rerun/pluto/rerun.txt")
 FileUtils.cp("./rerun/neptune/rerun.txt", "./rerun/neptune/rerun-#{date}.txt") if File.exists?("./rerun/neptune/rerun.txt")
 FileUtils.cp("./rerun/venus/rerun.txt", "./rerun/venus/rerun-#{date}.txt") if File.exists?("./rerun/venus/rerun.txt")
+FileUtils.cp("./rerun/earp/rerun.txt", "./rerun/earp/rerun-#{date}.txt") if File.exists?("./rerun/earp/rerun.txt")
 
 %>
 
@@ -58,15 +69,18 @@ rerun_out:    -f rerun -o ./rerun/rerun.txt
 pluto_rr:     -f rerun -o ./rerun/pluto/rerun.txt
 neptune_rr:   -f rerun -o ./rerun/neptune/rerun.txt
 venus_rr:     -f rerun -o ./rerun/venus/rerun.txt
+earp_rr:     -f rerun -o ./rerun/earp/rerun.txt
 
 html_report:  -f html -o <%= default_report %>
 pluto_html:   -f html -o <%= pluto_report %>
 neptune_html: -f html -o <%= neptune_report %>
 venus_html:   -f html -o <%= venus_report %>
+earp_html:   -f html -o <%= earp_report %>
 
 pluto_ss:   SCREENSHOT_PATH=<%= pluto_ss_path %>
 neptune_ss: SCREENSHOT_PATH=<%= neptune_ss_path %>
 venus_ss:   SCREENSHOT_PATH=<%= venus_ss_path %>
+earp_ss:   SCREENSHOT_PATH=<%= earp_ss_path %>
 
 no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
@@ -100,3 +114,6 @@ neptune_launch: -p neptune_common -p do_launch -p no_stop
 
 venus_common:   DEVICE_ENDPOINT=<%= venus_ip %>   DEVICE_ENDPOINT=<%= venus_ip %> -p device_common -p venus_rr   -p ipad   -p venus_html     -p venus_ss
 venus:         -p venus_common -p do_launch -p no_stop
+
+earp_common:   DEVICE_ENDPOINT=<%= earp_ip %>   DEVICE_ENDPOINT=<%= earp_ip %> -p device_common -p earp_rr   -p iphone   -p earp_html     -p earp_ss
+earp:         -p earp_common -p do_launch -p no_stop

@@ -8,6 +8,11 @@ typedef enum : unsigned short {
 } BrSliderViewType;
 
 
+extern NSString *const k_aid_slider_emotions;
+extern NSString *const k_aid_slider_office;
+extern NSString *const k_aid_slider_science;
+extern NSString *const k_aid_slider_weather;
+
 typedef void (^BrSliderDidChangeBlock)(UISlider *aSlider, BrSliderViewType aType);
 
 @interface BrSliderView : UIView
@@ -18,5 +23,6 @@ typedef void (^BrSliderDidChangeBlock)(UISlider *aSlider, BrSliderViewType aType
       didChangeBlock:(BrSliderDidChangeBlock) aBlock;
 
 - (void) setSliderValue:(CGFloat) aValue animated:(BOOL) aAnimate;
+- (void) respondToRotation;
 
 @end

@@ -164,7 +164,8 @@ typedef enum : NSUInteger {
     } else if (idx == kTabbarIndexTable){
       
     } else if (idx == kTabbarIndexSliders) {
-      
+      BrSliderController *scon = (BrSliderController *)[navcon topViewController];
+      [scon resetSliders];
     }
   }];
   

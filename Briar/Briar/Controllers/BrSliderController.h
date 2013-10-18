@@ -2,4 +2,6 @@
 
 @interface BrSliderController : BrController
 
+- (void) resetSliders;
+
 @end

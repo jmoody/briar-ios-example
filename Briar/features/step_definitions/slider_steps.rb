@@ -20,9 +20,24 @@ When(/^I change the "([^"]*)" slider to ([-+]?[0-9]*\.?[0-9]+), I should see the
   target_val = value.to_f
     briar_slider_set_value _slider_id, target_val
   2.times { step_pause }
-  should_see_image_view emoticon_id
-  should_see_label_with_text 'title', emotion_label_for_value(target_val)
-  should_see_label_with_text 'value', ('%.2f' % target_val)
+  base_str = "view:'BrSliderView' marked:'emotions' child"
+
+  res = query("#{base_str} imageView marked:'#{emoticon_id}'").first
+  if res.nil?
+    screenshot_and_raise "expected to see image view with id '#{emoticon_id}'"
+  end
+
+  res = query("#{base_str} label marked:'title'", :text).first
+  expected = emotion_label_for_value(target_val)
+  unless res.eql?(expected)
+    screenshot_and_raise "expected to see title '#{expected}' but found '#{res}'"
+  end
+
+  res = query("#{base_str} label marked:'value'", :text).first
+  expected =  ('%.2f' % target_val)
+  unless res.eql?(expected)
+    screenshot_and_raise "expected to see value '#{expected}' but found '#{res}'"
+  end
 end
 
 Then(/^I should see the emotions slider group at the top of the view$/) do
@@ -30,6 +45,21 @@ Then(/^I should see the emotions slider group at the top of the view$/) do
 end
 
 Then(/^I should see the slider table$/) do
-  wait_for_view('sliders table')
-  wait_for_view('a list of sliders')
+  wait_for_view('table')
+  wait_for_view('list of sliders')
+end
+
+Then(/^I observe that it is raining$/) do
+  briar_slider_set_value 'weather slider', 1
+  step_pause
+end
+
+Then(/^I decide we really need a paper airplane in the office$/) do
+  briar_slider_set_value 'office slider', -1
+  step_pause
+end
+
+Then(/^I note that used the telescope in my experiment$/) do
+  briar_slider_set_value 'science slider', 2
+  step_pause
 end

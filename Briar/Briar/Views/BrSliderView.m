@@ -9,6 +9,10 @@ typedef enum : short {
 } BrSliderPosition;
 
 
+NSString *const k_aid_slider_emotions = @"emotions";
+NSString *const k_aid_slider_office = @"office";
+NSString *const k_aid_slider_science = @"science";
+NSString *const k_aid_slider_weather = @"weather";
 
 @interface BrSliderDataSource : NSObject
 
@@ -57,10 +61,10 @@ typedef enum : short {
 
 - (NSString *) accessIdForViewWithType:(BrSliderViewType) aType {
   switch (aType) {
-    case BrSliderEmotion: return @"emotions";
-    case BrSliderOffice: return @"office";
-    case BrSliderScience: return @"science";
-    case BrSliderWeather: return @"weather";
+    case BrSliderEmotion: return k_aid_slider_emotions;
+    case BrSliderOffice: return k_aid_slider_office;
+    case BrSliderScience: return k_aid_slider_science;
+    case BrSliderWeather: return k_aid_slider_weather;
   }
 }
 
@@ -140,7 +144,7 @@ typedef enum : short {
 
 
 typedef enum : NSInteger {
-  kTagSlider = 4040,
+  kTagSlider = 9040,
   kTagImageView,
   kTagLabelTitle,
   kTagLabelValue
@@ -162,6 +166,12 @@ static CGFloat const kWidthOfValueLabel = 52;
 @property (nonatomic, strong, readonly) BrSliderDataSource *dataSource;
 
 - (void) sliderValueDidChange:(id) sender;
+
+
+- (CGRect) frameForSlider;
+- (CGRect) frameForImageView;
+- (CGRect) frameForLabelTitle;
+- (CGRect) frameForLabelValue;
 
 @end
 
@@ -205,7 +215,6 @@ static CGFloat const kWidthOfValueLabel = 52;
     
     BrSliderDataSource *ds = [self dataSource];
     self.accessibilityIdentifier = [ds accessIdForViewWithType:_type];
-
   }
   return self;
 }
@@ -216,12 +225,10 @@ static CGFloat const kWidthOfValueLabel = 52;
   return _dataSource;
 }
 
+
 - (UISlider *) slider {
   if (_slider != nil) { return _slider; }
-  CGRect selfF = self.frame;
-  CGRect frame = CGRectMake(kLeftRightMargin, kTopBottomMargin,
-                            CGRectGetWidth(selfF) - (2 * kLeftRightMargin),
-                            0);
+  CGRect frame = [self frameForSlider];
   _slider = [[UISlider alloc] initWithFrame:frame];
   _slider.tag = kTagSlider;
   _slider.value = 0.0;
@@ -239,12 +246,10 @@ static CGFloat const kWidthOfValueLabel = 52;
 
 - (UIImageView *) imageView {
   if (_imageView != nil) { return _imageView; }
-  UISlider *slider = [self slider];
-  CGRect sliderF = slider.frame;
-  CGRect frame = CGRectMake(kLeftRightMargin, CGRectGetMaxY(sliderF) + kTopBottomMargin,
-                            40, 40);
+  CGRect frame = [self frameForImageView];
   _imageView = [[UIImageView alloc] initWithFrame:frame];
   BrSliderDataSource *ds = [self dataSource];
+  UISlider *slider = [self slider];
   CGFloat sliderVal = [slider value];
   _imageView.image = [ds imageForValue:sliderVal type:_type];
   _imageView.tag = kTagImageView;
@@ -256,17 +261,7 @@ static CGFloat const kWidthOfValueLabel = 52;
 - (UILabel *) labelTitle {
   if (_labelTitle != nil) { return _labelTitle; }
   UISlider *slider = [self slider];
-  
-  CGRect selfF = self.frame;
-
-  UIImageView *iv = [self imageView];
-  CGRect ivF = iv.frame;
-  
-  CGFloat x = CGRectGetMaxX(ivF) + kLeftRightMargin;
-  CGFloat h = 21;
-  CGFloat y = CGRectGetMinY(ivF) + (CGRectGetHeight(ivF)/2 - (h/2));
-  CGFloat w = CGRectGetWidth(selfF) - x - kLeftRightMargin - kWidthOfValueLabel;
-  CGRect frame = CGRectMake(x, y, w, h);
+  CGRect frame = [self frameForLabelTitle];
   _labelTitle = [[UILabel alloc] initWithFrame:frame];
    BrSliderDataSource *ds = [self dataSource];
   _labelTitle.text = [ds titleForValue:[slider value] type:_type];
@@ -279,16 +274,7 @@ static CGFloat const kWidthOfValueLabel = 52;
 - (UILabel *) labelValue {
   if (_labelValue != nil) { return _labelValue; }
   UISlider *slider = [self slider];
-  
-  CGRect selfF = self.frame;
-  UILabel *titleLabel = [self labelTitle];
-  CGRect titleF = titleLabel.frame;
-
-  CGFloat x = CGRectGetWidth(selfF) - (2 * kLeftRightMargin) - kWidthOfValueLabel;
-  CGFloat h = 21;
-  CGFloat y = CGRectGetMinY(titleF);
-  CGFloat w = kWidthOfValueLabel;
-  CGRect frame = CGRectMake(x, y, w, h);
+  CGRect frame = [self frameForLabelValue];
   _labelValue = [[UILabel alloc] initWithFrame:frame];
   _labelValue.text = [NSString stringWithFormat:@"%.2f", [slider value]];
   _labelValue.textAlignment = NSTextAlignmentCenter;
@@ -299,23 +285,92 @@ static CGFloat const kWidthOfValueLabel = 52;
 
 - (void) layoutSubviews {
   [super layoutSubviews];
+
+  UISlider *slider = [self slider];
+  UIImageView *iv = [self imageView];
+  UILabel *labelTitle = [self labelTitle];
+  UILabel *labelValue = [self labelValue];
   
+
   if ([self viewWithTag:kTagSlider] == nil) {
-    [self addSubview:[self slider]];
+    [self addSubview:slider];
   }
   
   if ([self viewWithTag:kTagImageView] == nil) {
-    [self addSubview:[self imageView]];
+    [self addSubview:iv];
   }
   
   if ([self viewWithTag:kTagLabelTitle] == nil) {
-    [self addSubview:[self labelTitle]];
+    [self addSubview:labelTitle];
   }
   
   if ([self viewWithTag:kTagLabelValue] == nil) {
-    [self addSubview:[self labelValue]];
+    [self addSubview:labelValue];
   }
+  
+  NSLog(@"subviews = %@", [self subviews]);
 }
+
+- (void) respondToRotation {
+  [[self slider] removeFromSuperview];
+  _slider = nil;
+  [[self imageView] removeFromSuperview];
+  _imageView = nil;
+  [[self labelTitle] removeFromSuperview];
+  _labelTitle = nil;
+  [[self labelValue] removeFromSuperview];
+  _labelValue = nil;
+}
+
+- (CGRect) frameForSlider {
+  CGRect selfF = self.frame;
+  /*** UNEXPECTED ***
+   super weird.  the slider is always visually ending up at y = 0 but 
+   actually at y = 8 when the frame is set outside the init
+   *****************/
+  //CGFloat y = _slider == nil ? kTopBottomMargin : kTopBottomMargin + 8;
+  CGFloat y = kTopBottomMargin;
+  CGRect sliderF = CGRectMake(kLeftRightMargin, y,
+                              CGRectGetWidth(selfF) - (2 * kLeftRightMargin),
+                              0);
+  return sliderF;
+}
+
+- (CGRect) frameForImageView {
+  UISlider *slider = [self slider];
+  CGRect sliderF = slider.frame;
+  //CGFloat yoff = _imageView == nil ? 0 : kTopBottomMargin;
+  CGFloat yoff = 0;
+  CGRect ivF = CGRectMake(kLeftRightMargin, CGRectGetMaxY(sliderF) + yoff,
+                          40, 40);
+  return ivF;
+}
+
+- (CGRect) frameForLabelTitle {
+  UIImageView *iv = [self imageView];
+  CGRect ivF = iv.frame;
+  CGRect selfF = self.frame;
+  
+  CGFloat xT = CGRectGetMaxX(ivF) + kLeftRightMargin;
+  CGFloat hT = 21;
+  CGFloat yT = CGRectGetMinY(ivF) + (CGRectGetHeight(ivF)/2 - (hT/2));
+  CGFloat wT = CGRectGetWidth(selfF) - xT - kLeftRightMargin - kWidthOfValueLabel;
+  CGRect titleF = CGRectMake(xT, yT, wT, hT);
+  
+  return titleF;
+}
+
+- (CGRect) frameForLabelValue {
+  CGRect selfF = self.frame;
+  UILabel *labelTitle = [self labelTitle];
+  CGRect titleF = labelTitle.frame;
+  
+  CGFloat xV = CGRectGetWidth(selfF) - (2 * kLeftRightMargin) - kWidthOfValueLabel;
+  CGFloat wV = kWidthOfValueLabel;
+  CGRect valueF = CGRectMake(xV, CGRectGetMinY(titleF), wV, CGRectGetHeight(titleF));
+  return valueF;
+}
+
 
 #pragma mark - Public
 
