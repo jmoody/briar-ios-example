@@ -5,6 +5,7 @@ Feature: testing the slider operation
   Background: navigate to the sliders tab
     When I touch the "Sliders" tab I should see the "sliders" view
     Then I should see the emotions slider group at the top of the view
+    Then I rotate the device so the home button is on the bottom
     Then I should see the slider table
     Then I rotate the device 2 times in a random direction
 

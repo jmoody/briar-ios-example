@@ -2,6 +2,7 @@ module Briar
   module Core
     def navigate_to_text_related_tab
       unless view_exists? 'text related'
+        step_pause
         touch_tabbar_item 'Text'
         wait_for_view 'text related'
       end

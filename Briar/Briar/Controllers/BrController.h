@@ -18,6 +18,6 @@
             orientation:(UIInterfaceOrientation) aOrientation;
 - (NSArray *) viewsToRotate;
 - (void) layoutSubviewsForCurrentOrientation:(NSArray *) aViews;
-- (void) configureAccessibility;
+
 
 @end

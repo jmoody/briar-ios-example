@@ -17,6 +17,7 @@ Feature:  swiping left and right on ipad
     Then I swipe right on the bottom text field
     Then I should see the bottom text field has "swiped right"
 
+  @wip
   Scenario Outline: i should be able to swipe left on the ipad - outline
     When I touch the Text tab, I should see the Text related part of the app
     And I rotate the device so the home button is on the bottom

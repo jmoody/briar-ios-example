@@ -4,46 +4,43 @@ Feature: testing rotation
 
   ### UNEXPECTED ###
   # the default profile in cucumber.yml sets NO_LAUNCH=1 and --tags ~@launch
-  # so if you tag a Scenario (or a feature) with @launch, they will not be
+  # so if you tag a Scenario (or a feature) with @launch, they will not be run
   # using the default profile
   #
   # use -p launch to run default profile against @launch tags
   #
-  # this is a hold-over from several production apps where tests take 1+ hours
-  # to run even when the app is not restarted every time
   ##################
 
-  ###########
+  ### TEST RELAUNCHING BEHAVIOR ON SIMULATOR ###
   # launching in the sim with instruments causes the device to rotate back to
   # portrait for iphone but not the ipad
-
   @launch
   @iphone_only
-  Scenario: 1 of 2 testing orientation with back-to-back launches
+  @simulator_only
+  Scenario: iPhone 1 of 2 testing orientation with back-to-back launches
     When I rotate the device left, I should see the status bar and device have the same orientation
 
   @launch
   @iphone_only
-  Scenario: 2 of 2 testing orientation with back-to-back launches
+  @simulator_only
+  Scenario: iPhone 2 of 2 testing orientation with back-to-back launches on
     Then the device orientation should be "unknown" on the simulator and "down" on device
     And the status bar orientation should be "down"
 
-
   @launch
   @ipad_only
-  Scenario: 1 of 2 testing orientation with back-to-back launches
+  @simulator_only
+  Scenario: iPad 1 of 2 testing orientation with back-to-back launches
     When I rotate the device left, I should see the status bar and device have the same orientation
 
-  # flickers on ipad devices when device is in landscape mode
-  @flickering
+
   @launch
   @ipad_only
-  Scenario: 2 of 2 testing orientation with back-to-back launches
-    Then the device orientation should be "unknown" on the simulator and "down" on device
+  @simulator_only
+  Scenario: iPad 2 of 2 testing orientation with back-to-back launches
+    Then the device orientation should be "unknown" on the simulator and "left" on device
     And the status bar orientation should be "down"
-  ###########
-
-
+  ### END TEST RELAUNCHING ON SIMULATOR ###
 
   ###########
   # launch the app manually
@@ -72,20 +69,20 @@ Feature: testing rotation
 
   ############
   # cannot test on ipad because restarting sim does _not_ reset orientation
-#
-#  @ipad_only
-#  @launch
-#  Scenario: launch - 1 of 2 test rotation to any direction
-#    Then I rotate the device 4 times in a random direction
-#    Then the orientation of the status bar and device should be same
-#
-#
-#  @ipad_only
-#  @launch
-#  Scenario: launch - 2 of 2 test rotation to any direction
-#    Then the device orientation should be "unknown" on the simulator and "down" on device
-#    And the status bar orientation should be "down"
-#  #####
+  #
+  #  @ipad_only
+  #  @launch
+  #  Scenario: launch - 1 of 2 test rotation to any direction
+  #    Then I rotate the device 4 times in a random direction
+  #    Then the orientation of the status bar and device should be same
+  #
+  #
+  #  @ipad_only
+  #  @launch
+  #  Scenario: launch - 2 of 2 test rotation to any direction
+  #    Then the device orientation should be "unknown" on the simulator and "down" on device
+  #    And the status bar orientation should be "down"
+  #  #####
 
   @no_launch
   Scenario: no launch - 1 of 1 test rotation to any direction

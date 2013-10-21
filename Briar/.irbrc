@@ -74,6 +74,20 @@ def row_ids
   query("tableViewCell", @ai).compact.sort.each {|x| puts "* #{x}" }
 end
 
+
+def swipe_on_text_field(dir, field)
+  dev = device
+  if dev.ios7? && dev.simulator?
+    pending 'iOS 7 simulator detected: due to a bug in the iOS
+      Simulator, swiping does not work'
+  end
+  tf = "#{field} tf"
+  wait_for_view tf, 2
+  swipe(dir, {:query => "textField marked:'#{tf}'"})
+  2.times { step_pause }
+  tf
+end
+
 puts "loaded #{Dir.pwd}/.irbrc"
 puts "RESET_BETWEEN_SCENARIOS => '#{ENV['RESET_BETWEEN_SCENARIOS']}'"
 puts "        DEVICE_ENDPOINT => '#{ENV['DEVICE_ENDPOINT']}'"

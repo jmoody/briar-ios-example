@@ -37,8 +37,11 @@ typedef enum : NSInteger {
   return self;
 }
 
-- (void) configureAccessibility {
-  [super configureAccessibility];
+
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  
   self.view.accessibilityIdentifier = @"date related";
   self.buttonTime.accessibilityIdentifier = @"show time picker";
   self.buttonTime.tag = kTagButtonTime;
@@ -46,12 +49,7 @@ typedef enum : NSInteger {
   self.buttonDate.tag = kTagButtonDate;
   self.buttonDateAndTime.accessibilityIdentifier = @"show date and time picker";
   self.buttonDateAndTime.tag = kTagButtonDateAndTime;
-}
 
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  [self configureAccessibility];
 }
 
 - (void)didReceiveMemoryWarning {

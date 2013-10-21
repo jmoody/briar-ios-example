@@ -53,7 +53,7 @@ Then(/^the device orientation should be "([^"]*)" on the simulator and "([^"]*)"
 
   actual_device_o = stats[:device]
   if actual_device_o.eql?('face up') or actual_device_o.eql?('face down')
-    pending "testing against orientation '#{actual_device_o}' is not supported - move your device to an upright position"
+    pending "testing against orientation '#{actual_device_o}' is not supported for this test - move your device to an upright position"
   end
 
   is_sim = device.simulator?

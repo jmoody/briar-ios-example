@@ -48,8 +48,7 @@ static NSString *const kIdButton = @"the button";
 - (void)viewDidLoad {
   [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-  self.view.accessibilityIdentifier = @"text related";
-  
+ 
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc addObserver:self
          selector:@selector(keyboardWillShow:)
@@ -77,8 +76,9 @@ static NSString *const kIdButton = @"the button";
   _textViewBottom.accessibilityIdentifier = kIdBottomTv;
   
   _button.accessibilityIdentifier = kIdButton;
+  
+  self.view.accessibilityIdentifier = @"text related";
 }
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -97,6 +97,9 @@ static NSString *const kIdButton = @"the button";
 - (void) buttonTouchedDoneTextEditing:(id)sender {
   NSLog(@"done text editing button touched");
   if ([self.textFieldTop isFirstResponder]) { [self.textFieldTop resignFirstResponder]; }
+  if ([self.textFieldBottom isFirstResponder]) { [self.textFieldBottom resignFirstResponder]; }
+  if ([self.textViewTop isFirstResponder]) { [self.textViewTop resignFirstResponder]; }
+  if ([self.textViewBottom isFirstResponder]) { [self.textViewBottom resignFirstResponder]; }
 }
 
 - (IBAction)buttonTouched:(id)sender {
@@ -138,7 +141,9 @@ static NSString *const kIdButton = @"the button";
 
 - (void) handleSwipeOnTextField:(UISwipeGestureRecognizer *)aRecognizer {
   UIGestureRecognizerState state = [aRecognizer state];
+  NSLog(@"handling swipe with state '%d'", state);
   if (UIGestureRecognizerStateEnded == state) {
+    NSLog(@"handling swipe ended");
     UITextField *tf = (UITextField *)aRecognizer.view;
     tf.text =
     aRecognizer.direction == UISwipeGestureRecognizerDirectionRight ?

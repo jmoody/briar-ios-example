@@ -26,7 +26,13 @@ Feature: testing what happens when a view controller does not support an orienta
     # which means that as the there will be cases where the device
     # orientation will return a value that is not visually consistent
     # with the state simulator
+
+    ### UPDATE ####
+    # using the status_bar_orientation instead of the device_orientation
+    # seems to have fixed this issue so i am changing the expect orientation
+    # from "up" to "down"
     When I rotate the device so the home button is on the left
-    Then the status bar orientation should be "up"
+    Then the status bar orientation should be "down"
+    #Then the status bar orientation should be "up"
     ##################
 

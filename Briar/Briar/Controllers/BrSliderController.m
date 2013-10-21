@@ -399,10 +399,6 @@ static NSString *const k_aid_table = @"table";
 
 #pragma mark - Accessibility
 
-- (void) configureAccessibility {
-  self.view.accessibilityIdentifier = @"sliders";
-}
-
 #pragma mark - View Lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
