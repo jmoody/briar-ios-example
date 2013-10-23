@@ -199,6 +199,7 @@ typedef enum : NSUInteger {
     [touches enumerateObjectsUsingBlock:^(UITouch *touch, BOOL *stop) {
       CGPoint point = [touch locationInView:aWindow];
       NSLog(@"location of touch in window: %@", NSStringFromCGPoint(point));
+      NSLog(@"touched view: %@", [touch view]);
     }];
   };
 
