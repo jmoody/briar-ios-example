@@ -147,10 +147,10 @@ static NSString *const k_aid_table = @"table";
 - (UIColor *) colorForSliderBackgroundAtIndexPath:(NSIndexPath *) aIndexPath {
   NSInteger row = aIndexPath.row;
   switch (row) {
-    case kSliderRowOffice: return [[UIColor greenColor] colorWithAlphaComponent:0.05];
-    case kSliderRowScience: return [[UIColor purpleColor] colorWithAlphaComponent:0.05];
-    case kSliderRowWeather: return  [[UIColor cyanColor] colorWithAlphaComponent:0.05];
-    default: return [[UIColor blackColor] colorWithAlphaComponent:0.05];
+    case kSliderRowOffice: return [[UIColor greenColor] colorWithAlphaComponent:0.05f];
+    case kSliderRowScience: return [[UIColor purpleColor] colorWithAlphaComponent:0.05f];
+    case kSliderRowWeather: return  [[UIColor cyanColor] colorWithAlphaComponent:0.05f];
+    default: return [[UIColor blackColor] colorWithAlphaComponent:0.05f];
   }
 }
 
@@ -228,7 +228,7 @@ static NSString *const k_aid_table = @"table";
   UITableView *table = [self table];
   CGFloat maxW = CGRectGetWidth(table.frame);
   CGFloat x = 10;
-  CGRect frame = CGRectMake(10, y, maxW - (2.0 * x), h);
+  CGRect frame = CGRectMake(10, y, maxW - (2.0f * x), h);
   _sliderOffice = [[BrSliderView alloc]
                    initWithFrame:frame
                    type:BrSliderOffice
@@ -246,7 +246,7 @@ static NSString *const k_aid_table = @"table";
   UITableView *table = [self table];
   CGFloat maxW = CGRectGetWidth(table.frame);
   CGFloat x = 10;
-  CGRect frame = CGRectMake(10, y, maxW - (2.0 * x), h);
+  CGRect frame = CGRectMake(10, y, maxW - (2.0f * x), h);
   _sliderScience = [[BrSliderView alloc]
                     initWithFrame:frame
                     type:BrSliderScience
@@ -264,7 +264,7 @@ static NSString *const k_aid_table = @"table";
   UITableView *table = [self table];
   CGFloat maxW = CGRectGetWidth(table.frame);
   CGFloat x = 10;
-  CGRect frame = CGRectMake(10, y, maxW - (2.0 * x), h);
+  CGRect frame = CGRectMake(10, y, maxW - (2.0f * x), h);
   _sliderWeather = [[BrSliderView alloc]
                     initWithFrame:frame
                     type:BrSliderWeather

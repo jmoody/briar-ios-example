@@ -48,7 +48,6 @@
 }
 
 
-// disable this annoying initWithNibName
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   [self doesNotRecognizeSelector:_cmd];
   return nil;

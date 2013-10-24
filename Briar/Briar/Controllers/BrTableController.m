@@ -60,7 +60,7 @@ typedef enum : NSUInteger {
                                                         [NSBundle mainBundle],
                                                         @"the letter '%1$@' row",
                                                         @"ex.  the letter 'p' row");
-  return [NSString stringWithFormat:fmtStr, [self.titles objectAtIndex:aPath.row]];
+  return [NSString stringWithFormat:fmtStr, [self.titles objectAtIndex:(NSUInteger)aPath.row]];
 }
 
 - (UILabel *) labelForRowAtIndexPath:(NSIndexPath *) aPath {
@@ -85,7 +85,7 @@ typedef enum : NSUInteger {
 #pragma mark - UITableViewDataSource
 
 - (NSInteger) tableView:(UITableView *) aTableView numberOfRowsInSection:(NSInteger) aSection {
-  return [self.titles count];
+  return (NSInteger)[self.titles count];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *) aTableView {
@@ -144,7 +144,7 @@ typedef enum : NSUInteger {
                                                         [NSBundle mainBundle],
                                                         @"'%1$@' is a great letter!",
                                                         @"ex.  'p' is a greate letter!");
-  NSString *letter = [self.titles objectAtIndex:aIndexPath.row];
+  NSString *letter = [self.titles objectAtIndex:(NSUInteger)aIndexPath.row];
   NSString *lmsg = [NSString stringWithFormat:lmsgFmt, letter];
   NSString *lcancel = NSLocalizedString(@"Cancel", @"tables:  title cancel-alert button on alphabet alert");
   NSString *lok = NSLocalizedString(@"OK", @"tables: title alert-action button on alphabet alert");

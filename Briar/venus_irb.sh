@@ -4,14 +4,6 @@ bundle update
 bundle install
 rbenv rehash
 
-# send a killall to instruments
-# tried all manner of output redirects like:
-#
-# killall -9 instruments >/dev/null 2>&1`
-#
-# but instruments continued to spam the shell
-#INSTRUMENTS_SPAM=`killall -9 instruments >/dev/null 2>&1`
-
 IP=`cat ~/.xamarin/devices/venus/ip`
 UDID=`cat ~/.xamarin/devices/venus/udid`
 PLAYBACK_DIR="features/playback" \

@@ -63,7 +63,7 @@ typedef enum : NSUInteger {
   
   CGRect frame = self.window.frame;
   UIView *veil = [[UIView alloc] initWithFrame:frame];
-  [veil setYWithY:frame.size.height * -1.0];
+  [veil setYWithY:frame.size.height * -1.0f];
   veil.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"blueprint-background-320x480"]];
   veil.tag = kTagSecurityVeil;
   veil.accessibilityIdentifier = @"security veil";
