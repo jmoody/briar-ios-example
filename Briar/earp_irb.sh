@@ -14,10 +14,11 @@ bundle install
 IP=`cat ~/.xamarin/devices/earp/ip`
 UDID=`cat ~/.xamarin/devices/earp/udid`
 PLAYBACK_DIR="features/playback" \
-CALABASH_FULL_CONSOLE_OUTPUT="1" \
-DEVICE="iphone" \
+CALABASH_FULL_CONSOLE_OUTPUT=1 \
+DEBUG=1 \
+DEVICE=iphone \
 DEVICE_TARGET=${UDID} \
-BUNDLE_ID="com.littlejoysoftware.Briar-cal" \
+BUNDLE_ID=com.littlejoysoftware.Briar-cal \
 DEVICE_ENDPOINT=${IP} \
 IRBRC=.irbrc \
 bundle exec irb
