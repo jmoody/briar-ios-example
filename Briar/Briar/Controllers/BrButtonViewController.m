@@ -1,35 +1,53 @@
-#import "BrFirstViewController.h"
+#import "BrButtonViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import "BrGlobals.h"
 
 typedef enum : NSInteger {
   kTagAlert = 1010,
-  kTagSheet = 2020
+  kTagSheet = 2020,
+  kTagSegCon = 3030,
+  kTagImageView,
+  kTagButtonShowSheet,
+  kTagButtonShowEmail,
+  kTagButtonShowAlert
 } view_tags;
+
+
+typedef enum : NSUInteger {
+  kIndexImageChooser_Sand = 0,
+  kIndexImageChooser_Grass,
+  kIndexImageChooser_Water,
+  kNumberOfImageChooserSegments
+} BrImageChooserSegConIndex;
 
 
 
 static NSString *const kAIButtonShowSheet = @"show sheet";
 static NSString *const kAIButtonShowEmail = @"email";
 static NSString *const kAIButtonShowAlert = @"show alert";
-static NSString *const kAILabelTitle = @"title";
+static NSString *const kAISegmentedControl = @"image chooser";
+static NSString *const kAIImageView = @"nature scenes";
 
-@interface BrFirstViewController ()
+@interface BrButtonViewController ()
 <UIActionSheetDelegate,
 MFMailComposeViewControllerDelegate,
 UIAlertViewDelegate>
 
+- (NSString *) titleForSegConSegment:(BrImageChooserSegConIndex) aIndex;
+
+- (UIImage *) imageForWellWithSegConSegment:(BrImageChooserSegConIndex) aIndex;
+- (NSString *) accessLabelForImageViewSecConSegment:(BrImageChooserSegConIndex) aIndex;
 
 @end
 
-@implementation BrFirstViewController
+@implementation BrButtonViewController
 
 @synthesize frames = _frames;
 
 - (id)init {
   self = [super init];
   if (self) {
-    self.title = NSLocalizedString(@"First", @"first view: title");
+    self.title = NSLocalizedString(@"Buttons", @"buttons controller");
     self.tabBarItem.image = [UIImage imageNamed:@"first"];
   }
   return self;
@@ -90,6 +108,15 @@ UIAlertViewDelegate>
   alert.accessibilityIdentifier = @"alert";
   alert.accessibilityLabel = @"Alarmruf";
   [alert show];
+}
+
+
+- (IBAction)segmentedControlChanged:(UISegmentedControl *)sender {
+  NSLog(@"segmented control changed: '%d'", sender.selectedSegmentIndex);
+  BrImageChooserSegConIndex idx = (BrImageChooserSegConIndex)[sender selectedSegmentIndex];
+  UIImageView *iv = [self imageView];
+  iv.accessibilityLabel = [self accessLabelForImageViewSecConSegment:idx];
+  iv.image = [self imageForWellWithSegConSegment:idx];
 }
 
 #pragma mark - UIAlertView Delegate
@@ -157,13 +184,9 @@ UIAlertViewDelegate>
 
 #pragma mark - Rotation
 
-
 - (NSArray *) viewsToRotate {
   NSMutableArray *array = [NSMutableArray array];
-  
-  UILabel *tl = self.labelTitle;
-  if (tl != nil) { [array addObject:tl]; }
-  
+    
   UIButton *bse = self.buttonShowEmail;
   if (bse != nil) { [array addObject:bse]; }
   
@@ -172,6 +195,12 @@ UIAlertViewDelegate>
   
   UIButton *bsm = self.buttonShowAlert;
   if (bsm != nil) { [array addObject:bsm]; }
+  
+  UISegmentedControl *sc = self.segmentedControl;
+  if (sc != nil) { [array addObject:sc]; }
+    
+  UIImageView *iv = self.imageView;
+  if (iv != nil) { [array addObject:iv]; }
   
   return [NSArray arrayWithArray:array];
 }
@@ -193,22 +222,22 @@ UIAlertViewDelegate>
     UIInterfaceOrientation o = aOrientation;
     CGFloat ipadYAdj = br_is_ipad() ? 20 : 0;
     CGFloat iphone5_X_adj = br_is_iphone_5() ? 44 : 0;
+        
+    if ([kAIButtonShowAlert isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20 + iphone5_X_adj, 54 + ipadYAdj, 124, 44); }
+    if ([kAIButtonShowAlert isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 78 + iphone5_X_adj, 280, 44); }
     
+    if ([kAIButtonShowEmail isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(178 + iphone5_X_adj, 54 + ipadYAdj , 124, 44); }
+    if ([kAIButtonShowEmail isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 130 + iphone5_X_adj, 280, 44); }
 
-    if ([kAILabelTitle isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20 + iphone5_X_adj, 64 + ipadYAdj, 440, 44); }
-    if ([kAILabelTitle isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 80 + iphone5_X_adj, 280, 44); }
-    
-    if ([kAIButtonShowAlert isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20 + iphone5_X_adj, 128 + ipadYAdj, 124, 44); }
-    if ([kAIButtonShowAlert isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 188 + iphone5_X_adj, 280, 44); }
-    
-    if ([kAIButtonShowEmail isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(178 + iphone5_X_adj, 128 + ipadYAdj , 124, 44); }
-    if ([kAIButtonShowEmail isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 240 + iphone5_X_adj, 280, 44); }
+    if ([kAIButtonShowSheet isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(334 + iphone5_X_adj, 54 + ipadYAdj , 124, 44); }
+    if ([kAIButtonShowSheet isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 184 + iphone5_X_adj, 280, 44); }
 
-    if ([kAIButtonShowSheet isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(334 + iphone5_X_adj, 128 + ipadYAdj , 124, 44); }
-    if ([kAIButtonShowSheet isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 288 + iphone5_X_adj, 280, 44); }
+    if ([kAISegmentedControl isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20 + iphone5_X_adj, 102 + ipadYAdj , 280, 44); }
+    if ([kAISegmentedControl isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 246 + iphone5_X_adj, 280, 44); }
 
-    
-   
+    if ([kAIImageView isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(22 + iphone5_X_adj, 150 + ipadYAdj , 320, 120); }
+    if ([kAIImageView isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(0, 298 + iphone5_X_adj, 320, 120); }
+
     [_frames setObject:NSStringFromCGRect(frame) forKey:key];
   }
   
@@ -223,18 +252,62 @@ UIAlertViewDelegate>
                    }];
 }
 
+#pragma mark - Accessibility
+
+- (NSString *) titleForSegConSegment:(BrImageChooserSegConIndex)aIndex {
+  switch (aIndex) {
+    case kIndexImageChooser_Sand: return @"sand";
+    case kIndexImageChooser_Grass: return @"grass";
+    case kIndexImageChooser_Water: return @"water";
+    default: return @"FIXME";
+  }
+}
+
+
+- (UIImage *) imageForWellWithSegConSegment:(BrImageChooserSegConIndex) aIndex {
+  switch (aIndex) {
+    case kIndexImageChooser_Sand: return [UIImage imageNamed:@"sand"];
+    case kIndexImageChooser_Grass: return [UIImage imageNamed:@"grass"];
+    case kIndexImageChooser_Water: return [UIImage imageNamed:@"water"];
+    default: return nil;
+  }
+}
+
+- (NSString *) accessLabelForImageViewSecConSegment:(BrImageChooserSegConIndex) aIndex {
+  switch (aIndex) {
+    case kIndexImageChooser_Sand: return @"zen sand sculpture";
+    case kIndexImageChooser_Grass: return @"cool grass";
+    case kIndexImageChooser_Water: return @"mossy brook";
+    default: return @"FIXME";
+  }
+}
+
 
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  self.view.accessibilityIdentifier = @"first";
-  self.labelTitle.accessibilityIdentifier = kAILabelTitle;
+  self.view.accessibilityIdentifier = @"buttons";
   self.buttonShowEmail.accessibilityIdentifier = kAIButtonShowEmail;
-  self.buttonShowAlert.accessibilityIdentifier = kAIButtonShowAlert;
-  self.buttonShowSheet.accessibilityIdentifier = kAIButtonShowSheet;
+  self.buttonShowEmail.tag = kTagButtonShowEmail;
   
+  self.buttonShowAlert.accessibilityIdentifier = kAIButtonShowAlert;
+  self.buttonShowAlert.tag = kTagButtonShowAlert;
+  
+  self.buttonShowSheet.accessibilityIdentifier = kAIButtonShowSheet;
+  self.buttonShowSheet.tag = kTagButtonShowSheet;
+  
+  UISegmentedControl *segcon = [self segmentedControl];
+  segcon.accessibilityIdentifier = kAISegmentedControl;
+  segcon.tag = kTagSegCon;
+  
+  for (NSUInteger idx = 0; idx < kNumberOfImageChooserSegments; idx++) {
+    [segcon setTitle:[self titleForSegConSegment:idx] forSegmentAtIndex:idx];
+  }
+  
+  self.imageView.accessibilityIdentifier = kAIImageView;
+  self.imageView.tag = kTagImageView;
   
 }
 
@@ -251,6 +324,9 @@ UIAlertViewDelegate>
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  UISegmentedControl *segcon = [self segmentedControl];
+  [segcon setSelectedSegmentIndex:kIndexImageChooser_Sand];
+  [self segmentedControlChanged:segcon];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -264,6 +340,5 @@ UIAlertViewDelegate>
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
 }
-
 
 @end

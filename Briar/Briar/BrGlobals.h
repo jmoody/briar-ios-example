@@ -29,6 +29,15 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+  kTabbarIndexButtons = 0,
+  kTabbarIndexText,
+  kTabbarIndexDate,
+  kTabbarIndexTable,
+  kTabbarIndexSliders
+} BrTabbarIndex;
+
+
 NS_INLINE BOOL br_is_ipad() {
   static BOOL shared = NO;
   static dispatch_once_t onceToken;
@@ -37,8 +46,6 @@ NS_INLINE BOOL br_is_ipad() {
   });
   return shared;
 }
-
-
 
 extern NSString *const k_br_ios_700;
 extern NSString *const k_br_ios_600;

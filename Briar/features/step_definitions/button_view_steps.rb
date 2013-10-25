@@ -28,10 +28,10 @@ Then(/^I dismiss the (action sheet|alert|email compose view) with the cancel but
     touch_alert_button 'Cancel'
   elsif what.eql?('email compose view')
     if device_configured_for_email
-      delete_draft_and_wait_for 'first'
+      delete_draft_and_wait_for 'buttons'
     else
       touch("view marked:'OK'")
-      wait_for_view 'first'
+      wait_for_view 'buttons'
     end
   end
 end

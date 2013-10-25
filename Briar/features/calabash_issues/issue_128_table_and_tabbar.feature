@@ -20,7 +20,6 @@ Feature: issue 128 - should be able to touch rows that are partially hidden by t
   #  the tab button Text is touched and not the j row
     When I touch the last row I should see the i or j alert
 
-  @wip
   Scenario: if the first visible row of a table is partially hidden by the nav bar i should be to touch the row and not the nav bar
     #expected
     When I touch the "c" row I should the the associated alert

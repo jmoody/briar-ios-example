@@ -1,5 +1,4 @@
 @date_picker
-@calabash_date_picker
 Feature: calabash date picker features
 
 

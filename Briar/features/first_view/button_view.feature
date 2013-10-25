@@ -1,8 +1,8 @@
-@first_view
-Feature:  the first view
+@buttons
+Feature:  the button view
 
-  Background: get me to the first view
-    When I touch the "First" tab I should see the "first" view
+  Background: get me to the button view
+    When I touch the "Buttons" tab I should see the "buttons" view
 
   # flickers on iPhone when not launching - the 'show sheet' button is sometimes
   # not displayed because the layout is incorrect

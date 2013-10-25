@@ -33,7 +33,7 @@ Before do |scenario|
 
   backdoor('calabash_backdoor_reset_app:', 'ignorable')
   req_elms = ['tabBar',
-              "navigationItemView marked:'First'"]
+              "navigationItemView marked:'Buttons'"]
 
   msg = 'timed out waiting for backdoor reset'
   wait_for_elements_exist(req_elms,

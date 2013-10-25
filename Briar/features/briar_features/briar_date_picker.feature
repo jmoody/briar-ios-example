@@ -1,5 +1,4 @@
 @date_picker
-@briar_date_picker
 Feature: briar date picker steps
 
   # todo

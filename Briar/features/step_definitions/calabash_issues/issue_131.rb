@@ -37,7 +37,7 @@ end
 
 
 Then(/^I should not be able to see the elements on the topmost view$/) do
-  views = ['show modal', 'email', 'show sheet', 'first']
+  views = ['show modal', 'email', 'show sheet', 'buttons']
   timeout = 2.0
 
   elements = views.map { |view_id| "view marked:'#{view_id}'"}

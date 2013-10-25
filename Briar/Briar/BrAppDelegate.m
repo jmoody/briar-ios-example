@@ -1,5 +1,5 @@
 #import "BrAppDelegate.h"
-#import "BrFirstViewController.h"
+#import "BrButtonViewController.h"
 #import "BrTextRelatedController.h"
 #import "BrDatePickerController.h"
 #import "BrCategories.h"
@@ -7,7 +7,6 @@
 #import "BrNavigationController.h"
 #import "BrSliderController.h"
 #import "BrGlobals.h"
-
 
 @implementation BrWindow
 
@@ -20,20 +19,9 @@
 
 @end
 
-
-
 typedef enum : NSUInteger {
   kTagSecurityVeil = NSNotFound
 } view_tags;
-
-
-typedef enum : NSUInteger {
-  kTabbarIndexFirst = 0,
-  kTabbarIndexText,
-  kTabbarIndexDate,
-  kTabbarIndexTable,
-  kTabbarIndexSliders
-} BrTabbarIndex;
 
 
 @interface BrAppDelegate ()
@@ -155,7 +143,7 @@ typedef enum : NSUInteger {
     // otherwise checkin view controllers crash with bad access
     [navcon popToRootViewControllerAnimated:YES];
     
-    if (idx == kTabbarIndexFirst) {
+    if (idx == kTabbarIndexButtons) {
 
     } else if (idx == kTabbarIndexText) {
       
@@ -166,12 +154,12 @@ typedef enum : NSUInteger {
     } else if (idx == kTabbarIndexSliders) {
       BrSliderController *scon = (BrSliderController *)[navcon topViewController];
       [scon resetSliders];
+    } else if (idx == kTabbarIndexSliders) {
+      
     }
   }];
   
-
-  
-  [self.tabBarController setSelectedIndex:kTabbarIndexFirst];
+  [self.tabBarController setSelectedIndex:kTabbarIndexButtons];
   return @"YES";
 }
 
@@ -204,7 +192,7 @@ typedef enum : NSUInteger {
   };
 
 
-  UIViewController *first_vc = [BrFirstViewController new];
+  UIViewController *first_vc = [BrButtonViewController new];
   BrNavigationController *first_nc = [[BrNavigationController alloc]
                                   initWithRootViewController:first_vc];
   
@@ -232,6 +220,8 @@ typedef enum : NSUInteger {
   
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
+  
+  [self.tabBarController setSelectedIndex:kTabbarIndexButtons];
   return YES;
 }
 

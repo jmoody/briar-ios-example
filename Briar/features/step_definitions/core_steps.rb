@@ -12,10 +12,6 @@ end
 
 World(Briar::Core)
 
-Then /^I should see the first view has the correct title$/ do
-  should_see_view_with_text 'First View'
-end
-
 Then /^I should see the text related views after touching the Text tab$/ do
   navigate_to_text_related_tab
 end
