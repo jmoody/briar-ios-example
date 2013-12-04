@@ -645,30 +645,6 @@
       <ConfigurationWrapper RunnerId="RubyRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="show_simulator: features" type="RakeRunConfigurationType" factoryName="Rake" temporary="true">
-      <module name="features" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$/../../../briar" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs />
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="show_simulator" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="i should be able to identify an email view: features" type="CucumberRunConfigurationType" factoryName="Cucumber" temporary="true">
       <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
       <module name="features" />
@@ -708,6 +684,30 @@
       <ConfigurationWrapper RunnerId="RubyRunner" />
       <method />
     </configuration>
+    <configuration default="false" name="show_simulator: features" type="RakeRunConfigurationType" factoryName="Rake" temporary="true">
+      <module name="features" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$/../../../briar" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="show_simulator" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
+      <method />
+    </configuration>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/../../../briar">
@@ -734,15 +734,14 @@
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.3.5, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="calabash-common (v0.0.1, rbenv: 1.9.3-p448) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.3.8, rbenv: 1.9.3-p448) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.4, rbenv: 1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.3.10, rbenv: 1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.5, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="edn (v1.0.2, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="geocoder (v1.1.8, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gherkin (v2.12.2, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="httpclient (v2.3.4.1, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.8.1, rbenv: 1.9.3-p448) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="location-one (v0.0.10, rbenv: 1.9.3-p448) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="mime-types (v1.25, rbenv: 1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mime-types (v2.0, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.8.2, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_test (v0.0.2, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parslet (v1.4.0, rbenv: 1.9.3-p448) [gem]" level="application" />
@@ -752,7 +751,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rest-client (v1.6.7, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="retriable (v1.3.3.1, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v0.9.9, rbenv: 1.9.3-p448) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="run_loop (v0.0.21, rbenv: 1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="run_loop (v0.1.0.pre1, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sim_launcher (v0.4.6, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sinatra (v1.4.4, rbenv: 1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="slowhandcuke (v0.0.3, rbenv: 1.9.3-p448) [gem]" level="application" />
