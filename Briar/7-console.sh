@@ -1,6 +1,6 @@
 #!/bin/sh
 
-bundle update && bundle install
+#bundle update && bundle install
 
 #DEV_DIR=`xcode-select --print-path | tr -d '\n'`
 #IOS_SIM="${DEV_DIR}/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app"
