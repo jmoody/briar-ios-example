@@ -12,6 +12,10 @@ end
 
 World(Briar::Core)
 
+Given(/^I am looking at the Text tab$/) do
+  navigate_to_text_related_tab
+end
+
 Then /^I should see the text related views after touching the Text tab$/ do
   navigate_to_text_related_tab
 end
@@ -26,3 +30,5 @@ Given(/^that I am looking at the Date tab$/) do
     wait_for_view 'date related'
   end
 end
+
+
