@@ -69,6 +69,7 @@ static NSString *const kIdButton = @"the button";
          @(UISwipeGestureRecognizerDirectionRight)]) {
       [self addSwipeRecognizerToTextField:tf
                                 direction:dir.unsignedIntegerValue];
+      tf.keyboardType = UIKeyboardTypeEmailAddress;
     }
   }
   
@@ -245,7 +246,7 @@ static NSString *const kIdButton = @"the button";
     if ([kIdTopTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 160, 280, 30); }
     if ([kIdBottomTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 196, 280, 30); }
     
-    if ([kIdButton isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(95, 269, 230, 44); }
+    if ([kIdButton isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 269, 230, 44); }
     if ([kIdButton isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(330, 158 + ipadYAdj, 230, 44); }
 
     

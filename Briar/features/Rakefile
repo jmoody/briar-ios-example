@@ -10,11 +10,7 @@ task :show_simulator do
 end
 
 task :xamarin do
-  sh 'xamarin-build.sh'
-end
-
-task :xamarin do
-  system('xamarin-upload-example.sh')
+  exec 'xamarin-build.sh'
 end
 
 task :tag_report do
@@ -95,6 +91,50 @@ end
 task :sim6 do ios_irb(:simulator, {:sdk_version => sdk_versions[:ios6]}) end
 task :sim7 do ios_irb(:simulator, {:sdk_version => sdk_versions[:ios7]}) end
 
+def simulator_hash
+  {:iphone => 'iPhone Retina (3.5-inch)',
+   :iphone_4in => 'iPhone Retina (4-inch)',
+   :iphone_4in_64 => 'iPhone Retina (4-inch 64-bit)',
+   :ipad => 'iPad',
+   :ipad_r => 'iPad Retina',
+   :ipad_r_64 => 'iPad Retina (64-bit)'}
+end
+
+def default_simulated_device
+  res = `defaults read com.apple.iphonesimulator "SimulateDevice"`.chomp
+  simulator_hash.each { |key, value|
+    return key if res.eql?(value)
+  }
+  raise "could not find '#{res}' in hash values '#{simulator_hash}'"
+end
+
+def kill_simulator
+  sh "/usr/bin/osascript -e 'tell application \"#{ENV['DEVELOPER_DIR']}/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app\" to quit'"
+end
+
+def set_default_simulator(device_key)
+  hash = simulator_hash
+  unless hash[device_key]
+    raise "#{device_key} was not one of '#{hash.keys}'"
+  end
+
+  current_device = default_simulated_device()
+  unless current_device.eql?(device_key)
+    value = hash[device_key]
+    puts "setting default simulator to '#{value}' using device key '#{device_key}'"
+    `defaults write com.apple.iphonesimulator "SimulateDevice" '"#{value}"'`
+    kill_simulator
+  end
+end
+
+
+task :default_simulator do puts "#{default_simulated_device()}" end
+
+task :set_simulator, :device_key do |t, args|
+  key = args.device_key().to_sym
+  set_default_simulator(key)
+end
+
 namespace :moody do
 
   # calabash device consoles
@@ -103,41 +143,33 @@ namespace :moody do
   task :earp do ios_irb('earp') end
   task :pluto do ios_irb('pluto') end
 
-  #noinspection RubyUnusedLocalVariable
-  task :deploy, :device do |t, args|
-    sh './xamarin-build.sh'
-    device = args.device
-    udid_cmd = "cat ~/.xamarin/devices/#{device}/udid | tr -d '\n'"
-    udid = `#{udid_cmd}`
-    bundle='./xamarin/Briar-cal.app'
-    sh "~/bin/ios-deploy --id #{udid} --bundle #{bundle}"
-  end
-
-  #noinspection RubyUnusedLocalVariable
-  task :remove, :device do |t, args|
-    device = args.device
-    udid_cmd = "cat ~/.xamarin/devices/#{device}/udid | tr -d '\n'"
-    udid = `#{udid_cmd}`
-    bundle_id = bundle_id()
+  def ideviceinstaller(device, cmd)
+    cmds = [:install, :uninstall, :reinstall]
+    raise "#{cmd} must be one of '#{cmds}'" unless cmds.include? cmd
+    udid =  read_device_info(device, :udid)
     bin_dir='~/bin/libimobiledevice'
-    sh "export DYLD_LIBRARY_PATH=#{bin_dir}; #{bin_dir}/ideviceinstaller -U #{udid} --uninstall #{bundle_id}"
+
+    if cmd == :install
+      ipa='./xamarin/Briar-cal.ipa'
+      sh "export DYLD_LIBRARY_PATH=#{bin_dir}; #{bin_dir}/ideviceinstaller -U #{udid} --install #{ipa}"
+    elsif cmd == :uninstall
+      bundle_id = bundle_id()
+      sh "export DYLD_LIBRARY_PATH=#{bin_dir}; #{bin_dir}/ideviceinstaller -U #{udid} --uninstall #{bundle_id}"
+    else
+      ideviceinstaller(device, :uninstall)
+      ideviceinstaller(device, :install)
+    end
   end
 
-  #noinspection RubyUnusedLocalVariable
-  task :reinstall, :device do |t, args|
-    device = args.device
-    Rake::Task['moody:remove'].invoke(device)
-    Rake::Task['moody:deploy'].invoke(device)
-  end
-
-  task :venus_reinstall do Rake::Task['moody:reinstall'].invoke('venus') end
-  task :neptune_reinstall do Rake::Task['moody:reinstall'].invoke('neptune') end
-  task :earp_reinstall do Rake::Task['moody:reinstall'].invoke('earp') end
+  task :pluto_reinstall do ideviceinstaller('pluto', :reinstall) end
+  task :neptune_reinstall do ideviceinstaller('neptune', :reinstall) end
+  task :venus_reinstall do ideviceinstaller('venus', :reinstall) end
+  task :earp_reinstall do ideviceinstaller('earp', :reinstall) end
 
   # test cloud
   #noinspection RubyUnusedLocalVariable
   task :tc, :device_set, :profile do |t, args|
-    sh './xamarin-build.sh'
+    exec './xamarin-build.sh'
 
     api_key= `cat ~/.xamarin/test-cloud/moody | tr -d '\n'`
 
