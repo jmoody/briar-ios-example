@@ -18,6 +18,7 @@ Feature: issue 116 - should be able to touch text field by mark or placeholder
     Then I touch the "placeholder!" text field
 
     # dismiss the keyboard
+    Then I should be able to dock the keyboard
     Then I am done text editing
     Then I should not see the keyboard
 

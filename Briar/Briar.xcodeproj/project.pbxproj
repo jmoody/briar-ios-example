@@ -98,6 +98,11 @@
 		F57582A51819F9030006FD60 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = F575829A1819F9030006FD60 /* water.png */; };
 		F57582A61819F9030006FD60 /* water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F575829B1819F9030006FD60 /* water@2x.png */; };
 		F57582A71819F9030006FD60 /* water@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F575829B1819F9030006FD60 /* water@2x.png */; };
+		F58B6DED1868732F0042191C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */; };
+		F58B6DEF186873490042191C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58B6DEE186873490042191C /* QuartzCore.framework */; };
+		F58B6DF01868734F0042191C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58B6DEE186873490042191C /* QuartzCore.framework */; };
+		F58B6DF3186873C70042191C /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F58B6DEA186872BC0042191C /* libReveal.dylib */; };
+		F58B6DF4186873CB0042191C /* libReveal.dylib in Resources */ = {isa = PBXBuildFile; fileRef = F58B6DEA186872BC0042191C /* libReveal.dylib */; };
 		F58F093316F29CD6007CFE50 /* BrCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F093216F29CD6007CFE50 /* BrCategories.m */; };
 		F58F093416F29CD6007CFE50 /* BrCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = F58F093216F29CD6007CFE50 /* BrCategories.m */; };
 		F58F093B16F32FF9007CFE50 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58F093A16F32FF9007CFE50 /* MessageUI.framework */; };
@@ -282,6 +287,8 @@
 		F57582991819F9030006FD60 /* sand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sand@2x.png"; sourceTree = "<group>"; };
 		F575829A1819F9030006FD60 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
 		F575829B1819F9030006FD60 /* water@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "water@2x.png"; sourceTree = "<group>"; };
+		F58B6DEA186872BC0042191C /* libReveal.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libReveal.dylib; path = ../ThirdParty/Reveal/libReveal.dylib; sourceTree = "<group>"; };
+		F58B6DEE186873490042191C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F58F093116F29CD6007CFE50 /* BrCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrCategories.h; sourceTree = "<group>"; };
 		F58F093216F29CD6007CFE50 /* BrCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrCategories.m; sourceTree = "<group>"; };
 		F58F093A16F32FF9007CFE50 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -358,6 +365,7 @@
 				01d93763067c68ff5edfb415 /* Foundation.framework in Frameworks */,
 				532f1a9bf8dd52b64f741fd5 /* CoreGraphics.framework in Frameworks */,
 				5f0fd17902431e7fd52dcdc4 /* CFNetwork.framework in Frameworks */,
+				F58B6DF01868734F0042191C /* QuartzCore.framework in Frameworks */,
 				F58F093C16F33002007CFE50 /* MessageUI.framework in Frameworks */,
 				c3cc1892a54542ba9cde1f42 /* calabash.framework in Frameworks */,
 			);
@@ -367,9 +375,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F58B6DEF186873490042191C /* QuartzCore.framework in Frameworks */,
 				F58F093B16F32FF9007CFE50 /* MessageUI.framework in Frameworks */,
 				F568C42116E3C256007797F1 /* UIKit.framework in Frameworks */,
 				F568C42316E3C256007797F1 /* Foundation.framework in Frameworks */,
+				F58B6DED1868732F0042191C /* CFNetwork.framework in Frameworks */,
 				F568C42516E3C256007797F1 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,6 +418,8 @@
 		F568C41F16E3C256007797F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F58B6DEE186873490042191C /* QuartzCore.framework */,
+				F58B6DEA186872BC0042191C /* libReveal.dylib */,
 				F58F093A16F32FF9007CFE50 /* MessageUI.framework */,
 				F568C42016E3C256007797F1 /* UIKit.framework */,
 				F568C42216E3C256007797F1 /* Foundation.framework */,
@@ -647,6 +659,7 @@
 				096bb38a15c4380072adb3a3 /* Sources */,
 				7f7642a836cd061e9fa68808 /* Frameworks */,
 				c418708b56631e5eb9d8a697 /* Resources */,
+				F58B6DF6186874980042191C /* Run Script - sign reveal */,
 			);
 			buildRules = (
 			);
@@ -666,6 +679,7 @@
 				F568C41916E3C256007797F1 /* Sources */,
 				F568C41A16E3C256007797F1 /* Frameworks */,
 				F568C41B16E3C256007797F1 /* Resources */,
+				F58B6DF51868747E0042191C /* Run Script - sign reveal */,
 			);
 			buildRules = (
 			);
@@ -725,6 +739,7 @@
 				F568C43516E3C256007797F1 /* Default@2x.png in Resources */,
 				F5A6DBAD1810581A007D85C7 /* telescope@2x.png in Resources */,
 				F5A6DBAB1810581A007D85C7 /* telescope.png in Resources */,
+				F58B6DF4186873CB0042191C /* libReveal.dylib in Resources */,
 				F568C43716E3C256007797F1 /* Default-568h@2x.png in Resources */,
 				F5A6DB7F1810581A007D85C7 /* happy.png in Resources */,
 				F568C45616E3C69C007797F1 /* first.png in Resources */,
@@ -797,6 +812,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F58B6DF3186873C70042191C /* libReveal.dylib in Resources */,
 				F57582881819E8F60006FD60 /* 860-glasses.png in Resources */,
 				F5A6DBC21810581A007D85C7 /* snowy@2x.png in Resources */,
 				F5A6DBA81810581A007D85C7 /* beaker.png in Resources */,
@@ -925,6 +941,36 @@
 			shellScript = "bash versioning.bash \"${CONFIGURATION}\" \"${INFOPLIST_FILE}\" AppStore";
 			showEnvVarsInLog = 0;
 		};
+		F58B6DF51868747E0042191C /* Run Script - sign reveal */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script - sign reveal";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nif [ -n \"${CODE_SIGN_IDENTITY}\" ]; then\ncodesign -fs \"${CODE_SIGN_IDENTITY}\" \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libReveal.dylib\"\nfi";
+			showEnvVarsInLog = 0;
+		};
+		F58B6DF6186874980042191C /* Run Script - sign reveal */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script - sign reveal";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nif [ -n \"${CODE_SIGN_IDENTITY}\" ]; then\ncodesign -fs \"${CODE_SIGN_IDENTITY}\" \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libReveal.dylib\"\nfi";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1047,17 +1093,25 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joshua Moody (8QEQJFT59F)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../ThirdParty/Reveal",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Briar/Briar-Prefix.pch";
 				INFOPLIST_FILE = "Briar/Briar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Briar",
+					"$(SRCROOT)/../ThirdParty/Reveal",
+					"/Users/moody/git/briar-ios-example/ThirdParty/Reveal",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1072,17 +1126,25 @@
 				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../ThirdParty/Reveal",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Briar/Briar-Prefix.pch";
 				INFOPLIST_FILE = "Briar/Briar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Briar",
+					"$(SRCROOT)/../ThirdParty/Reveal",
+					"/Users/moody/git/briar-ios-example/ThirdParty/Reveal",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1097,17 +1159,25 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Joshua Moody (8QEQJFT59F)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../ThirdParty/Reveal",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Briar/Briar-Prefix.pch";
 				INFOPLIST_FILE = "Briar/Briar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Briar",
+					"$(SRCROOT)/../ThirdParty/Reveal",
+					"/Users/moody/git/briar-ios-example/ThirdParty/Reveal",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1230,6 +1300,10 @@
 				GCC_WARN_SHADOW = YES;
 				INFOPLIST_FILE = "Briar/Briar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/moody/git/briar-ios-example/ThirdParty/Reveal",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1248,6 +1322,10 @@
 				GCC_WARN_SHADOW = YES;
 				INFOPLIST_FILE = "Briar/Briar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/moody/git/briar-ios-example/ThirdParty/Reveal",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1328,6 +1406,10 @@
 				GCC_WARN_SHADOW = YES;
 				INFOPLIST_FILE = "Briar/Briar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/moody/git/briar-ios-example/ThirdParty/Reveal",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1401,6 +1483,10 @@
 				GCC_WARN_SHADOW = YES;
 				INFOPLIST_FILE = "Briar/Briar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/moody/git/briar-ios-example/ThirdParty/Reveal",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1421,17 +1507,25 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(SRCROOT)/../ThirdParty/Reveal",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Briar/Briar-Prefix.pch";
 				INFOPLIST_FILE = "Briar/Briar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Briar",
+					"$(SRCROOT)/../ThirdParty/Reveal",
+					"/Users/moody/git/briar-ios-example/ThirdParty/Reveal",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

@@ -1,10 +1,7 @@
 #!/bin/sh
-#!/bin/sh
 
 PRODUCT_NAME="Briar-cal"
 SCHEME="Briar-cal"
-SIGNING_IDENTITY="iPhone Distribution: Joshua Moody"
-PROVISIONING_PROFILE="~/.xamarin/ios-resign/ljs/F4854C99-1BA3-44E2-954D-3B47D4083DDA.mobileprovision"
 
 echo "INFO: xcodebuild"
 xcodebuild -scheme ${SCHEME} archive -configuration Release -sdk iphoneos > /dev/null
@@ -17,27 +14,31 @@ IPA="${HOME}/tmp/${PRODUCT_NAME}.ipa"
 
 
 echo "INFO: xcrun PackageApplication"
-xcrun -sdk iphoneos PackageApplication -v "${APP}" -o "${IPA}" --sign "${SIGNING_IDENTITY}" --embed "${PROVISIONING_PROFILE}"
-#xcrun -sdk iphoneos PackageApplication -v "${APP}" -o "${IPA}" > /dev/null
 
+
+# use this strategy for dealing with 3rd party ipas that have been resigned
+# with briar resign
+#SIGNING_IDENTITY="iPhone Distribution: Joshua Moody"
+#PROVISIONING_PROFILE="${HOME}/.xamarin/ios-resign/ljs/F4854C99-1BA3-44E2-954D-3B47D4083DDA.mobileprovision"
+#xcrun -sdk iphoneos PackageApplication -v "${APP}" -o "${IPA}" --sign "${SIGNING_IDENTITY}" --embed "${PROVISIONING_PROFILE}"
+
+# use this strategy for Briar-cal
+xcrun -sdk iphoneos PackageApplication -v "${APP}" -o "${IPA}" > /dev/null
 
 echo "INFO: copying files"
 cp "${IPA}" ./xamarin/
 cp -r "${APP}" ./xamarin/
 cp cucumber.yml ./xamarin/
 
-cd xamarin
-echo "source 'https://rubygems.org'" > Gemfile
-echo "gem 'briar', '0.1.3'" >> Gemfile
+echo "source 'https://rubygems.org'" > ./xamarin/Gemfile
+echo "gem 'briar', '0.1.3'" >> ./xamarin/Gemfile
 
 echo "INFO: cleaning up"
 
-rm -rf features/Gemfile
-rm -rf features/Gemfile.lock
-rm -rf features/Rakefile
-rm -rf features/.bundle
-rm -rf features/.idea
+rm -rf ./xamarin/features/Gemfile
+rm -rf ./xamarin/features/Gemfile.lock
+rm -rf ./xamarin/features/Rakefile
+rm -rf ./xamarin/features/.bundle
+rm -rf ./xamarin/features/.idea
 
 
-
-  

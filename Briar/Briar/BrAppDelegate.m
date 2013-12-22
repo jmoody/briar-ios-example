@@ -7,6 +7,7 @@
 #import "BrNavigationController.h"
 #import "BrSliderController.h"
 #import "BrGlobals.h"
+#import <dlfcn.h>
 
 @implementation BrWindow
 
@@ -36,6 +37,32 @@ typedef enum : NSUInteger {
 @end
 
 @implementation BrAppDelegate
+
+
+- (void) loadReveal {
+  if (br_is_iOS_5()) {
+    NSLog(@"skipping Reveal on iOS 5 because it is not supported");
+    return;
+  }
+  
+  NSString *revealLibName = @"libReveal";
+  NSString *revealLibExtension = @"dylib";
+  NSString *dyLibPath = [[NSBundle mainBundle] pathForResource:revealLibName ofType:revealLibExtension];
+  NSLog(@"Loading dynamic library: %@", dyLibPath);
+  
+  void *revealLib = NULL;
+  revealLib = dlopen([dyLibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
+  
+
+  if (revealLib == NULL)
+  {
+    char *error = dlerror();
+    NSLog(@"dlopen error: %s", error);
+    NSString *message = [NSString stringWithFormat:@"%@.%@ failed to load with error: %s", revealLibName, revealLibExtension, error];
+    [[[UIAlertView alloc] initWithTitle:@"Reveal library could not be loaded" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+  }
+}
+
 
 - (NSString *) calabash_backdoor_configured_for_mail:(NSString *) aIgnoreable {
   return [MFMailComposeViewController canSendMail] ? @"YES" : @"NO";
@@ -222,6 +249,9 @@ typedef enum : NSUInteger {
   [self.window makeKeyAndVisible];
   
   [self.tabBarController setSelectedIndex:kTabbarIndexButtons];
+  
+  [self loadReveal];
+  
   return YES;
 }
 

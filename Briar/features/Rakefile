@@ -1,12 +1,18 @@
 require 'irb'
 
-task :activate_simulator do
+def activate_simulator
   sh "/usr/bin/osascript -e 'tell application \"#{ENV['DEVELOPER_DIR']}/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app\" to activate'"
 end
 
-task :show_simulator do
-  Rake::Task['activate_simulator'].invoke
+task :launch_sim do activate_simulator end
+
+def activate_rubymine
   sh "/usr/bin/osascript -e 'tell application \"RubyMine\" to activate'"
+end
+
+task :activate_rubymine do
+  activate_simulator
+  activate_rubymine
 end
 
 task :xamarin do
@@ -32,7 +38,7 @@ def read_device_info (device, kind)
 end
 
 # controls the launching of the simulator
-# iOS 5 is no longer supported in Instruments
+# iOS 5 is no longer supported in Xcode 5 and Instruments
 def sdk_versions
   {:ios6 => '6.1',
    :ios7 => '7.0'}
@@ -83,7 +89,7 @@ end
 def ios_irb (device, opts={})
   default_opts = default_device_opts()
   opts = default_opts.merge(opts)
-  exec "#{ios_console_cmd(device, opts)}"
+  sh "#{ios_console_cmd(device, opts)}"
 end
 
 # calabash simulator consoles
@@ -105,12 +111,16 @@ def default_simulated_device
   simulator_hash.each { |key, value|
     return key if res.eql?(value)
   }
-  raise "could not find '#{res}' in hash values '#{simulator_hash}'"
+  raise "could not find '#{res}' in hash values '#{simulator_hash()}'"
 end
 
 def kill_simulator
-  sh "/usr/bin/osascript -e 'tell application \"#{ENV['DEVELOPER_DIR']}/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app\" to quit'"
+  cmd = "xcode-select --print-path | tr -d '\n'"
+  dev_dir = `#{cmd}`
+  sh "/usr/bin/osascript -e 'tell application \"#{dev_dir}/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app\" to quit'"
 end
+
+task :kill_sim do kill_simulator end
 
 def set_default_simulator(device_key)
   hash = simulator_hash
@@ -118,6 +128,7 @@ def set_default_simulator(device_key)
     raise "#{device_key} was not one of '#{hash.keys}'"
   end
 
+  activate_simulator
   current_device = default_simulated_device()
   unless current_device.eql?(device_key)
     value = hash[device_key]
@@ -125,6 +136,7 @@ def set_default_simulator(device_key)
     `defaults write com.apple.iphonesimulator "SimulateDevice" '"#{value}"'`
     kill_simulator
   end
+  activate_simulator
 end
 
 
@@ -134,6 +146,14 @@ task :set_simulator, :device_key do |t, args|
   key = args.device_key().to_sym
   set_default_simulator(key)
 end
+
+
+task :set_sim_iphone do set_default_simulator(:iphone) end
+task :set_sim_iphone_4in do set_default_simulator(:iphone_4in) end
+task :set_sim_iphone_64 do set_default_simulator(:iphone_4in_64) end
+task :set_sim_ipad do set_default_simulator(:ipad) end
+task :set_sim_ipad_r do set_default_simulator(:ipad_r) end
+task :set_sim_ipad_64 do set_default_simulator(:ipad_r_64) end
 
 namespace :moody do
 
@@ -150,6 +170,7 @@ namespace :moody do
     bin_dir='~/bin/libimobiledevice'
 
     if cmd == :install
+      sh './xamarin-build.sh'
       ipa='./xamarin/Briar-cal.ipa'
       sh "export DYLD_LIBRARY_PATH=#{bin_dir}; #{bin_dir}/ideviceinstaller -U #{udid} --install #{ipa}"
     elsif cmd == :uninstall
@@ -179,10 +200,8 @@ namespace :moody do
     profile = args.profile
     profile = 'xtc_wip' if profile.eql?('wip')
 
-    ipa = 'RiseUp-cal.ipa'
-    # this will not work like you expect it to
-    #sh 'cd xamarin; bundle update'
-    sh "cd xamarin; bundle exec test-cloud submit #{ipa} #{api_key} -d #{device_set} --config cucumber.yml --profile #{profile}"
+    ipa = './xamarin/RiseUp-cal.ipa'
+    sh "bundle exec test-cloud submit #{ipa} #{api_key} -d #{device_set} --config cucumber.yml --profile #{profile}"
   end
 
 end

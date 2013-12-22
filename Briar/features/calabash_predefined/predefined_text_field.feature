@@ -6,8 +6,9 @@ Feature: testing the text field set_text, clear_text, and predefined steps
   I want to be able to set the text, clear the text, enter text with the keyboard
 
   Background: get me to the text related tab
-    When I touch the "Text" tab I should see the "text related" view
-
+    Given I touch the "Text" tab I should see the "text related" view
+    And I touch the "top" text field
+    And I should be able to dock the keyboard
 
   Scenario: i should be able use the predefined text field steps
     # predefined

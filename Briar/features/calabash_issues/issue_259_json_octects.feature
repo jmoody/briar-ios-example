@@ -1,3 +1,4 @@
+@keyboard
 @issue_259
 Feature: uia_type_text should not throw octet problems
 

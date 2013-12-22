@@ -60,7 +60,7 @@ FileUtils.cp("./rerun/earp/rerun.txt", "./rerun/earp/rerun-#{date}.txt") if File
 
 %>
 
-full_output: CALABASH_FULL_CONSOLE_OUTPUT=1 DEBUG=1
+full_output: CALABASH_FULL_CONSOLE_OUTPUT=0 DEBUG=0
 common: -f 'Slowhandcuke::Formatter' -p full_output
 
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
@@ -91,6 +91,7 @@ no_stop:      NO_STOP=1
 
 sdk5:  SDK_VERSION=5.1
 sdk6:  SDK_VERSION=6.1
+
 
 ipad:   DEVICE=ipad   -p common --tags ~@iphone --tags ~@iphone_only
 iphone: DEVICE=iphone -p common --tags ~@ipad   --tags ~@ipad_only

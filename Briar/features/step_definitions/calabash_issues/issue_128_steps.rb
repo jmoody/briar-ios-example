@@ -5,7 +5,13 @@ module Briar
       if query("tableViewCell marked:'#{row_id}'").empty?
         screenshot_and_raise "should see row marked '#{row_id}'"
       end
-      touch_row_and_wait_to_see row_id, alert_id
+      if ios7?
+        unless uia_element_exists? alert_id
+          screenshot_and_raise "did not see alert marked '#{alert_id}'"
+        end
+      else
+        touch_row_and_wait_to_see row_id, alert_id
+      end
     end
   end
 end
