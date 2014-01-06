@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="@earp   @wip" type="CucumberRunConfigurationType" factoryName="Cucumber">
+  <configuration default="false" name="@earp   @wip" type="CucumberRunConfigurationType" factoryName="Cucumber" singleton="true">
     <predefined_log_file id="RUBY_CUCUMBER" enabled="true" />
     <module name="features" />
     <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -33,6 +33,8 @@
     <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="CUCUMBER_RUNNER_PATH" VALUE="" />
     <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_RUNNER" VALUE="false" />
     <CUCUMBER_RUN_CONFIG_SETTINGS_ID NAME="SETTINGS_VERSION" VALUE="2" />
+    <RunnerSettings RunnerId="RubyRunner" />
+    <ConfigurationWrapper RunnerId="RubyRunner" />
     <method>
       <option name="RakeTask" enabled="false" TASK_CMD="show_simulator" />
     </method>

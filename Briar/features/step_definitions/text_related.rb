@@ -1,8 +1,7 @@
 module Briar
   module Text_Related
     def swipe_on_text_field(dir, field)
-      dev = device
-      if dev.ios7? && dev.simulator?
+      if ios7? && simulator?
         pending 'iOS 7 simulator detected: due to a bug in the iOS Simulator, swiping does not work'
       end
       tf = "#{field} tf"
@@ -27,7 +26,7 @@ And(/^I have touched the "([^"]*)" text field$/) do |text_field|
   end
   tf_id = "#{text_field} tf"
   touch("textField marked:'#{tf_id}'")
-  await_keyboard
+  wait_for_keyboard
 end
 
 Then(/^I should see the (top|bottom) text field has "([^"]*)"$/) do |field, text|
@@ -43,42 +42,53 @@ Then(/^I type (\d+) random strings? with the full range of characters into the t
   tf_ids = ['top tf', 'bottom tf']
   tf_id = tf_ids.first
   touch("textField marked:'#{tf_id}'")
-  await_keyboard
+  wait_for_keyboard
 
   is_ipad = ipad?
   is_iphone = iphone?
 
-  is_simulator = simulator?
   num.to_i.times {
     rnd_str = ''
     str_len = 50
     str_len.enum_for(:times).inject(rnd_str) do |result, index|
-      sample = [*32..126].sample.chr
+      code = [*32..126].sample
+      sample = code.chr
+
+
       # ( ) : ; #=> these do not exist on the ipad _simulator_ email keyboard
       #     ( ) #=> these do not exist on the ipad email keyboard
-      #     ‹ › #=> these do not exist on some ipad keyboard
+      #     ‹ › #=> these do not exist on some ipad keyboards
       #      `  #=> does not exist on the ipad email keyboard
       #      `  #=> does not exist on the iphone email keyboard
       #       \ #=> too annoying to test (backslash)
       if is_ipad
-          sample = '{' if sample.eql?('(')
-          sample = '}' if sample.eql?(')')
-          sample = '¥' if sample.eql?(':')
-          sample = '£' if sample.eql?(';')
-          sample = '!' if sample.eql?('`')
+        sample = '{' if sample.eql?('(')
+        sample = '}' if sample.eql?(')')
+        sample = '¥' if sample.eql?(':')
+        sample = '£' if sample.eql?(';')
+        sample = '!' if sample.eql?('`')
+        sample = '€' if sample.eql?('\\')
       elsif is_iphone
-        unless is_simulator
-          sample = '¥' if sample.eql?('`')
-        end
+        sample = '|' if sample.eql?('(')
+        sample = '&' if sample.eql?(')')
+        # double quote - having some problems with .eql?("\"")
+        sample = '#' if sample.ord == 34
+        sample = '^' if sample.eql?(':')
+        sample = '!' if sample.eql?(';')
+        sample = '+' if sample.eql?('<')
+        sample = '_' if sample.eql?('>')
+        sample = '.' if sample.eql?('\\')
+        sample = '@' if sample.eql?(',')
       else
         screenshot_and_raise 'not iphone or ipad?!?'
       end
-      sample = '€' if sample.eql?('\\')
-      #sample = '·' if sample.eql?('\"')
+
       rnd_str << sample
     end
 
-    rnd_str.insert(rand(str_len), ',')
+
+    # why oh why was i doing this?
+    # rnd_str.insert(rand(str_len), ',')
 
 
     keyboard_enter_text rnd_str
@@ -97,7 +107,7 @@ Then(/^I type (\d+) email (?:addresses|address) into the text fields$/) do |num|
   tf_ids = ['top tf', 'bottom tf']
   tf_id = tf_ids.first
   touch("textField marked:'#{tf_id}'")
-  await_keyboard
+  wait_for_keyboard
 
   # cannot enter text on split ipad keyboard with UIA
   if uia_not_available? and ipad? and (:split == ipad_keyboard_mode)
@@ -146,6 +156,7 @@ Then(/^I check the keyboard mode is stable across orientations$/) do
 end
 
 Then(/^I should be able to (dock|undock|split) the keyboard$/) do |op|
+
   case op
     when 'dock'
       ensure_docked_keyboard
@@ -160,7 +171,7 @@ end
 
 
 Then(/^I put the keyboard into a random mode$/) do
-  await_keyboard
+  wait_for_keyboard
   mode = _ipad_keyboard_modes.sample
   case mode
     when :docked

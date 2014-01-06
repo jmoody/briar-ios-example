@@ -4,6 +4,7 @@ Feature: briar keyboard features
   Background: get us to the text related views so we can test the test the keyboard
     When I touch the "Text" tab I should see the "text related" view
 
+  # flickering on iphone _device_
   @wip
   Scenario: i want to be able to touch the delete key
     # unexpected - issue 116
@@ -20,5 +21,4 @@ Feature: briar keyboard features
     Then I am done text editing
     Then I should not see a "done text editing" button in the navbar
     Then I should not see the keyboard
-
 

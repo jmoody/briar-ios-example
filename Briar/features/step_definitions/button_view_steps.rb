@@ -16,9 +16,9 @@ When(/^I touch the "([^"]*)" button I should see an (action sheet|alert|email co
 end
 
 Then(/^I dismiss the (action sheet|alert|email compose view) with the cancel button$/) do |what|
-  device = device()
+
   if what.eql?('action sheet')
-    if device.ipad?
+    if ipad?
       touch_sheet_button 'Delete', 'sheet'
     else
       touch_sheet_button 'Cancel', 'sheet'

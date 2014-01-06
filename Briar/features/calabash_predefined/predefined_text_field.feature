@@ -7,7 +7,7 @@ Feature: testing the text field set_text, clear_text, and predefined steps
 
   Background: get me to the text related tab
     Given I touch the "Text" tab I should see the "text related" view
-    And I touch the "top" text field
+    And I touch the "top tf" text field
     And I should be able to dock the keyboard
 
   Scenario: i should be able use the predefined text field steps

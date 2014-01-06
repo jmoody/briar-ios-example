@@ -14,6 +14,7 @@ Feature: uia_type_text should not throw octet problems
   Scenario: i should be able to type 10 email address
     Then I type 10 email addresses into the text fields
 
+  @flickering
   Scenario: i should be able to type 10 random string
     Then I type 10 random strings with the full range of characters into the text fields
 

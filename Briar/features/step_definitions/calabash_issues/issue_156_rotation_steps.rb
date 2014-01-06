@@ -56,7 +56,7 @@ Then(/^the device orientation should be "([^"]*)" on the simulator and "([^"]*)"
     pending "testing against orientation '#{actual_device_o}' is not supported for this test - move your device to an upright position"
   end
 
-  is_sim = device.simulator?
+  is_sim = simulator?
   expect = is_sim ? sim_o : device_o
   platform = is_sim ? 'simulator' : 'device'
   unless expect.eql?(stats[:device])

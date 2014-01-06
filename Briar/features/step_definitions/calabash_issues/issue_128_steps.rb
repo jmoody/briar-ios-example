@@ -5,12 +5,14 @@ module Briar
       if query("tableViewCell marked:'#{row_id}'").empty?
         screenshot_and_raise "should see row marked '#{row_id}'"
       end
-      if ios7?
-        unless uia_element_exists? alert_id
-          screenshot_and_raise "did not see alert marked '#{alert_id}'"
-        end
+
+      if uia_available?
+        touch_row row_id
+        step_pause
+        should_see_alert_with_message alert_id
       else
         touch_row_and_wait_to_see row_id, alert_id
+        step_pause
       end
     end
   end
@@ -19,14 +21,10 @@ end
 World(Briar::Issue_128)
 
 When(/^I touch the last row I should see the i or j alert$/) do
-  row_id = device.iphone_5? ? 'j' : 'i'
+  row_id = iphone_5? ? 'j' : 'i'
   briar_scroll_to_row row_id
   step_pause
-  alert_id = device.ios7? ? 'Alphabet Alert' : "#{row_id} alert"
-  touch_row_and_see_alert row_id, alert_id
-end
-
-When(/^I touch the "([^"]*)" row I should see the "([^"]*)"$/) do |row_id, alert_id|
+  alert_id = ios7? ? "'#{row_id}' is a great letter!" : "#{row_id} alert"
   touch_row_and_see_alert row_id, alert_id
 end
 
@@ -35,7 +33,7 @@ Then(/^I dismiss the letter alert$/) do
 end
 
 Then(/^I scroll down until the i row is partially hidden by the nav bar$/) do
-  if device.iphone_5?
+  if iphone_5?
     pending 'this test will only work on iphone 3.5in'
   end
 
@@ -55,11 +53,11 @@ end
 
 When(/^I touch the first row I should see the i alert$/) do
   row_id = 'i'
-  alert_id = 'i alert'
+  alert_id = ios7? ? "'i' is a great letter!" : 'i alert'
   touch_row_and_see_alert row_id, alert_id
 end
 
 When(/^I touch the "([^"]*)" row I should the the associated alert$/) do |row_id|
-  alert_id = device.ios7? ? 'Alphabet Alert' : "#{row_id} alert"
+  alert_id = ios7? ? "'#{row_id}' is a great letter!" : "#{row_id} alert"
   touch_row_and_see_alert row_id, alert_id
 end

@@ -60,7 +60,7 @@ FileUtils.cp("./rerun/earp/rerun.txt", "./rerun/earp/rerun-#{date}.txt") if File
 
 %>
 
-full_output: CALABASH_FULL_CONSOLE_OUTPUT=0 DEBUG=0
+full_output: CALABASH_FULL_CONSOLE_OUTPUT=1 DEBUG=1
 common: -f 'Slowhandcuke::Formatter' -p full_output
 
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
@@ -96,15 +96,15 @@ sdk6:  SDK_VERSION=6.1
 ipad:   DEVICE=ipad   -p common --tags ~@iphone --tags ~@iphone_only
 iphone: DEVICE=iphone -p common --tags ~@ipad   --tags ~@ipad_only
 
-uai: DEVICE_TARGET=simulator --tags ~@device_only
+uai: DEVICE_TARGET=simulator --tags ~@device --tags ~@device_only
 
-default: -p common -p ss_path -p rerun_out -p html_report -p no_launch -p uai -p no_reset_btw
+default: -p common -p ss_path -p rerun_out -p html_report -p no_launch -p uai -p no_reset_btw -p no_stop
 launch:  -p common -p ss_path -p rerun_out -p html_report -p do_launch -p uai -p no_reset_btw -p no_stop
 
 # required only for devices
 bundle_id:    BUNDLE_ID=com.littlejoysoftware.Briar-cal
 
-device_common:  -p bundle_id --tags ~@simulator_only
+device_common:  -p bundle_id --tags ~@simulator --tags ~@simulator_only
 pluto_common:   DEVICE_TARGET=<%= pluto_udid %>   DEVICE_ENDPOINT=<%= pluto_ip %> -p device_common -p pluto_rr   -p ipad   -p pluto_html     -p pluto_ss
 pluto:          -p pluto_common -p no_launch
 pluto_launch:   -p pluto_common -p do_launch -p no_stop
