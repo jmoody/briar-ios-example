@@ -109,13 +109,11 @@ Then(/^I type (\d+) email (?:addresses|address) into the text fields$/) do |num|
   touch("textField marked:'#{tf_id}'")
   wait_for_keyboard
 
+
   # cannot enter text on split ipad keyboard with UIA
-  if uia_not_available? and ipad? and (:split == ipad_keyboard_mode)
-    if [true, false].sample
-      ensure_docked_keyboard
-    else
-      ensure_undocked_keyboard
-    end
+  # so we choose a random keyboard mode
+  if ipad? and uia_not_available? and (:split == ipad_keyboard_mode)
+    [true, false].sample ? ensure_docked_keyboard : ensure_undocked_keyboard
   end
 
   num.to_i.times {
@@ -140,19 +138,21 @@ Then(/^I type (\d+) email (?:addresses|address) into the text fields$/) do |num|
 end
 
 Then(/^I check the keyboard mode is stable across orientations$/) do
-  orientations = [:up, :down, :left, :right]
-  rotate_home_button_to orientations.sample
-  2.times { step_pause }
-  target_mode = ipad_keyboard_mode
-  orientations.each { |o|
-    rotate_home_button_to o
+  if ipad?
+    orientations = [:up, :down, :left, :right]
+    rotate_home_button_to orientations.sample
     2.times { step_pause }
-    mode = ipad_keyboard_mode
-    unless target_mode == mode
-      screenshot_and_raise "expected '#{target_mode}' in orientation '#{o}' but found '#{mode}'"
-    end
-  }
-  2.times { step_pause }
+    target_mode = ipad_keyboard_mode
+    orientations.each { |o|
+      rotate_home_button_to o
+      2.times { step_pause }
+      mode = ipad_keyboard_mode
+      unless target_mode == mode
+        screenshot_and_raise "expected '#{target_mode}' in orientation '#{o}' but found '#{mode}'"
+      end
+    }
+    2.times { step_pause }
+  end
 end
 
 Then(/^I should be able to (dock|undock|split) the keyboard$/) do |op|

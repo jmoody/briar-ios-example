@@ -13,7 +13,7 @@ Feature: issue 128 - should be able to touch rows that are partially hidden by t
 
   # flickering iphone _device_
   # flickering ipad _device_ iOS 5
-  @wip
+  @flickering
   Scenario: if the last visible row of a table is partially hidden by the tab bar i should be able to touch the row and not the tab bar
 
   # expected
@@ -27,7 +27,7 @@ Feature: issue 128 - should be able to touch rows that are partially hidden by t
 
   # flickering iphone _device_
   # flickering ipad _device_ iOS 5
-  @wip
+  @flickering
   Scenario: if the first visible row of a table is partially hidden by the nav bar i should be to touch the row and not the nav bar
     # expected
     When I touch the "c" row I should the the associated alert

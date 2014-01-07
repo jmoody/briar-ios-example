@@ -9,7 +9,7 @@ pluto_dir = "#{lesspainful_dir}/devices/pluto"
 pluto_ip = IO.read("#{pluto_dir}/ip") if File.exists?("#{pluto_dir}/ip")
 pluto_udid = IO.read("#{pluto_dir}/udid") if File.exists?("#{pluto_dir}/udid")
 pluto_report = "./reports/pluto/#{date}-pluto.html"
-pluto_ss_path = "#{Dir.pwd}/reports/neptune/screenshots/"
+pluto_ss_path = "#{Dir.pwd}/reports/pluto/screenshots/"
 
 neptune_dir = "#{lesspainful_dir}/devices/neptune"
 neptune_ip = IO.read("#{neptune_dir}/ip") if File.exists?("#{neptune_dir}/ip")

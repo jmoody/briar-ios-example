@@ -10,7 +10,6 @@ Feature: ipad keyboard modes
 
   # NB: tried using an outline for these tests, but i found flickering tests
   # and the html report was not providing enough information
-  #  @wip
   #  Scenario Outline: i should be able tell what mode the keyboard is in regardless of orientation
   #    Then I should be able to <mode1> the keyboard
   #    Then I check the keyboard mode is stable across orientations
@@ -174,7 +173,6 @@ Feature: ipad keyboard modes
 
   # NB:  tried using an outline, but found flickering tests and html report
   # was not giving enough information
-  #  @wip
   #  Scenario Outline: i should be able to detect and change the keyboard mode
   #    Then I rotate the device <n> times in a random direction
   #    Then I should be able to <op1> the keyboard
