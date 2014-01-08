@@ -48,10 +48,14 @@ Feature: testing rotation
   # run tests
   @no_launch
   Scenario: 1 of 2 testing orientation with NO_LAUNCH=1 back-to-back launches
+    Given that I have not launched the app
     When I rotate the device right, I should see the status bar and device have the same orientation
 
+  # flickering on iPhone iOS 7 simulator - it should not even have been run?!?
+  @foobar
   @no_launch
   Scenario: 2 of 2 testing orientation with NO_LAUNCH=1 back-to-back launches
+    Given that I have not launched the app
     Then the orientation of the status bar and device should be same
   ###########
 

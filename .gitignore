@@ -4,6 +4,7 @@
 *.orig
 *.bak
 
+.ruby-version
 
 scratch
 private

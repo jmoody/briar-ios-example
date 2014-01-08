@@ -1,10 +1,13 @@
-@driis
 @rotation
 Feature: i want to be able to rotate and touch things on iOS 7
 
   Background:  start on the buttons view
     When I touch the "Buttons" tab I should see the "buttons" view
 
+  # flickers on iOS 7 simulators
+  # outlines are NYI on XTC
+  @not_xtc
+  @flickering
   Scenario Outline: should be able to touch buttons in any orientation
     Then I rotate the home button to the <position> position
     Then I wait for rotation animation

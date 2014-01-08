@@ -1,5 +1,14 @@
 #!/bin/sh
 
+PWD=`pwd`
+XAMARIN_DIR="${PWD}/xamarin"
+
+if [ -d "${XAMARIN_DIR}" ]; then
+  rm -rf "${XAMARIN_DIR}"
+fi
+
+mkdir -p "${XAMARIN_DIR}"
+
 PRODUCT_NAME="Briar-cal"
 SCHEME="Briar-cal"
 
@@ -26,19 +35,19 @@ echo "INFO: xcrun PackageApplication"
 xcrun -sdk iphoneos PackageApplication -v "${APP}" -o "${IPA}" > /dev/null
 
 echo "INFO: copying files"
-cp "${IPA}" ./xamarin/
-cp -r "${APP}" ./xamarin/
-cp cucumber.yml ./xamarin/
-
-echo "source 'https://rubygems.org'" > ./xamarin/Gemfile
-echo "gem 'briar', '0.1.3'" >> ./xamarin/Gemfile
+cp "${IPA}" "${XAMARIN_DIR}/"
+cp -r "${APP}" "${XAMARIN_DIR}/"
+cp -r features "${XAMARIN_DIR}/"
 
 echo "INFO: cleaning up"
+rm -rf "${XAMARIN_DIR}/features/Gemfile"
+rm -rf "${XAMARIN_DIR}/features/Gemfile.lock"
+rm -rf "${XAMARIN_DIR}/features/Rakefile"
+rm -rf "${XAMARIN_DIR}/features/.bundle"
+rm -rf "${XAMARIN_DIR}/features/.idea"
 
-rm -rf ./xamarin/features/Gemfile
-rm -rf ./xamarin/features/Gemfile.lock
-rm -rf ./xamarin/features/Rakefile
-rm -rf ./xamarin/features/.bundle
-rm -rf ./xamarin/features/.idea
+mv "${XAMARIN_DIR}/features/xtc_gemfile" "${XAMARIN_DIR}/Gemfile"
+mv "${XAMARIN_DIR}/features/xtc_profiles.yml" "${XAMARIN_DIR}/cucumber.yml"
+
 
 

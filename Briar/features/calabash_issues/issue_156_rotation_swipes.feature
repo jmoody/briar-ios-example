@@ -5,6 +5,9 @@ Feature: swipes should work in all orientations
   Background: i should see the text related view
     When I touch the Text tab, I should see the Text related part of the app
 
+
+  # outlines are NYI on XTC
+  @not_xtc
   Scenario Outline: swipes should work in any orientation
     # ruby mine cant find this even though it is defined
     # Then I rotate the device so the home button is on the <position>

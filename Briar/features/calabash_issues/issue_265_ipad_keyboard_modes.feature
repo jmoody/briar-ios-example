@@ -219,7 +219,10 @@ Feature: ipad keyboard modes
     Then I rotate the device 2 times in a random direction
     Then I should be able to split the keyboard
 
-  # flickering on iPad 1 iOS 5
+  # flickering on iPad 1 iOS 5 and iPad Simulator iOS 6 no launch
+  # because the text is entered into the top tf instead of the bottom text field
+  # outlines are NYI on XTC
+  @not_xtc
   @flickering
   Scenario Outline: i should be able to use the keyboard regardless of orientation or mode
     Given I am looking at the Text tab
@@ -236,6 +239,8 @@ Feature: ipad keyboard modes
     | 3      | 2      | 2      |
 
   # flickering on iPad 1 iOS 5
+  # outlines are NYI on XTC
+  @not_xtc
   @flickering
   Scenario Outline: i should be able to dismiss the ipad keyboard
     Given I am looking at the Text tab

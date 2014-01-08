@@ -1,10 +1,10 @@
 When(/^I touch the "([^"]*)" button I should see an (action sheet|alert|email compose view)$/) do |button_id, what|
-
   if what.eql?('action sheet')
     touch_button_and_wait_for_view button_id, 'sheet'
   elsif what.eql?('alert')
     touch_button_and_wait_for_view button_id, 'Briar Alert!'
   elsif what.eql?('email compose view')
+    step_pause
     if device_configured_for_email
       touch_button_and_wait_for_view button_id, 'compose email'
     else

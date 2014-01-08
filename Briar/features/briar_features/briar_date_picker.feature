@@ -7,6 +7,8 @@ Feature: briar date picker steps
   Background: get me the the date picker tab
     When I touch the "Date" tab I should see the "date related" view
 
+  # outlines are NYI on XTC
+  @not_xtc
   Scenario Outline: touching a button should show the correct date picker
     When I touch the "Date" tab I should see the "date related" view
     Then I touch the "<button_id>" button and wait for the "<view_id>" view
