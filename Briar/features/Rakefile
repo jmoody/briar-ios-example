@@ -293,8 +293,9 @@ namespace :moody do
     device_set = args.device_set
     device_set = 'fdc46092' if device_set.eql?('iphones')
     device_set = '4b583121' if device_set.eql?('5S')
-    device_set = '804eb87f' if device_set.eql?('4S iOS7')
+    device_set = '804eb87f' if device_set.eql?('4S iOS 7')
     device_set = '846c9a80' if device_set.eql?('5 iOS 6')
+    device_set = 'df85c5f4' if device_set.eql?('4S iOS 6.1.3')
 
     # neptune and earp
     device_set = '9e6e2817' if device_set.eql?('my phones')
