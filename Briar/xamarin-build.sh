@@ -46,7 +46,6 @@ rm -rf "${XAMARIN_DIR}/features/Rakefile"
 rm -rf "${XAMARIN_DIR}/features/.bundle"
 rm -rf "${XAMARIN_DIR}/features/.idea"
 
-mv "${XAMARIN_DIR}/features/xtc_gemfile" "${XAMARIN_DIR}/Gemfile"
 mv "${XAMARIN_DIR}/features/xtc_profiles.yml" "${XAMARIN_DIR}/cucumber.yml"
 
 
