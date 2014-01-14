@@ -51,16 +51,12 @@ typedef enum : NSUInteger {
   NSLog(@"Loading dynamic library: %@", dyLibPath);
   
   void *revealLib = NULL;
-  revealLib = dlopen([dyLibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
   
-
-  if (revealLib == NULL)
-  {
-    char *error = dlerror();
-    NSLog(@"dlopen error: %s", error);
-    NSString *message = [NSString stringWithFormat:@"%@.%@ failed to load with error: %s", revealLibName, revealLibExtension, error];
-    NSLog(message);
-    //[[[UIAlertView alloc] initWithTitle:@"Reveal library could not be loaded" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+  @try {
+    revealLib = dlopen([dyLibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
+  }
+  @catch (NSException *exception) {
+    NSLog(@"could not load Reveal dylib - maybe we are on the test cloud?\n%@", exception);
   }
 }
 
