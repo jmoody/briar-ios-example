@@ -119,27 +119,21 @@ module Briar
       end
     end
 
-    def text_from_first_responder(ui_class)
-      candidates = [:text_view, :text_field]
-      unless candidates.include?(ui_class)
-        raise "'#{ui_class}' must be one of '#{candidates}'"
+    def text_from_first_responder
+      raise 'there must be a visible keyboard' unless keyboard_visible?
+
+      ['textField', 'textView'].each do |ui_class|
+        res = query("#{ui_class} isFirstResponder:1", :text)
+        return res.first unless res.empty?
       end
-
-      qstr = ui_class == :text_view ? 'textView' : 'textField'
-      qstr = "#{qstr} isFirstResponder:1"
-
-      res = query(qstr, :text)
-      if res.empty?
-        screenshot_and_raise "could not find a first responder with '#{qstr}'"
-      end
-
-      res.first
+      #noinspection RubyUnnecessaryReturnStatement
+      return nil
     end
 
     def ensure_text_input(str, input_method)
       keyboard_enter_text str
       step_pause if xamarin_test_cloud?
-      actual = text_from_first_responder(:text_field)
+      actual = text_from_first_responder()
       unless actual.eql?(str)
         screenshot_and_raise "expected '#{str}' after #{input_method} but found '#{actual}'"
       end
@@ -264,9 +258,6 @@ Then(/^I type (\d+) email (?:addresses|address) into the text fields$/) do |num|
 
     tf_id = tf_ids.sample
     touch("textField marked:'#{tf_id}'")
-    res = query("textField marked:'#{tf_id}'", AI)
-    puts "touched '#{res.first}'"
-
     1.times { step_pause }
   }
 end
@@ -325,8 +316,11 @@ Then(/^I should be able to dismiss the ipad keyboard$/) do
   end
 end
 
-And(/^the top text field has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad) showing$/) do |kb_type|
-  qstr = "textField marked:'top tf'"
+And(/^the one of the input views has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad) showing$/) do |kb_type|
+  qstr = ["textField marked:'top tf'",
+          "textView marked:'top tv'",
+          "textField marked:'bottom tf'",
+          "textView marked:'bottom tv'"].sample()
 
   case kb_type
     when 'ascii' then target = :ascii_capable
@@ -343,11 +337,11 @@ And(/^the top text field has (?:a|an|the) (default|ascii|numbers and punctuation
 end
 
 Then(/^set my pin to "([^"]*)"$/) do |pin|
-  keyboard_enter_text pin
+  ensure_text_input(pin, 'setting my pin')
 end
 
 When(/^I tap the delete key (\d+) times?, I should see "([^"]*)" in the text field$/) do |num_taps, result|
-  before = text_from_first_responder(:text_field)
+  before = text_from_first_responder()
   num = num_taps.to_i
 
   num.times {  keyboard_enter_char 'Delete' }
@@ -356,7 +350,7 @@ When(/^I tap the delete key (\d+) times?, I should see "([^"]*)" in the text fie
 
   idx = (before.length - num) - 1
   expected = before[0..idx]
-  actual = text_from_first_responder(:text_field)
+  actual = text_from_first_responder()
 
   unless actual.eql?(expected)
     screenshot_and_raise "expected '#{expected}' after tapping the delete key '#{num}' times but found '#{actual}'"
@@ -368,12 +362,13 @@ Then(/^I text my friend a facepalm "([^"]*)"$/) do |str|
 end
 
 And(/^realize my mistake and delete (\d+) characters? and replace with "([^"]*)"$/) do |num_taps, replacement|
-  before = text_from_first_responder(:text_field)
+  before = text_from_first_responder()
   num = num_taps.to_i
 
-  num.times {  keyboard_enter_char 'Delete' }
-
-  step_pause if xamarin_test_cloud?
+  num.times {
+    keyboard_enter_char 'Delete'
+    step_pause if xamarin_test_cloud?
+  }
 
   idx = (before.length - num) - 1
   expected = "#{before[0..idx]}#{replacement}"
@@ -382,7 +377,7 @@ And(/^realize my mistake and delete (\d+) characters? and replace with "([^"]*)"
 
   step_pause if xamarin_test_cloud?
 
-  actual = text_from_first_responder(:text_field)
+  actual = text_from_first_responder()
 
   unless actual.eql?(expected)
     screenshot_and_raise "expected '#{expected}' after tapping the delete key '#{num}' times but found '#{actual}'"

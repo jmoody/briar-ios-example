@@ -9,7 +9,7 @@ Feature:  numeric keyboards
 
   Background:  get me to the text related view
     Given I am looking at the Text tab
-    And the top text field has a number pad showing
+    And the one of the input views has a number pad showing
 
   Scenario:  i want to see a numeric keyboard when i touch the top text field
     Then set my pin to "0123"
