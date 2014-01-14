@@ -23,8 +23,6 @@ module Briar
           qstr = "view marked:'#{id}'"
           ensure_keyboard_type(qstr, kb_type)
         end
-
-        step_pause if xamarin_test_cloud?
       end
     end
 
@@ -333,7 +331,6 @@ And(/^the one of the input views has (?:a|an|the) (default|ascii|numbers and pun
   ensure_keyboard_type(qstr, target)
   touch(qstr)
   wait_for_keyboard
-  step_pause if xamarin_test_cloud?
 end
 
 Then(/^set my pin to "([^"]*)"$/) do |pin|
@@ -345,8 +342,6 @@ When(/^I tap the delete key (\d+) times?, I should see "([^"]*)" in the text fie
   num = num_taps.to_i
 
   num.times {  keyboard_enter_char 'Delete' }
-
-  step_pause if xamarin_test_cloud?
 
   idx = (before.length - num) - 1
   expected = before[0..idx]
@@ -367,15 +362,12 @@ And(/^realize my mistake and delete (\d+) characters? and replace with "([^"]*)"
 
   num.times {
     keyboard_enter_char 'Delete'
-    step_pause if xamarin_test_cloud?
   }
 
   idx = (before.length - num) - 1
   expected = "#{before[0..idx]}#{replacement}"
 
   keyboard_enter_text(replacement)
-
-  step_pause if xamarin_test_cloud?
 
   actual = text_from_first_responder()
 
