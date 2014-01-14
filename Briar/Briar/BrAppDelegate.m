@@ -40,8 +40,8 @@ typedef enum : NSUInteger {
 
 
 - (void) loadReveal {
-  if (br_is_iOS_5()) {
-    NSLog(@"skipping Reveal on iOS 5 because it is not supported");
+  if (br_is_iOS_7() == NO) {
+    NSLog(@"skipping Reveal on iOS 5 and 6 because it causes problems on XTC");
     return;
   }
   
@@ -51,12 +51,12 @@ typedef enum : NSUInteger {
   NSLog(@"Loading dynamic library: %@", dyLibPath);
   
   void *revealLib = NULL;
+  revealLib = dlopen([dyLibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
   
-  @try {
-    revealLib = dlopen([dyLibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
-  }
-  @catch (NSException *exception) {
-    NSLog(@"could not load Reveal dylib - maybe we are on the test cloud?\n%@", exception);
+  if (revealLib == NULL) {
+    char *error = dlerror();
+    NSString *message = [NSString stringWithFormat:@"%@.%@ failed to load with error: %s", revealLibName, revealLibExtension, error];
+    NSLog(message);
   }
 }
 
