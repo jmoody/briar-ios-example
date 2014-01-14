@@ -1,23 +1,19 @@
 source 'https://rubygems.org'
 
+#noinspection GemInspection
 if `whoami`.strip.eql? 'moody'
 
   # i use bundle and bundle config to specify local gem locations
   # bundle config local.GEM_NAME /path/to/local/git/repository
 
-  #noinspection GemInspection
   gem 'briar', :github => 'jmoody/briar', :branch => '0.1.3'
-
-  #noinspection GemInspection
-  #gem 'calabash-cucumber', :github => 'jmoody/calabash-ios', :branch => '0.9.x-possible-fix-for-uia_type_string'
-  #noinspection GemInspection
-  gem 'calabash-cucumber', :github => 'jmoody/calabash-ios', :branch => '0.9.x-touch-delete-on-numeric-keyboard'
+  gem 'calabash-cucumber', :github => 'jmoody/calabash-ios', :branch => '0.9.x-escaping-backslash-issue-284'
 
 else
-  gem 'briar', '0.1.3.b5'
+  gem 'briar', '0.1.3.b6'
 end
 
 gem 'faker'
 
 # nicht jetzt
-#gem 'twitter_cldr'
+# gem 'twitter_cldr'
