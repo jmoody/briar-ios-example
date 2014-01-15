@@ -1,4 +1,6 @@
 # encoding: UTF-8
+# required for ruby 1.8
+require 'enumerator'
 
 # nicht jetzt
 #require 'twitter_cldr'
@@ -102,6 +104,18 @@ module Briar
       canonical_keyboard_type(res.first)
     end
 
+    def _kb_type_with_step_arg(arg)
+      case arg
+        when 'ascii' then target = :ascii_capable
+        when 'number' then target = :number_pad
+        when 'phone' then target = :phone_pad
+        when 'name and phone' then target = :name_phone_pad
+        else target = "#{arg.gsub(' ', '_')}".to_sym
+      end
+      target
+    end
+
+
     def ensure_keyboard_type(query_str, type, opts={})
       target_ui_type = ui_keyboard_type(type)
       if target_ui_type.nil?
@@ -130,12 +144,34 @@ module Briar
 
     def ensure_text_input(str, input_method)
       keyboard_enter_text str
-      step_pause if xamarin_test_cloud?
       actual = text_from_first_responder()
       unless actual.eql?(str)
         screenshot_and_raise "expected '#{str}' after #{input_method} but found '#{actual}'"
       end
     end
+
+    def qstr_for_random_text_input_view
+      ["textField marked:'top tf'",
+       "textView marked:'top tv'",
+       "textField marked:'bottom tf'",
+       "textView marked:'bottom tv'"].sample()
+    end
+
+    def expect_current_text_input_view_set
+      unless @current_text_input_view
+        screenshot_and_raise 'expected that @current_text_input_view would not be nil'
+      end
+    end
+
+    def unescape_backslashes(string)
+      if uia_available?
+        if string.index(/\\/)
+          string = string.gsub!('\\\\','\\')
+        end
+      end
+      string
+    end
+
   end
 end
 
@@ -314,20 +350,11 @@ Then(/^I should be able to dismiss the ipad keyboard$/) do
   end
 end
 
+
+
 And(/^the one of the input views has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad) showing$/) do |kb_type|
-  qstr = ["textField marked:'top tf'",
-          "textView marked:'top tv'",
-          "textField marked:'bottom tf'",
-          "textView marked:'bottom tv'"].sample()
-
-  case kb_type
-    when 'ascii' then target = :ascii_capable
-    when 'number' then target = :number_pad
-    when 'phone' then target = :phone_pad
-    when 'name and phone' then target = :name_phone_pad
-    else target = "#{kb_type.gsub(' ', '_')}".to_sym
-  end
-
+  qstr = qstr_for_random_text_input_view
+  target = _kb_type_with_step_arg kb_type
   ensure_keyboard_type(qstr, target)
   touch(qstr)
   wait_for_keyboard
@@ -425,4 +452,48 @@ end
 
 Then(/^search for "([^"]*)"$/) do |str|
   ensure_text_input str, 'searching'
+end
+
+
+Then(/^I chose a text input view at random and type "([^"]*)"$/) do |str|
+  qstr = qstr_for_random_text_input_view
+  ensure_keyboard_type(qstr, :default)
+  touch(qstr)
+  wait_for_keyboard
+  keyboard_enter_text str
+
+  ensure_text_input str, 'typing'
+end
+
+Given(/^I choose a text input view at random$/) do
+  @current_text_input_view = qstr_for_random_text_input_view
+end
+
+And(/^that text input view has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad)$/) do |kb_type|
+  expect_current_text_input_view_set
+  target = _kb_type_with_step_arg kb_type
+  ensure_keyboard_type(@current_text_input_view, target)
+end
+
+When(/^I type a the following string with a backslash "([^"]*)"$/) do |str_with_backslash|
+  unless str_with_backslash.index(/\\/)
+    raise "expected '#{str_with_backslash}' to have a backslash"
+  end
+  expect_current_text_input_view_set
+  touch(@current_text_input_view)
+  wait_for_keyboard
+  keyboard_enter_text str_with_backslash
+  @text_entered_by_keyboard = str_with_backslash
+end
+
+Then(/^I should see the correct string in that text field$/) do
+  unless @text_entered_by_keyboard
+    raise 'expected @text_entered_by_keyboard to be set'
+  end
+  actual = text_from_first_responder
+  #puts "@text_entered_by_keyboard '#{@text_entered_by_keyboard}'"
+  expected = unescape_backslashes(@text_entered_by_keyboard)
+  unless actual.eql?(expected)
+    screenshot_and_raise "expected '#{expected}' in text input view but found '#{actual}'"
+  end
 end
