@@ -9,10 +9,26 @@ fi
 
 mkdir -p "${XAMARIN_DIR}"
 
+echo "INFO: copying features over to ${XAMARIN_DIR}"
+cp -r features "${XAMARIN_DIR}/"
+
+echo "INFO: cleaning up ${XAMARIN_DIR}/features"
+rm -rf "${XAMARIN_DIR}/features/Gemfile"
+rm -rf "${XAMARIN_DIR}/features/Gemfile.lock"
+rm -rf "${XAMARIN_DIR}/features/Rakefile"
+rm -rf "${XAMARIN_DIR}/features/.bundle"
+rm -rf "${XAMARIN_DIR}/features/.idea"
+rm -rf "${XAMARIN_DIR}/features/.irbrc"
+rm -rf "${XAMARIN_DIR}/features/xamarin-build.sh"
+rm -rf "${XAMARIN_DIR}/features/cucumber.yml"
+
+echo "INFO: installing cucumber.yml to ${XAMARIN_DIR}"
+mv "${XAMARIN_DIR}/features/xtc_profiles.yml" "${XAMARIN_DIR}/cucumber.yml"
+
 PRODUCT_NAME="Briar-cal"
 SCHEME="Briar-cal"
 
-echo "INFO: xcodebuild"
+echo "INFO: building the project"
 xcodebuild -scheme ${SCHEME} archive -configuration Release -sdk iphoneos > /dev/null
 
 DATE=$( /bin/date +"%Y-%m-%d" )
@@ -21,9 +37,7 @@ ARCHIVE=$( /bin/ls -t "${HOME}/Library/Developer/Xcode/Archives/${DATE}" | /usr/
 APP="${HOME}/Library/Developer/Xcode/Archives/${DATE}/${ARCHIVE}/Products/Applications/${PRODUCT_NAME}.app"
 IPA="${HOME}/tmp/${PRODUCT_NAME}.ipa"
 
-
 echo "INFO: xcrun PackageApplication"
-
 
 # use this strategy for dealing with 3rd party ipas that have been resigned
 # with briar resign
@@ -34,19 +48,7 @@ echo "INFO: xcrun PackageApplication"
 # use this strategy for Briar-cal
 xcrun -sdk iphoneos PackageApplication -v "${APP}" -o "${IPA}" > /dev/null
 
-echo "INFO: copying files"
+echo "INFO: copying .ipa and .app files"
 cp "${IPA}" "${XAMARIN_DIR}/"
 cp -r "${APP}" "${XAMARIN_DIR}/"
-cp -r features "${XAMARIN_DIR}/"
-
-echo "INFO: cleaning up"
-rm -rf "${XAMARIN_DIR}/features/Gemfile"
-rm -rf "${XAMARIN_DIR}/features/Gemfile.lock"
-rm -rf "${XAMARIN_DIR}/features/Rakefile"
-rm -rf "${XAMARIN_DIR}/features/.bundle"
-rm -rf "${XAMARIN_DIR}/features/.idea"
-
-mv "${XAMARIN_DIR}/features/xtc_profiles.yml" "${XAMARIN_DIR}/cucumber.yml"
-
-
 
