@@ -1,5 +1,3 @@
-require 'briar/briar_steps'
-
 Then(/^I should not see the tab bar if I am on the iphone or if ipad is orientated left or right$/) do
   stats = orientation_stats
   device_o = stats[:device]
