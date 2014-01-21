@@ -54,7 +54,9 @@ end
 def read_device_sets(path='~/.xamarin/test-cloud/device_sets.csv')
   ht = Hash.new
   File.read(File.expand_path(path)).split("\n").each do |line|
-    unless line[0].eql?('#')
+    # not 1.8 compat
+    # unless line[0].eql?('#')
+    unless line.chars.to_a.first.eql?('#')
       tokens = line.split(',')
       ht[tokens[0]] = tokens[1]
     end
@@ -339,7 +341,7 @@ namespace :moody do
 
     profile = args.profile
     ipa = 'Briar-cal.ipa'
-    cmd = "cd xamarin; test-cloud submit #{ipa} #{api_key} -d #{device_set} -c cucumber.yml -p #{profile}"
+    cmd = "cd xamarin; bundle exec test-cloud submit #{ipa} #{api_key} -d #{device_set} -c cucumber.yml -p #{profile}"
     sh cmd
   end
 
