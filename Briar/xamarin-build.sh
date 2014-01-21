@@ -1,6 +1,5 @@
 #!/bin/sh
 
-PWD=`pwd`
 XAMARIN_DIR="${PWD}/xamarin"
 
 if [ -d "${XAMARIN_DIR}" ]; then
@@ -24,6 +23,13 @@ rm -rf "${XAMARIN_DIR}/features/cucumber.yml"
 
 echo "INFO: installing cucumber.yml to ${XAMARIN_DIR}"
 mv "${XAMARIN_DIR}/features/xtc_profiles.yml" "${XAMARIN_DIR}/cucumber.yml"
+
+echo "INFO: installing briar predefined steps to .xamarin/features"
+echo "INFO:   - see briar/cucumber.rb for details"
+BRIAR_INSTALL=`bundle show briar`
+BRIAR_STEPS="${BRIAR_INSTALL}/features/step_definitions"
+cp -r "${BRIAR_STEPS}" "${XAMARIN_DIR}/features/step_definitions/briar"
+
 
 PRODUCT_NAME="Briar-cal"
 SCHEME="Briar-cal"
@@ -51,4 +57,21 @@ xcrun -sdk iphoneos PackageApplication -v "${APP}" -o "${IPA}" > /dev/null
 echo "INFO: copying .ipa and .app files"
 cp "${IPA}" "${XAMARIN_DIR}/"
 cp -r "${APP}" "${XAMARIN_DIR}/"
+
+# clean up the DerivedData directory
+DERIVED_DATA="${HOME}/Library/Developer/Xcode/DerivedData"
+PREFIX=Briar
+
+for dir in `find ${DERIVED_DATA} -maxdepth 1 -type d -name "${PREFIX}*"`; do
+    wc=`find ${dir} -type d -maxdepth 1 -print | wc -l`
+    # looking for a project directory with _2_ sub directories
+    # however, find returns the original directory as well so
+    # we compare against 3
+    if [ "$wc" -eq 3 ]; then
+       echo "INFO: found ${dir} with 2 sub directories"
+       echo "INFO: deleting ${dir}"
+       rm -rf "${dir}"
+    fi
+done
+
 
