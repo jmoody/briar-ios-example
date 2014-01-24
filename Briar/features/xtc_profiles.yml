@@ -21,3 +21,5 @@ ipad:        -p tags -p ipad_only
 issue_256:   -p tags --tags @issue_256
 # escaping 'backslash' for uia_type_string
 issue_284:   -p tags --tags @issue_284
+
+xtc_smoke_json: -p tags --tags @xtc_smoke_json
