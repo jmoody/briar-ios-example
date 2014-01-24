@@ -70,7 +70,7 @@ rerun_out:    -f rerun -o ./rerun/rerun.txt
 pluto_rr:     -f rerun -o ./rerun/pluto/rerun.txt
 neptune_rr:   -f rerun -o ./rerun/neptune/rerun.txt
 venus_rr:     -f rerun -o ./rerun/venus/rerun.txt
-earp_rr:     -f rerun -o ./rerun/earp/rerun.txt
+earp_rr:      -f rerun -o ./rerun/earp/rerun.txt
 
 html_report:  -f html -o <%= default_report %>
 pluto_html:   -f html -o <%= pluto_report %>
@@ -81,7 +81,7 @@ earp_html:    -f html -o <%= earp_report %>
 pluto_ss:   SCREENSHOT_PATH=<%= pluto_ss_path %>
 neptune_ss: SCREENSHOT_PATH=<%= neptune_ss_path %>
 venus_ss:   SCREENSHOT_PATH=<%= venus_ss_path %>
-earp_ss:   SCREENSHOT_PATH=<%= earp_ss_path %>
+earp_ss:    SCREENSHOT_PATH=<%= earp_ss_path %>
 
 no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
