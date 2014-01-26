@@ -330,8 +330,9 @@ namespace :moody do
       file.write("gem 'faker'\n")
     }
 
+    # xamarin | moody | corporate demo accounts
     api_key= `cat ~/.xamarin/test-cloud/moody | tr -d '\n'`
-
+    
     device_set = args.device_set
 
     sets = read_device_sets
