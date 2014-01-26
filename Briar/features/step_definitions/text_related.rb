@@ -1,5 +1,35 @@
+# encoding: UTF-8
+# required for ruby 1.8
+require 'enumerator'
+
+# nicht jetzt
+#require 'twitter_cldr'
+
 module Briar
   module Text_Related
+
+    def navigate_to_text_related_tab(opts={})
+      default_opts = {:ensure_keyboard_type => :email}
+      opts = default_opts.merge(opts)
+
+      unless view_exists? 'text related'
+        step_pause
+        touch_tabbar_item 'Text'
+        wait_for_view 'text related'
+
+        res = query('textView', AI)
+        res.concat(query('textField', AI))
+
+        kb_type = opts[:ensure_keyboard_type]
+        res.each do |id|
+          qstr = "view marked:'#{id}'"
+          ensure_keyboard_type(qstr, kb_type)
+        end
+      end
+    end
+
+
+
     def swipe_on_text_field(dir, field)
       if ios7? && simulator?
         pending 'iOS 7 simulator detected: due to a bug in the iOS Simulator, swiping does not work'
@@ -10,6 +40,138 @@ module Briar
       2.times { step_pause }
       tf
     end
+
+
+    #UIKeyboardTypeDefault,
+    #UIKeyboardTypeASCIICapable,
+    #UIKeyboardTypeNumbersAndPunctuation,
+    #UIKeyboardTypeURL,
+    #UIKeyboardTypeNumberPad,
+    #UIKeyboardTypePhonePad,
+    #UIKeyboardTypeNamePhonePad,
+    #UIKeyboardTypeEmailAddress,
+    #UIKeyboardTypeDecimalPad,
+    #UIKeyboardTypeTwitter,
+    #UIKeyboardTypeWebSearch,
+
+
+    UI_KEYBOARD_TYPE =
+          { 0 => :default,
+            1 => :ascii_capable,
+            2 => :numbers_and_punctuation,
+            3 => :url,
+            4 => :number_pad,
+            5 => :phone_pad,
+            6 => :name_phone_pad,
+            7 => :email,
+            8 => :decimal,
+            9 => :twitter,
+            10 => :web_search }
+
+
+    def canonical_keyboard_type(ui_keyboard_type)
+      if ui_keyboard_type.is_a?(Fixnum)
+        UI_KEYBOARD_TYPE[ui_keyboard_type]
+      else
+        raise "expected '#{ui_keyboard_type}' to be a Fixnum"
+      end
+    end
+
+    def ui_keyboard_type(canonical_keyboard_type)
+      if canonical_keyboard_type.is_a?(Symbol)
+        Hash[UI_KEYBOARD_TYPE.map(&:reverse)][canonical_keyboard_type]
+      else
+        raise "expected '#{canonical_keyboard_type}' to be a Symbol"
+      end
+    end
+
+
+    def keyboard_type_with_query(query_str, opts={})
+      default_opts = {:timeout_message => "after waiting '#{query_str}' did not find a match"}
+      opts = default_opts.merge(opts)
+
+      res = nil
+
+      wait_for(opts) do
+        res = query(query_str, :keyboardType)
+        not res.nil?
+      end
+
+      unless res.count == 1
+        screenshot_and_raise "expected exactly one element to be returned by '#{query_str}' but found '#{res}'"
+      end
+
+      canonical_keyboard_type(res.first)
+    end
+
+    def _kb_type_with_step_arg(arg)
+      case arg
+        when 'ascii' then target = :ascii_capable
+        when 'number' then target = :number_pad
+        when 'phone' then target = :phone_pad
+        when 'name and phone' then target = :name_phone_pad
+        else target = "#{arg.gsub(' ', '_')}".to_sym
+      end
+      target
+    end
+
+
+    def ensure_keyboard_type(query_str, type, opts={})
+      target_ui_type = ui_keyboard_type(type)
+      if target_ui_type.nil?
+        raise "expected '#{type}' to be a valid canonical type for '#{UI_KEYBOARD_TYPE}'"
+      end
+
+      current = keyboard_type_with_query(query_str, opts)
+      unless current.eql?(type)
+        res = query("#{query_str}", {:setKeyboardType => target_ui_type})
+        if res.empty?
+          screenshot_and_raise "could not set keyboard type for '#{query_str}' to '#{target_ui_type}' found '#{res}'"
+        end
+      end
+    end
+
+    def text_from_first_responder
+      raise 'there must be a visible keyboard' unless keyboard_visible?
+
+      ['textField', 'textView'].each do |ui_class|
+        res = query("#{ui_class} isFirstResponder:1", :text)
+        return res.first unless res.empty?
+      end
+      #noinspection RubyUnnecessaryReturnStatement
+      return nil
+    end
+
+    def ensure_text_input(str, input_method)
+      keyboard_enter_text str
+      actual = text_from_first_responder()
+      unless actual.eql?(str)
+        screenshot_and_raise "expected '#{str}' after #{input_method} but found '#{actual}'"
+      end
+    end
+
+    def qstr_for_random_text_input_view
+      ["textField marked:'top tf'",
+       "textView marked:'top tv'",
+       "textField marked:'bottom tf'",
+       "textView marked:'bottom tv'"].sample()
+    end
+
+    def expect_current_text_input_view_set
+      unless @current_text_input_view
+        screenshot_and_raise 'expected that @current_text_input_view would not be nil'
+      end
+    end
+
+    def unescape_backslashes(string)
+      if uia_available?
+        if string.index(/\\/)
+          string = string.gsub!('\\\\','\\')
+        end
+      end
+      string
+    end
+
   end
 end
 
@@ -120,7 +282,7 @@ Then(/^I type (\d+) email (?:addresses|address) into the text fields$/) do |num|
     email = Faker::Internet.email
     tokens = email.split('@')
     num = [*0..3030].sample
-    name = "#{tokens.first}#{num}".chars.shuffle().join('')
+    name = "#{tokens.first}#{num}".split('').shuffle().join('')
     email = "#{name}@#{tokens[1]}"
 
     keyboard_enter_text email
@@ -130,9 +292,6 @@ Then(/^I type (\d+) email (?:addresses|address) into the text fields$/) do |num|
 
     tf_id = tf_ids.sample
     touch("textField marked:'#{tf_id}'")
-    res = query("textField marked:'#{tf_id}'", AI)
-    puts "touched '#{res.first}'"
-
     1.times { step_pause }
   }
 end
@@ -188,5 +347,153 @@ end
 Then(/^I should be able to dismiss the ipad keyboard$/) do
   if ipad?
     dismiss_ipad_keyboard
+  end
+end
+
+
+
+And(/^the one of the input views has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad) showing$/) do |kb_type|
+  qstr = qstr_for_random_text_input_view
+  target = _kb_type_with_step_arg kb_type
+  ensure_keyboard_type(qstr, target)
+  touch(qstr)
+  wait_for_keyboard
+end
+
+Then(/^set my pin to "([^"]*)"$/) do |pin|
+  ensure_text_input(pin, 'setting my pin')
+end
+
+When(/^I tap the delete key (\d+) times?, I should see "([^"]*)" in the text field$/) do |num_taps, result|
+  before = text_from_first_responder()
+  num = num_taps.to_i
+
+  num.times {  keyboard_enter_char 'Delete' }
+
+  idx = (before.length - num) - 1
+  expected = before[0..idx]
+  actual = text_from_first_responder()
+
+  unless actual.eql?(expected)
+    screenshot_and_raise "expected '#{expected}' after tapping the delete key '#{num}' times but found '#{actual}'"
+  end
+end
+
+Then(/^I text my friend a facepalm "([^"]*)"$/) do |str|
+  ensure_text_input str, 'texting'
+end
+
+And(/^realize my mistake and delete (\d+) characters? and replace with "([^"]*)"$/) do |num_taps, replacement|
+  before = text_from_first_responder()
+  num = num_taps.to_i
+
+  num.times {
+    keyboard_enter_char 'Delete'
+  }
+
+  idx = (before.length - num) - 1
+  expected = "#{before[0..idx]}#{replacement}"
+
+  keyboard_enter_text(replacement)
+
+  actual = text_from_first_responder()
+
+  unless actual.eql?(expected)
+    screenshot_and_raise "expected '#{expected}' after tapping the delete key '#{num}' times but found '#{actual}'"
+  end
+end
+
+Then(/^I type "([^"]*)"$/) do |str|
+  ensure_text_input str, 'typing'
+end
+
+Then(/^dial "([^"]*)"$/) do |str|
+  ensure_text_input str, 'dialing'
+end
+
+Then(/^I try to visit "([^"]*)"$/) do |str|
+  ensure_text_input str, 'typing'
+end
+
+Then(/^I change my pin to "([^"]*)"$/) do |arg|
+  ensure_text_input arg, 'typing'
+end
+
+Then(/^I say, "([^"]*)" that's my number$/) do |arg|
+  ensure_text_input arg, 'shouting'
+end
+
+Then(/^try to call "([^"]*)" at "([^"]*)"$/) do |who, number|
+  str = "#{who} #{number}"
+  ensure_text_input str, 'typing'
+end
+
+Then(/^I start to send an email to "([^"]*)"$/) do |str|
+  ensure_text_input str, 'typing'
+end
+
+Then(/^I type pi as "([^"]*)"$/) do |str|
+  # requires twitter_cldr
+  # not ready for prime time - requires a calabash server update to provide
+  # current phone locale
+  #pi = str.to_f
+  #str = pi.localize(:de).to_s
+  begin
+    ensure_text_input str, 'typing'
+  rescue
+    pending("will fail if device locale uses ',' for decimal sep")
+  end
+end
+
+Then(/^I tweet "([^"]*)" and tag with with "([^"]*)"$/) do |tweet, hash_tag|
+  str = "#{tweet} #{hash_tag}"
+  ensure_text_input str, 'tweeting'
+end
+
+Then(/^search for "([^"]*)"$/) do |str|
+  ensure_text_input str, 'searching'
+end
+
+
+Then(/^I chose a text input view at random and type "([^"]*)"$/) do |str|
+  qstr = qstr_for_random_text_input_view
+  ensure_keyboard_type(qstr, :default)
+  touch(qstr)
+  wait_for_keyboard
+  keyboard_enter_text str
+
+  ensure_text_input str, 'typing'
+end
+
+Given(/^I choose a text input view at random$/) do
+  @current_text_input_view = qstr_for_random_text_input_view
+end
+
+And(/^that text input view has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad)$/) do |kb_type|
+  expect_current_text_input_view_set
+  target = _kb_type_with_step_arg kb_type
+  ensure_keyboard_type(@current_text_input_view, target)
+end
+
+When(/^I type a the following string with a backslash "([^"]*)"$/) do |str_with_backslash|
+  unless str_with_backslash.index(/\\/)
+    raise "expected '#{str_with_backslash}' to have a backslash"
+  end
+  expect_current_text_input_view_set
+  touch(@current_text_input_view)
+  wait_for_keyboard
+  keyboard_enter_text str_with_backslash
+  @text_entered_by_keyboard = str_with_backslash
+end
+
+Then(/^I should see the correct string in that text field$/) do
+  unless @text_entered_by_keyboard
+    raise 'expected @text_entered_by_keyboard to be set'
+  end
+  actual = text_from_first_responder
+  #puts "@text_entered_by_keyboard '#{@text_entered_by_keyboard}'"
+  expected = unescape_backslashes(@text_entered_by_keyboard)
+  unless actual.eql?(expected)
+    screenshot_and_raise "expected '#{expected}' in text input view but found '#{actual}'"
   end
 end

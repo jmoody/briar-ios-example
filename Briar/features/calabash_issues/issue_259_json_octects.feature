@@ -1,5 +1,6 @@
 @keyboard
 @issue_259
+@issue_269
 Feature: uia_type_text should not throw octet problems
 
   Background: i am looking at the text related view
@@ -17,17 +18,71 @@ Feature: uia_type_text should not throw octet problems
   # flickering because of UIA typeString() problem
   # https://github.com/calabash/calabash-ios/issues/269
   @flickering
+  @xtc_smoke_json
   Scenario: i should be able to type 2 random string
     Then I type 2 random strings with the full range of characters into the text fields
 
-#  Scenario: i should be able to type 100 email address
-#    Then I type 100 email addresses into the text fields
-#
-#  Scenario: i should be able to type 100 random string
-#    Then I type 100 random strings with the full range of characters into the text fields
-#
+  Scenario: i should be able to type 10 email address
+    Then I type 10 email addresses into the text fields
+
+  Scenario: i should be able to type 10 random string
+    Then I type 10 random strings with the full range of characters into the text fields
+
 #  Scenario: i should be able to type 1000 email address
 #    Then I type 1000 email addresses into the text fields
 #
+#  @uia_type_string_stress
 #  Scenario: i should be able to type 1000 random string
 #    Then I type 1000 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields
+
+  @uia_type_string_stress
+  Scenario: i should be able to type 100 random string
+    Then I type 100 random strings with the full range of characters into the text fields

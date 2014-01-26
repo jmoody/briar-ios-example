@@ -40,8 +40,8 @@ typedef enum : NSUInteger {
 
 
 - (void) loadReveal {
-  if (br_is_iOS_5()) {
-    NSLog(@"skipping Reveal on iOS 5 because it is not supported");
+  if (br_is_iOS_7() == NO) {
+    NSLog(@"skipping Reveal on iOS 5 and 6 because it causes problems on XTC");
     return;
   }
   
@@ -53,13 +53,10 @@ typedef enum : NSUInteger {
   void *revealLib = NULL;
   revealLib = dlopen([dyLibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
   
-
-  if (revealLib == NULL)
-  {
+  if (revealLib == NULL) {
     char *error = dlerror();
-    NSLog(@"dlopen error: %s", error);
     NSString *message = [NSString stringWithFormat:@"%@.%@ failed to load with error: %s", revealLibName, revealLibExtension, error];
-    [[[UIAlertView alloc] initWithTitle:@"Reveal library could not be loaded" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    NSLog(message);
   }
 }
 

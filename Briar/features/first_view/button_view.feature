@@ -15,7 +15,11 @@ Feature:  the button view
     When I touch the "show alert" button I should see an alert
     Then I dismiss the alert with the cancel button
 
+  # flickers on iOS 7 iPhone Simulator because there is a funny 'jump' after the
+  # app is relaunched...
+  @flickering
   Scenario: show email compose
+    Then I wait for 0.4 seconds
     When I touch the "show email" button I should see an email compose view
     Then I dismiss the email compose view with the cancel button
 

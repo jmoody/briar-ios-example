@@ -60,8 +60,9 @@ FileUtils.cp("./rerun/earp/rerun.txt", "./rerun/earp/rerun-#{date}.txt") if File
 
 %>
 
-full_output: CALABASH_FULL_CONSOLE_OUTPUT=1 DEBUG=1
-common: -f 'Slowhandcuke::Formatter' -p full_output
+verbose: CALABASH_FULL_CONSOLE_OUTPUT=1 DEBUG=1
+quiet:   CALABASH_FULL_CONSOLE_OUTPUT=0 DEBUG=0
+common: -f 'Slowhandcuke::Formatter' -p verbose
 
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
 
@@ -69,7 +70,7 @@ rerun_out:    -f rerun -o ./rerun/rerun.txt
 pluto_rr:     -f rerun -o ./rerun/pluto/rerun.txt
 neptune_rr:   -f rerun -o ./rerun/neptune/rerun.txt
 venus_rr:     -f rerun -o ./rerun/venus/rerun.txt
-earp_rr:     -f rerun -o ./rerun/earp/rerun.txt
+earp_rr:      -f rerun -o ./rerun/earp/rerun.txt
 
 html_report:  -f html -o <%= default_report %>
 pluto_html:   -f html -o <%= pluto_report %>
@@ -80,7 +81,7 @@ earp_html:    -f html -o <%= earp_report %>
 pluto_ss:   SCREENSHOT_PATH=<%= pluto_ss_path %>
 neptune_ss: SCREENSHOT_PATH=<%= neptune_ss_path %>
 venus_ss:   SCREENSHOT_PATH=<%= venus_ss_path %>
-earp_ss:   SCREENSHOT_PATH=<%= earp_ss_path %>
+earp_ss:    SCREENSHOT_PATH=<%= earp_ss_path %>
 
 no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
@@ -94,7 +95,7 @@ sdk6:  SDK_VERSION=6.1
 
 
 ipad:   DEVICE=ipad   -p common --tags ~@iphone --tags ~@iphone_only
-iphone: DEVICE=iphone -p common --tags ~@ipad   --tags ~@ipad_only
+iphone: DEVICE=iphone -p common --tags ~@ipad --tags ~@ipad_only
 
 uai: DEVICE_TARGET=simulator --tags ~@device --tags ~@device_only
 
@@ -114,8 +115,8 @@ neptune:        -p neptune_common -p no_launch
 neptune_launch: -p neptune_common -p do_launch -p no_stop
 
 venus_common:   DEVICE_TARGET=<%= venus_udid %>   DEVICE_ENDPOINT=<%= venus_ip %> -p device_common -p venus_rr   -p ipad   -p venus_html     -p venus_ss
-venus:         -p venus_common -p do_launch -p no_stop
+venus:          -p venus_common -p do_launch -p no_stop
 
 earp_common:   DEVICE_TARGET=<%= earp_udid %>   DEVICE_ENDPOINT=<%= earp_ip %> -p device_common -p earp_rr   -p iphone   -p earp_html     -p earp_ss
-earp:         -p earp_common -p do_launch -p no_stop
+earp:          -p earp_common -p do_launch -p no_stop
 

@@ -1,9 +1,40 @@
 #!/bin/sh
 
+XAMARIN_DIR="${PWD}/xamarin"
+
+if [ -d "${XAMARIN_DIR}" ]; then
+  rm -rf "${XAMARIN_DIR}"
+fi
+
+mkdir -p "${XAMARIN_DIR}"
+
+echo "INFO: copying features over to ${XAMARIN_DIR}"
+cp -r features "${XAMARIN_DIR}/"
+
+echo "INFO: cleaning up ${XAMARIN_DIR}/features"
+rm -rf "${XAMARIN_DIR}/features/Gemfile"
+rm -rf "${XAMARIN_DIR}/features/Gemfile.lock"
+rm -rf "${XAMARIN_DIR}/features/Rakefile"
+rm -rf "${XAMARIN_DIR}/features/.bundle"
+rm -rf "${XAMARIN_DIR}/features/.idea"
+rm -rf "${XAMARIN_DIR}/features/.irbrc"
+rm -rf "${XAMARIN_DIR}/features/xamarin-build.sh"
+rm -rf "${XAMARIN_DIR}/features/cucumber.yml"
+
+echo "INFO: installing cucumber.yml to ${XAMARIN_DIR}"
+mv "${XAMARIN_DIR}/features/xtc_profiles.yml" "${XAMARIN_DIR}/cucumber.yml"
+
+echo "INFO: installing briar predefined steps to .xamarin/features"
+echo "INFO:   - see briar/cucumber.rb for details"
+BRIAR_INSTALL=`bundle show briar`
+BRIAR_STEPS="${BRIAR_INSTALL}/features/step_definitions"
+cp -r "${BRIAR_STEPS}" "${XAMARIN_DIR}/features/step_definitions/briar"
+
+
 PRODUCT_NAME="Briar-cal"
 SCHEME="Briar-cal"
 
-echo "INFO: xcodebuild"
+echo "INFO: building the project"
 xcodebuild -scheme ${SCHEME} archive -configuration Release -sdk iphoneos > /dev/null
 
 DATE=$( /bin/date +"%Y-%m-%d" )
@@ -12,9 +43,7 @@ ARCHIVE=$( /bin/ls -t "${HOME}/Library/Developer/Xcode/Archives/${DATE}" | /usr/
 APP="${HOME}/Library/Developer/Xcode/Archives/${DATE}/${ARCHIVE}/Products/Applications/${PRODUCT_NAME}.app"
 IPA="${HOME}/tmp/${PRODUCT_NAME}.ipa"
 
-
 echo "INFO: xcrun PackageApplication"
-
 
 # use this strategy for dealing with 3rd party ipas that have been resigned
 # with briar resign
@@ -25,20 +54,24 @@ echo "INFO: xcrun PackageApplication"
 # use this strategy for Briar-cal
 xcrun -sdk iphoneos PackageApplication -v "${APP}" -o "${IPA}" > /dev/null
 
-echo "INFO: copying files"
-cp "${IPA}" ./xamarin/
-cp -r "${APP}" ./xamarin/
-cp cucumber.yml ./xamarin/
+echo "INFO: copying .ipa and .app files"
+cp "${IPA}" "${XAMARIN_DIR}/"
+cp -r "${APP}" "${XAMARIN_DIR}/"
 
-echo "source 'https://rubygems.org'" > ./xamarin/Gemfile
-echo "gem 'briar', '0.1.3'" >> ./xamarin/Gemfile
+# clean up the DerivedData directory
+DERIVED_DATA="${HOME}/Library/Developer/Xcode/DerivedData"
+PREFIX=Briar
 
-echo "INFO: cleaning up"
-
-rm -rf ./xamarin/features/Gemfile
-rm -rf ./xamarin/features/Gemfile.lock
-rm -rf ./xamarin/features/Rakefile
-rm -rf ./xamarin/features/.bundle
-rm -rf ./xamarin/features/.idea
+for dir in `find ${DERIVED_DATA} -maxdepth 1 -type d -name "${PREFIX}*"`; do
+    wc=`find ${dir} -type d -maxdepth 1 -print | wc -l`
+    # looking for a project directory with _2_ sub directories
+    # however, find returns the original directory as well so
+    # we compare against 3
+    if [ "$wc" -eq 3 ]; then
+       echo "INFO: found ${dir} with 2 sub directories"
+       echo "INFO: deleting ${dir}"
+       rm -rf "${dir}"
+    fi
+done
 
 

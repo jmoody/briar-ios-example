@@ -156,35 +156,28 @@ static NSString *const kIdButton = @"the button";
 #pragma  mark Text Field Delegate
 
 - (void) textFieldDidBeginEditing:(UITextField *) aTextField {
-  NSLog(@"text field did begin editing");
 }
 
 - (void) textFieldDidEndEditing:(UITextField *) aTextField {
-  NSLog(@"text field did end editing");
 }
 
 - (BOOL) textFieldShouldClear:(UITextField *) aTextField {
-  NSLog(@"text field should clear");
   return YES;
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *) aTextField {
-  NSLog(@"text field should return");
   return YES;
 }
 
 - (BOOL) textFieldShouldBeginEditing:(UITextField *) aTextField {
-  NSLog(@"text field should begin editing");
   return YES;
 }
 
 - (BOOL) textFieldShouldEndEditing:(UITextField *) aTextField {
-  NSLog(@"text field should end editing");
   return YES;
 }
 
 - (BOOL) textField:(UITextField *) aTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-  NSLog(@"text field should change characters is range");
   return YES;
 }
 

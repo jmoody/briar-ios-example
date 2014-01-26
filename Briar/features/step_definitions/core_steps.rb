@@ -1,12 +1,6 @@
 module Briar
   module Core
-    def navigate_to_text_related_tab
-      unless view_exists? 'text related'
-        step_pause
-        touch_tabbar_item 'Text'
-        wait_for_view 'text related'
-      end
-    end
+
   end
 end
 
@@ -32,3 +26,16 @@ Given(/^that I am looking at the Date tab$/) do
 end
 
 
+#noinspection RubyUnusedLocalVariable
+Then(/^I say, "([^"]*)"$/) do |arg|
+
+end
+
+#noinspection RubyUnusedLocalVariable
+Then(/^he said, "([^"]*)"$/) do |arg|
+
+end
+
+And(/^you will get no hurt now$/) do
+
+end
