@@ -3,85 +3,54 @@
 date = Time.now.strftime('%Y-%m-%d-%H%M-%S')
 default_report = "./reports/calabash-#{date}.html"
 
-lesspainful_dir = "#{ENV['HOME']}/.xamarin"
+ss_path = "./screenshots/"
 
-pluto_dir = "#{lesspainful_dir}/devices/pluto"
-pluto_ip = IO.read("#{pluto_dir}/ip") if File.exists?("#{pluto_dir}/ip")
-pluto_udid = IO.read("#{pluto_dir}/udid") if File.exists?("#{pluto_dir}/udid")
-pluto_report = "./reports/pluto/#{date}-pluto.html"
-pluto_ss_path = "#{Dir.pwd}/reports/pluto/screenshots/"
+FileUtils.mkdir("./screenshots") unless File.exists?("./screenshots")
+FileUtils.mkdir("./reports") unless File.exists?("./reports")
 
-neptune_dir = "#{lesspainful_dir}/devices/neptune"
-neptune_ip = IO.read("#{neptune_dir}/ip") if File.exists?("#{neptune_dir}/ip")
-neptune_udid = IO.read("#{neptune_dir}/udid") if File.exists?("#{neptune_dir}/udid")
-neptune_report = "./reports/neptune/#{date}-neptune.html"
-neptune_ss_path = "#{Dir.pwd}/reports/neptune/screenshots/"
 
-venus_dir = "#{lesspainful_dir}/devices/venus"
-venus_ip = IO.read("#{venus_dir}/ip") if File.exists?("#{venus_dir}/ip")
-venus_udid = IO.read("#{venus_dir}/udid") if File.exists?("#{venus_dir}/udid")
-venus_report = "./reports/venus/#{date}-venus.html"
-venus_ss_path = "#{Dir.pwd}/reports/venus/screenshots/"
+xamarin_dir = "#{ENV['HOME']}/.xamarin"
 
-earp_dir = "#{lesspainful_dir}/devices/earp"
-earp_ip = IO.read("#{earp_dir}/ip") if File.exists?("#{earp_dir}/ip")
-earp_udid = IO.read("#{earp_dir}/udid") if File.exists?("#{earp_dir}/udid")
-earp_report = "./reports/earp/#{date}-earp.html"
-earp_ss_path = "#{Dir.pwd}/reports/earp/screenshots/"
+devices = {}
 
-ss_path = "#{Dir.pwd}/screenshots/"
+device_list = ['pluto', 'neptune', 'venus', 'earp']
 
-`mkdir ./screenshots` unless File.exists?("./screenshots")
-`mkdir ./reports` unless File.exists?("./reports")
+device_list.each do |device|
+  dir = "#{xamarin_dir}/devices/#{device}"
+  ip = IO.read("#{dir}/ip") if File.exists?("#{dir}/ip")
+  udid = IO.read("#{dir}/udid") if File.exists?("#{dir}/udid")
+  report = "./reports/#{device}/#{date}-#{device}.html"
+  ss_path = "./reports/#{device}/screenshots/"
+  ht = {:dir => dir,
+        :ip => ip,
+        :udid => udid,
+        :report => report,
+        :ss_path => ss_path}
+  devices[device.to_sym] = ht
 
-`mkdir ./reports/pluto` unless File.exists?("./reports/pluto")
-`mkdir ./reports/pluto/screenshots` unless File.exists?("./reports/pluto/screenshots")
+  FileUtils.mkdir("./reports/#{device}") unless File.exists?("./reports/#{device}")
+  FileUtils.mkdir("./reports/#{device}/screenshots") unless File.exists?("./reports/#{device}/screenshots")
+end
 
-`mkdir ./reports/neptune` unless File.exists?("./reports/neptune")
-`mkdir ./reports/neptune/screenshots` unless File.exists?("./reports/neptune/screenshots")
-
-`mkdir ./reports/venus` unless File.exists?("./reports/venus")
-`mkdir ./reports/venus/screenshots` unless File.exists?("./reports/venus/screenshots")
-
-`mkdir ./reports/earp` unless File.exists?("./reports/earp")
-`mkdir ./reports/earp/screenshots` unless File.exists?("./reports/earp/screenshots")
-
-`mkdir ./rerun` unless File.exists?("./rerun")
-`mkdir ./rerun/pluto` unless File.exists?("./rerun/pluto")
-`mkdir ./rerun/neptune` unless File.exists?("./rerun/neptune")
-`mkdir ./rerun/venus` unless File.exists?("./rerun/venus")
-`mkdir ./rerun/earp` unless File.exists?("./rerun/earp")
-
-FileUtils.cp("./rerun/rerun.txt", "./rerun/rerun-#{date}.txt") if File.exists?("./rerun/rerun.txt")
-FileUtils.cp("./rerun/pluto/rerun.txt", "./rerun/pluto/rerun-#{date}.txt") if File.exists?("./rerun/pluto/rerun.txt")
-FileUtils.cp("./rerun/neptune/rerun.txt", "./rerun/neptune/rerun-#{date}.txt") if File.exists?("./rerun/neptune/rerun.txt")
-FileUtils.cp("./rerun/venus/rerun.txt", "./rerun/venus/rerun-#{date}.txt") if File.exists?("./rerun/venus/rerun.txt")
-FileUtils.cp("./rerun/earp/rerun.txt", "./rerun/earp/rerun-#{date}.txt") if File.exists?("./rerun/earp/rerun.txt")
 
 %>
 
 verbose: CALABASH_FULL_CONSOLE_OUTPUT=1 DEBUG=1
 quiet:   CALABASH_FULL_CONSOLE_OUTPUT=0 DEBUG=0
-common: -f 'Slowhandcuke::Formatter' -p verbose
+common: -f 'Slowhandcuke::Formatter' -p quiet
 
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
 
-rerun_out:    -f rerun -o ./rerun/rerun.txt
-pluto_rr:     -f rerun -o ./rerun/pluto/rerun.txt
-neptune_rr:   -f rerun -o ./rerun/neptune/rerun.txt
-venus_rr:     -f rerun -o ./rerun/venus/rerun.txt
-earp_rr:      -f rerun -o ./rerun/earp/rerun.txt
+html_report:  -f 'Calabash::Formatters::Html' -o <%= default_report %>
+pluto_html:   -f 'Calabash::Formatters::Html' -o <%= devices[:pluto][:report] %>
+neptune_html: -f 'Calabash::Formatters::Html' -o <%= devices[:neptune][:report] %>
+venus_html:   -f 'Calabash::Formatters::Html' -o <%= devices[:venus][:report] %>
+earp_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:earp][:report] %>
 
-html_report:  -f html -o <%= default_report %>
-pluto_html:   -f html -o <%= pluto_report %>
-neptune_html: -f html -o <%= neptune_report %>
-venus_html:   -f html -o <%= venus_report %>
-earp_html:    -f html -o <%= earp_report %>
-
-pluto_ss:   SCREENSHOT_PATH=<%= pluto_ss_path %>
-neptune_ss: SCREENSHOT_PATH=<%= neptune_ss_path %>
-venus_ss:   SCREENSHOT_PATH=<%= venus_ss_path %>
-earp_ss:    SCREENSHOT_PATH=<%= earp_ss_path %>
+pluto_ss:   SCREENSHOT_PATH=<%= devices[:pluto][:ss_path] %>
+neptune_ss: SCREENSHOT_PATH=<%= devices[:neptune][:ss_path] %>
+venus_ss:   SCREENSHOT_PATH=<%= devices[:venus][:ss_path] %>
+earp_ss:    SCREENSHOT_PATH=<%= devices[:earp][:ss_path] %>
 
 no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
@@ -99,24 +68,25 @@ iphone: DEVICE=iphone -p common --tags ~@ipad --tags ~@ipad_only
 
 uai: DEVICE_TARGET=simulator --tags ~@device --tags ~@device_only
 
-default: -p common -p ss_path -p rerun_out -p html_report -p no_launch -p uai -p no_reset_btw -p no_stop
-launch:  -p common -p ss_path -p rerun_out -p html_report -p do_launch -p uai -p no_reset_btw -p no_stop
+default: -p common -p ss_path -p html_report -p no_launch -p uai -p no_reset_btw -p no_stop
+launch:  -p common -p ss_path -p html_report -p do_launch -p uai -p no_reset_btw -p no_stop
 
 # required only for devices
 bundle_id:    BUNDLE_ID=com.littlejoysoftware.Briar-cal
 
 device_common:  -p bundle_id --tags ~@simulator --tags ~@simulator_only
-pluto_common:   DEVICE_TARGET=<%= pluto_udid %>   DEVICE_ENDPOINT=<%= pluto_ip %> -p device_common -p pluto_rr   -p ipad   -p pluto_html     -p pluto_ss
+
+pluto_common:   DEVICE_TARGET=<%= devices[:pluto][:udid] %>   DEVICE_ENDPOINT=<%= devices[:pluto][:ip] %> -p device_common -p ipad   -p pluto_html     -p pluto_ss
 pluto:          -p pluto_common -p no_launch
 pluto_launch:   -p pluto_common -p do_launch -p no_stop
 
-neptune_common: DEVICE_TARGET=<%= neptune_udid %> DEVICE_ENDPOINT=<%= neptune_ip %> -p device_common -p neptune_rr -p iphone -p neptune_html -p neptune_ss
+neptune_common: DEVICE_TARGET=<%= devices[:neptune][:udid] %> DEVICE_ENDPOINT=<%= devices[:neptune][:ip] %> -p device_common -p iphone -p neptune_html -p neptune_ss
 neptune:        -p neptune_common -p no_launch
 neptune_launch: -p neptune_common -p do_launch -p no_stop
 
-venus_common:   DEVICE_TARGET=<%= venus_udid %>   DEVICE_ENDPOINT=<%= venus_ip %> -p device_common -p venus_rr   -p ipad   -p venus_html     -p venus_ss
+venus_common:   DEVICE_TARGET=<%= devices[:venus][:udid] %>   DEVICE_ENDPOINT=<%= devices[:venus][:ip] %> -p device_common -p ipad   -p venus_html     -p venus_ss
 venus:          -p venus_common -p do_launch -p no_stop
 
-earp_common:   DEVICE_TARGET=<%= earp_udid %>   DEVICE_ENDPOINT=<%= earp_ip %> -p device_common -p earp_rr   -p iphone   -p earp_html     -p earp_ss
+earp_common:   DEVICE_TARGET=<%= devices[:earp][:udid] %> DEVICE_ENDPOINT=<%= devices[:earp][:ip] %> -p device_common  -p iphone   -p earp_html     -p earp_ss
 earp:          -p earp_common -p do_launch -p no_stop
 

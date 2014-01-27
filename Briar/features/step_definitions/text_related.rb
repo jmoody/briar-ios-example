@@ -497,3 +497,4 @@ Then(/^I should see the correct string in that text field$/) do
     screenshot_and_raise "expected '#{expected}' in text input view but found '#{actual}'"
   end
 end
+

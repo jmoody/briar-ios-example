@@ -14,6 +14,7 @@ wip:         -p tags --tags @wip
 flicker:     -p tags --tags @flickering
 iphone:      -p tags -p iphone_only
 ipad:        -p tags -p ipad_only
+xtc_wip:     -p tags --tags @xtc_wip
 
 # issues
 

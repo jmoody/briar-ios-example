@@ -35,54 +35,54 @@ Feature: uia_type_text should not throw octet problems
 #  Scenario: i should be able to type 1000 random string
 #    Then I type 1000 random strings with the full range of characters into the text fields
 
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
-
-  @uia_type_string_stress
-  Scenario: i should be able to type 100 random string
-    Then I type 100 random strings with the full range of characters into the text fields
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields
+#
+#  @uia_type_string_stress
+#  Scenario: i should be able to type 100 random string
+#    Then I type 100 random strings with the full range of characters into the text fields

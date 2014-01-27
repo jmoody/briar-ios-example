@@ -25,6 +25,18 @@ Given(/^that I am looking at the Date tab$/) do
   end
 end
 
+Then(/^I am looking at the Tables tab$/) do
+  trait = 'tables'
+  unless tabbar_visible?
+    screenshot_and_raise 'expected tabbar to be visible - cannot navigate to Tables tab'
+  end
+
+  unless view_exists? trait
+    touch_tabbar_item 'Tables'
+    wait_for_view trait
+  end
+end
+
 
 #noinspection RubyUnusedLocalVariable
 Then(/^I say, "([^"]*)"$/) do |arg|
@@ -39,3 +51,4 @@ end
 And(/^you will get no hurt now$/) do
 
 end
+
