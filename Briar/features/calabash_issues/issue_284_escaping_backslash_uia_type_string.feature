@@ -43,7 +43,6 @@ Feature: escaping backslash
     When I type a the following string with a backslash "This \\\ string has a triple backslash"
     Then I should see the correct string in that text field
 
-  @wip
   Scenario: wacky backslashes
     When I type a the following string with a backslash "\\This \\\\ string \\\\\ has \ wacky \ \ backslashes\\\"
     Then I should see the correct string in that text field
