@@ -1,6 +1,6 @@
 #import "BrController.h"
 
-@interface BrTableController : BrController
+@interface BrAlphabetTableController : BrController
 <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 @end

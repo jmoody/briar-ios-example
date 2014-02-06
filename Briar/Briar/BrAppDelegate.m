@@ -3,11 +3,11 @@
 #import "BrTextRelatedController.h"
 #import "BrDatePickerController.h"
 #import "BrCategories.h"
-#import "BrTableController.h"
 #import "BrNavigationController.h"
 #import "BrSliderController.h"
 #import "BrGlobals.h"
 #import <dlfcn.h>
+#import "BrScrollingHomeController.h"
 
 @implementation BrWindow
 
@@ -229,16 +229,17 @@ typedef enum : NSUInteger {
   BrNavigationController *date_nc = [[BrNavigationController alloc]
                                   initWithRootViewController:date_vc];
   
-  UIViewController *table_vc = [BrTableController new];
-  BrNavigationController *table_nc = [[BrNavigationController alloc]
-                                  initWithRootViewController:table_vc];
+  //UIViewController *table_vc = [BrTableController new];
+  UIViewController *scroll_vc = [BrScrollingHomeController new];
+  BrNavigationController *scroll_nc = [[BrNavigationController alloc]
+                                      initWithRootViewController:scroll_vc];
 
   UIViewController *slider_vc = [BrSliderController new];
   BrNavigationController *slider_nc = [[BrNavigationController alloc]
                                    initWithRootViewController:slider_vc];
   
   self.tabBarController = [[BrTabBarController alloc] init];
-  self.tabBarController.viewControllers = @[first_nc, text_nc, date_nc, table_nc, slider_nc];
+  self.tabBarController.viewControllers = @[first_nc, text_nc, date_nc, scroll_nc, slider_nc];
   self.tabBarController.delegate = self;
   
   

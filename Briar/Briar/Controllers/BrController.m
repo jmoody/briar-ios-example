@@ -35,6 +35,8 @@
 
 @interface BrController ()
 
+- (void) postInitConfiguration;
+
 @end
 
 @implementation BrController
@@ -47,30 +49,46 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (id) initNibless {
+  self = [super initWithNibName:nil bundle:nil];
+  if (self) {
+    [self postInitConfiguration];
+  }
+  return self;
+}
 
+/*** UNEXPECTED ***
+ yeah yeah yeah, i hear you.  this is completely non standard, but i do not like
+ chasing nib names across refactorings.
+ 
+ the convention is that the .xib _must_ match the controller name
+ *****************/
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   [self doesNotRecognizeSelector:_cmd];
   return nil;
 }
 
-
 - (id) init {
   NSString *nibName = [NSString stringWithFormat:@"%@", [self class]];
   self = [super initWithNibName:nibName bundle:nil];
   if (self) {
-    self.navbarTitle = nil;
-    self.wantsFullScreenLayout = YES;
-    
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-    SEL selector = @selector(setAutomaticallyAdjustsScrollViewInsets:);
-    if ([self respondsToSelector:selector]) {
-      [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    }
-#endif
-
+    [self postInitConfiguration];
   }
   return self;
 }
+
+- (void) postInitConfiguration {
+  self.navbarTitle = nil;
+  self.wantsFullScreenLayout = YES;
+  
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+  SEL selector = @selector(setAutomaticallyAdjustsScrollViewInsets:);
+  if ([self respondsToSelector:selector]) {
+    [self setAutomaticallyAdjustsScrollViewInsets:NO];
+  }
+#endif
+}
+
 
 - (void) didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
