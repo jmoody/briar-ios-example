@@ -172,6 +172,16 @@
     [self setNeedsStatusBarAppearanceUpdate];
   }
 #endif
+  
+  if (br_is_iOS_7() == NO) {
+    NSString *backButtonTitle = NSLocalizedString(@"Back", nil);
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:backButtonTitle
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
+  }
+  
 }
 
 - (void) viewWillLayoutSubviews {
@@ -194,6 +204,7 @@
   navbar.translucent = YES;
   navbar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
 
+ 
 }
 
 - (void)viewDidAppear:(BOOL)animated {

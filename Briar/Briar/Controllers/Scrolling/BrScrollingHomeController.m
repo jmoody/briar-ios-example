@@ -1,6 +1,7 @@
 #import "BrScrollingHomeController.h"
 #import "BrGlobals.h"
 #import "BrAlphabetTableController.h"
+#import "BrRecipeCollectionController.h"
 
 typedef enum : NSInteger {
   kRowTable = 0,
@@ -15,7 +16,7 @@ typedef enum : NSInteger {
 
 
 @interface BrScrollingHomeController ()
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
 - (NSString *) titleForRowAtIndexPath:(NSIndexPath *) aIndexPath;
 - (NSString *) subtitleForRowAtIndexPath:(NSIndexPath *) aIndexPath;
@@ -48,7 +49,7 @@ typedef enum : NSInteger {
   NSUInteger row = (NSUInteger)[aIndexPath row];
   switch (row) {
     case kRowTable: return @"Alphabet Table";
-    case kRowCollectionView: return @"Collection View";
+    case kRowCollectionView: return @"Recipes Collection View";
     default: {
       NSString *reason = [NSString stringWithFormat:@"could not find row '%d'", row];
       @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -82,7 +83,7 @@ typedef enum : NSInteger {
   NSUInteger row = (NSUInteger)[aIndexPath row];
   switch (row) {
     case kRowTable: return @"alphabet";
-    case kRowCollectionView: return @"collection";
+    case kRowCollectionView: return @"recipes";
     default: {
       NSString *reason = [NSString stringWithFormat:@"could not find row '%d'", row];
       @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -177,10 +178,15 @@ typedef enum : NSInteger {
   
 }
 
-#pragma mark - UITableViewDelegate Managing Accessory Views
 
-- (void) tableView:(UITableView *) aTableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *) aIndexPath {
+#pragma mark - UIAlertView Delegate
 
+- (void) alertViewCancel:(UIAlertView *) aAlertView {
+  // implemented for calabash reset
+}
+
+- (void) alertView:(UIAlertView *) aAlertView clickedButtonAtIndex:(NSInteger) aButtonIndex {
+  // nop
 }
 
 #pragma mark - Cell Touching
@@ -191,9 +197,25 @@ typedef enum : NSInteger {
 }
 
 - (void) cellTouchedCollectionView {
-
+  if (br_is_iOS_5() == YES) {
+    
+    NSString *lat = NSLocalizedString(@"iOS 5 Detected!", nil);
+    NSString *lam = NSLocalizedString(@"UICollectionViews are available starting iOS 6", nil);
+    NSString *lok = NSLocalizedString(@"OK", nil);
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:lat
+                          message:lam
+                          delegate:self
+                          cancelButtonTitle:lok
+                          otherButtonTitles:nil];
+    alert.accessibilityIdentifier = @"alert";
+    [alert show];
+    return;
+  }
+  
+  BrRecipeCollectionController *rcc = [BrRecipeCollectionController new];
+  [self.navigationController pushViewController:rcc animated:YES];
 }
-
 
 #pragma mark - Subviews
 
