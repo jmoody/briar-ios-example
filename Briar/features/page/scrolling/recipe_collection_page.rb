@@ -1,13 +1,13 @@
 require_relative '../br_page'
 
-class CollectionPage < BrPage
+class RecipeCollectionPage < BrPage
 
   def navbar_title
-    'Collection'
+    'Recipes'
   end
 
   def mark
-    'collection'
+    'recipes page'
   end
 
   def go_back_to_home

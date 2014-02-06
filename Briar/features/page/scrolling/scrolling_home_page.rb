@@ -24,9 +24,11 @@ class ScrollingHomePage < HomePage
     wait_for_view('alphabet')
   end
 
-  def goto_collection_page
-    _touch_row('collection')
-    wait_for_view('collection page')
+  def goto_recipes_page
+    page = page(RecipeCollectionPage)
+    _touch_row('recipes')
+    wait_for_view(page.mark())
+    page
   end
 
 end

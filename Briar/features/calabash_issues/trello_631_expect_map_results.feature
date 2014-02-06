@@ -1,5 +1,6 @@
 @trello
 @trello_631
+
 Feature: expecting map results
   In order to reduce duplicate code
   As a calabash developer
@@ -69,7 +70,7 @@ Feature: expecting map results
   @table
   @scroll
   Scenario: expecting scroll to pass
-    Given I am looking at the Tables tab
+    Given I am looking at the Alphabet table
     Then I call scroll down on the table
 
   @allow-rescue
@@ -89,7 +90,7 @@ Feature: expecting map results
   @scroll
   @table
   Scenario: expecting scroll_to_row to pass
-    Given I am looking at the Tables tab
+    Given I am looking at the Alphabet table
     Then I call scroll_to_row 10
 
   @scroll
@@ -101,7 +102,7 @@ Feature: expecting map results
   @scroll
   @table
   Scenario: expecting scroll_to_row_with_mark to pass
-    Given I am looking at the Tables tab
+    Given I am looking at the Alphabet table
     Then I call scroll_to_row_with_mark on the "j" row
 
   @scroll

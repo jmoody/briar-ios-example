@@ -25,16 +25,18 @@ Given(/^that I am looking at the Date tab$/) do
   end
 end
 
-Then(/^I am looking at the Tables tab$/) do
-  trait = 'tables'
+Then(/^I am looking at the Alphabet table$/) do
   unless tabbar_visible?
     screenshot_and_raise 'expected tabbar to be visible - cannot navigate to Tables tab'
   end
 
-  unless view_exists? trait
-    touch_tabbar_item 'Tables'
-    wait_for_view trait
+  if cp_is?(ScrollingHomePage)
+    @cp.goto_alphabet_table
+  else
+    @cp = page(ScrollingHomePage).navigate_to
+    @cp.goto_alphabet_table
   end
+
 end
 
 

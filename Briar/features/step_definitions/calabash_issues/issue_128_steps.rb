@@ -38,7 +38,7 @@ Then(/^I scroll down until the i row is partially hidden by the nav bar$/) do
   end
 
   2.times do
-    scroll("tableView marked:'alphabet'", 'down')
+    scroll("tableView marked:'table'", 'down')
     step_pause
   end
 

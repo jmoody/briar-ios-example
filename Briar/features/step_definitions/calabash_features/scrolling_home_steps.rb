@@ -13,15 +13,15 @@ end
 Then(/^I can go back to the scrolling home view$/) do
   if @cp.nil?
     @cp = page(ScrollingHomePage).navigate_to
-  elsif cp_is? CollectionPage
+  elsif cp_is? RecipeCollectionPage
     @cp = @cp.go_back_to_home
   else
-    pending 'cannot go back to scrolling home from this page'
+    pending "cannot go back to scrolling home from this page '#{@cp}'"
   end
 end
 
 
 And(/^I go to the collection view page$/) do
   expect_current_page(ScrollingHomePage)
-  @cp = @cp.goto_collection_page
+  @cp = @cp.goto_recipes_page
 end
