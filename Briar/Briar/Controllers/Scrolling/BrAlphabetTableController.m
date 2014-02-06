@@ -1,4 +1,4 @@
-#import "BrTableController.h"
+#import "BrAlphabetTableController.h"
 #import "BrCategories.h"
 #import "BrGlobals.h"
 
@@ -10,7 +10,7 @@ typedef enum : NSUInteger {
 } ViewTags;
 
 
-@interface BrTableController ()
+@interface BrAlphabetTableController ()
 
 
 @property (nonatomic, strong, readonly) UITableView *tableView;
@@ -22,15 +22,14 @@ typedef enum : NSUInteger {
 
 @end
 
-@implementation BrTableController
+@implementation BrAlphabetTableController
 
 @synthesize tableView = _tableView;
 
 - (id) init {
   self = [super init];
   if (self) {
-    self.title = NSLocalizedString(@"Tables", @"table controller: appears as title and as tab button title");
-    self.tabBarItem.image = [UIImage imageNamed:@"259-list"];
+    self.title = NSLocalizedString(@"The Alphabet", @"table controller: appears as title and as tab button title");
     self.titles = @[@"a", @"b", @"c", @"d", @"e", @"f", @"g", @"h", @"i", @"j", @"k", @"l", @"m", @"n"];
   }
   return self;
@@ -39,7 +38,7 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
   [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-  self.view.accessibilityIdentifier = @"tables";
+  self.view.accessibilityIdentifier = @"alphabet";
   
 }
 
@@ -220,7 +219,8 @@ typedef enum : NSUInteger {
   table.tableFooterView = [UIView new];
   table.sectionFooterHeight = 0.0;
 
-  table.accessibilityIdentifier = @"alphabet";
+  table.accessibilityIdentifier = @"table";
+  table.accessibilityLabel = NSLocalizedString(@"List of letters", nil);
   table.tag = kTagTable;
   _tableView = table;
   return table;

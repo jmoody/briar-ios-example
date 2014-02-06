@@ -70,8 +70,9 @@ Then(/^I call picker_set_date_time with a non-DateTime object$/) do
 end
 
 Then(/^I call scroll down on the table$/) do
-  table_mark = 'alphabet'
+  table_mark = 'table'
   scroll("view marked:'#{table_mark}'", :down)
+  step_pause
 end
 
 Then(/^I call scroll on a non-existent view$/) do
@@ -94,7 +95,8 @@ Then(/^I call scroll on a view that is not a scroll view$/) do
 end
 
 Then(/^I call scroll_to_row 10$/) do
-  scroll_to_row("view marked:'alphabet'", 10)
+  scroll_to_row("view marked:'table'", 10)
+  step_pause
 end
 
 Then(/^I call scroll_to_row on a non-existent view$/) do
@@ -117,4 +119,5 @@ end
 
 Then(/^I call scroll_to_row_with_mark on the "([^"]*)" row$/) do |arg|
   scroll_to_row_with_mark arg
+  step_pause
 end

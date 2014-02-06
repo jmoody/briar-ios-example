@@ -18,10 +18,6 @@ i want to provide an iOS app that the calabash community can use to test the cal
 
 a while back, i tried to port the calabash-ios-server to ARC to fix a leak that was causing one of my tests to occasionally crash.  i did my conversion and realized there was no way to see if my changes broke calabash; there was no app that comprehensively tested all the calabash features.
 
-### testing on Xamarin Test Cloud
-
-not supported yet
-
 ## License of Images
 
 ### Glyphish
@@ -42,63 +38,82 @@ the emoticons are from [Recovery Warriors LLC.](http://www.recoverywarriors.org/
 
 please don't distribute them.
 
-## Status of Tests
+### Recipe Images
 
-* there is one test that expected to fail - `issue_132_txt_undefined_in_predefined_steps.feature:8`
-* there are several pending steps around email compose views
-
-- [x] iOS 6 iPhone 4S 
-    - [report -- NO_LAUNCH=1](status/iOS6-4S-no-launch.html)
-    - [report -- NO_LAUNCH=0](status/iOS6-4S-launch.html)
-- [ ] iOS 7 iPhone 5C [swiping broken on iOS 7](https://github.com/calabash/calabash-ios/issues/230)
-    - not tested (device unavailable)
-- [x] iOS 5.1 iPad 1 [keyboard enter text cannot enter all characters](https://github.com/calabash/calabash-ios/issues/194)
-    - [report -- NO_LAUNCH=1](status/iOS5-iPad1-no-launch.html)
-    - `NO_LAUNCH=0` not supported on Xcode 5 + iOS 5
-- [x] iOS 7.0 iPad 4  [swiping broken on iOS 7](https://github.com/calabash/calabash-ios/issues/230)
-    - [report](status/i0S7-iPad4.html)
-- [x] iOS Simulator
-   - [x] iphone
-       - [x] iOS 5
-       - [x] iOS 6
-       - [x] iOS 7
-   - [x] ipad
-       - [ ] iOS 5
-       - [ ] iOS 6
-       - [ ] iOS 7
+http://www.appcoda.com/ios-programming-uicollectionview-tutorial/
        
 ## How to Test
 
 the default cucumber profile sets `NO_LAUNCH=1` which implies 'do not launch with instruments'.
 
-`$ bundle exec cucumber`
+```
+# test against the simulator no launching
+$ cd Briar/
+$ cucumber
+```
 
 to test with `NO_LAUNCH=0` (launch with instruments)
 
-`$ bundle exec cucumber -p launch`
+```
+# test agains the simulator - launch with Instruments (iOS 7) or sim_launcher (iOS 6)
+$ cd Briar/
+$ cucumber -p launch
+```
 
 ### testing on devices
 
-have a look at the cucumber.yml file to see how to test on devices.
+have a look at the `cucumber.yml` file to see how to test on devices.
+
+```
+$ cd Briar/
+$ cucumber -p earp 
+$ cucumber -p venus
+$ cucumber -p neptune
+$ cucumber -p neptune_launch
+$ cucumber -p pluto
+```
 
 ### calabash-ios console
 
-use the `*_console.sh` script to launch a calabash console. 
+open consoles using rake tasks
 
-by default the consoles are configured for `iphone`.  to configure for `ipad`, just pass `ipad` as an argument
+```
+# simulator iOS 6
+$ cd Briar/
+$ rake sim6
 
-`$ 7-console.sh ipad`
+# simulator iOS 7
+$ cd Briar/
+$ rake sim7
+```
+
+### changing the default simulator
+
+```
+$ cd Briar/
+$ rake set_sim_ipad               # set the default simulator to the ipad (non retina)
+$ rake set_sim_ipad_64            # set the default simulator to the ipad retina 64 bit
+$ rake set_sim_ipad_r             # set the default simulator to the ipad retina
+$ rake set_sim_iphone             # set the default simulator to the iphone 3.5in
+$ rake set_sim_iphone_4in         # set the default simulator to the iphone 4in
+$ rake set_sim_iphone_64          # set the default simulator to the iphone 4in 64bit
+```
+
+### testing on Xamarin Test Cloud
+
+look at the `Briar/Rakefile` for details about how to use rake to submit tests to Xamarin Test Cloud.
 
 ### Tags
 
-* `issue_* ==> calabash github issue`
-* `issues  ==> all calabash github issues`
-* `fb_*    ==> my private fogbugz`
-* `@briar  ==> testing briar gem features`
-* `@core   ==> calabash core`
+* `issue_*  ==> calabash github issue`
+* `issues   ==> all calabash github issues`
+* `fb_*     ==> internal fogbugz`
+* `trello_* ==> xamarin trello`
+* `@briar   ==> testing briar gem features`
+* `@core    ==> calabash core`
 
 ```
-$ bundle exec cucumber -d -f Cucumber::Formatter::ListTags
+$ rake tag_report
 @backdoor
 @bars
 @briar

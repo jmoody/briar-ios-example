@@ -12,6 +12,8 @@
 
 /** @name Initializing Objects */
 
+- (id) initNibless;
+
 /** @name Utility */
 - (NSString *) stringForOrientation:(UIInterfaceOrientation) aOrientation;
 - (CGRect) frameForView:(UIView *) aView

@@ -51,14 +51,16 @@ end
 
 # return a +Hash+ of XTC device sets where the key is some arbitrary description
 # and the value is a <tt>XTC device set</tt>
-def read_device_sets(path='~/.xamarin/test-cloud/device_sets.csv')
+def read_device_sets(path='~/.xamarin/test-cloud/ios-sets.csv')
   ht = Hash.new
   File.read(File.expand_path(path)).split("\n").each do |line|
     # not 1.8 compat
     # unless line[0].eql?('#')
     unless line.chars.to_a.first.eql?('#')
       tokens = line.split(',')
-      ht[tokens[0]] = tokens[1]
+      if tokens.count == 2
+        ht[tokens[0].strip] = tokens[1].strip
+      end
     end
   end
   ht
@@ -244,8 +246,14 @@ def rake_install_gem(path_to_gemspec)
   version
 end
 
+def open_report_in_browser(device)
+  sh "open reports/#{device}/`ls -t1 reports/venus/ | head -n1`"
+end
+
 # my stuff
 namespace :moody do
+
+  task :venus_report do open_report_in_browser 'venus' end
 
   def ruby_versions
     {'20' => '2.0.0-p353',
@@ -315,7 +323,7 @@ namespace :moody do
   task :earp_reinstall do ideviceinstaller('earp', :reinstall) end
 
   # test cloud
-  task :tc, :device_set, :profile do |t, args|
+  task :xtc, :device_set, :profile do |t, args|
     sh './xamarin-build.sh'
 
     xtc_gemfile = './xamarin/Gemfile'

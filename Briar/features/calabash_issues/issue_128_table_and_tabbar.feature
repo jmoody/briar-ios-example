@@ -8,7 +8,7 @@ Feature: issue 128 - should be able to touch rows that are partially hidden by t
   https://groups.google.com/d/msg/calabash-ios/L6OmNnbhPW0/0fzLX-DJl-UJ
 
   Background:  should be able to navigate to the tables view
-    When I touch the "Tables" tab I should see the "tables" view
+    Given I am looking at the Alphabet table
     And I rotate the device so the home button is on the bottom
 
   # flickering iphone _device_
