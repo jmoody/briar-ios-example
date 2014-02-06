@@ -59,9 +59,9 @@ reset_btw:    RESET_BETWEEN_SCENARIOS=1
 stop:         NO_STOP=0
 no_stop:      NO_STOP=1
 
-sdk5:  SDK_VERSION=5.1
+# cannot test collection views on iOS 5
+sdk5:  SDK_VERSION=5.1 --tags ~@collection_view
 sdk6:  SDK_VERSION=6.1
-
 
 ipad:   DEVICE=ipad   -p common --tags ~@iphone --tags ~@iphone_only
 iphone: DEVICE=iphone -p common --tags ~@ipad --tags ~@ipad_only
@@ -77,11 +77,13 @@ bundle_id:    BUNDLE_ID=com.littlejoysoftware.Briar-cal
 device_common:  -p bundle_id --tags ~@simulator --tags ~@simulator_only
 
 pluto_common:   DEVICE_TARGET=<%= devices[:pluto][:udid] %>   DEVICE_ENDPOINT=<%= devices[:pluto][:ip] %> -p device_common -p ipad   -p pluto_html     -p pluto_ss
-pluto:          -p pluto_common -p no_launch
-pluto_launch:   -p pluto_common -p do_launch -p no_stop
+# cannot test collection views on iOS 5
+pluto:          -p pluto_common -p no_launch --tags ~@collection_view
 
 neptune_common: DEVICE_TARGET=<%= devices[:neptune][:udid] %> DEVICE_ENDPOINT=<%= devices[:neptune][:ip] %> -p device_common -p iphone -p neptune_html -p neptune_ss
-neptune:        -p neptune_common -p no_launch
+
+# cannot test email views without launching on iOS 6
+neptune:        -p neptune_common -p no_launch --tags ~@email
 neptune_launch: -p neptune_common -p do_launch -p no_stop
 
 venus_common:   DEVICE_TARGET=<%= devices[:venus][:udid] %>   DEVICE_ENDPOINT=<%= devices[:venus][:ip] %> -p device_common -p ipad   -p venus_html     -p venus_ss
