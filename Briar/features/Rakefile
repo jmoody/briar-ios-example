@@ -246,8 +246,14 @@ def rake_install_gem(path_to_gemspec)
   version
 end
 
+def open_report_in_browser(device)
+  sh "open reports/#{device}/`ls -t1 reports/venus/ | head -n1`"
+end
+
 # my stuff
 namespace :moody do
+
+  task :venus_report do open_report_in_browser 'venus' end
 
   def ruby_versions
     {'20' => '2.0.0-p353',
