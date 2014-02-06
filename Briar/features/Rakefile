@@ -323,7 +323,7 @@ namespace :moody do
   task :earp_reinstall do ideviceinstaller('earp', :reinstall) end
 
   # test cloud
-  task :tc, :device_set, :profile do |t, args|
+  task :xtc, :device_set, :profile do |t, args|
     sh './xamarin-build.sh'
 
     xtc_gemfile = './xamarin/Gemfile'
