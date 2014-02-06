@@ -22,5 +22,9 @@ xtc_wip:     -p tags --tags @xtc_wip
 issue_256:   -p tags --tags @issue_256
 # escaping 'backslash' for uia_type_string
 issue_284:   -p tags --tags @issue_284
+keyboard:    -p tags --tags @keyboard
+
+# page model
+page:        -p tags --tags @page
 
 xtc_smoke_json: -p tags --tags @xtc_smoke_json
