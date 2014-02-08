@@ -22,6 +22,7 @@ Feature: expecting map results
   @keyboard
   Scenario: expecting clear_text to pass on text fields
     Given I am looking at the Text tab
+    And all the text input view have the default keyboard
     And I type "foobar" into the top text field
     Then I should be able to clear the top text field with clear_text
 
@@ -35,6 +36,7 @@ Feature: expecting map results
   @keyboard
   Scenario: expecting clear_text to pass on text views
     Given I am looking at the Text tab
+    And all the text input view have the default keyboard
     And I type "foobar" into the top text view
     Then I should be able to clear the top text view with clear_text
 

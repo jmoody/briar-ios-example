@@ -6,6 +6,7 @@ Feature: ipad keyboard modes
 
   Background: navigate to the text related tab
     Given I am looking at the Text tab
+    And all the text input view have the default keyboard
     And I have touched the "top" text field
 
   # NB: tried using an outline for these tests, but i found flickering tests
@@ -219,8 +220,11 @@ Feature: ipad keyboard modes
     Then I rotate the device 2 times in a random direction
     Then I should be able to split the keyboard
 
-  # flickering on iPad 1 iOS 5 and iPad Simulator iOS 6 no launch
-  # because the text is entered into the top tf instead of the bottom text field
+  # flickering
+  # iPhone 6 sim and device - NO_LAUNCH
+  #  - cannot seem to consistently find the ` character on iphone
+  # iPad 1 iOS 5 and iPad Simulator iOS 6 no launch because
+  #  - the text is sometimes entered into the top tf instead of the bottom text field
   # outlines are NYI on XTC
   @not_xtc
   @flickering
@@ -234,9 +238,9 @@ Feature: ipad keyboard modes
     Then I type <random> random strings with the full range of characters into the text fields
   Examples:
     | rotate | emails | random |
-    | 3      | 2      | 2      |
-    | 3      | 2      | 2      |
-    | 3      | 2      | 2      |
+    | 3      | 1      | 1      |
+    | 3      | 1      | 1      |
+    | 3      | 1      | 1      |
 
   # flickering on iPad 1 iOS 5
   # outlines are NYI on XTC
