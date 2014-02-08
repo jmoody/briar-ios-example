@@ -25,23 +25,25 @@ workspace.xml
 find.xml
 *.iml
 
-# calabash/cucumber
+# ruby
 .irb-history
+
+# bundler
 .bundle
 vendor
 Gemfile.lock
-*.gem
+.calabash-cucumber-git
+.briar-git
+
+# calabash
 rerun
 reports
 screenshots
-.calabash-gem
-.briar-gem
 
 screenshot*.png
 
 # xamarin build directory
 xamarin
-
 
 
 # Xcode 4
