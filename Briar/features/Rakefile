@@ -246,14 +246,31 @@ def rake_install_gem(path_to_gemspec)
   version
 end
 
-def open_report_in_browser(device)
-  sh "open reports/#{device}/`ls -t1 reports/venus/ | head -n1`"
+# opens the most recent calabash report in the default browser
+#
+# ./reports directory must exist
+# if +device+ is non-nil, ./reports/+device+ must exists
+#
+# see cucumber.yml for details about how report paths are created
+def open_report_in_browser(device=nil)
+  if device.nil?
+    path = 'reports'
+  else
+    path =  "reports/#{device}"
+  end
+  sh "open #{path}/`ls -t1 #{path}/ | head -n1`"
 end
+
+desc 'opens the most recent calabash report run against the _simulator_ in the default browser'
+task :report do open_report_in_browser end
 
 # my stuff
 namespace :moody do
 
   task :venus_report do open_report_in_browser 'venus' end
+  task :neptune_report do open_report_in_browser 'neptune' end
+  task :pluto_report do open_report_in_browser 'pluto' end
+  task :earp_report do open_report_in_browser 'earp' end
 
   def ruby_versions
     {'20' => '2.0.0-p353',
