@@ -92,7 +92,7 @@ Feature: keyboard delete
   @twitter
   Scenario: exercise the twitter keyboard
     And the one of the input views has the twitter keyboard showing
-    Then I tweet "rockin robin, tweet tweet" and tag with with "#thweet"
+    Then I tweet "rocking robin, tweet tweet" and tag with with "#thweet"
     And realize my mistake and delete 5 characters and replace with "weet"
 
   @web_search
