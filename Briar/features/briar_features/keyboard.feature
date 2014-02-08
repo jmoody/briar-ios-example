@@ -4,6 +4,7 @@ Feature: briar keyboard features
 
   Background: get us to the text related views so we can test the test the keyboard
     Given I am looking at the Text tab
+    And all the text input view have the default keyboard
 
   # flickering on iphone _device_
   @flickering

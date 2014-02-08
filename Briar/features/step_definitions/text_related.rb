@@ -41,96 +41,6 @@ module Briar
       tf
     end
 
-
-    #UIKeyboardTypeDefault,
-    #UIKeyboardTypeASCIICapable,
-    #UIKeyboardTypeNumbersAndPunctuation,
-    #UIKeyboardTypeURL,
-    #UIKeyboardTypeNumberPad,
-    #UIKeyboardTypePhonePad,
-    #UIKeyboardTypeNamePhonePad,
-    #UIKeyboardTypeEmailAddress,
-    #UIKeyboardTypeDecimalPad,
-    #UIKeyboardTypeTwitter,
-    #UIKeyboardTypeWebSearch,
-
-
-    UI_KEYBOARD_TYPE =
-          { 0 => :default,
-            1 => :ascii_capable,
-            2 => :numbers_and_punctuation,
-            3 => :url,
-            4 => :number_pad,
-            5 => :phone_pad,
-            6 => :name_phone_pad,
-            7 => :email,
-            8 => :decimal,
-            9 => :twitter,
-            10 => :web_search }
-
-
-    def canonical_keyboard_type(ui_keyboard_type)
-      if ui_keyboard_type.is_a?(Fixnum)
-        UI_KEYBOARD_TYPE[ui_keyboard_type]
-      else
-        raise "expected '#{ui_keyboard_type}' to be a Fixnum"
-      end
-    end
-
-    def ui_keyboard_type(canonical_keyboard_type)
-      if canonical_keyboard_type.is_a?(Symbol)
-        Hash[UI_KEYBOARD_TYPE.map(&:reverse)][canonical_keyboard_type]
-      else
-        raise "expected '#{canonical_keyboard_type}' to be a Symbol"
-      end
-    end
-
-
-    def keyboard_type_with_query(query_str, opts={})
-      default_opts = {:timeout_message => "after waiting '#{query_str}' did not find a match"}
-      opts = default_opts.merge(opts)
-
-      res = nil
-
-      wait_for(opts) do
-        res = query(query_str, :keyboardType)
-        not res.nil?
-      end
-
-      unless res.count == 1
-        screenshot_and_raise "expected exactly one element to be returned by '#{query_str}' but found '#{res}'"
-      end
-
-      canonical_keyboard_type(res.first)
-    end
-
-    def _kb_type_with_step_arg(arg)
-      case arg
-        when 'ascii' then target = :ascii_capable
-        when 'number' then target = :number_pad
-        when 'phone' then target = :phone_pad
-        when 'name and phone' then target = :name_phone_pad
-        else target = "#{arg.gsub(' ', '_')}".to_sym
-      end
-      target
-    end
-
-
-    def ensure_keyboard_type(query_str, type, opts={})
-      target_ui_type = ui_keyboard_type(type)
-      if target_ui_type.nil?
-        raise "expected '#{type}' to be a valid canonical type for '#{UI_KEYBOARD_TYPE}'"
-      end
-
-      current = keyboard_type_with_query(query_str, opts)
-      unless current.eql?(type)
-        res = query("#{query_str}", {:setKeyboardType => target_ui_type})
-        if res.empty?
-          screenshot_and_raise "could not set keyboard type for '#{query_str}' to '#{target_ui_type}' found '#{res}'"
-        end
-      end
-    end
-
     def text_from_first_responder
       raise 'there must be a visible keyboard' unless keyboard_visible?
 
@@ -142,19 +52,39 @@ module Briar
       return nil
     end
 
-    def ensure_text_input(str, input_method)
+    def ensure_text_input(str, input_method, opts={})
+      default_opts = {:case_insensitive => false}
+      opts = default_opts.merge(opts)
+
       keyboard_enter_text str
       actual = text_from_first_responder()
-      unless actual.eql?(str)
-        screenshot_and_raise "expected '#{str}' after #{input_method} but found '#{actual}'"
+
+      if opts[:case_insensitive]
+        unless actual.downcase.eql?(str.downcase)
+          screenshot_and_raise "expected '#{str}' == '#{actual}' (case insensitive) after #{input_method}"
+        end
+      else
+        unless actual.eql?(str)
+          screenshot_and_raise "expected '#{str}' after #{input_method} but found '#{actual}'"
+        end
       end
     end
 
-    def qstr_for_random_text_input_view
+    def text_input_view_qstrs
       ["textField marked:'top tf'",
        "textView marked:'top tv'",
        "textField marked:'bottom tf'",
-       "textView marked:'bottom tv'"].sample()
+       "textView marked:'bottom tv'"]
+    end
+
+    def qstr_for_random_text_input_view
+      text_input_view_qstrs.sample()
+    end
+
+    def current_text_input_view_is_text_view?
+      expect_current_text_input_view_set
+      tokens = @current_text_input_view.split(' ')
+      tokens[0] == 'textView'
     end
 
     def expect_current_text_input_view_set
@@ -208,6 +138,7 @@ Then(/^I type (\d+) random strings? with the full range of characters into the t
 
   is_ipad = ipad?
   is_iphone = iphone?
+  is_ipod  = ipod?
 
   num.to_i.times {
     rnd_str = ''
@@ -230,7 +161,7 @@ Then(/^I type (\d+) random strings? with the full range of characters into the t
         sample = '£' if sample.eql?(';')
         sample = '!' if sample.eql?('`')
         sample = '€' if sample.eql?('\\')
-      elsif is_iphone
+      elsif is_iphone or is_ipod
         sample = '|' if sample.eql?('(')
         sample = '&' if sample.eql?(')')
         # double quote - having some problems with .eql?("\"")
@@ -242,7 +173,7 @@ Then(/^I type (\d+) random strings? with the full range of characters into the t
         sample = '.' if sample.eql?('\\')
         sample = '@' if sample.eql?(',')
       else
-        screenshot_and_raise 'not iphone or ipad?!?'
+        screenshot_and_raise 'not iphone, ipod, or ipad?!?'
       end
 
       rnd_str << sample
@@ -404,7 +335,7 @@ And(/^realize my mistake and delete (\d+) characters? and replace with "([^"]*)"
 end
 
 Then(/^I type "([^"]*)"$/) do |str|
-  ensure_text_input str, 'typing'
+  ensure_text_input(str, 'typing', {:case_insensitive => true})
 end
 
 Then(/^dial "([^"]*)"$/) do |str|
@@ -475,6 +406,13 @@ And(/^that text input view has (?:a|an|the) (default|ascii|numbers and punctuati
   ensure_keyboard_type(@current_text_input_view, target)
 end
 
+And(/^all the text input view have the (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad)$/) do |kb_type|
+  text_input_view_qstrs.each { |qstr|
+    target = _kb_type_with_step_arg kb_type
+    ensure_keyboard_type(qstr, target)
+  }
+end
+
 When(/^I type a the following string with a backslash "([^"]*)"$/) do |str_with_backslash|
   unless str_with_backslash.index(/\\/)
     raise "expected '#{str_with_backslash}' to have a backslash"
@@ -482,6 +420,7 @@ When(/^I type a the following string with a backslash "([^"]*)"$/) do |str_with_
   expect_current_text_input_view_set
   touch(@current_text_input_view)
   wait_for_keyboard
+  ensure_docked_keyboard
   keyboard_enter_text str_with_backslash
   @text_entered_by_keyboard = str_with_backslash
 end
@@ -496,5 +435,24 @@ Then(/^I should see the correct string in that text field$/) do
   unless actual.eql?(expected)
     screenshot_and_raise "expected '#{expected}' in text input view but found '#{actual}'"
   end
+end
+
+Then(/^I should be able to touch the Return key$/) do
+  expect_current_text_input_view_set
+
+  clear_text(@current_text_input_view)
+  touch(@current_text_input_view)
+  wait_for_keyboard
+  ensure_docked_keyboard
+  keyboard_enter_char 'Return'
+
+  expect_text = current_text_input_view_is_text_view? ? "\n" : ''
+
+  res = query(@current_text_input_view, :text).first
+
+  unless expect_text == res
+    screenshot_and_raise "expected input view to have '#{expect_text}' but found '#{res}'"
+  end
+
 end
 

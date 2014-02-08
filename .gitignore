@@ -31,12 +31,11 @@ find.xml
 vendor
 Gemfile.lock
 *.gem
-rerun*.txt
-*calabash*.html
-*pluto*.html
-*neptune*.html
-*venus*.html
-*earp*.html
+rerun
+reports
+screenshots
+.calabash-gem
+.briar-gem
 
 screenshot*.png
 
