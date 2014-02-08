@@ -6,7 +6,7 @@ puts 'loaded briar'
 
 
 helpers = [
-
+      'briar_keyboard_helpers'
 ]
 
 helpers.each do |helper|
@@ -33,6 +33,7 @@ modules.each do |mod|
   #noinspection RubyResolve
   require_relative "features/step_definitions/#{mod}"
 end
+
 
 puts_calabash_environment
 briar_message_of_the_day
