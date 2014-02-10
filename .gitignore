@@ -35,6 +35,9 @@ Gemfile.lock
 .calabash-cucumber-git
 .briar-git
 
+# briar
+.env
+
 # calabash
 rerun
 reports
