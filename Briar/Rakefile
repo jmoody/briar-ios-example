@@ -1,1 +1,25 @@
-features/Rakefile
+require 'irb'
+require 'awesome_print'
+
+desc 'build and package the project so in can be submitted to the test cloud'
+task :xamarin do exec 'xamarin-build.sh' end
+
+desc 'generate a cucumber tag report'
+task :tag_report do sh 'cucumber -d -f Cucumber::Formatter::ListTags' end
+
+def reinstall_gems
+  puts 'uninstalling gems'
+  `gem list --no-version | xargs gem uninstall -ax`
+  puts 'installing bundler'
+  `gem install bundler`
+  puts 'installing gems'
+  `bundle install`
+end
+
+def smoke_test(device)
+  reinstall_gems
+  cmd = "bundle exec cucumber -p quiet -p #{device} --tags @smoke_test"
+  sh cmd
+end
+
+task smoke do smoke_test 'venus' end

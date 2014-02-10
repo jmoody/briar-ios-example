@@ -73,30 +73,47 @@ $ cucumber -p neptune_launch
 $ cucumber -p pluto
 ```
 
-### calabash-ios console
+### using the briar command
 
-open consoles using rake tasks
+The briar binary provides useful commands to improve your calabash workflow.
 
-```
-# simulator iOS 6
-$ cd Briar/
-$ rake sim6
-
-# simulator iOS 7
-$ cd Briar/
-$ rake sim7
-```
-
-### changing the default simulator
+There is detailed help about how to use the .xamarin convention and dotenv to setup your environment.
 
 ```
-$ cd Briar/
-$ rake set_sim_ipad               # set the default simulator to the ipad (non retina)
-$ rake set_sim_ipad_64            # set the default simulator to the ipad retina 64 bit
-$ rake set_sim_ipad_r             # set the default simulator to the ipad retina
-$ rake set_sim_iphone             # set the default simulator to the iphone 3.5in
-$ rake set_sim_iphone_4in         # set the default simulator to the iphone 4in
-$ rake set_sim_iphone_64          # set the default simulator to the iphone 4in 64bit
+# help
+$ briar help
+$ briar help console
+$ briar help .xamarin
+
+# open a console against simulators
+$ briar console sim6            <== against the current simulator
+$ briar console sim7 ipad_r_64  <== changes the default simulator
+
+# open a console against named devices
+$ briar console venus
+$ briar console neptune
+
+# install the calabash server from a local repo and remove all stale simulator targets in one command
+$ briar install calabash-server
+
+# do a clean install of your .ipa on named device
+$ briar install pluto
+$ briar install earp
+
+# open a cucumber html report in your default browser
+$ briar report       <== last run against the simulator
+$ briar report venus <== last run against venus
+
+# remove all *-cal targets from the simulator (without resetting the device)
+$ briar rm sim-targets
+
+# resolve APP_BUNDLE_PATH auto-detection problems by removing spurious DerivedData directories
+$ briar rm dups 
+$ briar rm dups briar-ios-example 
+
+# change the simulator version
+$ briar sim ipad_r
+$ briar sim iphone_4in
 ```
 
 ### testing on Xamarin Test Cloud
