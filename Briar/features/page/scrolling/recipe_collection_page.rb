@@ -16,4 +16,10 @@ class RecipeCollectionPage < BrPage
     home
   end
 
+  def scroll_to(item_hash)
+    scroll_to_collection_view_item(item_hash[:item], item_hash[:section])
+    wait_for_view(item_hash[:id])
+    step_pause
+  end
+
 end

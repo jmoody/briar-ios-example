@@ -12,9 +12,6 @@ Feature: scrolling views menu
     And I go to the alphabet table
     Then I can go back to the scrolling home view
 
-#  not yet - need server and client changes
-#  https://github.com/calabash/calabash-ios-server/pull/31
-#  @collection_view
-#  Scenario: I want to see the collection view
-#    And I go to the collection view page
-#    Then I can go back to the scrolling home view
+  Scenario: I want to see the collection view
+    And I go to the collection view page
+    Then I can go back to the scrolling home view

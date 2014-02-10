@@ -41,6 +41,9 @@ Before do |scenario|
                            :retry_frequency => 0.4,
                            :timeout_message => msg})
   sleep(0.4)
+
+  @cp = nil
+  @model = briar_model()
 end
 
 #noinspection RubyUnusedLocalVariable
