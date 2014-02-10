@@ -32,46 +32,11 @@ source 'https://rubygems.org'
 # 2. configure bundler to use a local override
 # $ bundle config local.calabash-cucumber ~/path/to/your/local/calabash
 #
-# more info here - http://bundler.io/v1.5/git.html
+# http://bundler.io/v1.5/git.html
+# https://github.com/benatkin/local-gemfile
+# https://groups.google.com/forum/#!topic/ruby-bundler/5zVMtUSNSd0
 
-module Briar
-  module Bundler
-    module Gemfile
-
-      class GitFile
-
-        attr_reader :dot_file
-        attr_reader :git_hash
-
-        def initialize(gem_name)
-          @dot_file = ".#{gem_name}-git"
-        end
-
-        def exists?
-          File.exists?(@dot_file)
-        end
-
-        def branch
-          git_hash[:branch]
-        end
-
-        def github
-          git_hash[:github]
-        end
-
-        def git_hash
-          return @git_hash unless @git_hash.nil?
-          branch_info = IO.readlines(@dot_file)
-          path = branch_info[0].strip
-          branch = branch_info[1].strip
-          @git_hash = {:github => path, :branch => branch}
-        end
-      end
-
-    end
-  end
-end
-
+eval File.read('bundle_helper.rb')
 
 calabash = Briar::Bundler::Gemfile::GitFile.new('calabash-cucumber')
 if calabash.exists?
@@ -88,7 +53,6 @@ if briar.exists?
 else
   gem 'briar', '0.1.3'
 end
-
 
 gem 'faker'
 gem 'pry'
