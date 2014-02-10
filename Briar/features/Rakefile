@@ -86,12 +86,8 @@ def sdk_versions
 end
 
 # returns a hash with default arguments for various launch and irb functions
-def default_device_opts
-  bundle_path = `which bundle`
-  use_bundler = (not bundle_path.eql?(''))
-  {:bundle =>  use_bundler,
-  :sdk_version => sdk_versions[:ios7],
-  :launch => true}
+def default_console_opts
+  {:sdk_version => sdk_versions[:ios7]}
 end
 
 # returns a string that can be use to launch a <tt>calabash-ios console</tt>
@@ -103,7 +99,7 @@ end
 #
 #   rake moody:neptune
 def ios_console_cmd(device, opts={})
-  default_opts = default_device_opts()
+  default_opts = default_console_opts()
   opts = default_opts.merge(opts)
 
   # make a screenshot directory if one does not exist
@@ -139,7 +135,7 @@ end
 
 # spawns a calabash console for the device using the opts hash
 def ios_irb (device, opts={})
-  default_opts = default_device_opts()
+  default_opts = default_console_opts()
   opts = default_opts.merge(opts)
   cmd = ios_console_cmd(device, opts)
   puts "#{cmd}"
@@ -319,15 +315,19 @@ namespace :moody do
     cmds = [:install, :uninstall, :reinstall]
     raise "#{cmd} must be one of '#{cmds}'" unless cmds.include? cmd
     udid =  read_device_info(device, :udid)
-    bin_dir='~/bin/libimobiledevice'
+    #bin_dir='~/bin/libimobiledevice'
+    #bin_dir='/usr/local/bin'
+    #bin_dir='~/.xamarin/libimobiledevice/usr/local/bin'
 
     if cmd == :install
       sh './xamarin-build.sh'
       ipa='./xamarin/Briar-cal.ipa'
-      sh "export DYLD_LIBRARY_PATH=#{bin_dir}; #{bin_dir}/ideviceinstaller -U #{udid} --install #{ipa}"
+      #sh "export DYLD_LIBRARY_PATH=#{bin_dir}; #{bin_dir}/ideviceinstaller -U #{udid} --install #{ipa}"
+      sh "#{bin_dir}/ideviceinstaller -U #{udid} --install #{ipa}"
     elsif cmd == :uninstall
       bundle_id = bundle_id()
-      sh "export DYLD_LIBRARY_PATH=#{bin_dir}; #{bin_dir}/ideviceinstaller -U #{udid} --uninstall #{bundle_id}"
+      #sh "export DYLD_LIBRARY_PATH=#{bin_dir}; #{bin_dir}/ideviceinstaller -U #{udid} --uninstall #{bundle_id}"
+      sh "#{bin_dir}/ideviceinstaller -U #{udid} --uninstall #{bundle_id}"
     else
       ideviceinstaller(device, :uninstall)
       ideviceinstaller(device, :install)
