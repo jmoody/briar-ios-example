@@ -1,6 +1,5 @@
 @issue_309
 @keyboard
-@xtc_wip
 Feature:  touching the keyboard action key AKA 'Return' AKA done
   In order not break keyboard interaction
   As a calabash framework tester
