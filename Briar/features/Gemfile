@@ -86,7 +86,7 @@ if briar.exists?
   #noinspection GemInspection
   gem 'briar', :github => briar.github, :branch => briar.branch
 else
-  gem 'briar', '0.1.3.rc1'
+  gem 'briar', '0.1.3'
 end
 
 
