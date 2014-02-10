@@ -36,13 +36,19 @@ source 'https://rubygems.org'
 # https://github.com/benatkin/local-gemfile
 # https://groups.google.com/forum/#!topic/ruby-bundler/5zVMtUSNSd0
 
-eval File.read('bundle_helper.rb')
+begin
+  eval File.read('bundle_helper.rb')
+rescue
+  #todo move the .idea directory out features/ and into this directory
+  eval File.read(File.expand_path("#{__FILE__}/../bundle_helper.rb"))
+end
 
 calabash = Briar::Bundler::Gemfile::GitFile.new('calabash-cucumber')
 if calabash.exists?
   #noinspection GemInspection
   gem 'calabash-cucumber', :github => calabash.github, :branch => calabash.branch
 else
+  #noinspection GemInspection
   gem 'calabash-cucumber', '~> 0.9.166'
 end
 
@@ -51,11 +57,11 @@ if briar.exists?
   #noinspection GemInspection
   gem 'briar', :github => briar.github, :branch => briar.branch
 else
+  #noinspection GemInspection
   gem 'briar', '0.1.3'
 end
 
 gem 'faker'
-gem 'pry'
 
 # not yet
 # gem 'twitter_cldr'
