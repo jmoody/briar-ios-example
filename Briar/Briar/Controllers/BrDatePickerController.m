@@ -177,7 +177,7 @@ typedef enum : NSInteger {
 - (CGRect) frameForView:(UIView *) aView
             orientation:(UIInterfaceOrientation) aOrientation {
   NSInteger tag = aView.tag;
-  NSString *key = [NSString stringWithFormat:@"%d - %d", tag, aOrientation];
+  NSString *key = [NSString stringWithFormat:@"%ld - %d", (long)tag, aOrientation];
   NSString *str = [self.frames objectForKey:key];
   CGRect frame = CGRectZero;
   if (str != nil) {

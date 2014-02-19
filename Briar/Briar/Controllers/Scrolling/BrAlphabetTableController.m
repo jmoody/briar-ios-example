@@ -186,7 +186,7 @@ typedef enum : NSUInteger {
 #pragma mark - UIAlertView Delegate
 
 - (void) alertView:(UIAlertView *) aAlertView clickedButtonAtIndex:(NSInteger) aIndex {
-  NSLog(@"alert view button touched: %d", aIndex);
+  NSLog(@"alert view button touched: %ld", (long)aIndex);
   // nothing to do really
 }
 

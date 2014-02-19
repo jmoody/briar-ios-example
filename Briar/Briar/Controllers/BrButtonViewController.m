@@ -112,7 +112,7 @@ UIAlertViewDelegate>
 
 
 - (IBAction)segmentedControlChanged:(UISegmentedControl *)sender {
-  NSLog(@"segmented control changed: '%d'", sender.selectedSegmentIndex);
+  NSLog(@"segmented control changed: '%ld'", (long)sender.selectedSegmentIndex);
   BrImageChooserSegConIndex idx = (BrImageChooserSegConIndex)[sender selectedSegmentIndex];
   UIImageView *iv = [self imageView];
   iv.accessibilityLabel = [self accessLabelForImageViewSecConSegment:idx];

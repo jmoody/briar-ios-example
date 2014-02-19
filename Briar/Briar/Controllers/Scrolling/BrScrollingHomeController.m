@@ -51,7 +51,7 @@ typedef enum : NSInteger {
     case kRowTable: return @"Alphabet Table";
     case kRowCollectionView: return @"Recipes Collection View";
     default: {
-      NSString *reason = [NSString stringWithFormat:@"could not find row '%d'", row];
+      NSString *reason = [NSString stringWithFormat:@"could not find row '%lu'", (unsigned long)row];
       @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                      reason:reason
                                    userInfo:nil];
@@ -68,7 +68,7 @@ typedef enum : NSInteger {
     case kRowTable: return @"a plain table view";
     case kRowCollectionView: return @"a collection view";
     default: {
-      NSString *reason = [NSString stringWithFormat:@"could not find row '%d'", row];
+      NSString *reason = [NSString stringWithFormat:@"could not find row '%lu'", (unsigned long)row];
       @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                      reason:reason
                                    userInfo:nil];
@@ -85,7 +85,7 @@ typedef enum : NSInteger {
     case kRowTable: return @"alphabet";
     case kRowCollectionView: return @"recipes";
     default: {
-      NSString *reason = [NSString stringWithFormat:@"could not find row '%d'", row];
+      NSString *reason = [NSString stringWithFormat:@"could not find row '%lu'", (unsigned long)row];
       @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                      reason:reason
                                    userInfo:nil];
@@ -163,7 +163,7 @@ typedef enum : NSInteger {
     case kRowTable: { [self cellTouchedAlphabetTable]; break; }
     case kRowCollectionView: { [self cellTouchedCollectionView]; break; }
     default: {
-      NSString *reason = [NSString stringWithFormat:@"could not find row '%d'", row];
+      NSString *reason = [NSString stringWithFormat:@"could not find row '%lu'", (unsigned long)row];
       @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                      reason:reason
                                    userInfo:nil];

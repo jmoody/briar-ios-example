@@ -1,5 +1,4 @@
 @collection_view
-@xtc_wip
 Feature: interacting with collection views
   In order to silence the quell the clambering horde
   As a tester
@@ -9,7 +8,6 @@ Feature: interacting with collection views
     Given I see the views that scroll home view
     And I go to the collection view page
 
-  @wip
   Scenario: then i want to scroll around
     Then I look for the picture of the "hamburger"
     Then I look for the picture of the "risotto"

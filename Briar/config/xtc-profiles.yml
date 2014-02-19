@@ -24,6 +24,9 @@ issue_256:   -p tags --tags @issue_256
 issue_284:   -p tags --tags @issue_284
 keyboard:    -p tags --tags @keyboard
 
+# deprecated Device::iphone_5? and added Device::iphone_4in
+issue_319:   -p tags --tags @issue_319
+
 # page model
 page:        -p tags --tags @page
 

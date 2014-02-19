@@ -4,4 +4,4 @@ You are allowed to:
 1. Remove rake task
 2. Add existing rake tasks
 To add existing rake tasks automatically delete this file and reload the project.
---><RakeGroup description="" fullCmd="" taksId="rake"><RakeTask description="" fullCmd="show_simulator" taksId="show_simulator" /></RakeGroup></Settings>
+--><RakeGroup description="" fullCmd="" taksId="rake" /></Settings>
