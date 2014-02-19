@@ -21,7 +21,7 @@ end
 World(Briar::Issue_128)
 
 When(/^I touch the last row I should see the i or j alert$/) do
-  row_id = iphone_5? ? 'j' : 'i'
+  row_id = iphone_4in? ? 'j' : 'i'
   briar_scroll_to_row row_id
   step_pause
   alert_id = ios7? ? "'#{row_id}' is a great letter!" : "#{row_id} alert"
@@ -33,7 +33,7 @@ Then(/^I dismiss the letter alert$/) do
 end
 
 Then(/^I scroll down until the i row is partially hidden by the nav bar$/) do
-  if iphone_5?
+  if iphone_4in?
     pending 'this test will only work on iphone 3.5in'
   end
 
