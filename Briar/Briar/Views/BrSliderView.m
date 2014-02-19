@@ -376,7 +376,7 @@ static CGFloat const kWidthOfValueLabel = 52;
 
 - (void) setSliderValue:(CGFloat) aValue animated:(BOOL) aAnimate {
   UISlider *slider = [self slider];
-  [slider setValue:aValue animated:aAnimate];
+  [slider setValue:(float)aValue animated:aAnimate];
   [self sliderValueDidChange:slider];
 }
 
