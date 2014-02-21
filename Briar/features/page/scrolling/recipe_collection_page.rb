@@ -22,4 +22,10 @@ class RecipeCollectionPage < BrPage
     step_pause
   end
 
+  def scroll_to_recipe_marked(mark)
+    scroll_to_collection_view_item_with_mark(mark)
+    wait_for_view(mark)
+    step_pause
+  end
+
 end
