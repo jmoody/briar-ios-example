@@ -11,7 +11,7 @@ case username
   when 'moody'
 
     gem 'briar', :github => 'jmoody/briar', :branch => '0.1.4'
-    gem 'calabash-cucumber', :github => 'jmoody/calabash-ios', :branch => 'fix/iphone-5-function-does-not-return-true-for-5S'
+    gem 'calabash-cucumber', :github => 'jmoody/calabash-ios', :branch => 'LiohAu-master'
 
   when 'your username here'
 

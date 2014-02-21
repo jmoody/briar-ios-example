@@ -3,36 +3,32 @@
 
 @interface BrRecipeCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIView *background;
 @property (nonatomic, strong) UIImageView *picture;
-
 
 @end
 
 @implementation BrRecipeCell
 
 @synthesize picture = _picture;
-@synthesize background = _background;
 
 - (id) initWithFrame:(CGRect) aRect {
   self = [super initWithFrame:aRect];
   if (self) {
 
-    _background = [[UIView alloc] initWithFrame:aRect];
-    _background.backgroundColor = nil;
-    
-    [self addSubview:_background];
-    
+    UIView *contentView = [self contentView];
+
     CGFloat padding = 10;
     CGFloat width = CGRectGetWidth(aRect) - (2 * padding);
     CGFloat height = CGRectGetHeight(aRect) - (2 * padding);
     CGRect frame = CGRectMake(padding, padding, width, height);
     _picture = [[UIImageView alloc] initWithFrame:frame];
     
-    [self insertSubview:_picture aboveSubview:_background];
+    [contentView addSubview:_picture];
   }
   return self;
 }
+
+
 
 @end
 
@@ -59,6 +55,8 @@ static NSString *const kRecipeCellIdentifier = @"recipe cell";
 
 @property (nonatomic, strong, readonly) UICollectionView *collectionView;
 @property (nonatomic, strong, readonly) NSArray *imageNames;
+@property (nonatomic, strong, readonly) NSArray *itemAccessLabels;
+@property (nonatomic, strong, readonly) NSArray *itemAccessIds;
 
 
 @end
@@ -67,6 +65,8 @@ static NSString *const kRecipeCellIdentifier = @"recipe cell";
 
 @synthesize collectionView = _collectionView;
 @synthesize imageNames = _imageNames;
+@synthesize itemAccessIds = _itemAccessIds;
+@synthesize itemAccessLabels = _itemAccessLabels;
 
 - (id) initNibless {
   self = [super initNibless];
@@ -103,6 +103,50 @@ static NSString *const kRecipeCellIdentifier = @"recipe cell";
   return _imageNames;
 }
 
+- (NSArray *) itemAccessIds {
+  if (_itemAccessIds != nil && [_itemAccessIds count] != 0) { return _itemAccessIds; }
+  _itemAccessIds = @[@"angry birds",
+                     @"creme brulee",
+                     @"eggs benedict",
+                     @"full breakfast",
+                     @"green tea",
+                     @"ham and cheese panini",
+                     @"ham and egg sandwich",
+                     @"hamburger",
+                     @"noodles with egg",
+                     @"noodles with pork",
+                     @"mushroom risotto",
+                     @"noodles with bbq pork",
+                     @"starbucks coffee",
+                     @"thai shrimp cake",
+                     @"vegetable curry",
+                     @"donut"];
+  return _itemAccessIds;
+}
+
+- (NSArray *) itemAccessLabels {
+  if (_itemAccessLabels != nil && [_itemAccessLabels count] != 0) { return _itemAccessLabels; }
+  _itemAccessLabels = @[@"Angry birds cake",
+                     @"Crème brûlée",
+                     @"Eggs benedict",
+                     @"Full breakfast",
+                     @"Green tea",
+                     @"Ham and cheese panini",
+                     @"Ham and egg sandwich",
+                     @"Hamburger",
+                     @"Noodles with egg",
+                     @"Noodles with pork",
+                     @"Mushroom risotto",
+                     @"Noodles with bbq pork",
+                     @"Starbucks coffee",
+                     @"Thai shrimp cake",
+                     @"Vegetable curry",
+                     @"Donut"];
+  return _itemAccessLabels;
+}
+
+
+
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *) aCollectionView {
   return kNumberOfSections;
 }
@@ -121,7 +165,11 @@ static NSString *const kRecipeCellIdentifier = @"recipe cell";
   UIImage *image = [UIImage imageNamed:[[self imageNames] objectAtIndex:imageIndex]];
   cell.picture.image = image;
   cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
-  
+
+  cell.accessibilityIdentifier = [[self itemAccessIds] objectAtIndex:imageIndex];
+  cell.accessibilityLabel = [[self itemAccessLabels] objectAtIndex:imageIndex];
+  cell.contentView.accessibilityIdentifier = [NSString stringWithFormat:@"content id '%d'", imageIndex];
+  cell.contentView.accessibilityLabel = [NSString stringWithFormat:@"content label '%d'", imageIndex];
   return cell;
 }
 
@@ -137,12 +185,13 @@ static NSString *const kRecipeCellIdentifier = @"recipe cell";
  
 }
 
+
 #pragma mark - Subviews
 
 - (UICollectionView *) collectionView {
   if (_collectionView != nil) { return _collectionView; }
   CGRect frame = CGRectMake(0, 64, 320, br_iphone_y_max());
-  
+
   UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
   layout.headerReferenceSize = CGSizeMake(320, 10);
   layout.footerReferenceSize = CGSizeMake(320, 10);

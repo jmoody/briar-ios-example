@@ -16,7 +16,12 @@ iphone:      -p tags -p iphone_only
 ipad:        -p tags -p ipad_only
 xtc_wip:     -p tags --tags @xtc_wip
 
-# issues
+# page model
+page:        -p tags --tags @page
+
+xtc_smoke_json: -p tags --tags @xtc_smoke_json
+
+### issues/pull requests
 
 # keyboard delete
 issue_256:   -p tags --tags @issue_256
@@ -27,7 +32,5 @@ keyboard:    -p tags --tags @keyboard
 # deprecated Device::iphone_5? and added Device::iphone_4in
 issue_319:   -p tags --tags @issue_319
 
-# page model
-page:        -p tags --tags @page
-
-xtc_smoke_json: -p tags --tags @xtc_smoke_json
+# collection views
+collections: -p tags --tags @collection_view
