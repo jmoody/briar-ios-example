@@ -227,10 +227,11 @@ Feature: ipad keyboard modes
   #  - the text is sometimes entered into the top tf instead of the bottom text field
   # iOS 7
   #  - uia_type_string reports that it cannot type a string, but the string has been typed
+  #  - problem is issue 310
   # outlines are NYI on XTC
-  @not_xtc
-  @flickering
   @issue_310
+  @flickering
+  @not_xtc
   Scenario Outline: i should be able to use the keyboard regardless of orientation or mode
     Given I am looking at the Text tab
     And I have touched the "top" text field
