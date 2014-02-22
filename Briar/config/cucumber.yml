@@ -37,7 +37,7 @@ end
 
 verbose: CALABASH_FULL_CONSOLE_OUTPUT=1 DEBUG=1
 quiet:   CALABASH_FULL_CONSOLE_OUTPUT=0 DEBUG=0
-common: -f 'Slowhandcuke::Formatter' -p quiet
+common: --no-source -f 'Slowhandcuke::Formatter' -p quiet
 
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
 
