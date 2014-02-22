@@ -70,16 +70,34 @@ module Briar
       end
     end
 
-    def text_input_view_qstrs
+    def text_field_qstrs
       ["textField marked:'top tf'",
-       "textView marked:'top tv'",
-       "textField marked:'bottom tf'",
+       "textField marked:'bottom tf'"]
+    end
+
+    def text_view_qstrs
+      ["textView marked:'top tv'",
        "textView marked:'bottom tv'"]
     end
 
-    def qstr_for_random_text_input_view
-      text_input_view_qstrs.sample()
+
+    def text_input_view_qstrs
+      text_view_qstrs.concat(text_field_qstrs)
     end
+
+
+    def qstr_for_random_text_input_view
+      @current_text_input_view = text_input_view_qstrs.sample()
+    end
+
+    def qstr_for_random_text_field
+      @current_text_input_view = text_field_qstrs.sample()
+    end
+
+    def qstr_for_random_text_view
+      @current_text_input_view = text_view_qstrs.sample()
+    end
+
 
     def current_text_input_view_is_text_view?
       expect_current_text_input_view_set
@@ -175,7 +193,7 @@ Then(/^I type (\d+) random strings? with the full range of characters into the t
       else
         screenshot_and_raise 'not iphone, ipod, or ipad?!?'
       end
-
+      #sample = ' ' if sample.eql?('`')
       rnd_str << sample
     end
 
@@ -183,6 +201,7 @@ Then(/^I type (\d+) random strings? with the full range of characters into the t
     # why oh why was i doing this?
     # rnd_str.insert(rand(str_len), ',')
 
+    #binding.pry
 
     keyboard_enter_text rnd_str
     should_see_text_field_with_text tf_id, rnd_str
@@ -283,9 +302,15 @@ end
 
 
 
-And(/^the one of the input views has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad) showing$/) do |kb_type|
-  qstr = qstr_for_random_text_input_view
 And(/^one of the (input views|text fields|text views) has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad) showing$/) do |input_range, kb_type|
+  if input_range == 'input views'
+    qstr = qstr_for_random_text_input_view
+  elsif input_range == 'text fields'
+    qstr = qstr_for_random_text_field
+  else
+    qstr = qstr_for_random_text_view
+  end
+
   target = _kb_type_with_step_arg kb_type
   ensure_keyboard_type(qstr, target)
   touch(qstr)
@@ -457,3 +482,37 @@ Then(/^I should be able to touch the Return key$/) do
 
 end
 
+
+When(/^I type a key that does not exist it should raise the right exception$/) do
+  qstr = @current_text_input_view
+
+  if text_field_qstrs.include?(qstr)
+
+  elsif text_view_qstrs.include?(qstr)
+
+  else
+    raise "expected '#{qstr}' to be one of '#{text_input_view_qstrs}'"
+  end
+
+
+
+  str = 'str with ` backquote'
+  e = nil
+  bad_exception = false
+  begin
+    keyboard_enter_text str
+  rescue Exception => e
+    # wrong
+    # could not type 'str with ` backquote' - 'VerboseError: Unable to type: str with ` backquote'"
+    # right
+    # "could not type 'str with ` backquote' - 'VerboseError: target.frontMostApp().keyboard() failed to locate key '`''"
+    exception_str = e.to_s
+    puts exception_str
+    bad_exception = true unless exception_str.index('failed to locate key')
+  ensure
+    if bad_exception
+      raise "expected 'failed to locate key' exception but found\n'#{e}'"
+    end
+  end
+
+end
