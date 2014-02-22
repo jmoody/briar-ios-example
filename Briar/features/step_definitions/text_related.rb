@@ -285,6 +285,7 @@ end
 
 And(/^the one of the input views has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad) showing$/) do |kb_type|
   qstr = qstr_for_random_text_input_view
+And(/^one of the (input views|text fields|text views) has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad) showing$/) do |input_range, kb_type|
   target = _kb_type_with_step_arg kb_type
   ensure_keyboard_type(qstr, target)
   touch(qstr)
