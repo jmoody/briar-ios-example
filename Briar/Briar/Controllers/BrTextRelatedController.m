@@ -1,5 +1,6 @@
 #import "BrTextRelatedController.h"
 #import "BrGlobals.h"
+#import "SSKeychain.h"
 
 static NSString *const kIdTopTf = @"top tf";
 static NSString *const kIdBottomTf = @"bottom tf";
@@ -10,6 +11,7 @@ static NSString *const kIdButton = @"the button";
 static NSString *const kIdUserTf = @"user tf";
 static NSString *const kIdPassTf = @"pass tf";
 static NSString *const kIdKeychainButton = @"keychain button";
+static NSString *const kKeychainService = @"briar-ios-example.service";
 
 @interface BrTextRelatedController ()
 
@@ -85,6 +87,13 @@ static NSString *const kIdKeychainButton = @"keychain button";
   _textFieldPassword.accessibilityIdentifier = kIdPassTf;
   _saveToKeychainButton.accessibilityIdentifier = kIdKeychainButton;
 
+  NSDictionary *accountDict = [[SSKeychain accountsForService:kKeychainService] firstObject];
+  if (accountDict) {
+    NSString *account = accountDict[kSSKeychainAccountKey];
+    _textFieldUsername.text = account;
+    _textFieldPassword.text = [SSKeychain passwordForService:kKeychainService account:account];
+  }
+
   self.view.accessibilityIdentifier = @"text related";
 }
 
@@ -108,6 +117,8 @@ static NSString *const kIdKeychainButton = @"keychain button";
   if ([self.textFieldBottom isFirstResponder]) { [self.textFieldBottom resignFirstResponder]; }
   if ([self.textViewTop isFirstResponder]) { [self.textViewTop resignFirstResponder]; }
   if ([self.textViewBottom isFirstResponder]) { [self.textViewBottom resignFirstResponder]; }
+  if ([self.textFieldUsername isFirstResponder]) { [self.textFieldUsername resignFirstResponder]; }
+  if ([self.textFieldPassword isFirstResponder]) { [self.textFieldPassword resignFirstResponder]; }
 }
 
 - (IBAction)buttonTouched:(id)sender {
@@ -115,6 +126,13 @@ static NSString *const kIdKeychainButton = @"keychain button";
 }
 
 - (IBAction)saveToKeychainButtonTouched:(id)sender {
+  NSError *error;
+  if (![SSKeychain setPassword:self.textFieldPassword.text
+                    forService:kKeychainService
+                       account:self.textFieldUsername.text
+                         error:&error]) {
+    NSLog(@"Error writing to keychain: %@", error);
+  }
 }
 
 #pragma mark - Animations
