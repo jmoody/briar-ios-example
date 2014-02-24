@@ -1,11 +1,7 @@
-require 'irb'
 require 'awesome_print'
 
 desc 'build and package the project so in can be submitted to the test cloud'
 task :xamarin do exec 'xamarin-build.sh' end
-
-desc 'generate a cucumber tag report'
-task :tag_report do sh 'cucumber -d -f Cucumber::Formatter::ListTags' end
 
 def reinstall_gems
   puts 'uninstalling gems'
@@ -22,4 +18,4 @@ def smoke_test(device)
   sh cmd
 end
 
-task smoke do smoke_test 'venus' end
+task :smoke do smoke_test 'venus' end
