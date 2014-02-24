@@ -11,16 +11,22 @@ end
 
 lib_path = ARGV[1]
 
-cmd = "codesign -fs \"#{ident}\" \"#{lib_path}\""
+if ident.nil? or ident.length == 0
+  puts "WARN: cannot sign with ident = '#{ident}'"
+  puts 'WARN: will not sign the Reveal library'
+  exit 0
+end
 
+
+unless File.exists?(lib_path)
+  puts 'WARN: cannot find a file at path:'
+  puts "WARN: '#{lib_path}'"
+  puts 'WARN: will not sign the Reveal library'
+  exit 0
+end
+
+
+cmd = "codesign -fs \"#{ident}\" \"#{lib_path}\""
 puts "INFO: signing reveal with '#{cmd}'"
 
-res = system cmd
-
-if res
-  puts 'INFO: successfully signed reveal'
-else
-  code = `echo $?`
-  puts 'ERROR: failed to sign reveal exiting'
-  exit code
-end
+exec(cmd)
