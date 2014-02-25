@@ -10,8 +10,6 @@ Feature: Accessing the iOS keychain
 
     When I type "username" into the user text field
     And I type "password" into the pass text field
-
-    Then I am done text editing
     And I press the "Save to Keychain" button
 
     Then the keychain should contain the account password "password" for "username"
