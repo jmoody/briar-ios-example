@@ -139,11 +139,21 @@ And(/^I have touched the "([^"]*)" text field$/) do |text_field|
   wait_for_keyboard
 end
 
-Then(/^I should see the (top|bottom) text field has "([^"]*)"$/) do |field, text|
+Then(/^I should see the (top|bottom|user|pass) text field has "([^"]*)"$/) do |field, text|
   tf = "#{field} tf"
   should_see_text_field_with_text tf, text
   warn "status bar orientation = '#{status_bar_orientation}'"
   2.times { step_pause }
+end
+
+
+Then(/^I type "([^"]*)" into the (user|pass) text field$/) do |text, field|
+  tf = "#{field} tf"
+  touch("textField marked:'#{tf}'")
+  wait_for_keyboard
+
+  keyboard_enter_text text
+  touch("button marked:'done text editing'")
 end
 
 
