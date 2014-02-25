@@ -153,6 +153,7 @@ Then(/^I type "([^"]*)" into the (user|pass) text field$/) do |text, field|
   wait_for_keyboard
 
   keyboard_enter_text text
+  touch("button marked:'done text editing'")
 end
 
 
