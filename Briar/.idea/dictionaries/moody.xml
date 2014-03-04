@@ -1,10 +1,13 @@
 <component name="ProjectDictionaryState">
   <dictionary name="moody">
     <words>
+      <w>armv</w>
       <w>autocaps</w>
+      <w>bitness</w>
       <w>cldr</w>
       <w>driis</w>
       <w>facepalm</w>
+      <w>gitversioning</w>
       <w>ipads</w>
       <w>iphones</w>
       <w>jetzt</w>
@@ -12,7 +15,9 @@
       <w>killall</w>
       <w>leerzeichen</w>
       <w>lesspainful</w>
+      <w>libcalabash</w>
       <w>lioh</w>
+      <w>lipo</w>
       <w>lpcalabashversion</w>
       <w>mktime</w>
       <w>nicht</w>
@@ -25,6 +30,7 @@
       <w>versioning</w>
       <w>weet</w>
       <w>xargs</w>
+      <w>xcodebuild</w>
     </words>
   </dictionary>
 </component>
