@@ -9,7 +9,7 @@ Feature:  numeric keyboards
 
   Background:  get me to the text related view
     Given I am looking at the Text tab
-    And the one of the input views has a number pad showing
+    And one of the input views has a number pad showing
 
   @xtc_smoke_json
   Scenario:  i want to see a numeric keyboard when i touch the top text field

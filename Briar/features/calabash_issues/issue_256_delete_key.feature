@@ -17,7 +17,7 @@ Feature: keyboard delete
 
   @ascii
   Scenario: exercise the ascii keyboard
-    And the one of the input views has an ascii keyboard showing
+    And one of the input views has an ascii keyboard showing
     Then I text my friend a facepalm "(>_>]"
     And realize my mistake and delete 1 character and replace with ")"
 
