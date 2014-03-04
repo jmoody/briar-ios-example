@@ -178,7 +178,7 @@ typedef enum : NSInteger {
             orientation:(UIInterfaceOrientation) aOrientation {
   NSInteger tag = aView.tag;
   NSString *key = [NSString stringWithFormat:@"%@ - %@", @(tag), @(aOrientation)];
-  NSString *str = [self.frames objectForKey:key];
+  NSString *str = (self.frames)[key];
   CGRect frame = CGRectZero;
   if (str != nil) {
     frame = CGRectFromString(str);
@@ -197,7 +197,7 @@ typedef enum : NSInteger {
     if (tag == kTagButtonDate && (l == o || r == o)) { frame = CGRectMake(403, 64, 55, 44); }
     if (tag == kTagButtonDate && (t == o || b == o)) { frame = CGRectMake(245, 70, 55, 44); }
 
-    [_frames setObject:NSStringFromCGRect(frame) forKey:key];
+    _frames[key] = NSStringFromCGRect(frame);
   }
   return frame;
 }

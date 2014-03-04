@@ -189,7 +189,7 @@ typedef enum : NSInteger {
   right.accessibilityLabel = NSLocalizedString(@"done picking date",
                                                @"date: ACCESSIBILITY button on toolbar/navbar - touching ends date picking and saves any changes");
   
-  bar.items = [NSArray arrayWithObjects:left,right, nil];
+  bar.items = @[left,right];
   bar.tag = kTagToolbar;
   _toolbar = bar;
   return bar;

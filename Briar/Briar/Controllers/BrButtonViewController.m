@@ -210,7 +210,7 @@ UIAlertViewDelegate>
 
   NSString *aid = aView.accessibilityIdentifier;
   NSString *key = [NSString stringWithFormat:@"%@ - %@", aid, @(aOrientation)];
-  NSString *str = [self.frames objectForKey:key];
+  NSString *str = (self.frames)[key];
   CGRect frame = CGRectZero;
   if (str != nil) {
     frame = CGRectFromString(str);
@@ -238,7 +238,7 @@ UIAlertViewDelegate>
     if ([kAIImageView isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(22 + iphone5_X_adj, 150 + ipadYAdj , 320, 120); }
     if ([kAIImageView isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(0, 298 + iphone5_X_adj, 320, 120); }
 
-    [_frames setObject:NSStringFromCGRect(frame) forKey:key];
+    _frames[key] = NSStringFromCGRect(frame);
   }
   
   return frame;

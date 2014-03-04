@@ -362,7 +362,7 @@ static NSString *const k_aid_table = @"table";
             orientation:(UIInterfaceOrientation) aOrientation {
   NSString *aid = aView.accessibilityIdentifier;
   NSString *key = [NSString stringWithFormat:@"%@ - %@", aid, @(aOrientation)];
-  NSString *str = [[self frames] objectForKey:key];
+  NSString *str = [self frames][key];
   CGRect frame = CGRectZero;
   if (str != nil) {
     frame = CGRectFromString(str);
@@ -383,7 +383,7 @@ static NSString *const k_aid_table = @"table";
     if ([k_aid_table isEqualToString:aid]) { frame = [self frameForTableWithOrientation:aOrientation]; }
 
     
-    [_frames setObject:NSStringFromCGRect(frame) forKey:key];
+    _frames[key] = NSStringFromCGRect(frame);
   
   }
      
