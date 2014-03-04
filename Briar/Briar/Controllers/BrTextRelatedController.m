@@ -142,7 +142,7 @@ static NSString *const kIdButton = @"the button";
 
 - (void) handleSwipeOnTextField:(UISwipeGestureRecognizer *)aRecognizer {
   UIGestureRecognizerState state = [aRecognizer state];
-  NSLog(@"handling swipe with state '%d'", state);
+  NSLog(@"handling swipe with state '%@", @(state));
   if (UIGestureRecognizerStateEnded == state) {
     NSLog(@"handling swipe ended");
     UITextField *tf = (UITextField *)aRecognizer.view;
@@ -215,7 +215,7 @@ static NSString *const kIdButton = @"the button";
 - (CGRect) frameForView:(UIView *) aView
             orientation:(UIInterfaceOrientation) aOrientation {
   NSString *aid = aView.accessibilityIdentifier;
-  NSString *key = [NSString stringWithFormat:@"%@ - %d", aid, aOrientation];
+  NSString *key = [NSString stringWithFormat:@"%@ - %@", aid, @(aOrientation)];
   NSString *str = [self.frames objectForKey:key];
   CGRect frame = CGRectZero;
   if (str != nil) {

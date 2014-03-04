@@ -112,7 +112,7 @@ UIAlertViewDelegate>
 
 
 - (IBAction)segmentedControlChanged:(UISegmentedControl *)sender {
-  NSLog(@"segmented control changed: '%ld'", (long)sender.selectedSegmentIndex);
+  NSLog(@"segmented control changed: '%@'", @(sender.selectedSegmentIndex));
   BrImageChooserSegConIndex idx = (BrImageChooserSegConIndex)[sender selectedSegmentIndex];
   UIImageView *iv = [self imageView];
   iv.accessibilityLabel = [self accessLabelForImageViewSecConSegment:idx];
@@ -209,7 +209,7 @@ UIAlertViewDelegate>
             orientation:(UIInterfaceOrientation) aOrientation {
 
   NSString *aid = aView.accessibilityIdentifier;
-  NSString *key = [NSString stringWithFormat:@"%@ - %d", aid, aOrientation];
+  NSString *key = [NSString stringWithFormat:@"%@ - %@", aid, @(aOrientation)];
   NSString *str = [self.frames objectForKey:key];
   CGRect frame = CGRectZero;
   if (str != nil) {

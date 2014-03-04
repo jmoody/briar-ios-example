@@ -215,7 +215,7 @@ static NSString *const k_aid_table = @"table";
                      didChangeBlock:^(UISlider *aSlider, BrSliderViewType aType) {
                        NSLog(@"emotion slider updated");
                      }];
-  _sliderEmotions.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.05];
+  _sliderEmotions.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.05f];
 
   return _sliderEmotions;
 }
@@ -309,7 +309,7 @@ static NSString *const k_aid_table = @"table";
   t.accessibilityIdentifier = k_aid_table;
 
   
-  t.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.05];
+  t.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.05f];
   t.delegate = self;
   t.dataSource = self;
   _table = t;
@@ -361,7 +361,7 @@ static NSString *const k_aid_table = @"table";
 - (CGRect) frameForView:(UIView *) aView
             orientation:(UIInterfaceOrientation) aOrientation {
   NSString *aid = aView.accessibilityIdentifier;
-  NSString *key = [NSString stringWithFormat:@"%@ - %d", aid, aOrientation];
+  NSString *key = [NSString stringWithFormat:@"%@ - %@", aid, @(aOrientation)];
   NSString *str = [[self frames] objectForKey:key];
   CGRect frame = CGRectZero;
   if (str != nil) {

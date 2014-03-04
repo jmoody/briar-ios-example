@@ -103,7 +103,7 @@ typedef enum : NSUInteger {
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     UIView *cv = cell.contentView;
     [cv addSubview:[self labelForRowAtIndexPath:aIndexPath]];
-    cell.accessibilityIdentifier = [self.titles objectAtIndex:aIndexPath.row];
+    cell.accessibilityIdentifier = [self.titles objectAtIndex:(NSUInteger)aIndexPath.row];
     return cell;
   }
 
@@ -111,7 +111,7 @@ typedef enum : NSUInteger {
   UIView *cv = cell.contentView;
   UILabel *label = (UILabel *)[cv viewWithTag:kTagTableRowTitle];
   label.text = [self titleForRowWithPath:aIndexPath];
-  cell.accessibilityIdentifier = [self.titles objectAtIndex:aIndexPath.row];
+  cell.accessibilityIdentifier = [self.titles objectAtIndex:(NSUInteger)aIndexPath.row];
 
   return cell;
 }
@@ -186,7 +186,7 @@ typedef enum : NSUInteger {
 #pragma mark - UIAlertView Delegate
 
 - (void) alertView:(UIAlertView *) aAlertView clickedButtonAtIndex:(NSInteger) aIndex {
-  NSLog(@"alert view button touched: %ld", (long)aIndex);
+  NSLog(@"alert view button touched: %@", @(aIndex));
   // nothing to do really
 }
 

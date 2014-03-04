@@ -164,12 +164,12 @@ static NSString *const kRecipeCellIdentifier = @"recipe cell";
   
   UIImage *image = [UIImage imageNamed:[[self imageNames] objectAtIndex:imageIndex]];
   cell.picture.image = image;
-  cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+  cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8f];
 
   cell.accessibilityIdentifier = [[self itemAccessIds] objectAtIndex:imageIndex];
   cell.accessibilityLabel = [[self itemAccessLabels] objectAtIndex:imageIndex];
-  cell.contentView.accessibilityIdentifier = [NSString stringWithFormat:@"content id '%d'", imageIndex];
-  cell.contentView.accessibilityLabel = [NSString stringWithFormat:@"content label '%d'", imageIndex];
+  cell.contentView.accessibilityIdentifier = [NSString stringWithFormat:@"content id '%@'", @(imageIndex)];
+  cell.contentView.accessibilityLabel = [NSString stringWithFormat:@"content label '%@'", @(imageIndex)];
   return cell;
 }
 
