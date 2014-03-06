@@ -142,7 +142,6 @@ end
 Then(/^I should see the (top|bottom|user|pass) text field has "([^"]*)"$/) do |field, text|
   tf = "#{field} tf"
   should_see_text_field_with_text tf, text
-  warn "status bar orientation = '#{status_bar_orientation}'"
   2.times { step_pause }
 end
 
