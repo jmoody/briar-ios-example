@@ -6,11 +6,10 @@ static NSString *const kIdTopTf = @"top tf";
 static NSString *const kIdBottomTf = @"bottom tf";
 static NSString *const kIdTopTv = @"top tv";
 static NSString *const kIdBottomTv = @"bottom tv";
-static NSString *const kIdButton = @"the button";
 
 static NSString *const kIdUserTf = @"user tf";
 static NSString *const kIdPassTf = @"pass tf";
-static NSString *const kIdKeychainButton = @"keychain button";
+static NSString *const kIdKeychainButton = @"save to keychain";
 static NSString *const kKeychainService = @"briar-ios-example.service";
 
 @interface BrTextRelatedController ()
@@ -35,7 +34,6 @@ static NSString *const kKeychainService = @"briar-ios-example.service";
 @synthesize textFieldBottom = _textFieldBottom;
 @synthesize textViewTop = _textViewTop;
 @synthesize textViewBottom = _textViewBottom;
-@synthesize button = _button;
 
 
 - (id)init {
@@ -80,8 +78,6 @@ static NSString *const kKeychainService = @"briar-ios-example.service";
   
   _textViewTop.accessibilityIdentifier = kIdTopTv;
   _textViewBottom.accessibilityIdentifier = kIdBottomTv;
-  
-  _button.accessibilityIdentifier = kIdButton;
 
   _textFieldUsername.accessibilityIdentifier = kIdUserTf;
   _textFieldPassword.accessibilityIdentifier = kIdPassTf;
@@ -266,9 +262,6 @@ static NSString *const kKeychainService = @"briar-ios-example.service";
     if ([kIdBottomTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 108 + ipadYAdj, 210, 30); }
     if ([kIdTopTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 160, 280, 30); }
     if ([kIdBottomTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 196, 280, 30); }
-    
-    if ([kIdButton isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 269, 230, 44); }
-    if ([kIdButton isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(330, 158 + ipadYAdj, 230, 44); }
 
     if ([kIdUserTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20, 188, 210, 44); }
     if ([kIdPassTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 188, 210, 44); }
@@ -289,7 +282,6 @@ static NSString *const kKeychainService = @"briar-ios-example.service";
   if (_textFieldBottom != nil) { [array addObject:_textFieldBottom]; }
   if (_textViewTop != nil) { [array addObject:_textViewTop]; }
   if (_textViewBottom != nil) { [array addObject:_textViewBottom]; }
-  if (_button != nil) { [array addObject:_button]; }
   if (_textFieldUsername != nil) { [array addObject:_textFieldUsername]; }
   if (_textFieldPassword != nil) { [array addObject:_textFieldPassword]; }
   if (_saveToKeychainButton != nil) { [array addObject:_saveToKeychainButton]; }

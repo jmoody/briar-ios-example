@@ -1,6 +1,5 @@
 @trello
 @trello_631
-
 Feature: expecting map results
   In order to reduce duplicate code
   As a calabash developer
