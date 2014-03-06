@@ -1,4 +1,5 @@
 @issue_323
+@keychain
 Feature: Accessing the iOS keychain
   In order to test apps that use the iOS keychain
   As a calabash framework tester
