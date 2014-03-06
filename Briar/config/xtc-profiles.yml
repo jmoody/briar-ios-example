@@ -32,8 +32,6 @@ keyboard:    -p tags --tags @keyboard
 # deprecated Device::iphone_5? and added Device::iphone_4in
 issue_319:   -p tags --tags @issue_319
 
-# collection views
-collections: -p tags --tags @collection_view
 
-# 64bitness
-issue_313:  -p tags --tags @issue_313
+collections: -p tags --tags @collection_view
+keychain:    -p tags --tags @issue_323
