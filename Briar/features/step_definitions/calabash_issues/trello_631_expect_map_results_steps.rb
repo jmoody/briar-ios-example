@@ -39,7 +39,7 @@ end
 
 Then(/^I should get an exception using clear_text on a view that does not respond to setText$/) do
   begin
-    clear_text("button marked:'the button'")
+    clear_text("button marked:'save to keychain'")
     error_no_rescue "expected clear_text to fail because query found a view that did not respond to 'setText'"
   rescue
     puts 'correctly threw exception' if full_console_logging?
