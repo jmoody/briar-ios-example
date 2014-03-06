@@ -83,13 +83,6 @@ static NSString *const kKeychainService = @"briar-ios-example.service";
   _textFieldPassword.accessibilityIdentifier = kIdPassTf;
   _saveToKeychainButton.accessibilityIdentifier = kIdKeychainButton;
 
-  NSDictionary *accountDict = [[SSKeychain accountsForService:kKeychainService] firstObject];
-  if (accountDict) {
-    NSString *account = accountDict[kSSKeychainAccountKey];
-    _textFieldUsername.text = account;
-    _textFieldPassword.text = [SSKeychain passwordForService:kKeychainService account:account];
-  }
-
   self.view.accessibilityIdentifier = @"text related";
 }
 
@@ -293,6 +286,14 @@ static NSString *const kKeychainService = @"briar-ios-example.service";
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self layoutSubviewsForCurrentOrientation:[self viewsToRotate]];
+
+  NSDictionary *accountDict = [[SSKeychain accountsForService:kKeychainService] firstObject];
+  if (accountDict) {
+    NSString *account = accountDict[kSSKeychainAccountKey];
+    _textFieldUsername.text = account;
+    _textFieldPassword.text = [SSKeychain passwordForService:kKeychainService account:account];
+  }
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
