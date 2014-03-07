@@ -19,7 +19,6 @@ Feature: uia_type_text should not throw octet problems
   # flickering because of UIA typeString() problem
   # https://github.com/calabash/calabash-ios/issues/269
   @flickering
-  @xtc_smoke_json
   Scenario: i should be able to type 2 random string
     Then I type 2 random strings with the full range of characters into the text fields
 

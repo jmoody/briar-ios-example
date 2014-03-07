@@ -19,8 +19,6 @@ xtc_wip:     -p tags --tags @xtc_wip
 # page model
 page:        -p tags --tags @page
 
-xtc_smoke_json: -p tags --tags @xtc_smoke_json
-
 ### issues/pull requests
 
 # keyboard delete
