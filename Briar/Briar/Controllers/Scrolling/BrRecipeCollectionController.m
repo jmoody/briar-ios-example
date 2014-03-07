@@ -162,14 +162,14 @@ static NSString *const kRecipeCellIdentifier = @"recipe cell";
 
   NSUInteger imageIndex = (NSUInteger)(aIndexPath.item + (aIndexPath.section * 3));
   
-  UIImage *image = [UIImage imageNamed:[[self imageNames] objectAtIndex:imageIndex]];
+  UIImage *image = [UIImage imageNamed:[self imageNames][imageIndex]];
   cell.picture.image = image;
-  cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+  cell.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.8f];
 
-  cell.accessibilityIdentifier = [[self itemAccessIds] objectAtIndex:imageIndex];
-  cell.accessibilityLabel = [[self itemAccessLabels] objectAtIndex:imageIndex];
-  cell.contentView.accessibilityIdentifier = [NSString stringWithFormat:@"content id '%d'", imageIndex];
-  cell.contentView.accessibilityLabel = [NSString stringWithFormat:@"content label '%d'", imageIndex];
+  cell.accessibilityIdentifier = [self itemAccessIds][imageIndex];
+  cell.accessibilityLabel = [self itemAccessLabels][imageIndex];
+  cell.contentView.accessibilityIdentifier = [NSString stringWithFormat:@"content id '%@'", @(imageIndex)];
+  cell.contentView.accessibilityLabel = [NSString stringWithFormat:@"content label '%@'", @(imageIndex)];
   return cell;
 }
 

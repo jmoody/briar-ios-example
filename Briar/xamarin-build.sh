@@ -14,13 +14,6 @@ else
   echo "INFO: reusing the ./xamarin directory"
 fi
 
-
-if [ -d "${XAMARIN_DIR}" ]; then
-  rm -rf "${XAMARIN_DIR}"
-fi
-
-mkdir -p "${XAMARIN_DIR}"
-
 echo "INFO: copying features over to ${XAMARIN_DIR}"
 rm -rf "${XAMARIN_DIR}/features"
 cp -r features "${XAMARIN_DIR}/"

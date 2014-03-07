@@ -34,3 +34,6 @@ issue_319:   -p tags --tags @issue_319
 
 # collection views
 collections: -p tags --tags @collection_view
+
+# 64bitness
+issue_313:  -p tags --tags @issue_313

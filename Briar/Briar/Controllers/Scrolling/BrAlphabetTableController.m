@@ -59,7 +59,7 @@ typedef enum : NSUInteger {
                                                         [NSBundle mainBundle],
                                                         @"the letter '%1$@' row",
                                                         @"ex.  the letter 'p' row");
-  return [NSString stringWithFormat:fmtStr, [self.titles objectAtIndex:(NSUInteger)aPath.row]];
+  return [NSString stringWithFormat:fmtStr, (self.titles)[(NSUInteger)aPath.row]];
 }
 
 - (UILabel *) labelForRowAtIndexPath:(NSIndexPath *) aPath {
@@ -103,7 +103,7 @@ typedef enum : NSUInteger {
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     UIView *cv = cell.contentView;
     [cv addSubview:[self labelForRowAtIndexPath:aIndexPath]];
-    cell.accessibilityIdentifier = [self.titles objectAtIndex:aIndexPath.row];
+    cell.accessibilityIdentifier = (self.titles)[(NSUInteger)aIndexPath.row];
     return cell;
   }
 
@@ -111,7 +111,7 @@ typedef enum : NSUInteger {
   UIView *cv = cell.contentView;
   UILabel *label = (UILabel *)[cv viewWithTag:kTagTableRowTitle];
   label.text = [self titleForRowWithPath:aIndexPath];
-  cell.accessibilityIdentifier = [self.titles objectAtIndex:aIndexPath.row];
+  cell.accessibilityIdentifier = (self.titles)[(NSUInteger)aIndexPath.row];
 
   return cell;
 }
@@ -143,7 +143,7 @@ typedef enum : NSUInteger {
                                                         [NSBundle mainBundle],
                                                         @"'%1$@' is a great letter!",
                                                         @"ex.  'p' is a greate letter!");
-  NSString *letter = [self.titles objectAtIndex:(NSUInteger)aIndexPath.row];
+  NSString *letter = (self.titles)[(NSUInteger)aIndexPath.row];
   NSString *lmsg = [NSString stringWithFormat:lmsgFmt, letter];
   NSString *lcancel = NSLocalizedString(@"Cancel", @"tables:  title cancel-alert button on alphabet alert");
   NSString *lok = NSLocalizedString(@"OK", @"tables: title alert-action button on alphabet alert");
@@ -186,7 +186,7 @@ typedef enum : NSUInteger {
 #pragma mark - UIAlertView Delegate
 
 - (void) alertView:(UIAlertView *) aAlertView clickedButtonAtIndex:(NSInteger) aIndex {
-  NSLog(@"alert view button touched: %ld", (long)aIndex);
+  NSLog(@"alert view button touched: %@", @(aIndex));
   // nothing to do really
 }
 

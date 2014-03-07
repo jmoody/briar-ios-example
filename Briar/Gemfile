@@ -11,7 +11,7 @@ case username
   when 'moody'
 
     gem 'briar', :github => 'jmoody/briar', :branch => '0.1.4'
-    gem 'calabash-cucumber', :github => 'jmoody/calabash-ios', :branch => 'fix/issue-310-uia-type-string-raising-error'
+    gem 'calabash-cucumber', :github => 'jmoody/calabash-ios', :branch => 'feat/makes-rake-build-server-task-compat-with-0.9.169-xcode-project'
 
   when 'your username here'
 

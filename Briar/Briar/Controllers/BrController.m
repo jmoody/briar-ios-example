@@ -202,7 +202,7 @@
   }
   UINavigationBar *navbar = self.navigationController.navigationBar;
   navbar.translucent = YES;
-  navbar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
+  navbar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.9f];
 
  
 }

@@ -24,7 +24,7 @@
   if ([bar respondsToSelector:selector]) {
     bar.translucent = YES;
   }
-  bar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.9];
+  bar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.9f];
 }
 
 #pragma mark - iOS 5
