@@ -33,6 +33,12 @@
 		3c10e85b30a66b77009a1ccc /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45516E3C69C007797F1 /* second@2x.png */; };
 		3f744665f593b89dc3f47464 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45E16E3C6F2007797F1 /* Icon-Small-50.png */; };
 		528fac7a775919ed58477c54 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C46116E3C6F2007797F1 /* Icon.png */; };
+		52D8FE1D18BAE68600D7CA8A /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8FE1A18BAE68600D7CA8A /* SSKeychain.m */; };
+		52D8FE1E18BAE68600D7CA8A /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8FE1A18BAE68600D7CA8A /* SSKeychain.m */; };
+		52D8FE1F18BAE68600D7CA8A /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8FE1C18BAE68600D7CA8A /* SSKeychainQuery.m */; };
+		52D8FE2018BAE68600D7CA8A /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8FE1C18BAE68600D7CA8A /* SSKeychainQuery.m */; };
+		52D8FE2218BAE69200D7CA8A /* SSKeychain.LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 52D8FE2118BAE69200D7CA8A /* SSKeychain.LICENSE */; };
+		52D8FE2318BAE69200D7CA8A /* SSKeychain.LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 52D8FE2118BAE69200D7CA8A /* SSKeychain.LICENSE */; };
 		532f1a9bf8dd52b64f741fd5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42416E3C256007797F1 /* CoreGraphics.framework */; };
 		553e655fbe2433cbff10ac67 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F568C46316E3C6F2007797F1 /* iTunesArtwork */; };
 		5f0fd17902431e7fd52dcdc4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */; };
@@ -253,6 +259,8 @@
 		F5C3A66F18A33CAE00DB7E42 /* vegetable_curry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5C3A64E18A33CAE00DB7E42 /* vegetable_curry.jpg */; };
 		F5C3A67018A33CAE00DB7E42 /* white_chocolate_donut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5C3A64F18A33CAE00DB7E42 /* white_chocolate_donut.jpg */; };
 		F5C3A67118A33CAE00DB7E42 /* white_chocolate_donut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5C3A64F18A33CAE00DB7E42 /* white_chocolate_donut.jpg */; };
+		F5E2D16218C73D9600A0D9B6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E2D16118C73D9600A0D9B6 /* Security.framework */; };
+		F5E2D16318C73DA200A0D9B6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E2D16118C73D9600A0D9B6 /* Security.framework */; };
 		aa3541c626e9a05f9ce05e6d /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
 		b8fdd38325a6b1a766af9175 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45F16E3C6F2007797F1 /* Icon-Small.png */; };
 		c3cc1892a54542ba9cde1f42 /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = c6425b650cbbd9f05994720c /* calabash.framework */; };
@@ -273,6 +281,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52D8FE1918BAE68600D7CA8A /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		52D8FE1A18BAE68600D7CA8A /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		52D8FE1B18BAE68600D7CA8A /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
+		52D8FE1C18BAE68600D7CA8A /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
+		52D8FE2118BAE69200D7CA8A /* SSKeychain.LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SSKeychain.LICENSE; sourceTree = "<group>"; };
 		F51F12BC171884ED00809626 /* blueprint-background-320x480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueprint-background-320x480.png"; sourceTree = "<group>"; };
 		F51F12BD171884ED00809626 /* blueprint-background-320x480@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueprint-background-320x480@2x.png"; sourceTree = "<group>"; };
 		F548D2BA16E3E1F3003D2CD0 /* Briar-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Briar-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -410,6 +423,7 @@
 		F5C3A64D18A33CAE00DB7E42 /* thai_shrimp_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thai_shrimp_cake.jpg; sourceTree = "<group>"; };
 		F5C3A64E18A33CAE00DB7E42 /* vegetable_curry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vegetable_curry.jpg; sourceTree = "<group>"; };
 		F5C3A64F18A33CAE00DB7E42 /* white_chocolate_donut.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white_chocolate_donut.jpg; sourceTree = "<group>"; };
+		F5E2D16118C73D9600A0D9B6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		c6425b650cbbd9f05994720c /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -419,6 +433,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5E2D16318C73DA200A0D9B6 /* Security.framework in Frameworks */,
 				25af5ab6ef29f8d240675046 /* UIKit.framework in Frameworks */,
 				01d93763067c68ff5edfb415 /* Foundation.framework in Frameworks */,
 				532f1a9bf8dd52b64f741fd5 /* CoreGraphics.framework in Frameworks */,
@@ -433,6 +448,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5E2D16218C73D9600A0D9B6 /* Security.framework in Frameworks */,
 				F58B6DEF186873490042191C /* QuartzCore.framework in Frameworks */,
 				F58F093B16F32FF9007CFE50 /* MessageUI.framework in Frameworks */,
 				F568C42116E3C256007797F1 /* UIKit.framework in Frameworks */,
@@ -445,6 +461,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52D8FE1818BAE67900D7CA8A /* SSKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				52D8FE1918BAE68600D7CA8A /* SSKeychain.h */,
+				52D8FE1A18BAE68600D7CA8A /* SSKeychain.m */,
+				52D8FE1B18BAE68600D7CA8A /* SSKeychainQuery.h */,
+				52D8FE1C18BAE68600D7CA8A /* SSKeychainQuery.m */,
+				52D8FE2118BAE69200D7CA8A /* SSKeychain.LICENSE */,
+			);
+			name = SSKeychain;
+			sourceTree = "<group>";
+		};
 		F51F12BB171884ED00809626 /* backgrounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,6 +503,7 @@
 		F568C41F16E3C256007797F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F5E2D16118C73D9600A0D9B6 /* Security.framework */,
 				F58B6DEE186873490042191C /* QuartzCore.framework */,
 				F58B6DEA186872BC0042191C /* libReveal.dylib */,
 				F58F093A16F32FF9007CFE50 /* MessageUI.framework */,
@@ -496,6 +525,7 @@
 				F56BAB7616FCAAF400AB8578 /* BrGlobals.m */,
 				F58F093116F29CD6007CFE50 /* BrCategories.h */,
 				F58F093216F29CD6007CFE50 /* BrCategories.m */,
+				52D8FE1818BAE67900D7CA8A /* SSKeychain */,
 				F56BAB7016FCA9DF00AB8578 /* Views */,
 				F56BAB5916FCA42900AB8578 /* Controllers */,
 				F568C45A16E3C6A8007797F1 /* XIB */,
@@ -829,6 +859,7 @@
 				F5A6DBBB1810581A007D85C7 /* rainy.png in Resources */,
 				F5A6DB971810581A007D85C7 /* calendar.png in Resources */,
 				F5C3A66818A33CAE00DB7E42 /* photo-frame.png in Resources */,
+				52D8FE2218BAE69200D7CA8A /* SSKeychain.LICENSE in Resources */,
 				F568C43316E3C256007797F1 /* Default.png in Resources */,
 				F5C3A65818A33CAE00DB7E42 /* green_tea.jpg in Resources */,
 				F5A6DB871810581A007D85C7 /* cabinet.png in Resources */,
@@ -933,6 +964,7 @@
 				F57582A51819F9030006FD60 /* water.png in Resources */,
 				F5A6DBBC1810581A007D85C7 /* rainy.png in Resources */,
 				F5C3A66918A33CAE00DB7E42 /* photo-frame.png in Resources */,
+				52D8FE2318BAE69200D7CA8A /* SSKeychain.LICENSE in Resources */,
 				F5A6DB981810581A007D85C7 /* calendar.png in Resources */,
 				F5C3A65918A33CAE00DB7E42 /* green_tea.jpg in Resources */,
 				d256dff5b9aeb3324a8009c9 /* Default.png in Resources */,
@@ -1116,10 +1148,12 @@
 				F56BAB6716FCA45F00AB8578 /* BrButtonViewController.m in Sources */,
 				F56BAB6916FCA45F00AB8578 /* BrTextRelatedController.m in Sources */,
 				F56BAB7416FCA9DF00AB8578 /* BrDatePickerView.m in Sources */,
+				52D8FE2018BAE68600D7CA8A /* SSKeychainQuery.m in Sources */,
 				F56BAB7816FCAAF400AB8578 /* BrGlobals.m in Sources */,
 				F591380917C3D2CE007B2BE4 /* BrNavigationController.m in Sources */,
 				F5C3A63918A3013A00DB7E42 /* BrAlphabetTableController.m in Sources */,
 				F591380D17C3D3AB007B2BE4 /* BrTabBarController.m in Sources */,
+				52D8FE1E18BAE68600D7CA8A /* SSKeychain.m in Sources */,
 				F5A6DB4518104CBB007D85C7 /* BrSliderView.m in Sources */,
 				F5C3A63518A2EDED00DB7E42 /* BrScrollingHomeController.m in Sources */,
 			);
@@ -1139,10 +1173,12 @@
 				F56BAB6616FCA45F00AB8578 /* BrButtonViewController.m in Sources */,
 				F56BAB6816FCA45F00AB8578 /* BrTextRelatedController.m in Sources */,
 				F56BAB7316FCA9DF00AB8578 /* BrDatePickerView.m in Sources */,
+				52D8FE1F18BAE68600D7CA8A /* SSKeychainQuery.m in Sources */,
 				F56BAB7716FCAAF400AB8578 /* BrGlobals.m in Sources */,
 				F591380817C3D2CE007B2BE4 /* BrNavigationController.m in Sources */,
 				F5C3A63818A3013A00DB7E42 /* BrAlphabetTableController.m in Sources */,
 				F591380C17C3D3AB007B2BE4 /* BrTabBarController.m in Sources */,
+				52D8FE1D18BAE68600D7CA8A /* SSKeychain.m in Sources */,
 				F5A6DB4418104CBB007D85C7 /* BrSliderView.m in Sources */,
 				F5C3A63418A2EDED00DB7E42 /* BrScrollingHomeController.m in Sources */,
 			);

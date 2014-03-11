@@ -1,12 +1,16 @@
 #import "BrTextRelatedController.h"
 #import "BrGlobals.h"
+#import "SSKeychain.h"
 
 static NSString *const kIdTopTf = @"top tf";
 static NSString *const kIdBottomTf = @"bottom tf";
 static NSString *const kIdTopTv = @"top tv";
 static NSString *const kIdBottomTv = @"bottom tv";
-static NSString *const kIdButton = @"the button";
 
+static NSString *const kIdUserTf = @"user tf";
+static NSString *const kIdPassTf = @"pass tf";
+static NSString *const kIdKeychainButton = @"save to keychain";
+static NSString *const kKeychainService = @"briar-ios-example.service";
 
 @interface BrTextRelatedController ()
 
@@ -30,7 +34,6 @@ static NSString *const kIdButton = @"the button";
 @synthesize textFieldBottom = _textFieldBottom;
 @synthesize textViewTop = _textViewTop;
 @synthesize textViewBottom = _textViewBottom;
-@synthesize button = _button;
 
 
 - (id)init {
@@ -75,9 +78,11 @@ static NSString *const kIdButton = @"the button";
   
   _textViewTop.accessibilityIdentifier = kIdTopTv;
   _textViewBottom.accessibilityIdentifier = kIdBottomTv;
-  
-  _button.accessibilityIdentifier = kIdButton;
-  
+
+  _textFieldUsername.accessibilityIdentifier = kIdUserTf;
+  _textFieldPassword.accessibilityIdentifier = kIdPassTf;
+  _saveToKeychainButton.accessibilityIdentifier = kIdKeychainButton;
+
   self.view.accessibilityIdentifier = @"text related";
 }
 
@@ -101,10 +106,22 @@ static NSString *const kIdButton = @"the button";
   if ([self.textFieldBottom isFirstResponder]) { [self.textFieldBottom resignFirstResponder]; }
   if ([self.textViewTop isFirstResponder]) { [self.textViewTop resignFirstResponder]; }
   if ([self.textViewBottom isFirstResponder]) { [self.textViewBottom resignFirstResponder]; }
+  if ([self.textFieldUsername isFirstResponder]) { [self.textFieldUsername resignFirstResponder]; }
+  if ([self.textFieldPassword isFirstResponder]) { [self.textFieldPassword resignFirstResponder]; }
 }
 
 - (IBAction)buttonTouched:(id)sender {
   NSLog(@"button touched");
+}
+
+- (IBAction)saveToKeychainButtonTouched:(id)sender {
+  NSError *error;
+  if (![SSKeychain setPassword:self.textFieldPassword.text
+                    forService:kKeychainService
+                       account:self.textFieldUsername.text
+                         error:&error]) {
+    NSLog(@"Error writing to keychain: %@", error);
+  }
 }
 
 #pragma mark - Animations
@@ -238,12 +255,16 @@ static NSString *const kIdButton = @"the button";
     if ([kIdBottomTv isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 108 + ipadYAdj, 210, 30); }
     if ([kIdTopTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 160, 280, 30); }
     if ([kIdBottomTv isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 196, 280, 30); }
-    
-    if ([kIdButton isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 269, 230, 44); }
-    if ([kIdButton isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(330, 158 + ipadYAdj, 230, 44); }
 
-    
-    _frames[key] = NSStringFromCGRect(frame);
+    if ([kIdUserTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20, 188, 210, 44); }
+    if ([kIdPassTf isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(250, 188, 210, 44); }
+    if ([kIdUserTf isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 312 + ipadYAdj, 120, 44); }
+    if ([kIdPassTf isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(160, 312 + ipadYAdj, 120, 44); }
+
+    if ([kIdKeychainButton isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(200, 232, 140, 44); }
+    if ([kIdKeychainButton isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(140, 360 + ipadYAdj, 140, 44); }
+
+    [_frames setObject:NSStringFromCGRect(frame) forKey:key];
   }
   return frame;
 }
@@ -254,7 +275,9 @@ static NSString *const kIdButton = @"the button";
   if (_textFieldBottom != nil) { [array addObject:_textFieldBottom]; }
   if (_textViewTop != nil) { [array addObject:_textViewTop]; }
   if (_textViewBottom != nil) { [array addObject:_textViewBottom]; }
-  if (_button != nil) { [array addObject:_button]; }
+  if (_textFieldUsername != nil) { [array addObject:_textFieldUsername]; }
+  if (_textFieldPassword != nil) { [array addObject:_textFieldPassword]; }
+  if (_saveToKeychainButton != nil) { [array addObject:_saveToKeychainButton]; }
   return [NSArray arrayWithArray:array];
 }
 
@@ -263,6 +286,14 @@ static NSString *const kIdButton = @"the button";
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [self layoutSubviewsForCurrentOrientation:[self viewsToRotate]];
+
+  NSDictionary *accountDict = [[SSKeychain accountsForService:kKeychainService] firstObject];
+  if (accountDict) {
+    NSString *account = accountDict[kSSKeychainAccountKey];
+    _textFieldUsername.text = account;
+    _textFieldPassword.text = [SSKeychain passwordForService:kKeychainService account:account];
+  }
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
