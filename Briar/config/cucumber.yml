@@ -37,7 +37,7 @@ end
 
 verbose: CALABASH_FULL_CONSOLE_OUTPUT=1 DEBUG=1
 quiet:   CALABASH_FULL_CONSOLE_OUTPUT=0 DEBUG=0
-common: --no-source -f 'Slowhandcuke::Formatter' -p quiet
+common: --no-source -f 'Slowhandcuke::Formatter'
 
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
 
@@ -59,20 +59,39 @@ reset_btw:    RESET_BETWEEN_SCENARIOS=1
 stop:         NO_STOP=0
 no_stop:      NO_STOP=1
 
-# cannot test collection views on iOS 5
-# iOS 5 simulator is not available on Xcode 5
-# sdk5:  SDK_VERSION=5.1 --tags ~@collection_view
-sdk6:  SDK_VERSION=6.1
-sdk7:  SDK_VERSION=7.0
-sdk71: SDK_VERSION=7.1
-
 ipad:   DEVICE=ipad   -p common --tags ~@iphone --tags ~@iphone_only
 iphone: DEVICE=iphone -p common --tags ~@ipad --tags ~@ipad_only
 
-uai: DEVICE_TARGET=simulator --tags ~@device --tags ~@device_only
+simulator: --tags ~@device_only --tags ~@device
 
-default: -p common -p ss_path -p html_report -p no_launch -p uai -p no_reset_btw -p no_stop
-launch:  -p common -p ss_path -p html_report -p do_launch -p uai -p no_reset_btw -p no_stop
+sim61:     -p simulator DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 6.1'
+sim70:     -p simulator DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 7.0'
+sim71:     -p simulator DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 7.1'
+
+sim61r:    -p simulator DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 6.1'
+sim70r:    -p simulator DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 7.0'
+sim71r:    -p simulator DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 7.1'
+
+sim61_4in: -p simulator DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 6.1'
+sim70_4in: -p simulator DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 7.0'
+sim71_4in: -p simulator DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 7.1'
+
+sim70_64b: -p simulator DEVICE_TARGET='iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.0'
+sim71_64b: -p simulator DEVICE_TARGET='iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
+
+sim61_ipad:        -p simulator DEVICE_TARGET='iPad - Simulator - iOS 6.1'
+sim70_ipad:        -p simulator DEVICE_TARGET='iPad - Simulator - iOS 7.0'
+sim71_ipad:        -p simulator DEVICE_TARGET='iPad - Simulator - iOS 7.1'
+
+sim61_ipad_r:      -p simulator DEVICE_TARGET='iPad Retina - Simulator - iOS 6.1'
+sim70_ipad_r:      -p simulator DEVICE_TARGET='iPad Retina - Simulator - iOS 7.0'
+sim71_ipad_r:      -p simulator DEVICE_TARGET='iPad Retina - Simulator - iOS 7.1'
+
+sim70_ipad_r_64b:  -p simulator DEVICE_TARGET='iPad Retina (64-bit) - Simulator - iOS 7.0'
+sim71_ipad_r_64b:  -p simulator DEVICE_TARGET='iPad Retina (64-bit) - Simulator - iOS 7.1'
+
+default:  -p common -p ss_path -p html_report -p do_launch -p no_reset_btw -p no_stop -p sim70_4in
+no_uia:   -p common -p ss_path -p html_report -p no_launch -p no_reset_btw            -p sim61_4in
 
 # required only for devices
 bundle_id:    BUNDLE_ID=com.littlejoysoftware.Briar-cal

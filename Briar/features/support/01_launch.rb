@@ -27,6 +27,8 @@ require 'calabash-cucumber/launcher'
 Before do |scenario|
   @calabash_launcher = Calabash::Cucumber::Launcher.new
   unless @calabash_launcher.calabash_no_launch?
+    dev_dir = `xcode-select --print-path`.strip
+    system "/usr/bin/osascript -e 'tell application \"#{dev_dir}/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app\" to quit'"
     @calabash_launcher.relaunch
     @calabash_launcher.calabash_notify(self)
   end
