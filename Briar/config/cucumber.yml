@@ -62,35 +62,43 @@ no_stop:      NO_STOP=1
 ipad:   DEVICE=ipad   -p common --tags ~@iphone --tags ~@iphone_only
 iphone: DEVICE=iphone -p common --tags ~@ipad --tags ~@ipad_only
 
-simulator: --tags ~@device_only --tags ~@device
+simulator:     -p common -p ss_path -p html_report --tags ~@device_only --tags ~@device
+sim_launch:    -p simulator -p do_launch -p no_reset_btw -p no_stop
+sim_no_launch: -p simulator -p no_launch -p no_reset_btw
 
-sim61:     -p simulator DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 6.1'
-sim70:     -p simulator DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 7.0'
-sim71:     -p simulator DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 7.1'
+sim61:     -p sim_launch    DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 6.1'
+sim61_nl:  -p sim_no_launch DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 6.1'
 
-sim61r:    -p simulator DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 6.1'
-sim70r:    -p simulator DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 7.0'
-sim71r:    -p simulator DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 7.1'
+sim61r:    -p sim_launch DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 6.1'
+sim61r_nl: -p sim_no_launch DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 6.1'
+sim70r:    -p sim_launch DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 7.0'
+sim71r:    -p sim_launch DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 7.1'
 
-sim61_4in: -p simulator DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 6.1'
-sim70_4in: -p simulator DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 7.0'
-sim71_4in: -p simulator DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 7.1'
+sim61_4in:    -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 6.1'
+sim61_4in_nl: -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 6.1'
+sim70_4in:    -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 7.0'
+sim71_4in:    -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 7.1'
 
-sim70_64b: -p simulator DEVICE_TARGET='iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.0'
-sim71_64b: -p simulator DEVICE_TARGET='iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
+sim70_64b:    -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.0'
+sim71_64b:    -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
 
-sim61_ipad:        -p simulator DEVICE_TARGET='iPad - Simulator - iOS 6.1'
-sim70_ipad:        -p simulator DEVICE_TARGET='iPad - Simulator - iOS 7.0'
-sim71_ipad:        -p simulator DEVICE_TARGET='iPad - Simulator - iOS 7.1'
+sim61_ipad:        -p sim_launch DEVICE_TARGET='iPad - Simulator - iOS 6.1'
+sim61_ipad_nl:     -p sim_no_launch DEVICE_TARGET='iPad - Simulator - iOS 6.1'
+sim70_ipad:        -p sim_launch DEVICE_TARGET='iPad - Simulator - iOS 7.0'
+sim71_ipad:        -p sim_launch DEVICE_TARGET='iPad - Simulator - iOS 7.1'
 
-sim61_ipad_r:      -p simulator DEVICE_TARGET='iPad Retina - Simulator - iOS 6.1'
-sim70_ipad_r:      -p simulator DEVICE_TARGET='iPad Retina - Simulator - iOS 7.0'
-sim71_ipad_r:      -p simulator DEVICE_TARGET='iPad Retina - Simulator - iOS 7.1'
+sim61_ipad_r:      -p sim_launch DEVICE_TARGET='iPad Retina - Simulator - iOS 6.1'
+sim61_ipad_r_nl:   -p sim_no_launch DEVICE_TARGET='iPad Retina - Simulator - iOS 6.1'
+sim70_ipad_r:      -p sim_launch DEVICE_TARGET='iPad Retina - Simulator - iOS 7.0'
+sim71_ipad_r:      -p sim_launch DEVICE_TARGET='iPad Retina - Simulator - iOS 7.1'
 
-sim70_ipad_r_64b:  -p simulator DEVICE_TARGET='iPad Retina (64-bit) - Simulator - iOS 7.0'
-sim71_ipad_r_64b:  -p simulator DEVICE_TARGET='iPad Retina (64-bit) - Simulator - iOS 7.1'
+sim70_ipad_r_64b:  -p sim_launch DEVICE_TARGET='iPad Retina (64-bit) - Simulator - iOS 7.0'
+sim71_ipad_r_64b:  -p sim_launch DEVICE_TARGET='iPad Retina (64-bit) - Simulator - iOS 7.1'
 
-default:  -p common -p ss_path -p html_report -p do_launch -p no_reset_btw -p no_stop -p sim70_4in
+default:    -p sim71_4in
+
+
+
 no_uia:   -p common -p ss_path -p html_report -p no_launch -p no_reset_btw            -p sim61_4in
 
 # required only for devices
