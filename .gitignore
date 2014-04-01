@@ -24,6 +24,7 @@ __MACOSX
 workspace.xml
 find.xml
 *.iml
+.rakeTasks
 
 # ruby
 .irb-history
