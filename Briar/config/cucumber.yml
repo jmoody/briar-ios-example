@@ -1,13 +1,9 @@
 <%
 
 date = Time.now.strftime('%Y-%m-%d-%H%M-%S')
-default_report = "./reports/calabash-#{date}.html"
-
-ss_path = "./screenshots/"
 
 FileUtils.mkdir("./screenshots") unless File.exists?("./screenshots")
 FileUtils.mkdir("./reports") unless File.exists?("./reports")
-
 
 xamarin_dir = "#{ENV['HOME']}/.xamarin"
 
@@ -31,6 +27,9 @@ device_list.each do |device|
   FileUtils.mkdir("./reports/#{device}") unless File.exists?("./reports/#{device}")
   FileUtils.mkdir("./reports/#{device}/screenshots") unless File.exists?("./reports/#{device}/screenshots")
 end
+
+default_report = "./reports/calabash-#{date}.html"
+ss_path = "./screenshots/"
 
 
 %>
