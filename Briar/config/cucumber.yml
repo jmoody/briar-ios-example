@@ -36,7 +36,6 @@ end
 %>
 
 verbose: CALABASH_FULL_CONSOLE_OUTPUT=1 DEBUG=1
-quiet:   CALABASH_FULL_CONSOLE_OUTPUT=0 DEBUG=0
 common: --no-source -f 'Slowhandcuke::Formatter'
 
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
@@ -96,8 +95,6 @@ sim70_ipad_r_64b:  -p sim_launch DEVICE_TARGET='iPad Retina (64-bit) - Simulator
 sim71_ipad_r_64b:  -p sim_launch DEVICE_TARGET='iPad Retina (64-bit) - Simulator - iOS 7.1'
 
 default:    -p sim71_4in
-
-
 
 no_uia:   -p common -p ss_path -p html_report -p no_launch -p no_reset_btw            -p sim61_4in
 
