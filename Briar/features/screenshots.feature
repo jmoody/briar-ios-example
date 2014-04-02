@@ -7,9 +7,17 @@ Feature: taking screenshots
   Scenario: then i take a screenshot
     Then I take a screenshot and embedded it
 
-  @wip
   Scenario: screenshot of mail compose view
-    When I touch the "Buttons" tab I should see the "buttons" view
+    Given I see the Buttons tab
     Then I touch the show email button
     Then I take a screenshot and embedded it
 
+  Scenario: screenshot of alert view
+    Given I see the Buttons tab
+    Then I touch the show alert button
+    Then I take a screenshot and embedded it
+
+  Scenario: screenshot of action sheet
+    Given I see the Buttons tab
+    Then I touch the show sheet button
+    Then I take a screenshot and embedded it

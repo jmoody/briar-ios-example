@@ -1,3 +1,7 @@
+Given(/^I see the Buttons tab$/) do
+  touch_tabbar_item 'Buttons', 'buttons'
+end
+
 When(/^I touch the "([^"]*)" button I should see an (action sheet|alert|email compose view)$/) do |button_id, what|
   if what.eql?('action sheet')
     touch_button_and_wait_for_view button_id, 'sheet'
