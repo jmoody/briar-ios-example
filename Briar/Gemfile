@@ -11,7 +11,7 @@ case username
   when 'moody'
 
     gem 'briar', :github => 'jmoody/briar', :branch => '0.1.4'
-    gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'master'
+    gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'WIP/checking-server-version'
     gem 'xamarin-test-cloud', :git => 'git@github.com:jmoody/test-cloud-command-line.git', :branch => 'master'
 
   when 'your username here'
