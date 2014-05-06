@@ -10,14 +10,14 @@ case username
 
   when 'moody'
 
-    gem 'briar', :github => 'jmoody/briar', :branch => '0.1.4'
+    gem 'briar', :github => 'jmoody/briar', :branch => '1.0.1'
     gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'master'
     gem 'xamarin-test-cloud', :git => 'git@github.com:jmoody/test-cloud-command-line.git', :branch => 'master'
 
   when 'your username here'
 
   else
-    gem 'briar', '0.1.4.b1'
+    gem 'briar', '~>1.0.0'
 end
 
 gem 'faker'
