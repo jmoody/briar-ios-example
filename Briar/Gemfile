@@ -17,7 +17,7 @@ case username
   when 'your username here'
 
   else
-    gem 'briar', '0.1.4.b1'
+    gem 'briar', '~>1.0.0'
 end
 
 gem 'faker'
