@@ -17,7 +17,7 @@ Backup*
 InfoPlist.h
 
 ## Mac OS X
-.DS_Store 
+.DS_Store
 __MACOSX
 
 # Jetbrains
@@ -33,8 +33,6 @@ find.xml
 .bundle
 vendor
 Gemfile.lock
-.calabash-cucumber-git
-.briar-git
 
 # briar
 .env
@@ -46,14 +44,13 @@ screenshots
 
 screenshot*.png
 
-# xamarin build directory
-xamarin
-
+# directory for staging for XTC runs
+xtc-staging
 
 # Xcode 4
 *.xcodeproj/*.mode*
 *.xcodeproj/*.perspective*
-*.xcodeproj/*.pbxuser   
+*.xcodeproj/*.pbxuser
 *.xcodeproj/xcuserdata
 *.xcodeproj/project.xcworkspace/xcuserdata
 

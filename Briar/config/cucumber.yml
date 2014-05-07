@@ -66,6 +66,7 @@ sim_no_launch: -p simulator -p no_launch -p no_reset_btw
 
 sim61:     -p sim_launch    DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 6.1'
 sim61_nl:  -p sim_no_launch DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 6.1'
+sim61_sl:  -p sim_launch LAUNCH_VIA=sim_launcher DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 6.1'
 
 sim61r:    -p sim_launch DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 6.1'
 sim61r_nl: -p sim_no_launch DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 6.1'

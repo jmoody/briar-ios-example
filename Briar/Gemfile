@@ -12,6 +12,7 @@ case username
 
     gem 'briar', :github => 'jmoody/briar', :branch => '1.0.1'
     gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'master'
+    #gem 'calabash-cucumber', '0.9.169.pre5'
     gem 'xamarin-test-cloud', :git => 'git@github.com:jmoody/test-cloud-command-line.git', :branch => 'master'
 
   when 'your username here'
@@ -21,6 +22,7 @@ case username
 end
 
 gem 'faker'
+gem 'xcpretty'
 
 # not yet
 # gem 'twitter_cldr'
