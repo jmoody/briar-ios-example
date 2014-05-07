@@ -25,6 +25,23 @@ require 'calabash-cucumber/launcher'
 
 #noinspection RubyUnusedLocalVariable
 Before do |scenario|
+
+  # if defined?(MY_LAUNCHER)
+  #   # @calabash_launcher is a Cucumber World variable
+  #   # World variables are set to 'nil' before each Scenario
+  #   # - assign @calabash_launcher to MY_LAUNCHER
+  #   @calabash_launcher = MY_LAUNCHER
+  # else
+  #   # defines a constant that will persist over Scenarios
+  #   MY_LAUNCHER = Calabash::Cucumber::Launcher.new
+  #   # assign the @calabash_launcher World variable to the constant
+  #   @calabash_launcher = MY_LAUNCHER
+  #
+  #   # relaunch!
+  #   @calabash_launcher.relaunch()
+  #   @calabash_launcher.calabash_notify(self)
+  # end
+
   @calabash_launcher = Calabash::Cucumber::Launcher.new
   unless @calabash_launcher.calabash_no_launch?
     @calabash_launcher.relaunch
