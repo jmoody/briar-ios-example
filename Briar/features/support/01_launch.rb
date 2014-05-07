@@ -73,9 +73,9 @@ After do |scenario|
   end
 end
 
-at_exit do
-  launcher = Calabash::Cucumber::Launcher.new
-  if launcher.simulator_target?
-    Calabash::Cucumber::SimulatorHelper.stop unless launcher.calabash_no_stop?
+  at_exit do
+    launcher = Calabash::Cucumber::Launcher.new
+    if launcher.simulator_target?
+      Calabash::Cucumber::SimulatorHelper.stop unless launcher.calabash_no_stop?
+    end
   end
-end
