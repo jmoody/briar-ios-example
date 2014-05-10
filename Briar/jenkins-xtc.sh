@@ -15,4 +15,3 @@ fi
 
 rbenv exec bundle install
 
-rbenv exec bundle exec briar xtc jenkins-ci jenkins
