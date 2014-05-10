@@ -15,3 +15,12 @@ fi
 
 rbenv exec bundle install
 
+set +o errexit
+rbenv exec bundle exec briar xtc jenkins-ci default
+set -o errexit
+
+RETVAL=$?
+
+echo "ended with status '$RETVAL'"
+
+exit 0
