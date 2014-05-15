@@ -41,11 +41,13 @@ Gemfile.lock
 rerun
 reports
 screenshots
-
 screenshot*.png
 
 # directory for staging for XTC runs
 xtc-staging
+
+# jenkins
+ci-reports
 
 # Xcode 4
 *.xcodeproj/*.mode*
