@@ -27,7 +27,7 @@ mkdir -p "${CAL_BUILD_DIR}"
 echo "INFO: unlocking the keychain"
 
 if [ ${USER} = "jenkins" ]; then
-    $SECURITY_PATH default-keychain -d user -s "${JENKINS_KEYCHAIN}"
+    /usr/bin/security default-keychain -d user -s "${JENKINS_KEYCHAIN}"
     RETVAL=$?
     if [ $RETVAL != 0 ]; then
         echo "FAIL: could not set the default keychain"
@@ -37,7 +37,7 @@ fi
 
 # unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
 if [ ${USER} = "jenkins" ]; then
-    $SECURITY_PATH unlock-keychain -p "${JENKINS_KEYCHAIN_PASS}" "${JENKINS_KEYCHAIN}"
+    /usr/bin/security unlock-keychain -p "${JENKINS_KEYCHAIN_PASS}" "${JENKINS_KEYCHAIN}"
     RETVAL=$?
     if [ $RETVAL != 0 ]; then
         echo "FAIL: could not unlock the keychain"
