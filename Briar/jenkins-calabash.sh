@@ -23,6 +23,28 @@ CAL_BUILD_DIR="${PWD}/build/jenkins"
 rm -rf "${CAL_BUILD_DIR}"
 mkdir -p "${CAL_BUILD_DIR}"
 
+####################### JENKINS KEYCHAIN #######################################
+echo "INFO: unlocking the keychain"
+
+if [ ${USER} = "jenkins" ]; then
+    $SECURITY_PATH default-keychain -d user -s "${JENKINS_KEYCHAIN}"
+    RETVAL=$?
+    if [ $RETVAL != 0 ]; then
+        echo "FAIL: could not set the default keychain"
+        exit $RETVAL
+    fi
+fi
+
+# unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
+if [ ${USER} = "jenkins" ]; then
+    $SECURITY_PATH unlock-keychain -p "${JENKINS_KEYCHAIN_PASS}" "${JENKINS_KEYCHAIN}"
+    RETVAL=$?
+    if [ $RETVAL != 0 ]; then
+        echo "FAIL: could not unlock the keychain"
+        exit $RETVAL
+    fi
+fi
+
 # build the -cal target to get it on the phone
 set +o errexit
 
@@ -41,6 +63,8 @@ set -o errexit
 if [ $RETVAL != 0 ]; then
     echo "FAIL:  could not build"
     exit $RETVAL
+else
+    echo "INFO: successfully built"
 fi
 
 # remove any stale targets
@@ -48,10 +72,6 @@ rbenv exec bundle exec briar rm sim-targets
 
 # Disable exiting on error so script continues if tests fail
 set +o errexit
-
-#   - iPad 6, iPad 7, iPhone, iPhone 4in, iPhone 4in 64bit (instruments)
-#   - iPad 6 sim launcher
-
 
 APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
 
