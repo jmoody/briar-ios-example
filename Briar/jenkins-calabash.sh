@@ -73,7 +73,7 @@ rbenv exec bundle exec briar rm sim-targets
 # Disable exiting on error so script continues if tests fail
 set +o errexit
 
-APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
+export APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
 
 rbenv exec bundle exec cucumber -p sim61_4in          -f json -o ci-reports/calabash/ipad-61-4in.json $TAGS
 rbenv exec bundle exec cucumber -p sim71_4in         -f json -o ci-reports/calabash/ipad-71-4in.json $TAGS
