@@ -9,16 +9,20 @@ username = `whoami`.strip
 case username
 
   when 'moody'
+    gem 'briar', :github => 'jmoody/briar', :branch => 'master'
+    gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'feature/finalizing-changelogs-and-dependencies-for-0.9.169'
 
-    gem 'briar', :github => 'jmoody/briar', :branch => '1.0.1'
-    gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'master'
     #gem 'calabash-cucumber', '0.9.169.pre5'
-    gem 'xamarin-test-cloud', :git => 'git@github.com:jmoody/test-cloud-command-line.git', :branch => 'master'
+    #gem 'xamarin-test-cloud', :git => 'git@github.com:jmoody/test-cloud-command-line.git', :branch => 'master'
+
+  when 'jenkins'
+    gem 'briar', :github => 'jmoody/briar', :branch => 'master'
+    gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'feature/finalizing-changelogs-and-dependencies-for-0.9.169'
 
   when 'your username here'
 
   else
-    gem 'briar', '~>1.0.0'
+    gem 'briar', '~>1.0.1'
 end
 
 gem 'faker'
