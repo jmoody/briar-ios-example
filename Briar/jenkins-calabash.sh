@@ -75,18 +75,18 @@ set +o errexit
 
 export APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
 
-rbenv exec bundle exec cucumber -p sim61_4in          -f json -o ci-reports/calabash/ipad-61-4in.json $TAGS
-rbenv exec bundle exec cucumber -p sim71_4in         -f json -o ci-reports/calabash/ipad-71-4in.json $TAGS
-rbenv exec bundle exec cucumber -p sim71_64b         -f json -o ci-reports/calabash/ipad-71-4in-64b.json $TAGS
-rbenv exec bundle exec cucumber -p sim61r            -f json -o ci-reports/calabash/ipad-61-3.5in.json $TAGS
-rbenv exec bundle exec cucumber -p sim71r            -f json -o ci-reports/calabash/ipad-71-3.5in.json $TAGS
+rbenv exec bundle exec cucumber -p sim61_4in         -f json -o ci-reports/calabash/iphone-61-4in.json $TAGS
+rbenv exec bundle exec cucumber -p sim71_4in         -f json -o ci-reports/calabash/iphone-71-4in.json $TAGS
+rbenv exec bundle exec cucumber -p sim61_sl          -f json -o ci-reports/calabash/iphone-61-no-instruments.json $TAGS
 
-rbenv exec bundle exec cucumber -p sim61_ipad_r      -f json -o ci-reports/calabash/ipad-61.json $TAGS
-rbenv exec bundle exec cucumber -p sim71_ipad_r      -f json -o ci-reports/calabash/ipad-71.json $TAGS
-rbenv exec bundle exec cucumber -p sim71_ipad_r_64b  -f json -o ci-reports/calabash/ipad-71-64b.json $TAGS
+# exhaustive testing is pointless - that is what the XTC is for
+#rbenv exec bundle exec cucumber -p sim71_64b         -f json -o ci-reports/calabash/iphone-71-4in-64b.json $TAGS
+#rbenv exec bundle exec cucumber -p sim61r            -f json -o ci-reports/calabash/iphone-61-3.5in.json $TAGS
+#rbenv exec bundle exec cucumber -p sim71r            -f json -o ci-reports/calabash/iphone-71-3.5in.json $TAGS
 
-rbenv exec bundle exec cucumber -p sim61_sl     -f json -o ci-reports/calabash/ipad-61-no-instruments.json $TAGS
-
+#rbenv exec bundle exec cucumber -p sim61_ipad_r      -f json -o ci-reports/calabash/ipad-61.json $TAGS
+#rbenv exec bundle exec cucumber -p sim71_ipad_r      -f json -o ci-reports/calabash/ipad-71.json $TAGS
+#rbenv exec bundle exec cucumber -p sim71_ipad_r_64b  -f json -o ci-reports/calabash/ipad-71-64b.json $TAGS
 
 RETVAL=$?
 
