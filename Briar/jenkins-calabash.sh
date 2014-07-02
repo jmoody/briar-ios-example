@@ -92,8 +92,4 @@ RETVAL=$?
 
 set -o errexit
 
-if [ ! -d ${JSON_REPORT_DIR} ]; then
-    mkdir -p ${JSON_REPORT_DIR}
-fi
-
 exit $RETVAL
