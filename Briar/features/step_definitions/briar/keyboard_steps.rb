@@ -7,7 +7,7 @@ Then /^I should not see the keyboard$/ do
 end
 
 Then /^I use the keyboard to enter "([^"]*)"$/ do |text|
-  wait_for_animation
+  wait_for_none_animating
   should_see_keyboard
   @text_entered_by_keyboard = briar_keyboard_enter_text text
 end

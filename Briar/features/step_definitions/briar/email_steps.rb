@@ -29,7 +29,7 @@ Then /^I should see email view with "([^"]*)" in the subject$/ do |text|
   if not ios5?
     warn_about_no_ios5_email_view
   else
-    wait_for_animation
+    wait_for_none_animating
     should_see_mail_view
     unless email_subject_is? text
       screenshot_and_raise "expected to see '#{text}' in the email subject but found '#{email_subject}'"
