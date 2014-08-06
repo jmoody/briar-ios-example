@@ -7,6 +7,8 @@ Feature: taking screenshots
   Scenario: then i take a screenshot
     Then I take a screenshot and embedded it
 
+  # email accounts are not available on the XTC
+  @not_xtc
   Scenario: screenshot of mail compose view
     Given I see the Buttons tab
     Then I touch the show email button
