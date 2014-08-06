@@ -1,3 +1,4 @@
+@not_xtc
 @email
 Feature: email features
   in order to test the briar email steps i want an email view
