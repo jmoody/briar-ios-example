@@ -1,7 +1,9 @@
+# not stable enough for the xtc
 @keyboard
 @rotation
 @issue_265
 @issue_259
+@not_xtc
 Feature: ipad keyboard modes
 
   Background: navigate to the text related tab
