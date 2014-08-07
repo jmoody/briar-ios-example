@@ -6,7 +6,7 @@ no_launch:   --tags ~@no_launch
 iphone_only: --tags ~@ipad --tags ~@ipad_only
 ipad_only:   --tags ~@iphone --tags ~@iphone_only
 
-args         --expand --backtrace --no-multiline
+args:         --expand --backtrace --no-multiline
 tags:        -p not_xtc -p not_sim -p no_launch
 
 default:     -p tags -p args
