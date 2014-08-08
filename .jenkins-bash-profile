@@ -1,0 +1,14 @@
+# https://github.com/CocoaPods/guides.cocoapods.org/issues/26
+# the tyranny of english continues
+export LC_ALL="en_us.UTF-8"
+
+export MY_DEVELOPER_DIR=`xcode-select --print-path | tr -d '\n'`
+export PATH="${MY_DEVELOPER_DIR}/usr/bin":$PATH
+
+### HOME BREW ###
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+### RUBY ENV ###
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+eval "$(rbenv init -)"
