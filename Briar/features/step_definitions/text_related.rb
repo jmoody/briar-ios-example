@@ -492,7 +492,7 @@ Then(/^I should be able to touch the Return key$/) do
 end
 
 
-When(/^I type a key that does not exist it should raise the right exception$/) do
+When(/^I type a key that does not exist it should raise an exception$/) do
   qstr = @current_text_input_view
 
   if text_field_qstrs.include?(qstr)
@@ -503,11 +503,8 @@ When(/^I type a key that does not exist it should raise the right exception$/) d
     raise "expected '#{qstr}' to be one of '#{text_input_view_qstrs}'"
   end
 
-
-
   str = 'str with ` backquote'
   e = nil
-  bad_exception = false
   begin
     keyboard_enter_text str
   rescue Exception => e
@@ -516,11 +513,9 @@ When(/^I type a key that does not exist it should raise the right exception$/) d
     # right
     # "could not type 'str with ` backquote' - 'VerboseError: target.frontMostApp().keyboard() failed to locate key '`''"
     exception_str = e.to_s
-    puts exception_str
-    bad_exception = true unless exception_str.index('failed to locate key')
   ensure
-    if bad_exception
-      raise "expected 'failed to locate key' exception but found\n'#{e}'"
+    if e.nil?
+      raise "expected 'failed to locate key' exception but none was raised"
     end
   end
 

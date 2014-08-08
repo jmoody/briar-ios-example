@@ -10,9 +10,9 @@ Feature:  keyboard_enter_text should fail if key does not exist
 
   Scenario: try type a key that does not exist on text field keyboard
     And one of the text fields has the default keyboard showing
-    When I type a key that does not exist it should raise the right exception
+    When I type a key that does not exist it should raise an exception
 
 
   Scenario: try type a key that does not exist on text view keyboard
     And one of the text views has the default keyboard showing
-    When I type a key that does not exist it should raise the right exception
+    When I type a key that does not exist it should raise an exception

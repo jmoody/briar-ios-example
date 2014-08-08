@@ -44,9 +44,9 @@ Then(/^I scroll down until the i row is partially hidden by the nav bar$/) do
 
   row_id = 'i'
   briar_scroll_to_row row_id
-    wait_for_animation
-  unless query("tableViewCell marked:'#{row_id}'").count == 1
-    screenshot_and_raise "should see row marked '#{row_id}'"
+  msg = "should see row marked '#{row_id}'"
+  wait_for({:timeout_message => msg}) do
+    query("tableViewCell marked:'#{row_id}'").count == 1
   end
 
 end

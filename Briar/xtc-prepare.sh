@@ -19,12 +19,6 @@ cp -r features "${XAMARIN_DIR}/"
 echo "INFO: installing cucumber.yml to ${XAMARIN_DIR}"
 cp "./config/xtc-profiles.yml" "${XAMARIN_DIR}/cucumber.yml"
 
-echo "INFO: installing briar predefined steps to .xamarin/features"
-echo "INFO:   - see briar/cucumber.rb for details"
-BRIAR_INSTALL=`bundle show briar`
-BRIAR_STEPS="${BRIAR_INSTALL}/features/step_definitions"
-cp -r "${BRIAR_STEPS}" "${XAMARIN_DIR}/features/step_definitions/briar"
-
 if [ "$1" = "-" ]; then
     echo "INFO: will not rebuild the .ipa"
 else

@@ -1,0 +1,15 @@
+source 'https://rubygems.org'
+
+gem 'faker', '~> 1.4'
+gem 'xcpretty', '~> 0.1'
+gem 'pry', '~> 0.10'
+
+# not yet
+# gem 'twitter_cldr'
+
+# use bundle and bundle config to specify local gem locations
+# bundle config local.GEM_NAME /path/to/local/git/repository
+
+gem 'briar', :github => 'jmoody/briar', :branch => 'master'
+gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'master'
+gem 'run_loop', :github => 'calabash/run_loop.git', :branch => 'master'

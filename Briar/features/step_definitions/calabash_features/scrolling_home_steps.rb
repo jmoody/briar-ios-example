@@ -22,6 +22,8 @@ end
 
 
 And(/^I go to the collection view page$/) do
-  expect_current_page(ScrollingHomePage)
-  @cp = @cp.goto_recipes_page
+  unless ios5?
+    expect_current_page(ScrollingHomePage)
+    @cp = @cp.goto_recipes_page
+  end
 end

@@ -17,4 +17,3 @@ Feature: interacting with collection views
     Then I scroll to the recipe with access id "thai shrimp cake"
     Then I scroll to the recipe with access id "mushroom risotto"
     Then I scroll to the recipe with access label "Angry birds cake"
-    
