@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'fileutils'
 
 def log_cmd(msg)
   puts "\033[36mEXEC: #{msg}\033[0m" if msg
