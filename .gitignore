@@ -21,10 +21,7 @@ InfoPlist.h
 __MACOSX
 
 # Jetbrains
-workspace.xml
-find.xml
-*.iml
-.rakeTasks
+.idea
 
 # ruby
 .irb-history
