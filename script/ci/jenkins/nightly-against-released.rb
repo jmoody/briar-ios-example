@@ -14,9 +14,11 @@ working_dir = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..
 Dir.chdir working_dir do
 
   do_system('rm -rf calabash.framework')
+  do_system('bundle install')
   do_system('bundle exec calabash-ios download')
 
-  do_system('cp .env-jenkins .env')
+  File.open('.env', 'a') { |f| f.write("XTC_SERIES=\"nightly-released\"") }
+
   do_system("bundle exec briar xtc #{xtc_device_set} #{xtc_profile}")
 
 end
