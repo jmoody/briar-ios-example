@@ -68,6 +68,8 @@ Feature: testing rotation
   # flickers if the device does not start in 'down' orientation
   # can fix with a pre hook that forces the orientation to 'down'
   # todo fix flickering rotation test with pre hook that forces orientation to 'down'
+  # XTC devices are all face-up. :)
+  @not_xtc
   @iphone_only
   @launch
   @flickering
