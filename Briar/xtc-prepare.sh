@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+XCPRETTY=`gem list xcpretty -i`
+if [ "${XCPRETTY}" = "false" ]; then gem install xcpretty; fi
+
 XAMARIN_DIR="${PWD}/xtc-staging"
 
 
@@ -39,7 +42,7 @@ else
 
     xcodebuild archive -workspace "${WORKSPACE}" -scheme "${SCHEME}" \
         -configuration "${CONFIG}" -archivePath "${ARCHIVE_BUNDLE}" \
-        -sdk iphoneos | bundle exec xcpretty -c
+        -sdk iphoneos | xcpretty -c
 
     RETVAL=${PIPESTATUS[0]}
 
