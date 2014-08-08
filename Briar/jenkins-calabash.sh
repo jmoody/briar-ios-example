@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 
-if [ "$USER" = "jenkins" ]; then
-    echo "INFO: hey, you are jenkins!  loading ~/.bash_profile_ci"
-    source ~/.bash_profile_ci
-    hash -r
-    rbenv rehash
-fi
+XCPRETTY=`gem list xcpretty -i`
+if [ "${XCPRETTY}" = "false" ]; then gem install xcpretty; fi
 
 TAGS=$*
 
@@ -26,43 +22,43 @@ mkdir -p "${CAL_BUILD_DIR}"
 ####################### JENKINS KEYCHAIN #######################################
 echo "INFO: unlocking the keychain"
 
-if [ ${USER} = "jenkins" ]; then
-    /usr/bin/security default-keychain -d user -s "${JENKINS_KEYCHAIN}"
+if [ "${USER}" = "jenkins" ]; then
+    xcrun security securdefault-keychain -d user -s "${JENKINS_KEYCHAIN}"
     RETVAL=$?
-    if [ $RETVAL != 0 ]; then
+    if [ ${RETVAL} != 0 ]; then
         echo "FAIL: could not set the default keychain"
-        exit $RETVAL
+        exit ${RETVAL}
     fi
 fi
 
 # unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
-if [ ${USER} = "jenkins" ]; then
-    /usr/bin/security unlock-keychain -p "${JENKINS_KEYCHAIN_PASS}" "${JENKINS_KEYCHAIN}"
+if [ "${USER}" = "jenkins" ]; then
+    xcrun security unlock-keychain -p "${JENKINS_KEYCHAIN_PASS}" "${JENKINS_KEYCHAIN}"
     RETVAL=$?
-    if [ $RETVAL != 0 ]; then
+    if [ ${RETVAL} != 0 ]; then
         echo "FAIL: could not unlock the keychain"
-        exit $RETVAL
+        exit ${RETVAL}
     fi
 fi
 
 # build the -cal target to get it on the phone
 set +o errexit
 
-xcodebuild \
+xcrun xcodebuild \
     -derivedDataPath "${CAL_BUILD_DIR}" \
     -workspace "${XC_WORKSPACE}" \
     -scheme "${TARGET_NAME}" \
     -sdk iphonesimulator \
     -configuration "${CAL_BUILD_CONFIG}" \
-    clean build | rbenv exec bundle exec xcpretty -c
+    clean build | xcpretty -c
 
 RETVAL=${PIPESTATUS[0]}
 
 set -o errexit
 
-if [ $RETVAL != 0 ]; then
+if [ ${RETVAL} != 0 ]; then
     echo "FAIL:  could not build"
-    exit $RETVAL
+    exit ${RETVAL}
 else
     echo "INFO: successfully built"
 fi
@@ -75,11 +71,11 @@ set +o errexit
 
 export APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
 
-rbenv exec bundle exec cucumber -p sim61_4in         -f json -o ci-reports/calabash/iphone-61-4in.json $TAGS
-rbenv exec bundle exec cucumber -p sim71_4in         -f json -o ci-reports/calabash/iphone-71-4in.json $TAGS
-rbenv exec bundle exec cucumber -p sim61_sl          -f json -o ci-reports/calabash/iphone-61-no-instruments.json $TAGS
+rbenv exec bundle exec cucumber -p sim71_4in         -f json -o ci-reports/calabash/iphone-71-4in.json ${TAGS}
 
 # exhaustive testing is pointless - that is what the XTC is for
+#rbenv exec bundle exec cucumber -p sim61_4in         -f json -o ci-reports/calabash/iphone-61-4in.json ${TAGS}
+#rbenv exec bundle exec cucumber -p sim61_sl          -f json -o ci-reports/calabash/iphone-61-no-instruments.json ${TAGS}
 #rbenv exec bundle exec cucumber -p sim71_64b         -f json -o ci-reports/calabash/iphone-71-4in-64b.json $TAGS
 #rbenv exec bundle exec cucumber -p sim61r            -f json -o ci-reports/calabash/iphone-61-3.5in.json $TAGS
 #rbenv exec bundle exec cucumber -p sim71r            -f json -o ci-reports/calabash/iphone-71-3.5in.json $TAGS
@@ -88,8 +84,8 @@ rbenv exec bundle exec cucumber -p sim61_sl          -f json -o ci-reports/calab
 #rbenv exec bundle exec cucumber -p sim71_ipad_r      -f json -o ci-reports/calabash/ipad-71.json $TAGS
 #rbenv exec bundle exec cucumber -p sim71_ipad_r_64b  -f json -o ci-reports/calabash/ipad-71-64b.json $TAGS
 
-RETVAL=$?
-
 set -o errexit
 
-exit $RETVAL
+# always exit zero - let the cucumber post build script handle reporting
+# success or failure based on the cucumber output.
+exit 0
