@@ -13,6 +13,8 @@ working_dir = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..
 
 Dir.chdir working_dir do
 
+  install_gem 'json'
+
   do_system('rm -rf run_loop')
   do_system('git clone --depth 1 --recursive https://github.com/calabash/run_loop')
   run_loop_gem_dir = File.expand_path(File.join(working_dir, 'run_loop'))
