@@ -1,10 +1,10 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # feel free to improve on this
 ident_path = File.expand_path('~/.xamarin/ios-resign/default/signing-identity')
 
 if File.exists?(ident_path)
-  ident = File.open(ident_path) {|f| f.readline().chomp.strip }
+  ident = File.open(ident_path) {|f| f.readline.chomp.strip }
 else
   ident = ARGV[0]
 end
@@ -26,7 +26,7 @@ unless File.exists?(lib_path)
 end
 
 
-cmd = "codesign -fs \"#{ident}\" \"#{lib_path}\""
+cmd = "xcrun codesign -fs \"#{ident}\" \"#{lib_path}\""
 puts "INFO: signing reveal with '#{cmd}'"
 
 exec(cmd)
