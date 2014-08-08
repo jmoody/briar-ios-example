@@ -23,7 +23,7 @@ mkdir -p "${CAL_BUILD_DIR}"
 echo "INFO: unlocking the keychain"
 
 if [ "${USER}" = "jenkins" ]; then
-    xcrun security securdefault-keychain -d user -s "${JENKINS_KEYCHAIN}"
+    xcrun security default-keychain -d user -s "${JENKINS_KEYCHAIN}"
     RETVAL=$?
     if [ ${RETVAL} != 0 ]; then
         echo "FAIL: could not set the default keychain"
