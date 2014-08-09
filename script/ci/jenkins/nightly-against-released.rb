@@ -21,4 +21,9 @@ Dir.chdir working_dir do
 
   do_system("bundle exec briar xtc #{xtc_device_set} #{xtc_profile}")
 
+  # sometimes json 1.8.1 cannot be found
+  install_gem 'json'
+
+  do_system('./jenkins-calabash.sh')
+
 end
