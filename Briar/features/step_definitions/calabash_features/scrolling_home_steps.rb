@@ -15,6 +15,9 @@ Then(/^I can go back to the scrolling home view$/) do
     @cp = page(ScrollingHomePage).navigate_to
   elsif cp_is? RecipeCollectionPage
     @cp = @cp.go_back_to_home
+  elsif cp_is? ScrollingHomePage and ios5?
+    # hack because iOS 5 cannot show collection views so we never actually
+    # leave the ScrollingHomePage.
   else
     pending "cannot go back to scrolling home from this page '#{@cp}'"
   end

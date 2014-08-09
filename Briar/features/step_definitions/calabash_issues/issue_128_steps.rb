@@ -34,27 +34,31 @@ end
 
 Then(/^I scroll down until the i row is partially hidden by the nav bar$/) do
   if iphone_4in?
-    pending 'this test will only work on iphone 3.5in'
-  end
+    # test is not meant for 4in phones.
+  else
 
-  2.times do
-    scroll("tableView marked:'table'", 'down')
-    step_pause
-  end
+    2.times do
+      scroll("tableView marked:'table'", 'down')
+      step_pause
+    end
 
-  row_id = 'i'
-  briar_scroll_to_row row_id
-  msg = "should see row marked '#{row_id}'"
-  wait_for({:timeout_message => msg}) do
-    query("tableViewCell marked:'#{row_id}'").count == 1
+    row_id = 'i'
+    briar_scroll_to_row row_id
+    msg = "should see row marked '#{row_id}'"
+    wait_for({:timeout_message => msg}) do
+      query("tableViewCell marked:'#{row_id}'").count == 1
+    end
   end
-
 end
 
 When(/^I touch the first row I should see the i alert$/) do
-  row_id = 'i'
-  alert_id = ios7? ? "'i' is a great letter!" : 'i alert'
-  touch_row_and_see_alert row_id, alert_id
+  if iphone_4in?
+    # test is not meant for 4in phones.
+  else
+    row_id = 'i'
+    alert_id = ios7? ? "'i' is a great letter!" : 'i alert'
+    touch_row_and_see_alert row_id, alert_id
+  end
 end
 
 When(/^I touch the "([^"]*)" row I should the the associated alert$/) do |row_id|
