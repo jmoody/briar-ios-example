@@ -21,11 +21,15 @@ end
 World(Briar::Issue_128)
 
 When(/^I touch the last row I should see the i or j alert$/) do
-  row_id = iphone_4in? ? 'j' : 'i'
-  briar_scroll_to_row row_id
-  step_pause
-  alert_id = ios7? ? "'#{row_id}' is a great letter!" : "#{row_id} alert"
-  touch_row_and_see_alert row_id, alert_id
+  if iphone_4in?
+    # test is not meant for 4in phones
+  else
+    row_id = iphone_4in? ? 'j' : 'i'
+    briar_scroll_to_row row_id
+    step_pause
+    alert_id = ios7? ? "'#{row_id}' is a great letter!" : "#{row_id} alert"
+    touch_row_and_see_alert row_id, alert_id
+  end
 end
 
 Then(/^I dismiss the letter alert$/) do
