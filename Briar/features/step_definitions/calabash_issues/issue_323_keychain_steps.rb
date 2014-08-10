@@ -4,14 +4,8 @@ end
 
 Then(/^the keychain should contain the account password "(.*?)" for "(.*?)"$/) do |password, username|
   actual = keychain_password('briar-ios-example.service', username)
-  if xamarin_test_cloud?
-    if actual.nil?
-      screenshot_and_raise "expected an entry for '#{username}' in the keychain"
-    end
-  else
-    unless actual == password
-      screenshot_and_raise "expected '#{password}' in keychain but found '#{actual}'"
-    end
+  unless actual == password
+    screenshot_and_raise "expected '#{password}' in keychain but found '#{actual}'"
   end
 end
 
