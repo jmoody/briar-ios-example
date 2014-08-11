@@ -71,7 +71,7 @@ set +o errexit
 
 export APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
 
-rbenv exec bundle exec cucumber -p sim71_4in         -f json -o ci-reports/calabash/iphone-71-4in.json ${TAGS}
+rbenv exec bundle exec cucumber -p sim71_4in         -f json -o ci-reports/calabash/iphone5.json -f junit -o ci-reports/calabash/junit ${TAGS}
 
 # exhaustive testing is pointless - that is what the XTC is for
 #rbenv exec bundle exec cucumber -p sim61_4in         -f json -o ci-reports/calabash/iphone-61-4in.json ${TAGS}
