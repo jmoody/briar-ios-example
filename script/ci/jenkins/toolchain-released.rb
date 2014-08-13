@@ -24,6 +24,6 @@ Dir.chdir working_dir do
   # sometimes json 1.8.1 cannot be found
   install_gem 'json'
 
-  do_system('./jenkins-calabash.sh')
+  do_system('./jenkins-calabash.sh -t @sliders')
 
 end
