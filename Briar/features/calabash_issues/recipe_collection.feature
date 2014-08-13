@@ -1,4 +1,5 @@
 @collection_view
+@wip
 Feature: interacting with collection views
   In order to silence the quell the clambering horde
   As a tester
@@ -12,8 +13,11 @@ Feature: interacting with collection views
     Then I look for the picture of the "hamburger"
     Then I look for the picture of the "risotto"
     Then I look for the picture of the "cake"
+    Then I can go back to the scrolling home view
+
 
   Scenario: then i want to scroll around using marks
     Then I scroll to the recipe with access id "thai shrimp cake"
     Then I scroll to the recipe with access id "mushroom risotto"
     Then I scroll to the recipe with access label "Angry birds cake"
+    Then I can go back to the scrolling home view
