@@ -19,6 +19,8 @@ class RecipeCollectionPage < BrPage
     wait_for(wait_opts(msg, timeout)) do
       not query('navigationItemButtonView first').empty?
     end
+
+    sleep 2.0
     # not yet
     # wait_for_none_animating
 
