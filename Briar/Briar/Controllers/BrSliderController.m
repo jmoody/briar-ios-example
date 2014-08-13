@@ -348,12 +348,27 @@ static NSString *const k_aid_table = @"table";
   CGFloat ipadYAdj = br_is_ipad() ? 20 : 0;
   CGFloat iOS7adj = br_is_iOS_7() ? 10 : 0;
   CGFloat viewW = CGRectGetWidth(self.view.frame);
+  CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
   if (UIInterfaceOrientationIsLandscape(aOrienation)) {
     CGFloat w = br_is_ipad() ? 768 : 320;
     CGFloat x = (viewW/2) - (w/2);
-    return CGRectMake(x, 140 + ipadYAdj + iOS7adj, w, 128);
+    CGFloat y = 140 + iOS7adj + ipadYAdj;
+    CGFloat h;
+    if (br_is_ipad()) {
+      h = 768 - y - tabBarHeight;
+    } else {
+      h = 128;
+    }
+    return CGRectMake(x, y, w, h);
   } else {
-    return CGRectMake(0, 152 + iOS7adj, viewW, 240);
+    CGFloat y = 152 + iOS7adj + ipadYAdj;
+    CGFloat h;
+    if (br_is_ipad()) {
+      h = 1024 - y - tabBarHeight;
+    } else {
+      h = br_iphone_y_max() - y - tabBarHeight;
+    }
+    return CGRectMake(0, y, viewW, h);
   }
 
 }
