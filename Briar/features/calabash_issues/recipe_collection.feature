@@ -1,5 +1,4 @@
 @collection_view
-@wip
 Feature: interacting with collection views
   In order to silence the quell the clambering horde
   As a tester
