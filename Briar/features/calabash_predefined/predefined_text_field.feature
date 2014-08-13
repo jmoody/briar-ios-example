@@ -19,8 +19,8 @@ Feature: testing the text field set_text, clear_text, and predefined steps
     Then I should see "top tf" text field with text ""
 
     # predefined
-    Then I enter "fantastic?" into the "top tf" input field
-    Then I should see "top tf" text field with text "fantastic?"
+    Then I enter "fantastic" into the "top tf" input field
+    Then I should see "top tf" text field with text "fantastic"
     When I clear "top tf"
     Then I should see "top tf" text field with text ""
 
