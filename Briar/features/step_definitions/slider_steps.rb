@@ -46,7 +46,6 @@ end
 
 Then(/^I should see the slider table$/) do
   wait_for_view('table')
-  wait_for_view('list of sliders')
 end
 
 Then(/^I observe that it is raining$/) do
