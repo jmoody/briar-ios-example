@@ -12,7 +12,20 @@ class RecipeCollectionPage < BrPage
 
   def go_back_to_home
     home = page(ScrollingHomePage)
-    go_back_and_wait_for_view(home.mark())
+
+    sleep(0.2)
+    timeout = BRIAR_WAIT_TIMEOUT
+    msg = "waited '#{timeout}' seconds but did not see navbar back button"
+    wait_for(wait_opts(msg, timeout)) do
+      not query('navigationItemButtonView first').empty?
+    end
+    # not yet
+    # wait_for_none_animating
+
+    touch('navigationItemButtonView first')
+    step_pause
+    wait_for_view home.mark
+
     home
   end
 
