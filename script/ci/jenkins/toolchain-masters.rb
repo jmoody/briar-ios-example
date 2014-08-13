@@ -8,6 +8,11 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'run-masters'))
 
 xtc_device_set = ARGV[0] || 'toolchain-masters'
 xtc_profile = ARGV[1] || 'default'
+# accept 2 additional cucumber args for -t < tags >
+cucumber_args = ''
+if ARGV.count == 4
+  cucumber_args = "#{ARGV[2]} #{ARGV[3]}"
+end
 
 run_masters xtc_device_set, xtc_profile, 'toolchain-masters'
 
@@ -18,5 +23,5 @@ Dir.chdir working_dir do
   # sometimes json 1.8.1 cannot be found
   install_gem 'json'
 
-  do_system('./jenkins-calabash.sh')
+  do_system("./jenkins-calabash.sh #{cucumber_args}")
 end

@@ -12,6 +12,7 @@ Feature: scrolling views menu
     And I go to the alphabet table
     Then I can go back to the scrolling home view
 
+  @wip
   Scenario: I want to see the collection view
     And I go to the collection view page
     Then I can go back to the scrolling home view
