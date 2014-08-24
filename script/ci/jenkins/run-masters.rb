@@ -47,6 +47,14 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
                 {:pass_msg => 'installed (empty) staticlib/libFrankCalabash.a',
                  :fail_msg => 'could not install (empty) staticlib/libFrankCalabash.a'})
 
+      do_system('mkdir -p dylibs')
+      do_system('touch dylibs/libCalabashDynSim.dylib',
+                {:pass_msg => 'installed (empty) dylibs/libCalabashDynSim.dylib',
+                 :fail_msg => 'could not install (empty) dylibs/libCalabashDynSim.dylib'})
+      do_system('touch dylibs/libCalabashDyn.dylib',
+                {:pass_msg => 'installed (empty) dylibs/libCalabashDyn.dylib',
+                 :fail_msg => 'could not install (empty) dylibs/libCalabashDyn.dylib'})
+
       do_system('bundle install')
       do_system('rake install')
     end
