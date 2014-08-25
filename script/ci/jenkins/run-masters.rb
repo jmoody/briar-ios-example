@@ -17,8 +17,6 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
     do_system('git clone --depth 1 --recursive https://github.com/calabash/run_loop')
     run_loop_gem_dir = File.expand_path(File.join(working_dir, 'run_loop'))
     Dir.chdir run_loop_gem_dir do
-      gemspec = 'run_loop.gemspec'
-      IO.write(gemspec, File.open(gemspec) { |f| f.read.gsub(/'retriable', (.*)\)/, "'retriable', '1.3.3.1')") })
       do_system('bundle install')
       do_system('rake install')
     end
@@ -27,8 +25,6 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
     do_system('git clone --depth 1 --recursive https://github.com/calabash/calabash-ios')
     calabash_gem_dir = File.expand_path(File.join(working_dir, 'calabash-ios'))
     Dir.chdir "#{calabash_gem_dir}/calabash-cucumber" do
-      gemspec = 'calabash-cucumber.gemspec'
-      IO.write(gemspec, File.open(gemspec) { |f| f.read.gsub(/'run_loop', (.*)\)/, "'run_loop', '>= 1.0.0.pre2')") })
 
       do_system 'touch calabash.framework'
       do_system('zip -r calabash.framework.zip calabash.framework',
