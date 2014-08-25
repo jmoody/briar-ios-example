@@ -47,6 +47,14 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
                 {:pass_msg => 'installed (empty) staticlib/libFrankCalabash.a',
                  :fail_msg => 'could not install (empty) staticlib/libFrankCalabash.a'})
 
+      do_system('mkdir -p dylibs')
+      do_system('touch dylibs/libCalabashDynSim.dylib',
+                {:pass_msg => 'installed (empty) dylibs/libCalabashDynSim.dylib',
+                 :fail_msg => 'could not install (empty) dylibs/libCalabashDynSim.dylib'})
+      do_system('touch dylibs/libCalabashDyn.dylib',
+                {:pass_msg => 'installed (empty) dylibs/libCalabashDyn.dylib',
+                 :fail_msg => 'could not install (empty) dylibs/libCalabashDyn.dylib'})
+
       do_system('bundle install')
       do_system('rake install')
     end
@@ -80,13 +88,15 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
     do_system('bundle install')
 
     # noinspection RubyStringKeysInHashInspection
-    env_vars =
-          {
-                'CALABASH_SERVER_PATH' => server_dir,
-                'CALABASH_GEM_PATH' => calabash_gem_dir,
-          }
+   env_vars =
+         {
+               'CALABASH_SERVER_PATH' => server_dir,
+               'CALABASH_GEM_PATH' => calabash_gem_dir,
+         }
 
-    File.open('.env', 'a') { |f| f.write("XTC_SERIES=\"#{xtc_series}\"") }
+    File.open('.env', 'a') { |f|
+      f.write("XTC_SERIES=\"#{xtc_series}\"\n")
+    }
 
     do_system('bundle exec briar install calabash-server',
               {:env_vars => env_vars})
