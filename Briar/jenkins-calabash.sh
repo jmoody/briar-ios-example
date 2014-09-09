@@ -46,12 +46,13 @@ else
 fi
 
 # remove any stale targets
-rbenv exec bundle exec briar rm sim-targets
+rbenv exec bundle exec calabash-ios sim reset
 
 # Disable exiting on error so script continues if tests fail
 set +o errexit
 
-export APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
+export APP="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
+echo "APP = ${APP}"
 
 rbenv exec bundle exec cucumber -p sim71_4in         -f json -o ci-reports/calabash/iphone5.json -f junit -o ci-reports/calabash/junit ${TAGS}
 
