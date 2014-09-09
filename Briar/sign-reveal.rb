@@ -24,7 +24,7 @@ unless File.exists?(lib_path)
   exit 0
 end
 
-system('./jenkins-keychain.sh')
+#system('./jenkins-keychain.sh')
 
 cmd = "xcrun codesign -fs \"#{ident}\" \"#{lib_path}\""
 puts "INFO: signing reveal with '#{cmd}'"
