@@ -46,12 +46,13 @@ xtc-staging
 # jenkins
 ci-reports
 
-# Xcode 4
+# Xcode
 *.xcodeproj/*.mode*
 *.xcodeproj/*.perspective*
 *.xcodeproj/*.pbxuser
 *.xcodeproj/xcuserdata
 *.xcodeproj/project.xcworkspace/xcuserdata
+*.xccheckout
 
 ## Build products
 build/*
