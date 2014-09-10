@@ -29,7 +29,6 @@ device_list.each do |device|
 end
 
 xcode_version = `xcrun xcodebuild -version`.split(/\s/)[1].split('.').first
-puts "xcode version = #{xcode_version}"
 
 sims = {}
 if xcode_version.to_i >= 6
