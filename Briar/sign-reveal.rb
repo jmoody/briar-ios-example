@@ -9,14 +9,13 @@ else
   ident = ARGV[0]
 end
 
-lib_path = ARGV[1]
-
 if ident.nil? or ident.length == 0
   puts "WARN: cannot sign with ident = '#{ident}'"
   puts 'WARN: will not sign the Reveal library'
   exit 0
 end
 
+lib_path = ARGV[1]
 
 unless File.exists?(lib_path)
   puts 'WARN: cannot find a file at path:'
@@ -25,6 +24,7 @@ unless File.exists?(lib_path)
   exit 0
 end
 
+#system('./jenkins-keychain.sh')
 
 cmd = "xcrun codesign -fs \"#{ident}\" \"#{lib_path}\""
 puts "INFO: signing reveal with '#{cmd}'"

@@ -21,25 +21,7 @@ mkdir -p "${CAL_BUILD_DIR}"
 
 ####################### JENKINS KEYCHAIN #######################################
 echo "INFO: unlocking the keychain"
-
-if [ "${USER}" = "jenkins" ]; then
-    xcrun security default-keychain -d user -s "${JENKINS_KEYCHAIN}"
-    RETVAL=$?
-    if [ ${RETVAL} != 0 ]; then
-        echo "FAIL: could not set the default keychain"
-        exit ${RETVAL}
-    fi
-fi
-
-# unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
-if [ "${USER}" = "jenkins" ]; then
-    xcrun security unlock-keychain -p "${JENKINS_KEYCHAIN_PASS}" "${JENKINS_KEYCHAIN}"
-    RETVAL=$?
-    if [ ${RETVAL} != 0 ]; then
-        echo "FAIL: could not unlock the keychain"
-        exit ${RETVAL}
-    fi
-fi
+./jenkins-keychain.sh
 
 # build the -cal target to get it on the phone
 set +o errexit
@@ -64,12 +46,13 @@ else
 fi
 
 # remove any stale targets
-rbenv exec bundle exec briar rm sim-targets
+rbenv exec bundle exec calabash-ios sim reset
 
 # Disable exiting on error so script continues if tests fail
 set +o errexit
 
-export APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
+export APP="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
+echo "APP = ${APP}"
 
 rbenv exec bundle exec cucumber -p sim71_4in         -f json -o ci-reports/calabash/iphone5.json -f junit -o ci-reports/calabash/junit ${TAGS}
 
