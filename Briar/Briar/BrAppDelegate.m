@@ -65,7 +65,6 @@ typedef enum : NSUInteger {
   return [MFMailComposeViewController canSendMail] ? @"YES" : @"NO";
 }
 
-// implementation
 - (NSString *) calabash_backdoor_add_security_veil_to_main_window:(NSString *) aIgnorable {
   if ([self.window viewWithTag:kTagSecurityVeil] != nil) {
     NSString *msg = @"ERROR: security veil already in place - something is amiss - will not add another";
@@ -187,6 +186,45 @@ typedef enum : NSUInteger {
   return @"YES";
 }
 
+
+- (NSString *) stringForPreferencesPath:(NSString *) aIgnore {
+  NSString *plistRootPath = nil, *relativePlistPath = nil;
+  NSString *plistName = [NSString stringWithFormat:@"%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
+
+  // 1. get into the simulator's app support directory by fetching the sandboxed Library's path
+  NSArray *userLibDirURLs = [[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask];
+
+  NSURL *userDirURL = [userLibDirURLs lastObject];
+  NSString *userDirectoryPath = [userDirURL path];
+
+  // 2. get out of our application directory, back to the root support directory for this system version
+  if ([userDirectoryPath rangeOfString:@"CoreSimulator"].location == NSNotFound) {
+    plistRootPath = [userDirectoryPath substringToIndex:([userDirectoryPath rangeOfString:@"Applications"].location)];
+  } else {
+    NSRange range = [userDirectoryPath rangeOfString:@"data"];
+    plistRootPath = [userDirectoryPath substringToIndex:range.location + range.length];
+  }
+
+  // 3. locate, relative to here, /Library/Preferences/[bundle ID].plist
+  relativePlistPath = [NSString stringWithFormat:@"Library/Preferences/%@", plistName];
+
+  // 4. and unescape spaces, if necessary (i.e. in the simulator)
+  NSString *unsanitizedPlistPath = [plistRootPath stringByAppendingPathComponent:relativePlistPath];
+  return [[unsanitizedPlistPath stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] copy];
+}
+
+- (NSString *) stringForDefaultsDictionary:(NSString *) aIgnore {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  [defaults synchronize];
+  NSDictionary *dictionary = [defaults dictionaryRepresentation];
+  NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
+                                                 options:0
+                                                   error:nil];
+  NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+  return string;
+}
+
+
 #pragma mark - Handle Events and Touches
 
 - (void) handleTouchOnSecurityVeil:(UITapGestureRecognizer *) aRecognizer {
@@ -249,7 +287,14 @@ typedef enum : NSUInteger {
   [self.tabBarController setSelectedIndex:kTabbarIndexButtons];
   
   [self loadReveal];
-  
+
+//#if TARGET_IPHONE_SIMULATOR
+//  [[NSUserDefaults standardUserDefaults] setObject:@"BAR" forKey:@"FOO"];
+//  NSLog(@"%@", [self stringForPreferencesPath:nil]);
+//  NSLog(@"%@", [self stringForDefaultsDictionary:nil]);
+//#endif
+
+
   return YES;
 }
 
