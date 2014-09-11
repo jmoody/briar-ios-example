@@ -105,6 +105,7 @@
     case UIInterfaceOrientationLandscapeLeft: { return @"right"; }
     case UIInterfaceOrientationLandscapeRight: { return @"left"; }
     case UIInterfaceOrientationPortraitUpsideDown: { return @"up-side down"; }
+    default: { return @"unknown"; }
   }
 }
 
