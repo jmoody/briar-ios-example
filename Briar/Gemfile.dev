@@ -9,8 +9,8 @@ gem 'pry', '~> 0.10'
 
 # use bundle and bundle config to specify local gem locations
 # bundle config local.GEM_NAME /path/to/local/git/repository
-gem 'run_loop', :github => 'git@github.com:calabash/run_loop', :branch => 'master'
-gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'master'
+gem 'run_loop', :github => 'git@github.com:calabash/run_loop', :branch => 'develop'
+gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'develop'
 gem 'briar', :github => 'jmoody/briar', :branch => 'master'
 
 #gem 'xamarin-test-cloud', :git => 'git@github.com:jmoody/test-cloud-command-line.git', :branch => 'master'
