@@ -73,17 +73,6 @@ export APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-ipho
 
 rbenv exec bundle exec cucumber -p default       -f json -o ci-reports/calabash/iphone5.json -f junit -o ci-reports/calabash/junit ${CUCUMBER_ARGS}
 
-# exhaustive testing is pointless - that is what the XTC is for
-#rbenv exec bundle exec cucumber -p sim61_4in         -f json -o ci-reports/calabash/iphone-61-4in.json ${TAGS}
-#rbenv exec bundle exec cucumber -p sim61_sl          -f json -o ci-reports/calabash/iphone-61-no-instruments.json ${TAGS}
-#rbenv exec bundle exec cucumber -p sim71_64b         -f json -o ci-reports/calabash/iphone-71-4in-64b.json $TAGS
-#rbenv exec bundle exec cucumber -p sim61r            -f json -o ci-reports/calabash/iphone-61-3.5in.json $TAGS
-#rbenv exec bundle exec cucumber -p sim71r            -f json -o ci-reports/calabash/iphone-71-3.5in.json $TAGS
-
-#rbenv exec bundle exec cucumber -p sim61_ipad_r      -f json -o ci-reports/calabash/ipad-61.json $TAGS
-#rbenv exec bundle exec cucumber -p sim71_ipad_r      -f json -o ci-reports/calabash/ipad-71.json $TAGS
-#rbenv exec bundle exec cucumber -p sim71_ipad_r_64b  -f json -o ci-reports/calabash/ipad-71-64b.json $TAGS
-
 set -o errexit
 
 # always exit zero - let the cucumber post build script handle reporting
