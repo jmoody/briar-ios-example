@@ -60,8 +60,6 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
     do_system("git clone --depth 1 --recursive https://github.com/jmoody/briar #{briar_repo_name}")
     briar_gem_dir = File.expand_path(File.join(working_dir, briar_repo_name))
     Dir.chdir briar_gem_dir do
-      gemspec = 'briar.gemspec'
-      IO.write(gemspec, File.open(gemspec) { |f| f.read.gsub(/'calabash-cucumber', (.*)/, "'calabash-cucumber', '>= 0.10.0.pre5'") })
       do_system('bundle install')
       do_system('rake install')
     end
@@ -88,16 +86,14 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
          {
                'CALABASH_SERVER_PATH' => server_dir,
                'CALABASH_GEM_PATH' => calabash_gem_dir,
+               'XTC_SERIES' => xtc_series
          }
-
-    File.open('.env', 'a') { |f|
-      f.write("XTC_SERIES=\"#{xtc_series}\"\n")
-    }
 
     do_system('bundle exec briar install calabash-server',
               {:env_vars => env_vars})
 
-    do_system("bundle exec briar xtc #{xtc_device_set} #{xtc_profile}")
+    do_system("bundle exec briar xtc #{xtc_device_set} #{xtc_profile}",
+              {:env_vars => env_vars})
 
   end
 end
