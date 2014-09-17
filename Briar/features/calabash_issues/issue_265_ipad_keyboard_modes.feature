@@ -4,6 +4,7 @@
 @issue_265
 @issue_259
 @not_xtc
+@ipad_only
 Feature: ipad keyboard modes
 
   Background: navigate to the text related tab
@@ -234,6 +235,7 @@ Feature: ipad keyboard modes
   @issue_310
   @flickering
   @not_xtc
+  @ipad_only
   Scenario Outline: i should be able to use the keyboard regardless of orientation or mode
     Given I am looking at the Text tab
     And I have touched the "top" text field
@@ -252,6 +254,7 @@ Feature: ipad keyboard modes
   # outlines are NYI on XTC
   @not_xtc
   @flickering
+  @ipad_only
   Scenario Outline: i should be able to dismiss the ipad keyboard
     Given I am looking at the Text tab
     And I have touched the "top" text field
