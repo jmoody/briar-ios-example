@@ -1,5 +1,6 @@
 @issue_194
 @ipad_only
+@predefined_steps
 Feature:  testing keyboard enter text on ipad
 
   Background: get me to the text related view and orient me down
