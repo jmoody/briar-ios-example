@@ -86,16 +86,14 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
          {
                'CALABASH_SERVER_PATH' => server_dir,
                'CALABASH_GEM_PATH' => calabash_gem_dir,
+               'XTC_SERIES' => xtc_series
          }
-
-    File.open('.env', 'a') { |f|
-      f.write("XTC_SERIES=\"#{xtc_series}\"\n")
-    }
 
     do_system('bundle exec briar install calabash-server',
               {:env_vars => env_vars})
 
-    do_system("bundle exec briar xtc #{xtc_device_set} #{xtc_profile}")
+    do_system("bundle exec briar xtc #{xtc_device_set} #{xtc_profile}",
+              {:env_vars => env_vars})
 
   end
 end
