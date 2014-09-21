@@ -42,7 +42,7 @@ else
 
     xcrun xcodebuild archive -workspace "${WORKSPACE}" -scheme "${SCHEME}" \
           -configuration "${CONFIG}" -archivePath "${ARCHIVE_BUNDLE}" \
-          -sdk iphoneos
+          -sdk iphoneos | xcpretty -c
 
 
     RETVAL=${PIPESTATUS[0]}
