@@ -40,9 +40,10 @@ else
 
     set +o errexit
 
-    xcodebuild archive -workspace "${WORKSPACE}" -scheme "${SCHEME}" \
-        -configuration "${CONFIG}" -archivePath "${ARCHIVE_BUNDLE}" \
-        -sdk iphoneos | xcpretty -c
+    xcrun xcodebuild archive -workspace "${WORKSPACE}" -scheme "${SCHEME}" \
+          -configuration "${CONFIG}" -archivePath "${ARCHIVE_BUNDLE}" \
+          -sdk iphoneos
+
 
     RETVAL=${PIPESTATUS[0]}
 
