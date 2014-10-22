@@ -20,6 +20,7 @@ rm -rf "${CAL_BUILD_DIR}"
 mkdir -p "${CAL_BUILD_DIR}"
 
 ####################### JENKINS KEYCHAIN #######################################
+
 echo "INFO: unlocking the keychain"
 
 if [ "${USER}" = "jenkins" ]; then
@@ -45,6 +46,7 @@ fi
 set +o errexit
 
 xcrun xcodebuild \
+    -SYMROOT="${CAL_BUILD_DIR}" \
     -derivedDataPath "${CAL_BUILD_DIR}" \
     -workspace "${XC_WORKSPACE}" \
     -scheme "${TARGET_NAME}" \
