@@ -25,12 +25,26 @@ cp "./config/xtc-profiles.yml" "${XAMARIN_DIR}/cucumber.yml"
 if [ "$1" = "-" ]; then
     echo "INFO: will not rebuild the .ipa"
 else
+
+    ####################### JENKINS KEYCHAIN #######################################
+
+    echo "INFO: unlocking the keychain"
+
+    # unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
+    if [ "${USER}" = "jenkins" ]; then
+        xcrun security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
+        RETVAL=$?
+        if [ ${RETVAL} != 0 ]; then
+            echo "FAIL: could not unlock the keychain"
+            exit ${RETVAL}
+        fi
+    fi
     WORKSPACE="../briar-ios-example.xcworkspace"
     SCHEME="Briar-cal"
     TARGET_NAME="Briar-cal"
     CONFIG="Debug"
 
-    CAL_DISTRO_DIR="build/calabash"
+    CAL_DISTRO_DIR="build/ipa"
     ARCHIVE_BUNDLE="${CAL_DISTRO_DIR}/briar-cal.xcarchive"
     APP_BUNDLE_PATH="${ARCHIVE_BUNDLE}/Products/Applications/Briar-cal.app"
     IPA_PATH="${CAL_DISTRO_DIR}/${TARGET_NAME}.ipa"
@@ -40,9 +54,14 @@ else
 
     set +o errexit
 
-    xcrun xcodebuild archive -workspace "${WORKSPACE}" -scheme "${SCHEME}" \
-          -configuration "${CONFIG}" -archivePath "${ARCHIVE_BUNDLE}" \
-          -sdk iphoneos | xcpretty -c
+    xcrun xcodebuild archive \
+        -SYMROOT="${CAL_DISTRO_DIR}" \
+        -derivedDataPath "${CAL_DISTRO_DIR}" \
+        -workspace "${WORKSPACE}" \
+        -scheme "${SCHEME}" \
+        -configuration "${CONFIG}" \
+        -archivePath "${ARCHIVE_BUNDLE}" \
+        -sdk iphoneos | xcpretty -c
 
 
     RETVAL=${PIPESTATUS[0]}
@@ -55,6 +74,20 @@ else
     fi
 
     set +o errexit
+
+    ####################### JENKINS KEYCHAIN #######################################
+
+    echo "INFO: unlocking the keychain"
+
+    # unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
+    if [ "${USER}" = "jenkins" ]; then
+        xcrun security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
+        RETVAL=$?
+        if [ ${RETVAL} != 0 ]; then
+            echo "FAIL: could not unlock the keychain"
+            exit ${RETVAL}
+        fi
+    fi
 
     xcrun -sdk iphoneos PackageApplication -v "${PWD}/${APP_BUNDLE_PATH}" -o "${PWD}/${IPA_PATH}" > /dev/null
 
