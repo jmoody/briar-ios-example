@@ -11,7 +11,7 @@ xamarin_dir = "#{ENV['HOME']}/.xamarin"
 
 devices = {}
 
-device_list = ['pluto', 'neptune', 'venus', 'earp', 'mars', 'pegasi', 'saturn']
+device_list = ['pluto', 'neptune', 'venus', 'earp', 'mars', 'pegasi', 'saturn', 'hat', 'denis']
 
 device_list.each do |device|
   dir = "#{xamarin_dir}/devices/#{device}"
@@ -189,3 +189,6 @@ saturn:        -p saturn_common -p do_launch
 
 pegasi_common: DEVICE_TARGET=<%= devices[:pegasi][:udid] %> DEVICE_ENDPOINT=<%= devices[:pegasi][:ip] %> -p device_common  -p iphone   -p pegasi_html  -p pegasi_ss
 pegasi:        -p pegasi_common -p do_launch
+
+hat:    DEVICE_TARGET=<%= devices[:hat][:udid] %>   DEVICE_ENDPOINT=<%= devices[:hat][:ip] %>   -p device_common  -p iphone_tags -p do_launch
+denis:  DEVICE_TARGET=<%= devices[:denis][:udid] %> DEVICE_ENDPOINT=<%= devices[:denis][:ip] %> -p device_common  -p iphone_tags -p do_launch
