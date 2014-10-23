@@ -22,7 +22,7 @@ def run_develop(xtc_device_set, xtc_profile, xtc_series)
     end
 
     do_system('rm -rf calabash-ios')
-    do_system('git clone --depth 1 --recursive https://github.com/calabash/calabash-ios')
+    do_system('git clone --depth 1 --branch develop --recursive https://github.com/calabash/calabash-ios')
     calabash_gem_dir = File.expand_path(File.join(working_dir, 'calabash-ios'))
     Dir.chdir "#{calabash_gem_dir}/calabash-cucumber" do
 
@@ -65,7 +65,7 @@ def run_develop(xtc_device_set, xtc_profile, xtc_series)
     end
 
     do_system('rm -rf calabash-ios-server')
-    do_system('git clone --depth 1 --recursive https://github.com/calabash/calabash-ios-server')
+    do_system('git clone --depth 1 --branch develop --recursive https://github.com/calabash/calabash-ios-server')
     server_dir = File.expand_path(File.join(working_dir, 'calabash-ios-server'))
 
     FileUtils.mkdir_p('.bundle')

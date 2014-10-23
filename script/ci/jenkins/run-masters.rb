@@ -14,7 +14,7 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
     install_gem 'json'
 
     do_system('rm -rf run_loop')
-    do_system('git clone --depth 1 --recursive https://github.com/calabash/run_loop')
+    do_system('git clone --depth 1 -b master --recursive https://github.com/calabash/run_loop')
     run_loop_gem_dir = File.expand_path(File.join(working_dir, 'run_loop'))
     Dir.chdir run_loop_gem_dir do
       do_system('bundle install')
@@ -22,7 +22,7 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
     end
 
     do_system('rm -rf calabash-ios')
-    do_system('git clone --depth 1 --recursive https://github.com/calabash/calabash-ios')
+    do_system('git clone --depth 1 -b master --recursive https://github.com/calabash/calabash-ios')
     calabash_gem_dir = File.expand_path(File.join(working_dir, 'calabash-ios'))
     Dir.chdir "#{calabash_gem_dir}/calabash-cucumber" do
 
@@ -57,7 +57,7 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
 
     briar_repo_name = 'briar-gem'
     do_system("rm -rf #{briar_repo_name}")
-    do_system("git clone --depth 1 --recursive https://github.com/jmoody/briar #{briar_repo_name}")
+    do_system("git clone --depth 1 -b master --recursive https://github.com/jmoody/briar #{briar_repo_name}")
     briar_gem_dir = File.expand_path(File.join(working_dir, briar_repo_name))
     Dir.chdir briar_gem_dir do
       do_system('bundle install')
@@ -65,7 +65,7 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
     end
 
     do_system('rm -rf calabash-ios-server')
-    do_system('git clone --depth 1 --recursive https://github.com/calabash/calabash-ios-server')
+    do_system('git clone --depth 1 -b master --recursive https://github.com/calabash/calabash-ios-server')
     server_dir = File.expand_path(File.join(working_dir, 'calabash-ios-server'))
 
     FileUtils.mkdir_p('.bundle')
