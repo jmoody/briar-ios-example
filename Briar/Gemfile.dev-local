@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'faker', '~> 1.4'
 gem 'xcpretty', '~> 0.1'
 gem 'pry', '~> 0.10'
+gem 'pry-nav'
 
 # not yet
 # gem 'twitter_cldr'
