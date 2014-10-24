@@ -2,7 +2,7 @@
 
 require File.expand_path(File.join(File.dirname(__FILE__), 'ci-helpers'))
 
-xtc_device_set = ARGV[0] || 'jenkins-ci'
+xtc_device_set = ARGV[0] || '2d0063dc'
 xtc_profile = ARGV[1] || 'default'
 
 ### prepare
