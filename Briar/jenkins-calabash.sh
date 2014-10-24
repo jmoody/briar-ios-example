@@ -56,7 +56,7 @@ else
 fi
 
 # remove any stale targets
-rbenv exec bundle exec briar rm sim-targets
+rbenv exec bundle exec calabash-ios sim reset
 
 # Disable exiting on error so script continues if tests fail
 set +o errexit
