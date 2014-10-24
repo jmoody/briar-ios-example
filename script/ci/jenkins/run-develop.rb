@@ -86,6 +86,7 @@ def run_develop(xtc_device_set, xtc_profile, xtc_series)
          {
                'CALABASH_SERVER_PATH' => server_dir,
                'CALABASH_GEM_PATH' => calabash_gem_dir,
+               'CALABASH_NO_DYLIBS' => '1'
          }
 
     File.open('.env', 'a') { |f|

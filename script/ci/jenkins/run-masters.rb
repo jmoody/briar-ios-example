@@ -86,7 +86,8 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
          {
                'CALABASH_SERVER_PATH' => server_dir,
                'CALABASH_GEM_PATH' => calabash_gem_dir,
-               'XTC_SERIES' => xtc_series
+               'XTC_SERIES' => xtc_series,
+               'CALABASH_NO_DYLIBS' => '1'
          }
 
     do_system('bundle exec briar install calabash-server',
