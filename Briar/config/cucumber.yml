@@ -11,7 +11,7 @@ xamarin_dir = "#{ENV['HOME']}/.xamarin"
 
 devices = {}
 
-device_list = ['pluto', 'neptune', 'venus', 'earp', 'mars', 'pegasi', 'saturn', 'hat', 'denis']
+device_list = ['pluto', 'neptune', 'venus', 'earp', 'mars', 'pegasi', 'uranus', 'hat', 'denis']
 
 device_list.each do |device|
   dir = "#{xamarin_dir}/devices/#{device}"
@@ -137,7 +137,7 @@ venus_html:   -f 'Calabash::Formatters::Html' -o <%= devices[:venus][:report] %>
 earp_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:earp][:report] %>
 mars_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:mars][:report] %>
 pegasi_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:pegasi][:report] %>
-saturn_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:saturn][:report] %>
+uranus_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:uranus][:report] %>
 
 pluto_ss:   SCREENSHOT_PATH=<%= devices[:pluto][:ss_path] %>
 neptune_ss: SCREENSHOT_PATH=<%= devices[:neptune][:ss_path] %>
@@ -145,7 +145,7 @@ venus_ss:   SCREENSHOT_PATH=<%= devices[:venus][:ss_path] %>
 earp_ss:    SCREENSHOT_PATH=<%= devices[:earp][:ss_path] %>
 mars_ss:    SCREENSHOT_PATH=<%= devices[:mars][:ss_path] %>
 pegasi_ss:    SCREENSHOT_PATH=<%= devices[:pegasi][:ss_path] %>
-saturn_ss:    SCREENSHOT_PATH=<%= devices[:saturn][:ss_path] %>
+uranus_ss:    SCREENSHOT_PATH=<%= devices[:uranus][:ss_path] %>
 
 no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
@@ -208,8 +208,8 @@ venus:          -p venus_common -p do_launch
 mars_common:   DEVICE_TARGET=<%= devices[:mars][:udid] %> DEVICE_ENDPOINT=<%= devices[:mars][:ip] %> -p device_common  -p ipad_tags  -p mars_html -p mars_ss
 mars:          -p mars_common -p do_launch
 
-saturn_common: DEVICE_TARGET=<%= devices[:saturn][:udid] %> DEVICE_ENDPOINT=<%= devices[:saturn][:ip] %> -p device_common  -p iphone_tags   -p saturn_html -p saturn_ss
-saturn:        -p saturn_common -p do_launch
+uranus_common: DEVICE_TARGET=<%= devices[:uranus][:udid] %> DEVICE_ENDPOINT=<%= devices[:uranus][:ip] %> -p device_common  -p iphone_tags   -p uranus_html -p uranus_ss
+uranus:        -p uranus_common -p do_launch
 
 pegasi_common: DEVICE_TARGET=<%= devices[:pegasi][:udid] %> DEVICE_ENDPOINT=<%= devices[:pegasi][:ip] %> -p device_common  -p ipad_tags  -p pegasi_html  -p pegasi_ss
 pegasi:        -p pegasi_common -p do_launch
