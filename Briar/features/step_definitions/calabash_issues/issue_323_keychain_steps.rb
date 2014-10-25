@@ -3,9 +3,22 @@ Given(/^that the keychain is clear$/) do
 end
 
 Then(/^the keychain should contain the account password "(.*?)" for "(.*?)"$/) do |password, username|
-  actual = keychain_password('briar-ios-example.service', username)
-  unless actual == password
-    screenshot_and_raise "expected '#{password}' in keychain but found '#{actual}'"
+  if xamarin_test_cloud?
+    # password is not available on the Xamarin Test Cloud, but is available
+    # on simulators and local devices.
+    keychain_details = _keychain_get.first
+    expected = { 'svce' => 'briar-ios-example.service',
+                 'acct' => 'username' }
+    expected.each_pair do |key, value|
+      unless keychain_details[key] == value
+        raise "expected '#{key}' => '#{value}' in #{keychain_details}"
+      end
+    end
+  else
+    actual = keychain_password('briar-ios-example.service', username)
+    unless actual == password
+      screenshot_and_raise "expected '#{password}' in keychain but found '#{actual}'"
+    end
   end
 end
 
