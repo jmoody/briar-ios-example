@@ -8,11 +8,9 @@ Feature: Accessing the iOS keychain
   Scenario: i want to query the keychain after the app saves data
     Given that the keychain is clear
     And I am looking at the Text tab
-
     When I type "username" into the user text field
     And I type "password" into the pass text field
     And I press the "Save to Keychain" button
-
     Then the keychain should contain the account password "password" for "username"
 
   Scenario: i want to be able to set the keychain contents from calabash
