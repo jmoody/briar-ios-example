@@ -12,6 +12,7 @@ SlenderBackup*
 Backup*
 
 *.ipa
+*.app
 
 #versioning
 InfoPlist.h
