@@ -57,7 +57,7 @@ def run_masters(xtc_device_set, xtc_profile, xtc_series)
 
     briar_repo_name = 'briar-gem'
     do_system("rm -rf #{briar_repo_name}")
-    do_system("git clone --depth 1 -b master --recursive https://github.com/jmoody/briar #{briar_repo_name}")
+    do_system("git clone --depth 1 --branch master --recursive https://github.com/jmoody/briar #{briar_repo_name}")
     briar_gem_dir = File.expand_path(File.join(working_dir, briar_repo_name))
     Dir.chdir briar_gem_dir do
       do_system('bundle install')

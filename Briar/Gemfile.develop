@@ -12,4 +12,4 @@ gem 'pry', '~> 0.10'
 
 gem 'run_loop', :github => 'calabash/run_loop.git', :branch => 'develop'
 gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'develop'
-gem 'briar', :github => 'jmoody/briar', :branch => 'master'
+gem 'briar', :github => 'jmoody/briar', :branch => 'develop'
