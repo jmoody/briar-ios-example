@@ -42,15 +42,11 @@ After do |scenario|
   launcher = LaunchControl.launcher
   unless launcher.calabash_no_stop?
     calabash_exit
-    if launcher.active?
-      launcher.stop
-    end
+    launcher.stop
   end
 end
 
 at_exit do
   launcher = LaunchControl.launcher
-  if launcher.simulator_target?
-    Calabash::Cucumber::SimulatorHelper.stop unless launcher.calabash_no_stop?
-  end
+  launcher.stop unless launcher.calabash_no_stop?
 end
