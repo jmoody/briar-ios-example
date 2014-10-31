@@ -19,7 +19,7 @@ module Briar
       home_position = 'down' if home_position.eql?('bottom')
       home_position = 'up' if home_position.eql?('top')
       rotate_home_button_to home_position
-      step_pause
+      wait_for_none_animating
     end
   end
 end
