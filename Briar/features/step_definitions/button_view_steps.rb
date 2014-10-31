@@ -2,9 +2,14 @@ Given(/^I see the Buttons tab$/) do
   touch_tabbar_item 'Buttons', 'buttons'
 end
 
-When(/^I touch the "([^"]*)" button I should see an (action sheet|alert|email compose view)$/) do |button_id, what|
+When(/^I touch the "([^"]*)" button I should see an? (action sheet|alert|email compose view)$/) do |button_id, what|
   if what.eql?('action sheet')
-    touch_button_and_wait_for_view button_id, 'sheet'
+    if ios8?
+      touch_button button_id
+      wait_for_sheet nil # iOS 8 action sheets do not retain accessibilityIdentifiers
+    else
+      touch_button_and_wait_for_view button_id, 'sheet'
+    end
   elsif what.eql?('alert')
     touch_button_and_wait_for_view button_id, 'Briar Alert!'
   elsif what.eql?('email compose view')
@@ -32,7 +37,11 @@ Then(/^I dismiss the (action sheet|alert|email compose view) with the cancel but
     touch_alert_button 'Cancel'
   elsif what.eql?('email compose view')
     if device_configured_for_email
-      delete_draft_and_wait_for 'buttons'
+      if ios8?
+      wait_for_view 'buttons'
+      else
+        delete_draft_and_wait_for 'buttons'
+      end
     else
       touch("view marked:'OK'")
       wait_for_view 'buttons'
