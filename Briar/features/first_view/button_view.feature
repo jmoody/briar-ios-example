@@ -1,25 +1,17 @@
-@buttons
-Feature:  the button view
+@button
+Feature:  Interacting with buttons
 
-  Background: get me to the button view
+  Background: Get me to the button view
     When I touch the "Buttons" tab I should see the "buttons" view
 
-  # flickers on iPhone when not launching - the 'show sheet' button is sometimes
-  # not displayed because the layout is incorrect
-  @flickering
-  Scenario: show sheet button
+  Scenario: Show sheet button
     When I touch the "show sheet" button I should see an action sheet
     Then I dismiss the action sheet with the cancel button
 
-  Scenario: show alert button
+  Scenario: Show alert button
     When I touch the "show alert" button I should see an alert
     Then I dismiss the alert with the cancel button
 
-  # flickers on iOS 7 iPhone Simulator because there is a funny 'jump' after the
-  # app is relaunched...
-  @flickering
-  Scenario: show email compose
-    Then I wait for 0.4 seconds
+  Scenario: Show email compose
     When I touch the "show email" button I should see an email compose view
     Then I dismiss the email compose view with the cancel button
-
