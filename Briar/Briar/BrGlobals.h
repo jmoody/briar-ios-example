@@ -34,7 +34,8 @@ typedef enum : NSUInteger {
   kTabbarIndexText,
   kTabbarIndexDate,
   kTabbarIndexTable,
-  kTabbarIndexSliders
+  kTabbarIndexSliders,
+  kTabbarIndexWebView
 } BrTabbarIndex;
 
 
