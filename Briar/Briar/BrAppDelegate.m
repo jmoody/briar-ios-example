@@ -277,10 +277,6 @@ typedef enum : NSUInteger {
   BrNavigationController *slider_nc = [[BrNavigationController alloc]
                                    initWithRootViewController:slider_vc];
 
-  UIViewController *webView_vc = [BrWebViewController new];
-  BrNavigationController *webView_nc = [[BrNavigationController alloc]
-                                        initWithRootViewController:webView_vc];
-  
   self.tabBarController = [[BrTabBarController alloc] init];
   self.tabBarController.viewControllers = @[first_nc, text_nc, date_nc, scroll_nc, slider_nc];
   self.tabBarController.delegate = self;

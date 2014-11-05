@@ -2,10 +2,12 @@
 #import "BrGlobals.h"
 #import "BrAlphabetTableController.h"
 #import "BrRecipeCollectionController.h"
+#import "BrWebViewController.h"
 
 typedef enum : NSInteger {
   kRowTable = 0,
   kRowCollectionView,
+  kRowWebView,
   kNumberOfRows
 } rows;
 
@@ -24,6 +26,7 @@ typedef enum : NSInteger {
 
 - (void) cellTouchedAlphabetTable;
 - (void) cellTouchedCollectionView;
+- (void) cellTouchedWebView;
 
 @property (nonatomic, strong, readonly) UITableView *tableView;
 
@@ -50,6 +53,7 @@ typedef enum : NSInteger {
   switch (row) {
     case kRowTable: return @"Alphabet Table";
     case kRowCollectionView: return @"Recipes Collection View";
+    case kRowWebView: return @"WebView";
     default: {
       NSString *reason = [NSString stringWithFormat:@"could not find row '%@'", @(row)];
       @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -67,6 +71,7 @@ typedef enum : NSInteger {
   switch (row) {
     case kRowTable: return @"a plain table view";
     case kRowCollectionView: return @"a collection view";
+    case kRowWebView: return @"a web view";
     default: {
       NSString *reason = [NSString stringWithFormat:@"could not find row '%@'", @(row)];
       @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -84,6 +89,7 @@ typedef enum : NSInteger {
   switch (row) {
     case kRowTable: return @"alphabet";
     case kRowCollectionView: return @"recipes";
+    case kRowWebView: return @"web view";
     default: {
       NSString *reason = [NSString stringWithFormat:@"could not find row '%@'", @(row)];
       @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -162,6 +168,7 @@ typedef enum : NSInteger {
   switch (row) {
     case kRowTable: { [self cellTouchedAlphabetTable]; break; }
     case kRowCollectionView: { [self cellTouchedCollectionView]; break; }
+    case kRowWebView: { [self cellTouchedWebView]; break; }
     default: {
       NSString *reason = [NSString stringWithFormat:@"could not find row '%@'", @(row)];
       @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -215,6 +222,11 @@ typedef enum : NSInteger {
   
   BrRecipeCollectionController *rcc = [BrRecipeCollectionController new];
   [self.navigationController pushViewController:rcc animated:YES];
+}
+
+- (void) cellTouchedWebView {
+  BrWebViewController *webViewController = [BrWebViewController new];
+  [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 #pragma mark - Subviews

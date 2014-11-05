@@ -427,8 +427,8 @@
 		F5C3A64D18A33CAE00DB7E42 /* thai_shrimp_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thai_shrimp_cake.jpg; sourceTree = "<group>"; };
 		F5C3A64E18A33CAE00DB7E42 /* vegetable_curry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vegetable_curry.jpg; sourceTree = "<group>"; };
 		F5C3A64F18A33CAE00DB7E42 /* white_chocolate_donut.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white_chocolate_donut.jpg; sourceTree = "<group>"; };
-		F5DC02AB1A09802600744826 /* BrWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrWebViewController.h; path = ../BrWebViewController.h; sourceTree = "<group>"; };
-		F5DC02AC1A09802600744826 /* BrWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrWebViewController.m; path = ../BrWebViewController.m; sourceTree = "<group>"; };
+		F5DC02AB1A09802600744826 /* BrWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrWebViewController.h; path = ../../BrWebViewController.h; sourceTree = "<group>"; };
+		F5DC02AC1A09802600744826 /* BrWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrWebViewController.m; path = ../../BrWebViewController.m; sourceTree = "<group>"; };
 		F5DC02AD1A09802600744826 /* BrWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrWebViewController.xib; sourceTree = "<group>"; };
 		F5E2D16118C73D9600A0D9B6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		c6425b650cbbd9f05994720c /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
@@ -617,8 +617,6 @@
 				F56BAB5B16FCA42900AB8578 /* BrController.m */,
 				F591380A17C3D3AB007B2BE4 /* BrTabBarController.h */,
 				F591380B17C3D3AB007B2BE4 /* BrTabBarController.m */,
-				F5DC02AB1A09802600744826 /* BrWebViewController.h */,
-				F5DC02AC1A09802600744826 /* BrWebViewController.m */,
 				F591380617C3D2CE007B2BE4 /* BrNavigationController.h */,
 				F591380717C3D2CE007B2BE4 /* BrNavigationController.m */,
 				F57582941819EC2B0006FD60 /* Button Controllers */,
@@ -748,6 +746,8 @@
 		F5C3A63118A2ED4900DB7E42 /* Scrolling */ = {
 			isa = PBXGroup;
 			children = (
+				F5DC02AB1A09802600744826 /* BrWebViewController.h */,
+				F5DC02AC1A09802600744826 /* BrWebViewController.m */,
 				F5C3A63218A2EDED00DB7E42 /* BrScrollingHomeController.h */,
 				F5C3A63318A2EDED00DB7E42 /* BrScrollingHomeController.m */,
 				F5C3A63A18A321EC00DB7E42 /* BrRecipeCollectionController.h */,

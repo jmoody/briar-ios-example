@@ -24,10 +24,16 @@
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
   self.webView.delegate = self;
-  NSString* htmlStr = @"<html><head><meta charset='utf-8'></meta></head><body><h1>Hi!</h1></body></head>";
-  [self.webView loadHTMLString:htmlStr baseURL:nil];
+    NSString* htmlStr = @"<html><head><meta charset='utf-8'></meta></head><body><br /><br /><br /><br /><a name='top'></a><h1>Hi! You're on top!</h1><a href='#bottom'>Skip to bottom</a><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><a name='bottom'></a><h1>You've hit rock bottom.</h1><a href='#top'>Get back on top!</a><br /><br /><br /><br /><br /><br /><br /><br /></body></head>";
+    [self.webView loadHTMLString:htmlStr baseURL:nil];
+  [super viewDidLoad];
+}
+
+- (void)loadRequestFromString:(NSString*)urlString {
+  NSURL *url = [NSURL URLWithString:urlString];
+  NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+  [self.webView loadRequest:urlRequest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +45,10 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
   NSLog(@"%@", error);
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+  NSLog(@"Finished loading.");
 }
 
 @end
