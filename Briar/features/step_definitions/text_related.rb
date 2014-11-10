@@ -448,28 +448,18 @@ And(/^all the text input view have the (default|ascii|numbers and punctuation|ur
   }
 end
 
-When(/^I type a the following string with a backslash "([^"]*)"$/) do |str_with_backslash|
-  unless str_with_backslash.index(/\\/)
-    raise "expected '#{str_with_backslash}' to have a backslash"
-  end
-  expect_current_text_input_view_set
-  touch(@current_text_input_view)
-  wait_for_keyboard
-  ensure_docked_keyboard
-  keyboard_enter_text str_with_backslash
-  @text_entered_by_keyboard = str_with_backslash
+And(/^I touch that text input view$/) do
+  wait_for_query(@current_text_input_view)
+  touch @current_text_input_view
 end
 
-Then(/^I should see the correct string in that text field$/) do
-  unless @text_entered_by_keyboard
-    raise 'expected @text_entered_by_keyboard to be set'
-  end
-  actual = text_from_first_responder
-  #puts "@text_entered_by_keyboard '#{@text_entered_by_keyboard}'"
-  expected = unescape_backslashes(@text_entered_by_keyboard)
-  unless actual.eql?(expected)
-    screenshot_and_raise "expected '#{expected}' in text input view but found '#{actual}'"
-  end
+
+And(/^the keyboard is showing$/) do
+  wait_for_keyboard
+end
+
+And(/^the keyboard is docked$/) do
+  ensure_docked_keyboard
 end
 
 Then(/^I should be able to touch the Return key$/) do
