@@ -54,12 +54,15 @@ end
 
 
 When(/^I touch a link to reveal a message$/) do
-  element_does_not_exist("webView css:'#secret-message'")
+  unless element_does_not_exist("webView css:'#secret-message'")
+    screenshot_and_raise 'expected secret message to initially be hidden'
+  end
   touch("webView css:'a#show-message-link'")
 end
 
 Then(/^I should see the message is revealed$/) do
-  element_exists("webView css:'#secret-message'")
+  wait_for_element_exists("webView css:'#secret-message'",
+                          :timeout_message => 'expected secret message to be revealed')
 end
 
 #noinspection RubyUnusedLocalVariable
