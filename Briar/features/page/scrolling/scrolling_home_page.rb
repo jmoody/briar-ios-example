@@ -31,4 +31,8 @@ class ScrollingHomePage < HomePage
     page
   end
 
+  def goto_web_view_page
+    _touch_row('web view')
+    wait_for_view('webViewPage')
+  end
 end

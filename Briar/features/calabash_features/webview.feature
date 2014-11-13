@@ -1,7 +1,8 @@
 Feature: Interacting with a WebView
 
+  @wip
   Scenario: Following a link in a webview
-    Given I'm looking at a webview of Google
-    And I search for "miserable failure"
-    And I press "search"
-    Then I should see "George W. Bush"
+    Given I am looking at the web view page
+    Then I should see "You're at the top"
+    When I press "bottom"
+    Then I should see "You've hit Rock Bottom"

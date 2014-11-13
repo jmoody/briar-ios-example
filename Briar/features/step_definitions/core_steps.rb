@@ -39,6 +39,21 @@ Then(/^I am looking at the Alphabet table$/) do
 
 end
 
+Given(/^I am looking at the web view page$/) do
+  unless tabbar_visible?
+    screenshot_and_raise 'expected tabbar to be visible - cannot navigate to Tables tab'
+  end
+
+  if cp_is?(ScrollingHomePage)
+    @cp.goto_web_view_page
+  else
+    @cp = page(ScrollingHomePage).navigate_to
+    @cp.goto_web_view_page
+  end
+
+  binding.pry
+end
+
 
 #noinspection RubyUnusedLocalVariable
 Then(/^I say, "([^"]*)"$/) do |arg|
