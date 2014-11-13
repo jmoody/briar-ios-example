@@ -484,7 +484,11 @@ end
 
 When(/^I type a key that does not exist it should raise an exception$/) do
 
-  raise "Forcing a failure.  Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/pull/605"
+  if xamarin_test_cloud?
+    raise "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/pull/605"
+  else
+    pending "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/pull/605"
+  end
 
   qstr = @current_text_input_view
 
