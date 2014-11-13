@@ -1,3 +1,35 @@
+Then(/^a string with one backslash is typed$/) do
+  actual = text_from_first_responder
+  expected = 'A non-interpolated string \ with one backslash'
+  unless expected == actual
+    raise "Expected '#{expected}' to be typed but found '#{actual}'"
+  end
+end
+
+Then(/^a string with several backslash is typed$/) do
+  actual = text_from_first_responder
+  expected = 'This non-interpolated \ string \ has \ several \ backslashes'
+  unless expected == actual
+    raise "Expected '#{expected}' to be typed but found '#{actual}'"
+  end
+end
+
+Then(/^a string with a backslash at the beginning is typed$/) do
+  actual = text_from_first_responder
+  expected = '\A string that starts with a backslash'
+  unless expected == actual
+    raise "Expected '#{expected}' to be typed but found '#{actual}'"
+  end
+end
+
+Then(/^a string with a backslash at the end is typed$/) do
+  actual = text_from_first_responder
+  expected = 'A string that ends with a backslash\\'
+  unless expected == actual
+    raise "Expected '#{expected}' to be typed but found '#{actual}'"
+  end
+end
+
 When(/^I type an? (non-interpolated|interpolated) string with (one|two|several) (?:backslashes|backslash)$/) do |str_type, backslash_count|
   if str_type == 'interpolated'
     if backslash_count == 'one'

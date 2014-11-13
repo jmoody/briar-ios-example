@@ -16,7 +16,7 @@ Feature: Escaping backslashes
 
   Scenario: Non-interpolated string with one backslash
     When I type a non-interpolated string with one backslash
-    Then I should see the backslash has been correctly typed
+    Then a string with one backslash is typed
 
   Scenario: Interpolated string with one backslash
     When I type an interpolated string with one backslash
@@ -24,15 +24,15 @@ Feature: Escaping backslashes
 
   Scenario: Non-interpolated string with several backslashes
     When I type a non-interpolated string with several backslashes
-    Then I should see the backslash has been correctly typed
+    Then a string with several backslash is typed
 
   Scenario: Non-interpolated string with backslash at the start
     When I type a non-interpolated string that starts with a backslash
-    Then I should see the backslash has been correctly typed
+    Then a string with a backslash at the beginning is typed
 
   Scenario: Non-interpolated string with backslash at the end
     When I type a non-interpolated string that ends with a backslash
-    Then I should see the backslash has been correctly typed
+    Then a string with a backslash at the end is typed
 
   Scenario: Non-interpolated string with a double backslash
     When I type a non-interpolated string with a double backslash
