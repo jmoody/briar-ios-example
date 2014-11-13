@@ -2,7 +2,6 @@
 #import "BrButtonViewController.h"
 #import "BrTextRelatedController.h"
 #import "BrDatePickerController.h"
-#import "BrWebViewController.h"
 #import "BrCategories.h"
 #import "BrNavigationController.h"
 #import "BrSliderController.h"
@@ -276,7 +275,7 @@ typedef enum : NSUInteger {
   UIViewController *slider_vc = [BrSliderController new];
   BrNavigationController *slider_nc = [[BrNavigationController alloc]
                                    initWithRootViewController:slider_vc];
-
+  
   self.tabBarController = [[BrTabBarController alloc] init];
   self.tabBarController.viewControllers = @[first_nc, text_nc, date_nc, scroll_nc, slider_nc];
   self.tabBarController.delegate = self;
