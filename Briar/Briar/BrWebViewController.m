@@ -28,7 +28,7 @@
 
   self.webView.delegate = self;
 
-  NSString* htmlStr = @"<html><head><meta charset='utf-8'></meta></head><body><br /><br /><br /><br /><a name='top'></a><h1>Hi! You're on top!</h1><a href='#bottom'>Skip to bottom</a><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><a name='bottom'></a><h1>You've hit rock bottom.</h1><a href='#top'>Get back on top!</a><br /><br /><br /><br /><br /><br /><br /><br /></body></head>";
+  NSString* htmlStr = @"<html><head><meta charset='utf-8'></meta></head><body><br /><br /><br /><br /><a name='top'></a><h1>Hi! You're on top!</h1><a id='link-to-bottom' href='#bottom'>Skip to bottom</a><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><a name='bottom'></a><h1>You've hit rock bottom.</h1><a id='link-to-top' href='#top'>Get back on top!</a><br /><br /><br /><br /><br /><br /><br /><br /></body></head>";
 
   [self.webView loadHTMLString:htmlStr baseURL:nil];
   self.view.accessibilityIdentifier = @"webViewPage";

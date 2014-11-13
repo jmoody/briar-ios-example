@@ -50,8 +50,14 @@ Given(/^I am looking at the web view page$/) do
     @cp = page(ScrollingHomePage).navigate_to
     @cp.goto_web_view_page
   end
+end
 
-  binding.pry
+Then(/^I should be at the bottom of the page$/) do
+  element_exists("webView css:'a#link-to-top'")
+end
+
+When(/^I touch a link to the bottom of the page$/) do
+  touch("webView css:'a#link-to-bottom'")
 end
 
 
