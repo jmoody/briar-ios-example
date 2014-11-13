@@ -1,11 +1,3 @@
-//
-//  BrWebViewController.m
-//
-//
-//  Created by Joshua Moody on 4.11.14.
-//
-//
-
 #import "BrWebViewController.h"
 
 @interface BrWebViewController () <UIWebViewDelegate>
