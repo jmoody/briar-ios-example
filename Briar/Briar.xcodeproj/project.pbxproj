@@ -32,6 +32,8 @@
 		33d4d298137d5d41d434537a /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = F568C46416E3C6F2007797F1 /* iTunesArtwork@2x */; };
 		3c10e85b30a66b77009a1ccc /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45516E3C69C007797F1 /* second@2x.png */; };
 		3f744665f593b89dc3f47464 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45E16E3C6F2007797F1 /* Icon-Small-50.png */; };
+		454DF1C01A14EF9E009A4F81 /* webview-scaffold.html in Resources */ = {isa = PBXBuildFile; fileRef = 454DF1BF1A14EF9E009A4F81 /* webview-scaffold.html */; };
+		454DF1C11A14EF9E009A4F81 /* webview-scaffold.html in Resources */ = {isa = PBXBuildFile; fileRef = 454DF1BF1A14EF9E009A4F81 /* webview-scaffold.html */; };
 		528fac7a775919ed58477c54 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C46116E3C6F2007797F1 /* Icon.png */; };
 		52D8FE1D18BAE68600D7CA8A /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8FE1A18BAE68600D7CA8A /* SSKeychain.m */; };
 		52D8FE1E18BAE68600D7CA8A /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D8FE1A18BAE68600D7CA8A /* SSKeychain.m */; };
@@ -285,6 +287,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		454DF1BF1A14EF9E009A4F81 /* webview-scaffold.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "webview-scaffold.html"; sourceTree = "<group>"; };
 		52D8FE1918BAE68600D7CA8A /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		52D8FE1A18BAE68600D7CA8A /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		52D8FE1B18BAE68600D7CA8A /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
@@ -545,6 +548,7 @@
 		F568C42716E3C256007797F1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				454DF1BF1A14EF9E009A4F81 /* webview-scaffold.html */,
 				F568C42816E3C256007797F1 /* Briar-Info.plist */,
 				F568C42916E3C256007797F1 /* InfoPlist.strings */,
 				F568C42C16E3C256007797F1 /* main.m */,
@@ -871,6 +875,7 @@
 				F5C3A66818A33CAE00DB7E42 /* photo-frame.png in Resources */,
 				52D8FE2218BAE69200D7CA8A /* SSKeychain.LICENSE in Resources */,
 				F568C43316E3C256007797F1 /* Default.png in Resources */,
+				454DF1C01A14EF9E009A4F81 /* webview-scaffold.html in Resources */,
 				F5C3A65818A33CAE00DB7E42 /* green_tea.jpg in Resources */,
 				F5A6DB871810581A007D85C7 /* cabinet.png in Resources */,
 				F5A6DBBD1810581A007D85C7 /* rainy@2x.png in Resources */,
@@ -977,6 +982,7 @@
 				F5C3A66918A33CAE00DB7E42 /* photo-frame.png in Resources */,
 				52D8FE2318BAE69200D7CA8A /* SSKeychain.LICENSE in Resources */,
 				F5A6DB981810581A007D85C7 /* calendar.png in Resources */,
+				454DF1C11A14EF9E009A4F81 /* webview-scaffold.html in Resources */,
 				F5C3A65918A33CAE00DB7E42 /* green_tea.jpg in Resources */,
 				d256dff5b9aeb3324a8009c9 /* Default.png in Resources */,
 				F5A6DB881810581A007D85C7 /* cabinet.png in Resources */,

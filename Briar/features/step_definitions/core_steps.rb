@@ -52,14 +52,15 @@ Given(/^I am looking at the web view page$/) do
   end
 end
 
-Then(/^I should be at the bottom of the page$/) do
-  element_exists("webView css:'a#link-to-top'")
+
+When(/^I touch a link to reveal a message$/) do
+  element_does_not_exist("webView css:'#secret-message'")
+  touch("webView css:'a#show-message-link'")
 end
 
-When(/^I touch a link to the bottom of the page$/) do
-  touch("webView css:'a#link-to-bottom'")
+Then(/^I should see the message is revealed$/) do
+  element_exists("webView css:'#secret-message'")
 end
-
 
 #noinspection RubyUnusedLocalVariable
 Then(/^I say, "([^"]*)"$/) do |arg|

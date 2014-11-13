@@ -1,0 +1,28 @@
+<html>
+<head>
+  <meta charset='utf-8'></meta>
+  <style type="text/css">
+    .hidden {
+      display: none;
+    }
+    .revealed {
+      background: yellow;
+      text-align: center;
+      text-size: 2em;
+    }
+  </style>
+  <script type="application/javascript">
+    function displaySecretMessage() {
+      secretMessage = document.getElementById('secret-message');
+      secretMessage.setAttribute("class", 'revealed');
+    }
+  </script>
+</head>
+<body>
+  <a id="show-message-link" href="#" onclick="displaySecretMessage();">Click me to show a secret message.</a>
+  <p id="secret-message" class="hidden">
+    You found me! <br />
+    (This text was hidden.)
+  </p>
+</body>
+</html>
