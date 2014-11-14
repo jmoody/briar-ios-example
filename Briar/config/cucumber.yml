@@ -112,7 +112,7 @@ else
 end
 
 if ENV["USER"] == "jenkins"
-  #formatter = "progress"
+  formatter = "progress"
   formatter = "Slowhandcuke::Formatter"
   keep_sim_open_after = "0"
 else
