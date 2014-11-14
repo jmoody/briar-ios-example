@@ -6,7 +6,7 @@
 require File.expand_path(File.join(File.dirname(__FILE__), 'ci-helpers'))
 require File.expand_path(File.join(File.dirname(__FILE__), 'run-develop'))
 
-xtc_device_set = ARGV[0] || 'f663977a'
+xtc_device_set = ARGV[0] || '4af70b0b'
 xtc_profile = ARGV[1] || 'default'
 # accept 2 additional cucumber args for -t < tags >
 cucumber_args = ''

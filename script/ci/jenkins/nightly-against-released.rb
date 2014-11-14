@@ -2,7 +2,7 @@
 
 require File.expand_path(File.join(File.dirname(__FILE__), 'ci-helpers'))
 
-xtc_device_set = ARGV[0] || '7dfc52ec'
+xtc_device_set = ARGV[0] || '8aec68ac'
 xtc_profile = ARGV[1] || 'default'
 
 ### prepare
