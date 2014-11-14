@@ -54,7 +54,7 @@ end
 
 
 When(/^I touch a link to reveal a message$/) do
-  unless element_does_not_exist("webView css:'#secret-message'")
+  if element_exists("webView css:'#secret-message'")
     screenshot_and_raise 'expected secret message to initially be hidden'
   end
   touch("webView css:'a#show-message-link'")

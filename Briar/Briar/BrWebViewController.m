@@ -19,7 +19,6 @@
   [super viewDidLoad];
 
   self.webView.delegate = self;
-  self.webView.scalesPageToFit = YES;
 
   NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"webview-scaffold" ofType:@"html"];
   NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
