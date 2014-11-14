@@ -2,7 +2,8 @@
 
 require File.expand_path(File.join(File.dirname(__FILE__), 'ci-helpers'))
 
-xtc_device_set = ARGV[0] || '9263f824'
+# Same as toolchain-masters.
+xtc_device_set = ARGV[0] || '22107146'
 xtc_profile = ARGV[1] || 'default'
 
 # accept 2 additional cucumber args for -t < tags >
