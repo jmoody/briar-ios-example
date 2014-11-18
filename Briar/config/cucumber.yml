@@ -139,6 +139,8 @@ earp_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:earp][:report] %>
 mars_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:mars][:report] %>
 pegasi_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:pegasi][:report] %>
 uranus_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:uranus][:report] %>
+denis_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:denis][:report] %>
+hat_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:hat][:report] %>
 
 pluto_ss:   SCREENSHOT_PATH=<%= devices[:pluto][:ss_path] %>
 neptune_ss: SCREENSHOT_PATH=<%= devices[:neptune][:ss_path] %>
@@ -147,6 +149,8 @@ earp_ss:    SCREENSHOT_PATH=<%= devices[:earp][:ss_path] %>
 mars_ss:    SCREENSHOT_PATH=<%= devices[:mars][:ss_path] %>
 pegasi_ss:    SCREENSHOT_PATH=<%= devices[:pegasi][:ss_path] %>
 uranus_ss:    SCREENSHOT_PATH=<%= devices[:uranus][:ss_path] %>
+denis_ss:    SCREENSHOT_PATH=<%= devices[:denis][:ss_path] %>
+hat_ss:    SCREENSHOT_PATH=<%= devices[:hat][:ss_path] %>
 
 no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
@@ -215,5 +219,5 @@ uranus:        -p uranus_common -p do_launch
 pegasi_common: DEVICE_TARGET=<%= devices[:pegasi][:udid] %> DEVICE_ENDPOINT=<%= devices[:pegasi][:ip] %> -p device_common  -p ipad_tags  -p pegasi_html  -p pegasi_ss
 pegasi:        -p pegasi_common -p do_launch
 
-hat:    DEVICE_TARGET=<%= devices[:hat][:udid] %>   DEVICE_ENDPOINT=<%= devices[:hat][:ip] %>   -p device_common  -p iphone_tags -p do_launch
-denis:  DEVICE_TARGET=<%= devices[:denis][:udid] %> DEVICE_ENDPOINT=<%= devices[:denis][:ip] %> -p device_common  -p iphone_tags -p do_launch
+hat:    DEVICE_TARGET=<%= devices[:hat][:udid] %>   DEVICE_ENDPOINT=<%= devices[:hat][:ip] %>   -p device_common  -p iphone_tags -p do_launch -p hat_html -p hat_ss
+denis:  DEVICE_TARGET=<%= devices[:denis][:udid] %> DEVICE_ENDPOINT=<%= devices[:denis][:ip] %> -p device_common  -p iphone_tags -p do_launch -p denis_html -p denis_ss
