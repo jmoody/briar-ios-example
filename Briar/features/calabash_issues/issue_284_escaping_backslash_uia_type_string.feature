@@ -20,7 +20,8 @@ Feature: Escaping backslashes
 
   Scenario: Interpolated string with one backslash
     When I type an interpolated string with one backslash
-    Then I see that the single backslash was escaped to a dot
+    And depending on the iOS version
+    Then I see that the single backslash was escaped to a dot or a blank space
 
   Scenario: Non-interpolated string with several backslashes
     When I type a non-interpolated string with several backslashes

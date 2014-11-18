@@ -110,9 +110,17 @@ When(/^I type an interpolated string with a (double|triple|quadruple) backslash$
   @expected_string_with_backslash = string
 end
 
-Then(/^I see that the single backslash was escaped to a dot$/) do
+And(/^depending on the iOS version$/) do
+  # no op
+end
+
+Then(/^I see that the single backslash was escaped to a dot or a blank space$/) do
   actual = text_from_first_responder
-  expected = 'An interpolated string. with one backslash'
+  if ios8?
+    expected = 'An interpolated string. with one backslash'
+  else
+    expected = 'An interpolated string  with one backslash'
+  end
   unless expected == actual
     raise "Expected '#{expected}' to be typed but found '#{actual}'"
   end
