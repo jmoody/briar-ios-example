@@ -1,10 +1,3 @@
-# encoding: UTF-8
-# required for ruby 1.8
-require 'enumerator'
-
-# nicht jetzt
-#require 'twitter_cldr'
-
 module Briar
   module Text_Related
 
@@ -27,8 +20,6 @@ module Briar
         end
       end
     end
-
-
 
     def swipe_on_text_field(dir, field)
       if ios7? && simulator?
