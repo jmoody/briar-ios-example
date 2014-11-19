@@ -16,9 +16,6 @@ Feature: Typing should not crash the app or raise errors
   Scenario: i should be able to type 2 email address
     Then I type 2 email addresses into the text fields
 
-  # flickering because of UIA typeString() problem
-  # https://github.com/calabash/calabash-ios/issues/269
-  @flickering
   Scenario: i should be able to type 2 random string
     Then I type 2 random strings with the full range of characters into the text fields
 
