@@ -126,7 +126,16 @@ end
 World(Briar::Text_Related)
 
 Then(/^I swipe (left|right) on the (top|bottom) text field$/) do |dir, field|
-  swipe_on_text_field dir, field
+
+  if ios8? and not simulator?
+    if xamarin_test_cloud?
+      raise "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/issues/613"
+    else
+      pending "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/issues/613"
+    end
+  else
+    swipe_on_text_field dir, field
+  end
 end
 
 And(/^I have touched the "([^"]*)" text field$/) do |text_field|
