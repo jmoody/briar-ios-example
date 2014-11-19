@@ -1,6 +1,7 @@
 @keyboard
 @issue_259
 @issue_269
+@issue_616
 Feature: Typing should not crash the app or raise errors
 
   Background: i am looking at the text related view
