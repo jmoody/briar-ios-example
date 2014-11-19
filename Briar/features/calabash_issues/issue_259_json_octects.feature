@@ -1,7 +1,7 @@
 @keyboard
 @issue_259
 @issue_269
-Feature: uia_type_text should not throw octet problems
+Feature: Typing should not crash the app or raise errors
 
   Background: i am looking at the text related view
     Given I am looking at the Text tab
