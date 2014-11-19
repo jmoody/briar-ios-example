@@ -39,6 +39,31 @@ Then(/^I am looking at the Alphabet table$/) do
 
 end
 
+Given(/^I am looking at the web view page$/) do
+  unless tabbar_visible?
+    screenshot_and_raise 'expected tabbar to be visible - cannot navigate to Tables tab'
+  end
+
+  if cp_is?(ScrollingHomePage)
+    @cp.goto_web_view_page
+  else
+    @cp = page(ScrollingHomePage).navigate_to
+    @cp.goto_web_view_page
+  end
+end
+
+
+When(/^I touch a link to reveal a message$/) do
+  if element_exists("webView css:'#secret-message'")
+    screenshot_and_raise 'expected secret message to initially be hidden'
+  end
+  touch("webView css:'a#show-message-link'")
+end
+
+Then(/^I should see the message is revealed$/) do
+  wait_for_element_exists("webView css:'#secret-message'",
+                          :timeout_message => 'expected secret message to be revealed')
+end
 
 #noinspection RubyUnusedLocalVariable
 Then(/^I say, "([^"]*)"$/) do |arg|
