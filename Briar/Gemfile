@@ -4,4 +4,6 @@ gem 'faker', '~> 1.4'
 gem 'xcpretty', '~> 0.1'
 gem 'pry', '~> 0.10'
 gem 'briar', '~> 1.1'
+gem 'run_loop', '~> 1.1.1.pre3'
 gem 'calabash-cucumber', '~> 0.11'
+

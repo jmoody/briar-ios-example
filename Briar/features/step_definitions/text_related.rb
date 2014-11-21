@@ -1,10 +1,3 @@
-# encoding: UTF-8
-# required for ruby 1.8
-require 'enumerator'
-
-# nicht jetzt
-#require 'twitter_cldr'
-
 module Briar
   module Text_Related
 
@@ -27,8 +20,6 @@ module Briar
         end
       end
     end
-
-
 
     def swipe_on_text_field(dir, field)
       if ios7? && simulator?
@@ -126,7 +117,16 @@ end
 World(Briar::Text_Related)
 
 Then(/^I swipe (left|right) on the (top|bottom) text field$/) do |dir, field|
-  swipe_on_text_field dir, field
+
+  if ios8? and not simulator?
+    if xamarin_test_cloud?
+      raise "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/issues/613"
+    else
+      pending "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/issues/613"
+    end
+  else
+    swipe_on_text_field dir, field
+  end
 end
 
 And(/^I have touched the "([^"]*)" text field$/) do |text_field|
@@ -206,11 +206,22 @@ Then(/^I type (\d+) random strings? with the full range of characters into the t
       rnd_str << sample
     end
 
+    # Detect single ' and fail on the XTC and pending if using the :host strategy
+    # https://github.com/calabash/calabash-ios/issues/616
+    # Sample string for reproducing issue 616
+    # rnd_str = "=yn6H|-.-JcH{E}= xzU3+QJnd&{@'H`]}-r4wgroCa27se%aU"
+    unless rnd_str.scan(/'/).empty?
+      if xamarin_test_cloud?
+        raise "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/issues/616"
+      end
 
-    # why oh why was i doing this?
-    # rnd_str.insert(rand(str_len), ',')
+      launcher = Calabash::Cucumber::Launcher.launcher_if_used
+      strategy = launcher.run_loop[:uia_strategy]
 
-    #binding.pry
+      if strategy == :host
+        pending "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/issues/616"
+      end
+    end
 
     keyboard_enter_text rnd_str
     should_see_text_field_with_text tf_id, rnd_str
