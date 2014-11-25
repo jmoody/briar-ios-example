@@ -18,7 +18,11 @@ end
 #noinspection RubyUnusedLocalVariable
 Before do |scenario|
 
-  LaunchControl.launcher.relaunch
+  launch_args =
+        {
+              :uia_strategy => :host
+        }
+  LaunchControl.launcher.relaunch(launch_args)
   LaunchControl.launcher.calabash_notify(self)
 
   # I have tried launching 1x, but the results are not good on the simulators.
