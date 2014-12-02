@@ -18,7 +18,11 @@ end
 #noinspection RubyUnusedLocalVariable
 Before do |scenario|
 
-  LaunchControl.launcher.relaunch
+  launch_options = {
+        :uia_strategy => :shared_element
+  }
+
+  LaunchControl.launcher.relaunch(launch_options)
   LaunchControl.launcher.calabash_notify(self)
 
   # I have tried launching 1x, but the results are not good on the simulators.
