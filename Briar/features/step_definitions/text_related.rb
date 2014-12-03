@@ -420,6 +420,10 @@ Given(/^I choose a text input view at random$/) do
   @current_text_input_view = qstr_for_random_text_input_view
 end
 
+And(/^I choose a text view at random$/) do
+  @current_text_input_view = qstr_for_random_text_view
+end
+
 And(/^that text input view has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad)$/) do |kb_type|
   expect_current_text_input_view_set
   target = _kb_type_with_step_arg kb_type
@@ -495,4 +499,27 @@ When(/^I type a key that does not exist it should raise an exception$/) do
     end
   end
 
+end
+
+Then(/^I type a string with a newline$/) do
+  expect_current_text_input_view_set
+  clear_text(@current_text_input_view)
+  touch(@current_text_input_view)
+
+  wait_for_keyboard
+  ensure_docked_keyboard
+
+  string = "This string has a \n newline"
+# alternative ways to type this string
+#  string = "This string has a \\n line"
+#  string = <<EOF
+# This string has a
+# newline
+# EOF
+  keyboard_enter_text string
+
+  res = query(@current_text_input_view, :text).first
+  unless res == string
+    screenshot_and_raise "Expected #{string} to be typed but found '#{res}'"
+  end
 end
