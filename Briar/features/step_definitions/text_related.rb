@@ -207,7 +207,6 @@ Then(/^I type (\d+) random strings? with the full range of characters into the t
   }
 end
 
-
 Then(/^I type (\d+) email (?:addresses|address) into the text fields$/) do |num|
   # just start with the top and alternate
   tf_ids = ['top tf', 'bottom tf']
@@ -272,7 +271,6 @@ Then(/^I should be able to (dock|undock|split) the keyboard$/) do |op|
   end
 end
 
-
 Then(/^I put the keyboard into a random mode$/) do
   wait_for_keyboard
   mode = _ipad_keyboard_modes.sample
@@ -293,8 +291,6 @@ Then(/^I should be able to dismiss the ipad keyboard$/) do
     dismiss_ipad_keyboard
   end
 end
-
-
 
 And(/^one of the (input views|text fields|text views) has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad) showing$/) do |input_range, kb_type|
   if input_range == 'input views'
