@@ -116,13 +116,9 @@ And(/^depending on the iOS version$/) do
   # no op
 end
 
-Then(/^I see that the single backslash was escaped to a dot or a blank space$/) do
+Then(/^I see that the single backslash was escaped to a blank space$/) do
   actual = text_from_first_responder
-  if ios8?
-    expected = 'An interpolated string. with one backslash'
-  else
-    expected = 'An interpolated string  with one backslash'
-  end
+  expected = 'An interpolated string  with one backslash'
   unless expected == actual
     raise "Expected '#{expected}' to be typed but found '#{actual}'"
   end
