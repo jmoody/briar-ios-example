@@ -19,11 +19,9 @@ end
 Before do |scenario|
 
   launch_options = {
-        # When using the feature/make-shared-element-strategy-default-for-ios8
-        # branch, let calabash-ios decide the default strategy.
-        #:uia_strategy => :shared_element
+        :uia_strategy => :shared_element
         #:uia_strategy => :host
-        :uia_strategy => :preferences
+        #:uia_strategy => :preferences
   }
 
   LaunchControl.launcher.relaunch(launch_options)
