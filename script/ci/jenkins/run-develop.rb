@@ -91,6 +91,7 @@ def run_develop(xtc_device_set, xtc_profile, xtc_series)
 
     File.open('.env', 'a') { |f|
       f.write("XTC_SERIES=\"#{xtc_series}\"\n")
+      f.write("XTC_CALABASH_GEM_DEV=1\n")
     }
 
     do_system('bundle exec briar install calabash-server',
