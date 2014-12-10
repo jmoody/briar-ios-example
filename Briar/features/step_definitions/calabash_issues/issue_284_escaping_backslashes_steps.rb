@@ -15,10 +15,6 @@ Then(/^a string with several backslash is typed$/) do
 end
 
 Then(/^a string with a backslash at the beginning is typed$/) do
-  if ios8?
-    pending 'Awaiting definition of expected behavior'
-  end
-
   actual = text_from_first_responder
   expected = '\A string that starts with a backslash'
   unless expected == actual
@@ -27,10 +23,6 @@ Then(/^a string with a backslash at the beginning is typed$/) do
 end
 
 Then(/^a string with a backslash at the end is typed$/) do
-  if ios8?
-    pending 'Awaiting definition of expected behavior'
-  end
-
   actual = text_from_first_responder
   expected = 'A string that ends with a backslash\\'
   unless expected == actual
@@ -50,9 +42,6 @@ When(/^I type an? (non-interpolated|interpolated) string with (one|two|several) 
     keyboard_enter_text string
   else
 
-    if ios8?
-      pending 'Awaiting definition of expected behavior'
-    end
 
     if backslash_count == 'one'
       @expected_string_with_backslash = 'A non-interpolated string \ with one backslash'
@@ -78,9 +67,6 @@ When(/^I type a non-interpolated string that (starts|ends) with a backslash$/) d
     when 'starts'
       string = '\A string that starts with a backslash'
     when 'ends'
-      if ios8?
-        pending 'Awaiting definition of expected behavior'
-      end
       string = 'A string that ends with a backslash\\'
     else
       raise "Expected '#{backslash_position}' to be one of '#{['starts', 'ends']}'"
@@ -105,9 +91,6 @@ end
 
 
 Then(/^I should see that (\d+) backslash has been typed$/) do |expected_backslash_count|
-  if ios8?
-    pending 'Awaiting definition of expected behavior'
-  end
   text = text_from_first_responder
   actual_count = text.scan(/\\/).count
   expected_count = expected_backslash_count.to_i
@@ -129,19 +112,56 @@ When(/^I type an interpolated string with a (double|triple|quadruple) backslash$
   @expected_string_with_backslash = string
 end
 
-And(/^depending on the iOS version$/) do
+And(/^depending on the iOS version and UIA strategy$/) do
   # no op
 end
 
-Then(/^I see that the single backslash was escaped to a dot or a blank space$/) do
+Then(/^I see that the single backslash was escaped, turned into a dot, or ignored$/) do
   actual = text_from_first_responder
-  if ios8?
-    #expected = 'An interpolated string. with one backslash'
-    pending 'Awaiting definition of expected behavior'
+
+  uia_strategy = Calabash::Cucumber::Launcher.launcher.run_loop[:uia_strategy]
+
+  error_message = "expected UIA strategy '#{uia_strategy}' to be one of #{[:preferences, :host, :shared_element]}"
+
+  # iOS 8 devices <= :preferences does not work
+  # iOS 6 + 7 devices and simulators <= :shared_element does not work
+  # XTC <== :shared_element works on all devices
+  # XTC <== :host + :shared_element works on all iOS 8 devices
+
+  if xamarin_test_cloud?
+    case uia_strategy
+      when :preferences
+        if ios8?
+          expected = 'An interpolated string with one backslash'
+        else
+          expected = 'An interpolated string  with one backslash'
+        end
+      when :host
+        expected = 'An interpolated string with one backslash'
+      when :shared_element
+        expected = 'An interpolated string  with one backslash'
+      else
+        raise error_message
+    end
   else
-    expected = 'An interpolated string  with one backslash'
+    case uia_strategy
+      when :preferences
+        if ios8?
+          expected = 'An interpolated string. with one backslash'
+        else
+          expected = 'An interpolated string  with one backslash'
+        end
+      when :host
+        expected = 'An interpolated string with one backslash'
+      when :shared_element
+        expected = 'An interpolated string. with one backslash'
+      else
+        raise error_message
+    end
   end
+
   unless expected == actual
-    raise "Expected '#{expected}' to be typed but found '#{actual}'"
+    msg = ["uia_strategy => '#{uia_strategy}' -  actual = '#{actual}'", "expected = '#{expected}'", "  actual char count = #{actual.chars.count}", "expected char count = #{expected.chars.count}"]
+    raise "Expected '#{expected}' to be typed but found '#{actual}' - #{msg.join("\n")}"
   end
 end

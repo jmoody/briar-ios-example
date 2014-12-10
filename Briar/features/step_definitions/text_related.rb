@@ -117,16 +117,7 @@ end
 World(Briar::Text_Related)
 
 Then(/^I swipe (left|right) on the (top|bottom) text field$/) do |dir, field|
-
-  if ios8? and not simulator?
-    if xamarin_test_cloud?
-      raise "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/issues/613"
-    else
-      pending "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/issues/613"
-    end
-  else
-    swipe_on_text_field dir, field
-  end
+  swipe_on_text_field dir, field
 end
 
 And(/^I have touched the "([^"]*)" text field$/) do |text_field|
@@ -206,23 +197,6 @@ Then(/^I type (\d+) random strings? with the full range of characters into the t
       rnd_str << sample
     end
 
-    # Detect single ' and fail on the XTC and pending if using the :host strategy
-    # https://github.com/calabash/calabash-ios/issues/616
-    # Sample string for reproducing issue 616
-    # rnd_str = "=yn6H|-.-JcH{E}= xzU3+QJnd&{@'H`]}-r4wgroCa27se%aU"
-    unless rnd_str.scan(/'/).empty?
-      if xamarin_test_cloud?
-        raise "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/issues/616"
-      end
-
-      launcher = Calabash::Cucumber::Launcher.launcher_if_used
-      strategy = launcher.run_loop[:uia_strategy]
-
-      if strategy == :host
-        pending "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/issues/616"
-      end
-    end
-
     keyboard_enter_text rnd_str
     should_see_text_field_with_text tf_id, rnd_str
     clear_text("view marked:'#{tf_id}'")
@@ -232,7 +206,6 @@ Then(/^I type (\d+) random strings? with the full range of characters into the t
     step_pause
   }
 end
-
 
 Then(/^I type (\d+) email (?:addresses|address) into the text fields$/) do |num|
   # just start with the top and alternate
@@ -298,7 +271,6 @@ Then(/^I should be able to (dock|undock|split) the keyboard$/) do |op|
   end
 end
 
-
 Then(/^I put the keyboard into a random mode$/) do
   wait_for_keyboard
   mode = _ipad_keyboard_modes.sample
@@ -319,8 +291,6 @@ Then(/^I should be able to dismiss the ipad keyboard$/) do
     dismiss_ipad_keyboard
   end
 end
-
-
 
 And(/^one of the (input views|text fields|text views) has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad) showing$/) do |input_range, kb_type|
   if input_range == 'input views'
@@ -446,6 +416,10 @@ Given(/^I choose a text input view at random$/) do
   @current_text_input_view = qstr_for_random_text_input_view
 end
 
+And(/^I choose a text view at random$/) do
+  @current_text_input_view = qstr_for_random_text_view
+end
+
 And(/^that text input view has (?:a|an|the) (default|ascii|numbers and punctuation|url|number|phone|name and phone|email|decimal|twitter|web search) (?:keyboard|pad)$/) do |kb_type|
   expect_current_text_input_view_set
   target = _kb_type_with_step_arg kb_type
@@ -495,12 +469,6 @@ end
 
 When(/^I type a key that does not exist it should raise an exception$/) do
 
-  if xamarin_test_cloud?
-    raise "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/pull/605"
-  else
-    pending "Requires a fix that is not available yet.\nSee: https://github.com/calabash/calabash-ios/pull/605"
-  end
-
   qstr = @current_text_input_view
 
   if text_field_qstrs.include?(qstr)
@@ -527,4 +495,27 @@ When(/^I type a key that does not exist it should raise an exception$/) do
     end
   end
 
+end
+
+Then(/^I type a string with a newline$/) do
+  expect_current_text_input_view_set
+  clear_text(@current_text_input_view)
+  touch(@current_text_input_view)
+
+  wait_for_keyboard
+  ensure_docked_keyboard
+
+  string = "This string has a \n newline"
+# alternative ways to type this string
+#  string = "This string has a \\n line"
+#  string = <<EOF
+# This string has a
+# newline
+# EOF
+  keyboard_enter_text string
+
+  res = query(@current_text_input_view, :text).first
+  unless res == string
+    screenshot_and_raise "Expected #{string} to be typed but found '#{res}'"
+  end
 end

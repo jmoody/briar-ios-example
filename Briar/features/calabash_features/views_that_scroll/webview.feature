@@ -1,4 +1,5 @@
 @scrolling
+@webview
 Feature: Interacting with a WebView
   In order to ensure calabash can interact with a WebView
   As a tester

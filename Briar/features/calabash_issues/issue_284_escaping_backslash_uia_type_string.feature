@@ -18,10 +18,11 @@ Feature: Escaping backslashes
     When I type a non-interpolated string with one backslash
     Then a string with one backslash is typed
 
+  @issue_640
   Scenario: Interpolated string with one backslash
     When I type an interpolated string with one backslash
-    And depending on the iOS version
-    Then I see that the single backslash was escaped to a dot or a blank space
+    And depending on the iOS version and UIA strategy
+    Then I see that the single backslash was escaped, turned into a dot, or ignored
 
   Scenario: Non-interpolated string with several backslashes
     When I type a non-interpolated string with several backslashes
