@@ -19,7 +19,7 @@ end
 Before do |scenario|
 
   launch_options = {
-        :uia_strategy => :shared_element
+        #:uia_strategy => :shared_element
         #:uia_strategy => :host
         #:uia_strategy => :preferences
   }
