@@ -23,8 +23,8 @@ Feature: Interacting with segmented controls
     Then I should see segment "water" in segmented control "image chooser" is selected
     Then I should see "mossy brook"
 
-
   Scenario:  I should be able interact with the segmented control in left orientation
+    Then I am waiting for a segmented control fix for the :preferences strategy
     Then I rotate the device so the home button is on the left
     Then I should see segmented control "image chooser" with titles "sand, grass, water"
     Then I should see segment "sand" in segmented control "image chooser" is selected
@@ -43,6 +43,7 @@ Feature: Interacting with segmented controls
     Then I should see "mossy brook"
 
   Scenario:  I should be able interact with the segmented control in right orientation
+    Then I am waiting for a segmented control fix for the :preferences strategy
     Then I rotate the device so the home button is on the right
     Then I should see segmented control "image chooser" with titles "sand, grass, water"
     Then I should see segment "sand" in segmented control "image chooser" is selected
@@ -61,6 +62,7 @@ Feature: Interacting with segmented controls
     Then I should see "mossy brook"
 
   Scenario:  I should be able interact with the segmented control in top orientation
+    Then I am waiting for a segmented control fix for the :preferences strategy
     Then I rotate the device so the home button is on the top
     Then I should see segmented control "image chooser" with titles "sand, grass, water"
     Then I should see segment "sand" in segmented control "image chooser" is selected

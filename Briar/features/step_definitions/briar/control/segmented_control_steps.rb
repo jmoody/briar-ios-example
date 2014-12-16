@@ -52,3 +52,10 @@ Then /^I should see the segment is not selected and the label in the row is clea
   #macro %Q|I should see segment "#{@segment_id}" in segmented control "#{@control_id}" is not selected|
   #should_see_row_with_label_with_text @associated_row, @associated_label, ""
 end
+
+Then(/^I am waiting for a segmented control fix for the :preferences strategy$/) do
+  uia_strategy = Calabash::Cucumber::Launcher.launcher.run_loop[:uia_strategy]
+  if uia_strategy == :preferences
+    pending 'Waiting for a fix for gestures on UISegmentedControl segments'
+  end
+end
