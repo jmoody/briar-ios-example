@@ -3,7 +3,8 @@
 @sheet
 @email
 @buttons
-Feature: i want to be able to rotate and touch things on iOS 7
+@wip
+Feature: I want to be able to rotate and touch things
 
   Background:  start on the buttons view
     When I touch the "Buttons" tab I should see the "buttons" view
