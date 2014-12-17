@@ -128,7 +128,7 @@ typedef enum : NSUInteger {
    https://groups.google.com/d/msg/calabash-ios/L6OmNnbhPW0/0fzLX-DJl-UJ
    
    **************************/
-  return br_is_iphone_5() ? 47 : 43;
+  return br_is_4in_iphone() ? 47 : 43;
 }
 
 
@@ -200,10 +200,9 @@ typedef enum : NSUInteger {
   
 
   CGFloat height = br_iphone_y_max() - 49;
+  CGFloat width = br_iphone_x_max();
 
-  // tabbar is not yet translucent
-  // if (br_is_not_iOS_7()) { height -= 49; }
-  CGRect rect = CGRectMake(0, 0, 320, height);
+  CGRect rect = CGRectMake(0, 0, width, height);
   UITableViewStyle style = UITableViewStylePlain;
   UITableView *table  = [[UITableView alloc] initWithFrame:rect
                                                      style:style];

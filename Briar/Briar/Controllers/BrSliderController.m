@@ -350,7 +350,7 @@ static NSString *const k_aid_table = @"table";
   CGFloat viewW = CGRectGetWidth(self.view.frame);
   CGFloat tabBarHeight = self.tabBarController.tabBar.frame.size.height;
   if (UIInterfaceOrientationIsLandscape(aOrienation)) {
-    CGFloat w = br_is_ipad() ? 768 : 320;
+    CGFloat w = br_iphone_x_max();
     CGFloat x = (viewW/2) - (w/2);
     CGFloat y = 140 + iOS7adj + ipadYAdj;
     CGFloat h;

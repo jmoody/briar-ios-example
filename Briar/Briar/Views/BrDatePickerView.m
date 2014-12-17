@@ -35,7 +35,7 @@
   
   CGFloat pickerY = 64;
   if (aController.hidesBottomBarWhenPushed == YES) { pickerY += 49; }
-  if (br_is_iphone_5()) { pickerY += 568 - 480; }
+  if (br_is_4in_iphone()) { pickerY += 568 - 480; }
   
   __weak UIViewController *wCon = aController;
   [UIView animateWithDuration:0.4

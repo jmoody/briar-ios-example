@@ -233,7 +233,8 @@ typedef enum : NSInteger {
 
 - (UITableView *) tableView {
   if (_tableView != nil) { return _tableView; }
-  CGRect frame = CGRectMake(0, 0, 320, br_iphone_y_max());
+  CGFloat width = br_iphone_x_max();
+  CGRect frame = CGRectMake(0, 0, width, br_iphone_y_max());
   UITableView *table = [[UITableView alloc]
                         initWithFrame:frame
                         style:UITableViewStylePlain];

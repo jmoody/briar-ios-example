@@ -221,7 +221,9 @@ UIAlertViewDelegate>
     UIInterfaceOrientation b = UIInterfaceOrientationPortrait;
     UIInterfaceOrientation o = aOrientation;
     CGFloat ipadYAdj = br_is_ipad() ? 20 : 0;
-    CGFloat iphone5_X_adj = br_is_iphone_5() ? 44 : 0;
+    CGFloat iphone5_X_adj = br_is_4in_iphone() ? 44 : 0;
+
+     CGFloat maxWidth = br_iphone_x_max();
         
     if ([kAIButtonShowAlert isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20 + iphone5_X_adj, 54 + ipadYAdj, 124, 44); }
     if ([kAIButtonShowAlert isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 78 + iphone5_X_adj, 280, 44); }
@@ -235,8 +237,8 @@ UIAlertViewDelegate>
     if ([kAISegmentedControl isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(20 + iphone5_X_adj, 102 + ipadYAdj , 280, 44); }
     if ([kAISegmentedControl isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(20, 246 + iphone5_X_adj, 280, 44); }
 
-    if ([kAIImageView isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(22 + iphone5_X_adj, 150 + ipadYAdj , 320, 120); }
-    if ([kAIImageView isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(0, 298 + iphone5_X_adj, 320, 120); }
+    if ([kAIImageView isEqualToString:aid] && (l == o || r == o)) { frame = CGRectMake(22 + iphone5_X_adj, 150 + ipadYAdj , maxWidth, 120); }
+    if ([kAIImageView isEqualToString:aid] && (t == o || b == o)) { frame = CGRectMake(0, 298 + iphone5_X_adj, maxWidth, 120); }
 
     _frames[key] = NSStringFromCGRect(frame);
   }
