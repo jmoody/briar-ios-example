@@ -1,6 +1,6 @@
 @collection_view
-Feature: interacting with collection views
-  In order to silence the quell the clambering horde
+Feature: Interacting with collection views
+  In order to silence the clambering horde
   As a tester
   I want calabash function to interact with collection views
 
