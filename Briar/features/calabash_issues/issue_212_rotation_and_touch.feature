@@ -3,7 +3,6 @@
 @sheet
 @email
 @buttons
-@wip
 Feature: I want to be able to rotate and touch things
 
   Background:  start on the buttons view
