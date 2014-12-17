@@ -261,6 +261,8 @@
 		F5C3A66F18A33CAE00DB7E42 /* vegetable_curry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5C3A64E18A33CAE00DB7E42 /* vegetable_curry.jpg */; };
 		F5C3A67018A33CAE00DB7E42 /* white_chocolate_donut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5C3A64F18A33CAE00DB7E42 /* white_chocolate_donut.jpg */; };
 		F5C3A67118A33CAE00DB7E42 /* white_chocolate_donut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F5C3A64F18A33CAE00DB7E42 /* white_chocolate_donut.jpg */; };
+		F5D4F9461A41AE030026C3F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5D4F9451A41AE030026C3F2 /* Images.xcassets */; };
+		F5D4F9471A41C2720026C3F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5D4F9451A41AE030026C3F2 /* Images.xcassets */; };
 		F5DC02AE1A09802600744826 /* BrWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DC02AC1A09802600744826 /* BrWebViewController.m */; };
 		F5DC02AF1A09802600744826 /* BrWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DC02AC1A09802600744826 /* BrWebViewController.m */; };
 		F5DC02B01A09802600744826 /* BrWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5DC02AD1A09802600744826 /* BrWebViewController.xib */; };
@@ -430,6 +432,7 @@
 		F5C3A64D18A33CAE00DB7E42 /* thai_shrimp_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thai_shrimp_cake.jpg; sourceTree = "<group>"; };
 		F5C3A64E18A33CAE00DB7E42 /* vegetable_curry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vegetable_curry.jpg; sourceTree = "<group>"; };
 		F5C3A64F18A33CAE00DB7E42 /* white_chocolate_donut.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white_chocolate_donut.jpg; sourceTree = "<group>"; };
+		F5D4F9451A41AE030026C3F2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F5DC02AB1A09802600744826 /* BrWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrWebViewController.h; path = ../../BrWebViewController.h; sourceTree = "<group>"; };
 		F5DC02AC1A09802600744826 /* BrWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrWebViewController.m; path = ../../BrWebViewController.m; sourceTree = "<group>"; };
 		F5DC02AD1A09802600744826 /* BrWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrWebViewController.xib; sourceTree = "<group>"; };
@@ -540,6 +543,7 @@
 				F56BAB5916FCA42900AB8578 /* Controllers */,
 				F568C45A16E3C6A8007797F1 /* XIB */,
 				F568C45116E3C69C007797F1 /* artwork */,
+				F5D4F9451A41AE030026C3F2 /* Images.xcassets */,
 				F568C42716E3C256007797F1 /* Supporting Files */,
 			);
 			path = Briar;
@@ -903,6 +907,7 @@
 				F568C46816E3C6F2007797F1 /* Icon-Small.png in Resources */,
 				F5A6DB811810581A007D85C7 /* happy@2x.png in Resources */,
 				F568C46916E3C6F2007797F1 /* Icon-Small@2x.png in Resources */,
+				F5D4F9461A41AE030026C3F2 /* Images.xcassets in Resources */,
 				F5A6DB891810581A007D85C7 /* cabinet@2x.png in Resources */,
 				F568C46A16E3C6F2007797F1 /* Icon.png in Resources */,
 				F5A6DB771810581A007D85C7 /* bored.png in Resources */,
@@ -1010,6 +1015,7 @@
 				b8fdd38325a6b1a766af9175 /* Icon-Small.png in Resources */,
 				F5A6DB821810581A007D85C7 /* happy@2x.png in Resources */,
 				8e2359e8cb78e16bc7c93e82 /* Icon-Small@2x.png in Resources */,
+				F5D4F9471A41C2720026C3F2 /* Images.xcassets in Resources */,
 				F5A6DB8A1810581A007D85C7 /* cabinet@2x.png in Resources */,
 				528fac7a775919ed58477c54 /* Icon.png in Resources */,
 				F5A6DB781810581A007D85C7 /* bored.png in Resources */,
@@ -1466,6 +1472,8 @@
 					arvm7,
 					arvm7s,
 				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1495,6 +1503,8 @@
 					arvm7,
 					arvm7s,
 				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CODE_SIGN_IDENTITY = "";
