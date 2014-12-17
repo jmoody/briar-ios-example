@@ -51,7 +51,7 @@ NS_INLINE BOOL br_is_ipad() {
 extern NSString *const k_br_ios_700;
 extern NSString *const k_br_ios_600;
 
-extern CGFloat const k_br_iphone_5_height;
+extern CGFloat const k_br_iphone_4in_height;
 extern CGFloat const k_br_iphone_height;
 extern CGFloat const k_br_iphone_5_additonal_points;
 
@@ -110,18 +110,24 @@ NS_INLINE BOOL br_ios_version_lte(NSString* v) {
   return shared;
 }
 
-NS_INLINE BOOL br_is_iphone_5() {
+NS_INLINE BOOL br_is_4in_iphone() {
   static dispatch_once_t onceToken;
   static BOOL shared = NO;
   dispatch_once(&onceToken, ^{
-    shared = CGRectGetHeight([[UIScreen mainScreen] bounds]) == k_br_iphone_5_height;
+    shared = CGRectGetHeight([[UIScreen mainScreen] bounds]) == k_br_iphone_4in_height;
   });
   return shared;
 }
 
-NS_INLINE CGFloat br_iphone_y_max() {
-  return br_is_iphone_5() ? k_br_iphone_5_height : k_br_iphone_height;
+NS_INLINE BOOL br_is_iphone6() {
+  static dispatch_once_t onceToken;
+  static BOOL shared = NO;
+  dispatch_once(&onceToken, ^{
+    shared = CGRectGetHeight([[UIScreen mainScreen] bounds]) == k_br_iphone_4in_height;
+  });
+  return shared;
 }
+
 
 
 NS_INLINE BOOL br_is_iOS_7() {
@@ -135,7 +141,6 @@ NS_INLINE BOOL br_is_not_iOS_7() {
 NS_INLINE BOOL br_is_iOS_5() {
   return br_ios_version_lt(@"6.0");
 }
-
 
 
 
@@ -155,5 +160,21 @@ NS_INLINE BOOL br_is_iOS_5() {
 + (NSString *) stringForDateTimeFormat; 
 + (NSString *) stringForTimeFormat;
 + (NSDateFormatter *) dateFormatterWithFormat:(NSString *) aString;
++ (NSDictionary *) screenDimensions;
 
 @end
+
+
+NS_INLINE CGFloat br_iphone_y_max() {
+  NSDictionary *dimensions = [BrGlobals screenDimensions];
+  CGFloat scale = [dimensions[@"scale"] floatValue];
+  CGFloat height = [dimensions[@"height"] floatValue];
+  return (height/scale);
+}
+
+NS_INLINE CGFloat br_iphone_x_max() {
+  NSDictionary *dimensions = [BrGlobals screenDimensions];
+  CGFloat scale = [dimensions[@"scale"] floatValue];
+  CGFloat width = [dimensions[@"width"] floatValue];
+  return (width/scale);
+}

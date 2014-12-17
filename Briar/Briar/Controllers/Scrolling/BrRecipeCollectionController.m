@@ -190,11 +190,12 @@ static NSString *const kRecipeCellIdentifier = @"recipe cell";
 
 - (UICollectionView *) collectionView {
   if (_collectionView != nil) { return _collectionView; }
-  CGRect frame = CGRectMake(0, 64, 320, br_iphone_y_max());
+  CGFloat width = br_iphone_x_max();
+  CGRect frame = CGRectMake(0, 64, width, br_iphone_y_max() - 64 - 50);
 
   UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-  layout.headerReferenceSize = CGSizeMake(320, 10);
-  layout.footerReferenceSize = CGSizeMake(320, 10);
+  layout.headerReferenceSize = CGSizeMake(width, 10);
+  layout.footerReferenceSize = CGSizeMake(width, 10);
   
   UICollectionView *cv = [[UICollectionView alloc]
                           initWithFrame:frame
@@ -208,9 +209,7 @@ static NSString *const kRecipeCellIdentifier = @"recipe cell";
   cv.tag = kTagCollectionView;
   cv.accessibilityIdentifier = @"recipe collection";
   cv.accessibilityLabel = @"Recipes";
-  
 
-  
   _collectionView = cv;
   return _collectionView;
 }
