@@ -54,6 +54,8 @@ else
 
     set +o errexit
 
+
+   if [ -z "${BRIAR_SIGNING_IDENTITY}" ]; then
     xcrun xcodebuild archive \
         -SYMROOT="${CAL_DISTRO_DIR}" \
         -derivedDataPath "${CAL_DISTRO_DIR}" \
@@ -62,6 +64,17 @@ else
         -configuration "${CONFIG}" \
         -archivePath "${ARCHIVE_BUNDLE}" \
         -sdk iphoneos | xcpretty -c
+   else
+        xcrun xcodebuild archive \
+        CODE_SIGN_IDENTITY="${BRIAR_SIGNING_IDENTITY}" \
+        -SYMROOT="${CAL_DISTRO_DIR}" \
+        -derivedDataPath "${CAL_DISTRO_DIR}" \
+        -workspace "${WORKSPACE}" \
+        -scheme "${SCHEME}" \
+        -configuration "${CONFIG}" \
+        -archivePath "${ARCHIVE_BUNDLE}" \
+        -sdk iphoneos | xcpretty -c
+   fi
 
 
     RETVAL=${PIPESTATUS[0]}
@@ -89,15 +102,15 @@ else
         fi
     fi
 
-    xcrun -sdk iphoneos PackageApplication -v "${PWD}/${APP_BUNDLE_PATH}" -o "${PWD}/${IPA_PATH}" > /dev/null
-
-    RETVAL=$?
+    xcrun -sdk iphoneos PackageApplication --verbose \
+        -v "${PWD}/${APP_BUNDLE_PATH}" \
+        -o "${PWD}/${IPA_PATH}" > /dev/null
 
     set -o errexit
 
     if [ $RETVAL != 0 ]; then
-        echo "FAIL:  export archive failed"
-        exit $RETVAL
+       echo "FAIL:  export archive failed"
+       exit $RETVAL
     fi
 
     cp "${IPA_PATH}" "${XAMARIN_DIR}/"
