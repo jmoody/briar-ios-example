@@ -14,4 +14,7 @@ gem 'run_loop', :github => 'git@github.com:calabash/run_loop', :branch => 'devel
 gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'develop'
 gem 'briar', :github => 'jmoody/briar', :branch => 'develop'
 
+# patch for ruby 2.2.0 and cucumber
+gem 'minitest'
+
 #gem 'xamarin-test-cloud', :git => 'git@github.com:jmoody/test-cloud-command-line.git', :branch => 'master'

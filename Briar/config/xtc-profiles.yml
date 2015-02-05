@@ -30,3 +30,4 @@ keyboard:    -p tags --tags @keyboard
 
 collections: -p tags --tags @collection_view
 keychain:    -p tags --tags @issue_323
+date_picker:    -p tags --tags @date_picker
