@@ -25,8 +25,8 @@ Given(/^that I (have not|have) launched the app$/) do |arg|
 end
 
 Then(/^I am waiting for a fix for the :preferences strategy$/) do
-  uia_strategy = Calabash::Cucumber::Launcher.launcher.run_loop[:uia_strategy]
-  if uia_strategy == :preferences
-    pending 'Waiting for a fix for gestures on when using :preferences strategy'
-  end
+  # uia_strategy = Calabash::Cucumber::Launcher.launcher.run_loop[:uia_strategy]
+  # if uia_strategy == :preferences
+  #   pending 'Waiting for a fix for gestures on when using :preferences strategy'
+  # end
 end
