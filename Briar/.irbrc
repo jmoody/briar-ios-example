@@ -1,6 +1,8 @@
 require 'faker'
 require 'briar'
 require 'briar/irbrc'
+require 'pry'
+require 'pry-nav'
 
 puts 'loaded briar'
 
