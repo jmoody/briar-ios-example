@@ -8,13 +8,15 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'run-develop'))
 
 xtc_device_set = ARGV[0] || '1cdb4285'
 xtc_profile = ARGV[1] || 'default'
+xtc_series = ARGV[2] || 'nightly-develop'
+
 # accept 2 additional cucumber args for -t < tags >
 cucumber_args = ''
 if ARGV.count == 4
   cucumber_args = "#{ARGV[2]} #{ARGV[3]}"
 end
 
-run_develop xtc_device_set, xtc_profile, 'nightly-develop'
+run_develop xtc_device_set, xtc_profile,  xtc_series
 
 working_dir = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'Briar'))
 
