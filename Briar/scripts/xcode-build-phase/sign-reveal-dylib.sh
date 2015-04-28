@@ -14,7 +14,10 @@
 set -e
 
 if [ -n "${BRIAR_SIGNING_IDENTITY}" ]; then
+  echo "INFO: Briar signing identity is defined"
   CODE_SIGN_IDENTITY="${BRIAR_SIGNING_IDENTITY}"
+  else
+  echo "INFO: Briar signing identity is not defined"
 fi
 
 ####################### BEGIN JENKINS KEYCHAIN #################################
