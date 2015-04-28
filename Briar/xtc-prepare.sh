@@ -28,7 +28,7 @@ else
 
     ####################### JENKINS KEYCHAIN #######################################
 
-    echo "INFO: unlocking the keychain"
+    echo "INFO: unlocking the keychain 1 of 2 in xtc-prepare.sh"
 
     # unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
     if [ "${USER}" = "jenkins" ]; then
@@ -38,7 +38,10 @@ else
             echo "FAIL: could not unlock the keychain"
             exit ${RETVAL}
         fi
+        xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
+        OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
     fi
+
     WORKSPACE="../briar-ios-example.xcworkspace"
     SCHEME="Briar-cal"
     TARGET_NAME="Briar-cal"
@@ -63,7 +66,7 @@ else
         -scheme "${SCHEME}" \
         -configuration "${CONFIG}" \
         -archivePath "${ARCHIVE_BUNDLE}" \
-        -sdk iphoneos | xcpretty -c
+        -sdk iphoneos #| xcpretty -c
    else
         xcrun xcodebuild archive \
         CODE_SIGN_IDENTITY="${BRIAR_SIGNING_IDENTITY}" \
@@ -73,12 +76,12 @@ else
         -scheme "${SCHEME}" \
         -configuration "${CONFIG}" \
         -archivePath "${ARCHIVE_BUNDLE}" \
-        -sdk iphoneos | xcpretty -c
+        -sdk iphoneos #| xcpretty -c
    fi
 
 
-    RETVAL=${PIPESTATUS[0]}
-
+    #RETVAL=${PIPESTATUS[0]}
+    RETVAL=$?
     set -o errexit
 
     if [ $RETVAL != 0 ]; then
@@ -90,7 +93,7 @@ else
 
     ####################### JENKINS KEYCHAIN #######################################
 
-    echo "INFO: unlocking the keychain"
+    echo "INFO: unlocking the keychain 2 of 2 in xtc-prepare.sh"
 
     # unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
     if [ "${USER}" = "jenkins" ]; then
@@ -100,11 +103,12 @@ else
             echo "FAIL: could not unlock the keychain"
             exit ${RETVAL}
         fi
+        xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
     fi
 
     xcrun -sdk iphoneos PackageApplication --verbose \
         -v "${PWD}/${APP_BUNDLE_PATH}" \
-        -o "${PWD}/${IPA_PATH}" > /dev/null
+        -o "${PWD}/${IPA_PATH}" #> /dev/null
 
     set -o errexit
 

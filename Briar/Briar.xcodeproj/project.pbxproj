@@ -1137,7 +1137,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./sign-reveal.rb \"${CODE_SIGN_IDENTITY}\" \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libReveal.dylib\"";
+			shellScript = "scripts/xcode-build-phase/sign-reveal-dylib.sh";
 			showEnvVarsInLog = 0;
 		};
 		F58B6DF6186874980042191C /* Run Script - sign reveal */ = {
@@ -1152,7 +1152,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./sign-reveal.rb \"${CODE_SIGN_IDENTITY}\" \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libReveal.dylib\"";
+			shellScript = "scripts/xcode-build-phase/sign-reveal-dylib.sh";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
