@@ -39,7 +39,7 @@ else
             exit ${RETVAL}
         fi
         xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
-        #OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
+        OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
         xcrun security show-keychain-info ${KEYCHAIN_PATH}
     fi
 
@@ -61,6 +61,7 @@ else
 
    if [ -z "${BRIAR_SIGNING_IDENTITY}" ]; then
     xcrun xcodebuild archive \
+        OTHER_CODE_SIGN_FLAGS=${OTHER_CODE_SIGN_FLAGS} \
         -SYMROOT="${CAL_DISTRO_DIR}" \
         -derivedDataPath "${CAL_DISTRO_DIR}" \
         -workspace "${WORKSPACE}" \
@@ -70,6 +71,7 @@ else
         -sdk iphoneos #| xcpretty -c
    else
         xcrun xcodebuild archive \
+        OTHER_CODE_SIGN_FLAGS=${OTHER_CODE_SIGN_FLAGS} \
         CODE_SIGN_IDENTITY="${BRIAR_SIGNING_IDENTITY}" \
         -SYMROOT="${CAL_DISTRO_DIR}" \
         -derivedDataPath "${CAL_DISTRO_DIR}" \
