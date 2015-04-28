@@ -32,6 +32,7 @@ else
 
     # unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
     if [ "${USER}" = "jenkins" ]; then
+        xcrun security -v list-keychains -d user -s "${KEYCHAIN_PATH}"
         xcrun security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
         RETVAL=$?
         if [ ${RETVAL} != 0 ]; then
@@ -41,6 +42,8 @@ else
         xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
         OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
         xcrun security show-keychain-info ${KEYCHAIN_PATH}
+
+        xcrun security -v list-keychains
     fi
 
     WORKSPACE="../briar-ios-example.xcworkspace"
