@@ -30,11 +30,14 @@ if [ "${USER}" = "jenkins" ]; then
         echo "FAIL: could not unlock the keychain"
         exit ${RETVAL}
     fi
+
     xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
     OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
+    xcrun security show-keychain-info ${KEYCHAIN_PATH}
 fi
 
 xcrun xcodebuild \
+    OTHER_CODE_SIGN_FLAGS=${OTHER_CODE_SIGN_FLAGS} \
     -SYMROOT="${CAL_BUILD_DIR}" \
     -derivedDataPath "${CAL_BUILD_DIR}" \
     -workspace "${XC_WORKSPACE}" \

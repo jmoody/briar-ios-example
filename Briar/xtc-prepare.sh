@@ -33,6 +33,7 @@ else
     # unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
     if [ "${USER}" = "jenkins" ]; then
         xcrun security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
+
         RETVAL=$?
         if [ ${RETVAL} != 0 ]; then
             echo "FAIL: could not unlock the keychain"
@@ -40,6 +41,7 @@ else
         fi
         xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
         OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
+        xcrun security show-keychain-info ${KEYCHAIN_PATH}
     fi
 
     WORKSPACE="../briar-ios-example.xcworkspace"
@@ -60,6 +62,7 @@ else
 
    if [ -z "${BRIAR_SIGNING_IDENTITY}" ]; then
     xcrun xcodebuild archive \
+        OTHER_CODE_SIGN_FLAGS=${OTHER_CODE_SIGN_FLAGS} \
         -SYMROOT="${CAL_DISTRO_DIR}" \
         -derivedDataPath "${CAL_DISTRO_DIR}" \
         -workspace "${WORKSPACE}" \
@@ -69,6 +72,7 @@ else
         -sdk iphoneos | xcpretty -c
    else
         xcrun xcodebuild archive \
+        OTHER_CODE_SIGN_FLAGS=${OTHER_CODE_SIGN_FLAGS} \
         CODE_SIGN_IDENTITY="${BRIAR_SIGNING_IDENTITY}" \
         -SYMROOT="${CAL_DISTRO_DIR}" \
         -derivedDataPath "${CAL_DISTRO_DIR}" \
@@ -81,6 +85,7 @@ else
 
 
     RETVAL=${PIPESTATUS[0]}
+
     set -o errexit
 
     if [ $RETVAL != 0 ]; then
@@ -103,11 +108,13 @@ else
             exit ${RETVAL}
         fi
         xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
+        OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
+        xcrun security show-keychain-info ${KEYCHAIN_PATH}
     fi
 
-    xcrun -sdk iphoneos PackageApplication --verbose \
+    xcrun -sdk iphoneos PackageApplication \
         -v "${PWD}/${APP_BUNDLE_PATH}" \
-        -o "${PWD}/${IPA_PATH}" > /dev/null
+        -o "${PWD}/${IPA_PATH}"
 
     set -o errexit
 
