@@ -39,7 +39,8 @@ else
             exit ${RETVAL}
         fi
         xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
-        OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
+        #OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
+        xcrun security show-keychain-info ${KEYCHAIN_PATH}
     fi
 
     WORKSPACE="../briar-ios-example.xcworkspace"
