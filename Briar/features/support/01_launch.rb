@@ -22,6 +22,7 @@ Before do |scenario|
         #:uia_strategy => :shared_element
         #:uia_strategy => :host
         #:uia_strategy => :preferences
+        #:results_dir => '/Users/moody/git/briar-ios-example/Briar/calabash-results'
   }
 
   LaunchControl.launcher.relaunch(launch_options)
