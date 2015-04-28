@@ -38,11 +38,10 @@ else
             echo "FAIL: could not unlock the keychain"
             exit ${RETVAL}
         fi
+
+        OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
     fi
 
-    xcrun security list-keychains
-
-    exit 1
     WORKSPACE="../briar-ios-example.xcworkspace"
     SCHEME="Briar-cal"
     TARGET_NAME="Briar-cal"
@@ -60,6 +59,7 @@ else
 
 
    if [ -z "${BRIAR_SIGNING_IDENTITY}" ]; then
+    echo "INFO: other code sign flags: $OTHER_CODE_SIGN_FLAGS"
     xcrun xcodebuild archive \
         -SYMROOT="${CAL_DISTRO_DIR}" \
         -derivedDataPath "${CAL_DISTRO_DIR}" \
@@ -69,6 +69,7 @@ else
         -archivePath "${ARCHIVE_BUNDLE}" \
         -sdk iphoneos #| xcpretty -c
    else
+   echo "INFO: other code sign flags: $OTHER_CODE_SIGN_FLAGS"
         xcrun xcodebuild archive \
         CODE_SIGN_IDENTITY="${BRIAR_SIGNING_IDENTITY}" \
         -SYMROOT="${CAL_DISTRO_DIR}" \
@@ -94,7 +95,7 @@ else
 
     ####################### JENKINS KEYCHAIN #######################################
 
-    echo "INFO: unlocking the keychain"
+    echo "INFO: unlocking the keychain 2 of 2 in xtc-prepare.sh"
 
     # unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
     if [ "${USER}" = "jenkins" ]; then
