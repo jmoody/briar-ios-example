@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# If you see an error like this:
+#
+# iPhone Developer: ambiguous (matches "iPhone Developer: Person A (2<snip>Q)"
+#                                  and "iPhone Developer: Person B (8<snip>F)"
+# in /Users/<snip>/Library/Keychains/login.keychain)
+#
+# Uncomment this line and update it with the correct credentials.
+# CODE_SIGN_IDENTITY="iPhone Developer: Person B (8<snip>F)"
+#
+# Alternatively, define BRIAR_SIGNING_IDENTITY.
+
+set -e
+
+if [ -n "${BRIAR_SIGNING_IDENTITY}" ]; then
+  CODE_SIGN_IDENTITY="${BRIAR_SIGNING_IDENTITY}"
+fi
+
+####################### BEGIN JENKINS KEYCHAIN #################################
+
+if [ "${USER}" = "jenkins" ]; then
+  echo "INFO: unlocking the keychain"
+
+  xcrun security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
+  RETVAL=$?
+  if [ ${RETVAL} != 0 ]; then
+    echo "FAIL: could not unlock the keychain"
+    exit ${RETVAL}
+  fi
+
+  JENKINS_KEYCHAIN_PATH="--keychain ${KEYCHAIN_PATH}"
+fi
+
+####################### END JENKINS KEYCHAIN ####################################
+
+if [ -n "${CODE_SIGN_IDENTITY}" ]; then
+  echo "INFO: Code signing with ${CODE_SIGN_IDENTITY} with ${KEYCHAIN_PATH}"
+  REVEAL_DYLIB_PATH="${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libReveal.dylib"
+  if [ "${USER}" = "jenkins" ]; then
+    xcrun codesign --keychain ${KEYCHAIN_PATH} -fs "${CODE_SIGN_IDENTITY}" "${REVEAL_DYLIB_PATH}"
+  else
+    xcrun codesign -fs "${CODE_SIGN_IDENTITY}" "${REVEAL_DYLIB_PATH}"
+  fi
+else
+  echo "INFO: Skipping libReal.dylib codesigning because CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY} is emtpy"
+fi
