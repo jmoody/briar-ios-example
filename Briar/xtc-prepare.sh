@@ -107,7 +107,7 @@ else
 
     xcrun -sdk iphoneos PackageApplication --verbose \
         -v "${PWD}/${APP_BUNDLE_PATH}" \
-        -o "${PWD}/${IPA_PATH}" > /dev/null
+        -o "${PWD}/${IPA_PATH}"
 
     set -o errexit
 
