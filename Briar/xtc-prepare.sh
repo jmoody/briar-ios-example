@@ -42,7 +42,6 @@ else
         xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
         OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
         xcrun security show-keychain-info ${KEYCHAIN_PATH}
-        xcrun security -v list-keychains -d user
     fi
 
     WORKSPACE="../briar-ios-example.xcworkspace"
@@ -109,9 +108,11 @@ else
             exit ${RETVAL}
         fi
         xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
+        OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
+        xcrun security show-keychain-info ${KEYCHAIN_PATH}
     fi
 
-    xcrun -sdk iphoneos PackageApplication --verbose \
+    xcrun -sdk iphoneos PackageApplication \
         -v "${PWD}/${APP_BUNDLE_PATH}" \
         -o "${PWD}/${IPA_PATH}"
 
