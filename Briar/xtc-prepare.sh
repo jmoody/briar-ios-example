@@ -70,7 +70,7 @@ else
         -scheme "${SCHEME}" \
         -configuration "${CONFIG}" \
         -archivePath "${ARCHIVE_BUNDLE}" \
-        -sdk iphoneos #| xcpretty -c
+        -sdk iphoneos | xcpretty -c
    else
         xcrun xcodebuild archive \
         OTHER_CODE_SIGN_FLAGS=${OTHER_CODE_SIGN_FLAGS} \
@@ -81,12 +81,11 @@ else
         -scheme "${SCHEME}" \
         -configuration "${CONFIG}" \
         -archivePath "${ARCHIVE_BUNDLE}" \
-        -sdk iphoneos #| xcpretty -c
+        -sdk iphoneos | xcpretty -c
    fi
 
 
-    #RETVAL=${PIPESTATUS[0]}
-    RETVAL=$?
+    RETVAL=${PIPESTATUS[0]}
 
     set -o errexit
 
