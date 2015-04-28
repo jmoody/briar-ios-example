@@ -97,7 +97,7 @@ def run_develop(xtc_device_set, xtc_profile, xtc_series)
     do_system('bundle exec briar install calabash-server',
               {:env_vars => env_vars})
 
-    do_system("bundle exec briar xtc #{xtc_device_set} #{xtc_profile}")
+    #do_system("bundle exec briar xtc #{xtc_device_set} #{xtc_profile}")
 
   end
 end
