@@ -38,7 +38,7 @@ else
             echo "FAIL: could not unlock the keychain"
             exit ${RETVAL}
         fi
-
+        xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
         OTHER_CODE_SIGN_FLAGS="--keychain=${KEYCHAIN_PATH}"
     fi
 
@@ -103,6 +103,7 @@ else
             echo "FAIL: could not unlock the keychain"
             exit ${RETVAL}
         fi
+        xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
     fi
 
     xcrun -sdk iphoneos PackageApplication --verbose \

@@ -23,6 +23,8 @@ if [ "${USER}" = "jenkins" ]; then
   echo "INFO: unlocking the keychain in sign-reveal-dylib.sh script."
 
   xcrun security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
+  xcrun security set-keychain-settings -t 3600 -l "${KEYCHAIN_PATH}"
+
   RETVAL=$?
   if [ ${RETVAL} != 0 ]; then
     echo "FAIL: could not unlock the keychain"
@@ -32,13 +34,13 @@ fi
 
 ####################### END JENKINS KEYCHAIN ####################################
 
-#if [ -n "${CODE_SIGN_IDENTITY}" ]; then
-#  REVEAL_DYLIB_PATH="${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libReveal.dylib"
-#  if [ "${USER}" = "jenkins" ]; then
-#    xcrun codesign -v --keychain ${KEYCHAIN_PATH} -fs ${CODE_SIGN_IDENTITY} "${REVEAL_DYLIB_PATH}"
-#  else
-#    xcrun codesign -v -fs "${CODE_SIGN_IDENTITY}" "${REVEAL_DYLIB_PATH}"
-#  fi
-#else
-#  echo "INFO: Skipping libReal.dylib codesigning because CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY} is emtpy"
-#fi
+if [ -n "${CODE_SIGN_IDENTITY}" ]; then
+  REVEAL_DYLIB_PATH="${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libReveal.dylib"
+  if [ "${USER}" = "jenkins" ]; then
+    xcrun codesign -v --keychain ${KEYCHAIN_PATH} -fs ${CODE_SIGN_IDENTITY} "${REVEAL_DYLIB_PATH}"
+  else
+    xcrun codesign -v -fs "${CODE_SIGN_IDENTITY}" "${REVEAL_DYLIB_PATH}"
+  fi
+else
+  echo "INFO: Skipping libReal.dylib codesigning because CODE_SIGN_IDENTITY=${CODE_SIGN_IDENTITY} is emtpy"
+fi
