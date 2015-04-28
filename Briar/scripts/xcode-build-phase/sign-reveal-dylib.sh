@@ -38,7 +38,7 @@ if [ -n "${CODE_SIGN_IDENTITY}" ]; then
   echo "INFO: Code signing with ${CODE_SIGN_IDENTITY} with ${KEYCHAIN_PATH}"
   REVEAL_DYLIB_PATH="${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libReveal.dylib"
   if [ "${USER}" = "jenkins" ]; then
-    xcrun codesign --keychain ${KEYCHAIN_PATH} -fs "${CODE_SIGN_IDENTITY}" "${REVEAL_DYLIB_PATH}"
+    xcrun codesign --keychain ${KEYCHAIN_PATH} -fs ${CODE_SIGN_IDENTITY} "${REVEAL_DYLIB_PATH}"
   else
     xcrun codesign -fs "${CODE_SIGN_IDENTITY}" "${REVEAL_DYLIB_PATH}"
   fi
