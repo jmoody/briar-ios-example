@@ -63,7 +63,7 @@ else
         -scheme "${SCHEME}" \
         -configuration "${CONFIG}" \
         -archivePath "${ARCHIVE_BUNDLE}" \
-        -sdk iphoneos | xcpretty -c
+        -sdk iphoneos #| xcpretty -c
    else
         xcrun xcodebuild archive \
         CODE_SIGN_IDENTITY="${BRIAR_SIGNING_IDENTITY}" \
@@ -73,12 +73,12 @@ else
         -scheme "${SCHEME}" \
         -configuration "${CONFIG}" \
         -archivePath "${ARCHIVE_BUNDLE}" \
-        -sdk iphoneos | xcpretty -c
+        -sdk iphoneos #| xcpretty -c
    fi
 
 
-    RETVAL=${PIPESTATUS[0]}
-
+    #RETVAL=${PIPESTATUS[0]}
+    RETVAL=$?
     set -o errexit
 
     if [ $RETVAL != 0 ]; then
@@ -104,7 +104,7 @@ else
 
     xcrun -sdk iphoneos PackageApplication --verbose \
         -v "${PWD}/${APP_BUNDLE_PATH}" \
-        -o "${PWD}/${IPA_PATH}" > /dev/null
+        -o "${PWD}/${IPA_PATH}" #> /dev/null
 
     set -o errexit
 
