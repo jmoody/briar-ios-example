@@ -28,7 +28,7 @@ else
 
     ####################### JENKINS KEYCHAIN #######################################
 
-    echo "INFO: unlocking the keychain"
+    echo "INFO: unlocking the keychain 1 of 2 in xtc-prepare.sh"
 
     # unlock the keychain - WARNING: might need to run 1x in UI to 'allow always'
     if [ "${USER}" = "jenkins" ]; then
@@ -39,6 +39,10 @@ else
             exit ${RETVAL}
         fi
     fi
+
+    xcrun security list-keychains
+
+    exit 1
     WORKSPACE="../briar-ios-example.xcworkspace"
     SCHEME="Briar-cal"
     TARGET_NAME="Briar-cal"
