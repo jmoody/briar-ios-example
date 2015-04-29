@@ -1,25 +1,23 @@
-# Disabled because the UISliders stopped responding to physical touches and
-# Calabash queries and gestures were causing the app to crash.
-#@sliders
-#@rotation
-#Feature: Testing the slider operation
-#
-#  Background: Navigate to the sliders tab
-#    When I touch the "Sliders" tab I should see the "sliders" view
-#    Then I should see the emotions slider group at the top of the view
-#    Then I rotate the device so the home button is on the bottom
-#    Then I should see the slider table
-#    Then I rotate the device 2 times in a random direction
-#
-#  Scenario: Emoticon should change when slider is moved
-#    When I change the "emotion" slider to 2, I should see the "happy" emoticon
-#    When I change the "emotion" slider to -2, I should see the "sad" emoticon
-#    When I change the "emotion" slider to -0.4, I should see the "bored" emoticon
-#
-#  Scenario: I should be able to interact with sliders in table rows
-#    Then I scroll to the "weather" row
-#    Then I observe that it is raining
-#    Then I scroll to the "office" row
-#    Then I decide we really need a paper airplane in the office
-#    Then I scroll to the "science" row
-#    Then I note that used the telescope in my experiment
+@sliders
+@rotation
+Feature: Testing the slider operation
+
+  Background: Navigate to the sliders tab
+    When I touch the "Sliders" tab I should see the "sliders" view
+    Then I should see the emotions slider group at the top of the view
+    Then I rotate the device so the home button is on the bottom
+    Then I should see the slider table
+    Then I rotate the device 2 times in a random direction
+
+  Scenario: Emoticon should change when slider is moved
+    When I change the "emotion" slider to 2, I should see the "happy" emoticon
+    When I change the "emotion" slider to -2, I should see the "sad" emoticon
+    When I change the "emotion" slider to -0.4, I should see the "bored" emoticon
+
+  Scenario: I should be able to interact with sliders in table rows
+    Then I scroll to the "weather" row
+    Then I observe that it is raining
+    Then I scroll to the "office" row
+    Then I decide we really need a paper airplane in the office
+    Then I scroll to the "science" row
+    Then I note that used the telescope in my experiment
