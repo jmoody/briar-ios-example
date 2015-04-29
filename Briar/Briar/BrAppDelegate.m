@@ -267,7 +267,6 @@ typedef enum : NSUInteger {
   BrNavigationController *date_nc = [[BrNavigationController alloc]
                                   initWithRootViewController:date_vc];
   
-  //UIViewController *table_vc = [BrTableController new];
   UIViewController *scroll_vc = [BrScrollingHomeController new];
   BrNavigationController *scroll_nc = [[BrNavigationController alloc]
                                       initWithRootViewController:scroll_vc];
