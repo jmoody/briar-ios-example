@@ -241,6 +241,8 @@ static CGFloat const kWidthOfValueLabel = 52;
   [_slider addTarget:self
               action:@selector(sliderValueDidChange:)
     forControlEvents:UIControlEventValueChanged];
+
+  _slider.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1.0f alpha:0.1f];
   return _slider;
 }
 
@@ -332,7 +334,7 @@ static CGFloat const kWidthOfValueLabel = 52;
   CGFloat y = kTopBottomMargin;
   CGRect sliderF = CGRectMake(kLeftRightMargin, y,
                               CGRectGetWidth(selfF) - (2 * kLeftRightMargin),
-                              0);
+                              44);
   return sliderF;
 }
 
