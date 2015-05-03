@@ -252,7 +252,7 @@ static NSString *const k_aid_table = @"table";
                     type:BrSliderScience
                     tag:kTagRowContent_Slider
                     didChangeBlock:^(UISlider *aSlider, BrSliderViewType aType) {
-                     NSLog(@"office slider updated");
+                     NSLog(@"science slider updated");
                    }];
   return _sliderScience;
 }
@@ -270,7 +270,7 @@ static NSString *const k_aid_table = @"table";
                     type:BrSliderWeather
                     tag:kTagRowContent_Slider
                     didChangeBlock:^(UISlider *aSlider, BrSliderViewType aType) {
-                      NSLog(@"office slider updated");
+                      NSLog(@"weather slider updated");
                     }];
   return _sliderWeather;
 }

@@ -18,7 +18,8 @@ When(/^I change the "([^"]*)" slider to ([-+]?[0-9]*\.?[0-9]+), I should see the
   _slider_id = "#{slider_id} slider"
   wait_for_view(_slider_id)
   target_val = value.to_f
-    briar_slider_set_value _slider_id, target_val
+  qstr = "UISlider marked:'#{_slider_id}"
+  slider_set_value qstr, target_val
   2.times { step_pause }
   base_str = "view:'BrSliderView' marked:'emotions' child"
 
@@ -49,16 +50,16 @@ Then(/^I should see the slider table$/) do
 end
 
 Then(/^I observe that it is raining$/) do
-  briar_slider_set_value 'weather slider', 1
+  slider_set_value "UISlider marked:'weather slider'", 1
   step_pause
 end
 
 Then(/^I decide we really need a paper airplane in the office$/) do
-  briar_slider_set_value 'office slider', -1
+  slider_set_value "UISlider marked:'office slider'", -1
   step_pause
 end
 
 Then(/^I note that used the telescope in my experiment$/) do
-  briar_slider_set_value 'science slider', 2
+  slider_set_value "UISlider marked:'science slider'", 2
   step_pause
 end
