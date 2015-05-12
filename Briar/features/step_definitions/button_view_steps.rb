@@ -38,7 +38,13 @@ Then(/^I dismiss the (action sheet|alert|email compose view) with the cancel but
   elsif what.eql?('email compose view')
     if device_configured_for_email
       if ios8?
-      wait_for_view 'buttons'
+        # iOS 8 typically dismisses the MailCompose view controller.
+        # iOS 8.1.3 behaves like other iOS 8 versions.
+        # It is unclear whether or not the 'automatically' dismiss behavior
+        # is due to an exception in Briar.app or intentional.
+        pending "Waiting for a fix in briar's email API"
+        delete_draft_and_wait_for 'buttons'
+        #wait_for_view 'buttons'
       else
         delete_draft_and_wait_for 'buttons'
       end
