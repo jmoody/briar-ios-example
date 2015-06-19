@@ -5,7 +5,7 @@ gem 'xcpretty', '~> 0.1'
 gem 'pry', '~> 0.10'
 gem 'pry-nav'
 gem 'briar', '~> 1.1'
-gem 'calabash-cucumber', '~> 0.12'
+gem 'calabash-cucumber', '~> 0.14'
 gem 'syntax'
 
 # patch for cucumber and ruby 2.2.0
