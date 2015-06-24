@@ -14,6 +14,18 @@ module LaunchControl
   end
 end
 
+require 'ruby-prof'
+
+puts "BEFORE SUITE, starting profile"
+# Profile the code
+RubyProf.start
+
+at_exit do
+  result = RubyProf.stop
+
+  printer = RubyProf::MultiPrinter.new(result)
+  printer.print(:path => ".", :profile => "profile")
+end
 
 #noinspection RubyUnusedLocalVariable
 Before do |scenario|
