@@ -7,6 +7,7 @@ gem 'pry-nav'
 gem 'briar', '~> 1.1'
 gem 'calabash-cucumber', '~> 0.14'
 gem 'syntax'
+gem 'ruby-prof'
 
 # patch for cucumber and ruby 2.2.0
 gem 'minitest'
