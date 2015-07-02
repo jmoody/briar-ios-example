@@ -7,7 +7,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'ci-helpers'))
 require File.expand_path(File.join(File.dirname(__FILE__), 'run-masters'))
 
 # Same as toolchain-released.
-xtc_device_set = ARGV[0] || '22107146'
+xtc_device_set = ARGV[0] || '13ebddc7'
 xtc_profile = ARGV[1] || 'default'
 # accept 2 additional cucumber args for -t < tags >
 cucumber_args = ''
