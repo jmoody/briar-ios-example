@@ -11,7 +11,7 @@ Install sweet tool to navigate profile data
 Run cucumbers, modified to output code profiles.
 See https://github.com/ruby-prof/ruby-prof for how you might do this.
 
-    be cucumber
+    BRIAR_PROFILE_CALABASH=1 be cucumber
 
 Then analyze the profiling data
 

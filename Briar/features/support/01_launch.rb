@@ -14,17 +14,19 @@ module LaunchControl
   end
 end
 
-require 'ruby-prof'
+if ENV['BRIAR_PROFILE_CALABASH']
+  require 'ruby-prof'
 
-puts "BEFORE SUITE, starting profile"
-# Profile the code
-RubyProf.start
+  puts "BEFORE SUITE, starting profile"
+  # Profile the code
+  RubyProf.start
 
-at_exit do
-  result = RubyProf.stop
+  at_exit do
+    result = RubyProf.stop
 
-  printer = RubyProf::MultiPrinter.new(result)
-  printer.print(:path => ".", :profile => "profile")
+    printer = RubyProf::MultiPrinter.new(result)
+    printer.print(:path => ".", :profile => "profile")
+  end
 end
 
 #noinspection RubyUnusedLocalVariable
