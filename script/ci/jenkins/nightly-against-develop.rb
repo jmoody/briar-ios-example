@@ -6,7 +6,7 @@
 require File.expand_path(File.join(File.dirname(__FILE__), 'ci-helpers'))
 require File.expand_path(File.join(File.dirname(__FILE__), 'run-develop'))
 
-xtc_device_set = ARGV[0] || '1cdb4285'
+xtc_device_set = ARGV[0] || '3f009268'
 xtc_profile = ARGV[1] || 'default'
 xtc_series = ARGV[2] || 'nightly-develop'
 
