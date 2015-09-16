@@ -79,7 +79,7 @@ reset_btw:    RESET_BETWEEN_SCENARIOS=1
 ipad_tags:   -p common --tags ~@iphone --tags ~@iphone_only
 iphone_tags: -p common --tags ~@ipad   --tags ~@ipad_only
 
-simulator:     -p common -p ss_path -p html_report --tags ~@device_only --tags ~@device
+simulator:     -p common -p ss_path -p html_report --tags ~@device_only --tags ~@device APP=./Briar-cal.app
 sim_launch:    -p simulator -p do_launch -p no_reset_btw
 sim_no_launch: -p simulator -p no_launch -p no_reset_btw
 
