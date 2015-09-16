@@ -100,4 +100,14 @@ end
 
 puts_calabash_environment
 
+if ENV['APP'] == '' || ENV['APP'].nil?
+  ENV['APP'] = './Briar-cal.app'
+end
+
+unless File.exist?(ENV['APP'])
+  raise "Expected APP #{ENV['APP']} to exist"
+end
+
+puts "APP => #{ENV['APP']}"
+
 Xamarin::IRBRC.message_of_the_day
