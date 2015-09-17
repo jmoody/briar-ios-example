@@ -4,7 +4,7 @@ end
 
 When(/^I touch the "([^"]*)" button I should see an? (action sheet|alert|email compose view)$/) do |button_id, what|
   if what.eql?('action sheet')
-    if ios8?
+    if ios8? || ios9?
       touch_button button_id
       wait_for_sheet nil # iOS 8 action sheets do not retain accessibilityIdentifiers
     else
@@ -37,7 +37,7 @@ Then(/^I dismiss the (action sheet|alert|email compose view) with the cancel but
     touch_alert_button 'Cancel'
   elsif what.eql?('email compose view')
     if device_configured_for_email
-      if ios8?
+      if ios8? || ios9?
         # iOS 8 typically dismisses the MailCompose view controller.
         # iOS 8.1.3 behaves like other iOS 8 versions.
         # It is unclear whether or not the 'automatically' dismiss behavior
