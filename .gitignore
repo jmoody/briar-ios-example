@@ -30,7 +30,6 @@ __MACOSX
 # bundler
 .bundle
 vendor
-Gemfile.lock
 
 # briar
 .env
