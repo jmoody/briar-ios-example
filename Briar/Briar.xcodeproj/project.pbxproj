@@ -840,7 +840,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BR;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Little Joy Software";
 			};
 			buildConfigurationList = F568C41816E3C256007797F1 /* Build configuration list for PBXProject "Briar" */;

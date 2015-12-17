@@ -19,7 +19,6 @@ typedef enum : NSUInteger {
 - (NSString *) titleForRowWithPath:(NSIndexPath *) aPath;
 - (UILabel *) labelForRowAtIndexPath:(NSIndexPath *) aPath;
 
-
 @end
 
 @implementation BrAlphabetTableController
@@ -42,14 +41,9 @@ typedef enum : NSUInteger {
   
 }
 
-
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload {
-  [super viewDidUnload];
 }
 
 - (NSString *) titleForRowWithPath:(NSIndexPath *) aPath {
@@ -65,12 +59,9 @@ typedef enum : NSUInteger {
 - (UILabel *) labelForRowAtIndexPath:(NSIndexPath *) aPath {
   NSString *title = [self titleForRowWithPath:aPath];
   
-  UIFont *font = [UIFont systemFontOfSize:18];
   CGFloat w = 300;
-  CGSize labelSize = [title sizeWithFont:font
-                       constrainedToSize:CGSizeMake(w, CGFLOAT_MAX)
-                           lineBreakMode:NSLineBreakByWordWrapping];
-  CGFloat cellH = [self tableView:nil heightForRowAtIndexPath:aPath];
+  CGSize labelSize = CGSizeMake(w, 38);
+  CGFloat cellH = [self tableView:self.tableView heightForRowAtIndexPath:aPath];
   CGFloat h = labelSize.height;
   CGFloat y = (cellH/2) - (h/2);
   CGRect frame = CGRectMake(10, y, w, h);

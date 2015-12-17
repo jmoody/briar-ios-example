@@ -13,19 +13,17 @@
 
 @implementation BrNavigationController
 
+#pragma mark - Orientation / Rotation
 
-#pragma mark - iOS 5
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) aInterfaceOrientation {
-  return [[[self viewControllers] lastObject] shouldAutorotateToInterfaceOrientation:aInterfaceOrientation];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
+- (UIInterfaceOrientationMask) supportedInterfaceOrientations {
+  return [[[self viewControllers] lastObject] supportedInterfaceOrientations];
 }
-
-
-#pragma mark - iOS 6
-
+#else
 - (NSUInteger) supportedInterfaceOrientations {
   return [[[self viewControllers] lastObject] supportedInterfaceOrientations];
 }
+#endif
 
 - (BOOL) shouldAutorotate {
   return [[[self viewControllers] lastObject] shouldAutorotate];

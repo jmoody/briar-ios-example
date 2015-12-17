@@ -27,22 +27,20 @@
   bar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.9f];
 }
 
-#pragma mark - iOS 5
+#pragma mark - Orientation / Rotation
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) aInterfaceOrientation {
-  return [[self selectedViewController] shouldAutorotateToInterfaceOrientation:aInterfaceOrientation];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
+- (UIInterfaceOrientationMask) supportedInterfaceOrientations {
+  return [[[self viewControllers] lastObject] supportedInterfaceOrientations];
 }
-
-#pragma mark - iOS 6
-
-
+#else
 - (NSUInteger) supportedInterfaceOrientations {
-  return [[self selectedViewController] supportedInterfaceOrientations];
+  return [[[self viewControllers] lastObject] supportedInterfaceOrientations];
 }
+#endif
 
 - (BOOL) shouldAutorotate {
-  return [[self selectedViewController] shouldAutorotate];
+  return [[[self viewControllers] lastObject] shouldAutorotate];
 }
-
 
 @end

@@ -57,13 +57,6 @@ typedef enum : NSInteger {
   // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload {
-  [self setButtonTime:nil];
-  [self setButtonDateAndTime:nil];
-  [self setButtonDate:nil];
-  [super viewDidUnload];
-}
-
 - (BrDatePickerView *) pickerView {
   return _pickerView;
 }
@@ -210,20 +203,17 @@ typedef enum : NSInteger {
   return array;
 }
 
-#pragma mark - Orientation
+#pragma mark - Orientation / Rotation
 
-#pragma mark - iOS 5 Rotations
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) aInterfaceOrientation {
-  return aInterfaceOrientation == UIInterfaceOrientationPortrait ||
-  aInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown;
-}
-
-#pragma mark - iOS 6 Rotations
-
-- (NSUInteger) supportedInterfaceOrientations {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
+- (UIInterfaceOrientationMask) supportedInterfaceOrientations {
   return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
 }
+#else
+- (NSUInteger) supportedInterfaceOrientations {
+  return UIInterfaceOrientationMaskAll;
+}
+#endif
 
 - (BOOL) shouldAutorotate {
   return YES;

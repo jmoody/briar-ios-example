@@ -163,8 +163,8 @@ typedef enum : NSInteger {
   if (_label != nil) { return _label; }
   CGRect frame = CGRectMake(20, 44, 280, 24);
   UILabel *result = [[UILabel alloc] initWithFrame:frame];
-  result.textAlignment = UITextAlignmentCenter;
-  result.lineBreakMode = UILineBreakModeMiddleTruncation;
+  result.textAlignment = NSTextAlignmentCenter;
+  result.lineBreakMode = NSLineBreakByTruncatingMiddle;
   result.font = [UIFont boldSystemFontOfSize:18];
   result.text = [self stringForDate:self.date withMode:self.pickerMode];
   result.accessibilityIdentifier = @"time";
