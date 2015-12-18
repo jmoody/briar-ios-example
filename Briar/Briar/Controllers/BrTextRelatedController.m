@@ -92,12 +92,6 @@ static NSString *const kKeychainService = @"briar-ios-example.service";
   // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload {
-  
-  [super viewDidUnload];
-}
-
-
 #pragma mark - Actions
 
 - (void) buttonTouchedDoneTextEditing:(id)sender {

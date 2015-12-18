@@ -79,12 +79,6 @@ static NSString *const k_aid_table = @"table";
   // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload {
-  
-  [super viewDidUnload];
-}
-
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger) tableView:(UITableView *) aTableView numberOfRowsInSection:(NSInteger) aSection {

@@ -79,7 +79,6 @@
 
 - (void) postInitConfiguration {
   self.navbarTitle = nil;
-  self.wantsFullScreenLayout = YES;
   
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
   SEL selector = @selector(setAutomaticallyAdjustsScrollViewInsets:);
@@ -135,25 +134,21 @@
 }
 
 
-#pragma mark - iOS 5 Rotations
+#pragma mark - Orientation / Rotation
 
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  // Return YES for supported orientations
-  return YES;
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
+- (UIInterfaceOrientationMask) supportedInterfaceOrientations {
+  return UIInterfaceOrientationMaskAll;
 }
-
-#pragma mark - iOS 6 Rotations
-
+#else
 - (NSUInteger) supportedInterfaceOrientations {
   return UIInterfaceOrientationMaskAll;
 }
+#endif
 
 - (BOOL) shouldAutorotate {
-  // from the docs - this is the default
   return YES;
 }
-
 
 #pragma mark - View Layout
 

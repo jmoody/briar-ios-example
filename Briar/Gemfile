@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'calabash-cucumber', '>= 0.16.1', '< 2.0'
-gem 'run_loop', '>= 1.5.4', '< 2.0'
+gem 'calabash-cucumber', '>= 0.16.3', '< 2.0'
+gem 'run_loop', '>= 1.5.5', '< 2.0'
 
 gem 'faker', '~> 1.4'
 gem 'xcpretty', '~> 0.1'
 gem 'pry'
 gem 'pry-nav'
-gem 'briar', '>= 1.4.1', '< 2.0'
+gem 'briar', '>= 1.4.2', '< 2.0'
 
 gem 'syntax'
 gem 'ruby-prof'

@@ -86,7 +86,7 @@ UIAlertViewDelegate>
   // lesspainful devices will not have email accounts configured so we get
   // an alert instead...
   if (mailViewController != nil) {
-    [self presentModalViewController:mailViewController animated:YES];
+    [self presentViewController:mailViewController animated:YES completion:nil];
   } else {
     NSLog(@"no email accounts configured?");
   }
@@ -179,7 +179,7 @@ UIAlertViewDelegate>
 -(void) mailComposeController:(MFMailComposeViewController*) aController
           didFinishWithResult:(MFMailComposeResult) aResult
                         error:(NSError *) aError {
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Rotation
@@ -315,13 +315,6 @@ UIAlertViewDelegate>
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
-}
-
-- (void)viewDidUnload {
-  [self setButtonShowSheet:nil];
-  [self setButtonShowEmail:nil];
-  [self setButtonShowAlert:nil];
-  [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
