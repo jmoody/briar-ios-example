@@ -79,7 +79,6 @@
 
 - (void) postInitConfiguration {
   self.navbarTitle = nil;
-  self.wantsFullScreenLayout = YES;
   
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
   SEL selector = @selector(setAutomaticallyAdjustsScrollViewInsets:);

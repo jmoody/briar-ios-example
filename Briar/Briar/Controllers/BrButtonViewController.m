@@ -317,13 +317,6 @@ UIAlertViewDelegate>
   [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidUnload {
-  [self setButtonShowSheet:nil];
-  [self setButtonShowEmail:nil];
-  [self setButtonShowAlert:nil];
-  [super viewDidUnload];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   UISegmentedControl *segcon = [self segmentedControl];
