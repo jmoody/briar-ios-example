@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		F568C46E16E3C8EB007797F1 /* versioning */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = F568C46F16E3C8EB007797F1 /* Build configuration list for PBXAggregateTarget "versioning" */;
-			buildPhases = (
-				F568C47216E3C90D007797F1 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = versioning;
-			productName = versioning;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		01d93763067c68ff5edfb415 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F568C42216E3C256007797F1 /* Foundation.framework */; };
 		057f6664908d0a0ec2a2034a /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45416E3C69C007797F1 /* second.png */; };
@@ -279,16 +265,6 @@
 		e20f57209fc5a8a2af660f73 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C45316E3C69C007797F1 /* first@2x.png */; };
 		ed606ba9927d8c66d53a1e75 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F568C42916E3C256007797F1 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		F568C47316E3C94A007797F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F568C41516E3C256007797F1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F568C46E16E3C8EB007797F1;
-			remoteInfo = versioning;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		454DF1BF1A14EF9E009A4F81 /* webview-scaffold.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "webview-scaffold.html"; sourceTree = "<group>"; };
@@ -801,7 +777,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ccd2c07834634f0ece1d0906 /* Build configuration list for PBXNativeTarget "Briar-cal" */;
 			buildPhases = (
-				110f4bb952539397a664980e /* Run Script versioning */,
 				096bb38a15c4380072adb3a3 /* Sources */,
 				7f7642a836cd061e9fa68808 /* Frameworks */,
 				c418708b56631e5eb9d8a697 /* Resources */,
@@ -810,7 +785,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F568C47416E3C94A007797F1 /* PBXTargetDependency */,
 			);
 			name = "Briar-cal";
 			productName = "Briar-cal";
@@ -821,7 +795,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F568C44E16E3C256007797F1 /* Build configuration list for PBXNativeTarget "Briar" */;
 			buildPhases = (
-				F568C47516E3C984007797F1 /* Run Script versioning */,
 				F568C41916E3C256007797F1 /* Sources */,
 				F568C41A16E3C256007797F1 /* Frameworks */,
 				F568C41B16E3C256007797F1 /* Resources */,
@@ -830,7 +803,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				F568C47416E3C94A007797F1 /* PBXTargetDependency */,
 			);
 			name = Briar;
 			productName = Briar;
@@ -861,7 +833,6 @@
 			targets = (
 				F568C41C16E3C256007797F1 /* Briar */,
 				0bea02fe1a89a1d839eb1977 /* Briar-cal */,
-				F568C46E16E3C8EB007797F1 /* versioning */,
 			);
 		};
 /* End PBXProject section */
@@ -1088,49 +1059,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		110f4bb952539397a664980e /* Run Script versioning */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script versioning";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "bash versioning.bash \"${CONFIGURATION}\" \"${INFOPLIST_FILE}\" AppStore\n";
-			showEnvVarsInLog = 0;
-		};
-		F568C47216E3C90D007797F1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "gitpath=`which git`\nGITREV=`$gitpath rev-parse --short HEAD`\necho \"INFO: setting the GIT_SHORT_REVISION = ${GITREV} in InfoPlist.h\"\necho \"#define GIT_SHORT_REVISION ${GITREV}\" > InfoPlist.h\necho \"INFO: touching Info.plist\"\ntouch Briar/Briar-Info.plist";
-		};
-		F568C47516E3C984007797F1 /* Run Script versioning */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script versioning";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "bash versioning.bash \"${CONFIGURATION}\" \"${INFOPLIST_FILE}\" AppStore";
-			showEnvVarsInLog = 0;
-		};
 		F58B6DF51868747E0042191C /* Run Script - sign reveal */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1217,14 +1145,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F568C47416E3C94A007797F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F568C46E16E3C8EB007797F1 /* versioning */;
-			targetProxy = F568C47316E3C94A007797F1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F568C42916E3C256007797F1 /* InfoPlist.strings */ = {
@@ -1541,20 +1461,6 @@
 			};
 			name = Release;
 		};
-		F568C47016E3C8EB007797F1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		F568C47116E3C8EB007797F1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1572,15 +1478,6 @@
 			buildConfigurations = (
 				F568C44F16E3C256007797F1 /* Debug */,
 				F568C45016E3C256007797F1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		F568C46F16E3C8EB007797F1 /* Build configuration list for PBXAggregateTarget "versioning" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F568C47016E3C8EB007797F1 /* Debug */,
-				F568C47116E3C8EB007797F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

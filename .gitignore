@@ -43,7 +43,7 @@ screenshots
 screenshot*.png
 
 # directory for staging for XTC runs
-xtc-staging
+xtc-submit
 
 # jenkins
 ci-reports
