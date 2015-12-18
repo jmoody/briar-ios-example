@@ -119,6 +119,10 @@
 		F591380917C3D2CE007B2BE4 /* BrNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F591380717C3D2CE007B2BE4 /* BrNavigationController.m */; };
 		F591380C17C3D3AB007B2BE4 /* BrTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F591380B17C3D3AB007B2BE4 /* BrTabBarController.m */; };
 		F591380D17C3D3AB007B2BE4 /* BrTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F591380B17C3D3AB007B2BE4 /* BrTabBarController.m */; };
+		F59A9E791C2416C800551261 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59A9E771C2416C800551261 /* LaunchScreen.xib */; };
+		F59A9E7A1C2416C800551261 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59A9E771C2416C800551261 /* LaunchScreen.xib */; };
+		F59A9EA21C24172100551261 /* BrWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59A9EA01C24172100551261 /* BrWebViewController.xib */; };
+		F59A9EA31C24172100551261 /* BrWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F59A9EA01C24172100551261 /* BrWebViewController.xib */; };
 		F5A6DB4418104CBB007D85C7 /* BrSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A6DB4318104CBB007D85C7 /* BrSliderView.m */; };
 		F5A6DB4518104CBB007D85C7 /* BrSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A6DB4318104CBB007D85C7 /* BrSliderView.m */; };
 		F5A6DB731810581A007D85C7 /* anxious.png in Resources */ = {isa = PBXBuildFile; fileRef = F5A6DB481810581A007D85C7 /* anxious.png */; };
@@ -265,8 +269,6 @@
 		F5D4F9471A41C2720026C3F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5D4F9451A41AE030026C3F2 /* Images.xcassets */; };
 		F5DC02AE1A09802600744826 /* BrWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DC02AC1A09802600744826 /* BrWebViewController.m */; };
 		F5DC02AF1A09802600744826 /* BrWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5DC02AC1A09802600744826 /* BrWebViewController.m */; };
-		F5DC02B01A09802600744826 /* BrWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5DC02AD1A09802600744826 /* BrWebViewController.xib */; };
-		F5DC02B11A09802600744826 /* BrWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5DC02AD1A09802600744826 /* BrWebViewController.xib */; };
 		F5E2D16218C73D9600A0D9B6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E2D16118C73D9600A0D9B6 /* Security.framework */; };
 		F5E2D16318C73DA200A0D9B6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E2D16118C73D9600A0D9B6 /* Security.framework */; };
 		aa3541c626e9a05f9ce05e6d /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F568C43416E3C256007797F1 /* Default@2x.png */; };
@@ -356,6 +358,8 @@
 		F591380717C3D2CE007B2BE4 /* BrNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrNavigationController.m; sourceTree = "<group>"; };
 		F591380A17C3D3AB007B2BE4 /* BrTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrTabBarController.h; sourceTree = "<group>"; };
 		F591380B17C3D3AB007B2BE4 /* BrTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrTabBarController.m; sourceTree = "<group>"; };
+		F59A9E781C2416C800551261 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F59A9EA11C24172100551261 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BrWebViewController.xib; sourceTree = "<group>"; };
 		F5A6DB4218104CBB007D85C7 /* BrSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrSliderView.h; sourceTree = "<group>"; };
 		F5A6DB4318104CBB007D85C7 /* BrSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrSliderView.m; sourceTree = "<group>"; };
 		F5A6DB481810581A007D85C7 /* anxious.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = anxious.png; sourceTree = "<group>"; };
@@ -435,7 +439,6 @@
 		F5D4F9451A41AE030026C3F2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F5DC02AB1A09802600744826 /* BrWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BrWebViewController.h; path = ../../BrWebViewController.h; sourceTree = "<group>"; };
 		F5DC02AC1A09802600744826 /* BrWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BrWebViewController.m; path = ../../BrWebViewController.m; sourceTree = "<group>"; };
-		F5DC02AD1A09802600744826 /* BrWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrWebViewController.xib; sourceTree = "<group>"; };
 		F5E2D16118C73D9600A0D9B6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		c6425b650cbbd9f05994720c /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		ff3dcd52060efbfc4f8a542e /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -588,8 +591,9 @@
 		F568C45A16E3C6A8007797F1 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				F59A9EA01C24172100551261 /* BrWebViewController.xib */,
+				F59A9E771C2416C800551261 /* LaunchScreen.xib */,
 				F575828F1819EA3E0006FD60 /* BrSegController.xib */,
-				F5DC02AD1A09802600744826 /* BrWebViewController.xib */,
 				F5ACF37B180D4F440062E3D5 /* BrSliderController.xib */,
 				F5A9CFAD170EEFC900265826 /* BrDatePickerController.xib */,
 				F5A9CFAF170EEFC900265826 /* BrButtonViewController.xib */,
@@ -900,6 +904,7 @@
 				F5A6DB911810581A007D85C7 /* clip@2x.png in Resources */,
 				F5C3A66C18A33CAE00DB7E42 /* thai_shrimp_cake.jpg in Resources */,
 				F568C46516E3C6F2007797F1 /* Icon-72.png in Resources */,
+				F59A9EA21C24172100551261 /* BrWebViewController.xib in Resources */,
 				F5C3A65218A33CAE00DB7E42 /* creme_brelee.jpg in Resources */,
 				F568C46616E3C6F2007797F1 /* Icon-72@2x.png in Resources */,
 				F568C46716E3C6F2007797F1 /* Icon-Small-50.png in Resources */,
@@ -923,7 +928,6 @@
 				F5A6DB8F1810581A007D85C7 /* clip.png in Resources */,
 				F568C46D16E3C6F2007797F1 /* iTunesArtwork@2x in Resources */,
 				F575829E1819F9030006FD60 /* grass@2x.png in Resources */,
-				F5DC02B01A09802600744826 /* BrWebViewController.xib in Resources */,
 				F56BAB6C16FCA5C500AB8578 /* 11-clock.png in Resources */,
 				F5A6DB991810581A007D85C7 /* calendar@2x.png in Resources */,
 				F5ACF383180D53BC0062E3D5 /* 833-diamond@2x.png in Resources */,
@@ -955,6 +959,7 @@
 				F5C3A66218A33CAE00DB7E42 /* japanese_noodle_with_pork.jpg in Resources */,
 				F5A9CFC3170F12CF00265826 /* 259-list.png in Resources */,
 				F5A6DB9F1810581A007D85C7 /* compass.png in Resources */,
+				F59A9E791C2416C800551261 /* LaunchScreen.xib in Resources */,
 				F5A6DB7D1810581A007D85C7 /* calm@2x.png in Resources */,
 				F5A6DB931810581A007D85C7 /* clipboard.png in Resources */,
 				F5A6DBB91810581A007D85C7 /* overcast@2x.png in Resources */,
@@ -1008,6 +1013,7 @@
 				F5A6DB921810581A007D85C7 /* clip@2x.png in Resources */,
 				F5C3A66D18A33CAE00DB7E42 /* thai_shrimp_cake.jpg in Resources */,
 				23b78a523c28d71ae6892ce3 /* Icon-72.png in Resources */,
+				F59A9EA31C24172100551261 /* BrWebViewController.xib in Resources */,
 				F5C3A65318A33CAE00DB7E42 /* creme_brelee.jpg in Resources */,
 				2fac437ae5a7eef244390b77 /* Icon-72@2x.png in Resources */,
 				3f744665f593b89dc3f47464 /* Icon-Small-50.png in Resources */,
@@ -1031,7 +1037,6 @@
 				F5A6DB901810581A007D85C7 /* clip.png in Resources */,
 				33d4d298137d5d41d434537a /* iTunesArtwork@2x in Resources */,
 				F575829F1819F9030006FD60 /* grass@2x.png in Resources */,
-				F5DC02B11A09802600744826 /* BrWebViewController.xib in Resources */,
 				F56BAB6D16FCA5C500AB8578 /* 11-clock.png in Resources */,
 				F5A6DB9A1810581A007D85C7 /* calendar@2x.png in Resources */,
 				F5ACF384180D53BC0062E3D5 /* 833-diamond@2x.png in Resources */,
@@ -1063,6 +1068,7 @@
 				F5C3A66318A33CAE00DB7E42 /* japanese_noodle_with_pork.jpg in Resources */,
 				F5A9CFC4170F12CF00265826 /* 259-list.png in Resources */,
 				F5A6DBA01810581A007D85C7 /* compass.png in Resources */,
+				F59A9E7A1C2416C800551261 /* LaunchScreen.xib in Resources */,
 				F5A6DB7E1810581A007D85C7 /* calm@2x.png in Resources */,
 				F5A6DB941810581A007D85C7 /* clipboard.png in Resources */,
 				F5A6DBBA1810581A007D85C7 /* overcast@2x.png in Resources */,
@@ -1235,6 +1241,22 @@
 				F57582901819EA3E0006FD60 /* en */,
 			);
 			name = BrSegController.xib;
+			sourceTree = "<group>";
+		};
+		F59A9E771C2416C800551261 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F59A9E781C2416C800551261 /* en */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		F59A9EA01C24172100551261 /* BrWebViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F59A9EA11C24172100551261 /* en */,
+			);
+			name = BrWebViewController.xib;
 			sourceTree = "<group>";
 		};
 		F5A9CFAD170EEFC900265826 /* BrDatePickerController.xib */ = {
